@@ -1,6 +1,10 @@
 # WildernessExpoApp
 
+玩野覓境 APP
 
+React Native
+
+Expo
 
 ## Getting started
 

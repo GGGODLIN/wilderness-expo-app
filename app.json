@@ -1,7 +1,8 @@
 {
   "expo": {
     "name": "WildernessComTW",
-    "slug": "WildernessComTW",
+    "slug": "wildernesscomtw",
+    "owner": "estiginto",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

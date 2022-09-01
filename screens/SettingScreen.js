@@ -68,6 +68,24 @@ const SettingScreen = ({ navigation, route }) => {
 
     return (
         <View style={{ flex: 1, padding: 5, backgroundColor: '#fff', borderTopWidth: 2, borderColor: colors?.InactiveColor }}>
+            <View style={{ alignItems: 'center', padding: 20 }}>
+                <TouchableOpacity>
+                    <Avatar
+                    size={64}
+                    rounded
+                    source={require('../assets/avatars/avatar.jpg')}
+                    title="Bj"
+                    containerStyle={{ backgroundColor: 'grey' }}
+                    >
+                        <Avatar.Accessory size={23} />
+                    </Avatar>
+                </TouchableOpacity>
+            </View>
+            <View style={{ alignItems: 'center', paddingBottom: 10 }}>
+                <TouchableOpacity>
+                    <Text style={{ fontSize: 20, fontWeight: 'bold' }}>{userProfile?.name ?? '   '}</Text>
+                </TouchableOpacity>
+            </View>
             {/*
             <View style={{ alignItems: 'center', flex: 1, padding: 20 }}>
                 <TouchableOpacity

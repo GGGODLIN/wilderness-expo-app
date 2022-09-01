@@ -94,9 +94,10 @@ const SettingScreen = ({ navigation, route }) => {
                 </View>
                 <View style={{ width: '100%', marginVertical: 5 }}>
                     <SecondActionButton
-                        title={'關於 Echo Square'}
+                        title={'關於玩野覓境'}
                         onPress={() => { navigation.navigate('Detail') }} />
                 </View>
+                {/*
                 <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 10 }}>
                     <TouchableOpacity
                         style={{ marginHorizontal: 5 }}
@@ -139,7 +140,7 @@ const SettingScreen = ({ navigation, route }) => {
                         />
                     </TouchableOpacity>
                 </View>
-
+                */}
             </View>
         </View>
     );

@@ -34,7 +34,6 @@ export default function App() {
       <KeyboardAvoidingView
         behavior={Platform.OS == "ios" ? "padding" : "'height'"}
         style={styles.container}>
-
         <StatusBar
           translucent={true}
           hidden={false}

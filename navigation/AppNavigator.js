@@ -59,7 +59,7 @@ function AppNavigator(props) {
               ),
             }}
           />
-          <Tab.Screen name="Settings" component={SettingScreen}
+          <Tab.Screen name="設定" component={SettingScreen}
             options={{
               tabBarLabel: '設定',
               tabBarIcon: ({ color, size }) => (

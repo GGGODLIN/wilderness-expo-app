@@ -7,6 +7,7 @@ import { MainActionButton, SecondActionButton } from "../components/ActionButton
 import { api, dispatchFetchRequest } from "../constants/Backend";
 import colors from '../constants/Colors';
 import { ListItem, Icon } from '@rneui/themed'
+import { Header } from '@rneui/themed';
 
 const SettingScreen = ({ navigation, route }) => {
 
@@ -52,9 +53,6 @@ const SettingScreen = ({ navigation, route }) => {
         },
         {
           title: '修改密碼',
-        },
-        {
-          title: '通知 (待移小鈴鐺)',
         },
         {
           title: '初次介紹',

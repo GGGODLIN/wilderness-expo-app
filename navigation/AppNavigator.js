@@ -11,6 +11,7 @@ import SettingScreen from '../screens/SettingScreen';
 import UserNameEditScreen from '../screens/UserNameEditScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { Icon } from "@rneui/themed";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -64,6 +65,11 @@ function AppNavigator(props) {
                 <MaterialCommunityIcons name="account" color={color} size={size} />
               ),
               tabBarBadge: 3,
+              headerRight: ({ color, size }) => (
+                <TouchableOpacity>
+                  <MaterialCommunityIcons name="bell-outline" color={color} size={24} style={{ marginRight: 15 }}  />
+                </TouchableOpacity>
+              ),
             }}
           />
         </Tab.Navigator>

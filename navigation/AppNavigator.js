@@ -63,8 +63,9 @@ function AppNavigator(props) {
             options={{
               tabBarLabel: '設定',
               tabBarIcon: ({ color, size }) => (
-                <MaterialCommunityIcons name="cog-outline" color={color} size={size} />
+                <MaterialCommunityIcons name="account" color={color} size={size} />
               ),
+              tabBarBadge: 3,
             }}
           />
         </Tab.Navigator>

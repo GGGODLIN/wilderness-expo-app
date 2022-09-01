@@ -10,20 +10,63 @@ import MapScreen from '../screens/MapScreen';
 import SettingScreen from '../screens/SettingScreen';
 import UserNameEditScreen from '../screens/UserNameEditScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
+
+// #9fa88d
 
 function AppNavigator(props) {
   return (
     <>
       <NavigationContainer>
-        <Tab.Navigator>
-          <Tab.Screen name="Home" component={HomeScreen} />
-          <Tab.Screen name="Location" component={HomeScreen} />
-          <Tab.Screen name="Social" component={HomeScreen} />
-          <Tab.Screen name="My" component={HomeScreen} />
-          <Tab.Screen name="Settings" component={SettingScreen} />
+        <Tab.Navigator
+          screenOptions={{
+            tabBarActiveTintColor: '#93523c',
+            tabBarInactiveTintColor: '#9fa88d',
+          }}
+        >
+          <Tab.Screen name="Location" component={HomeScreen} 
+            options={{
+              tabBarLabel: '探索',
+              tabBarIcon: ({ color, size }) => (
+                <MaterialCommunityIcons name="map-marker-radius-outline" color={color} size={size} />
+              ),
+            }}
+          />
+          <Tab.Screen name="Social" component={HomeScreen}
+            options={{
+              tabBarLabel: '社群',
+              tabBarIcon: ({ color, size }) => (
+                <MaterialCommunityIcons name="message-reply-text-outline" color={color} size={size} />
+              ),
+            }}
+          />
+          <Tab.Screen name="Home" component={HomeScreen} 
+            options={{
+              tabBarLabel: '首頁',
+              tabBarIcon: ({ color, size }) => (
+                <MaterialCommunityIcons name="home-outline" color={color} size={size} />
+              ),
+            }}
+          />
+          <Tab.Screen name="My" component={HomeScreen} 
+            options={{
+              tabBarLabel: '私藏',
+              tabBarIcon: ({ color, size }) => (
+                <MaterialCommunityIcons name="heart-outline" color={color} size={size} />
+              ),
+            }}
+          />
+          <Tab.Screen name="Settings" component={SettingScreen}
+            options={{
+              tabBarLabel: '設定',
+              tabBarIcon: ({ color, size }) => (
+                <MaterialCommunityIcons name="cog-outline" color={color} size={size} />
+              ),
+            }}
+          />
         </Tab.Navigator>
       </NavigationContainer>
     </>

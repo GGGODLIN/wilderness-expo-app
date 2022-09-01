@@ -41,7 +41,7 @@ const HomeScreen = ({ navigation }) => {
     const userMsgTextInputRef = useRef(null);
     const normalMsgScrollViewRef = useRef(null);
     const pinnedMsgScrollViewRef = useRef(null);
-
+    /*
     useFocusEffect(
         React.useCallback(() => {
             (async () => {
@@ -85,7 +85,7 @@ const HomeScreen = ({ navigation }) => {
             return () => { clearInterval(timerID) };
         }, [])
     );
-
+    */
     useEffect(() => {
         AppState.addEventListener('change', (nextAppState) => {
             setAppStateVisible(nextAppState)

@@ -6,6 +6,7 @@ import avatars from '../assets/avatars';
 import { MainActionButton, SecondActionButton } from "../components/ActionButtons";
 import { api, dispatchFetchRequest } from "../constants/Backend";
 import colors from '../constants/Colors';
+import { ListItem, Icon } from '@rneui/themed'
 
 const SettingScreen = ({ navigation, route }) => {
 
@@ -43,9 +44,34 @@ const SettingScreen = ({ navigation, route }) => {
         ).then()
     }
 
+    const list = [
+        {
+          title: '修改個人資料',
+          iconRight: <ListItem.Chevron />,
+          onPress: () => { console.log('3') },
+        },
+        {
+          title: '修改密碼',
+        },
+        {
+          title: '通知 (待移小鈴鐺)',
+        },
+        {
+          title: '初次介紹',
+          onPress: () => { route?.params?.setHadOpenApp?.(false) },
+        },
+        {
+          title: '聯絡我們',
+        },
+        {
+          title: '版本資訊',
+        },
+      ]
+
     return (
-        <View style={{ flex: 1, padding: 10, backgroundColor: '#fff', borderTopWidth: 2, borderColor: colors?.msgBorderColor }}>
-            <View style={{ alignItems: 'center', flex: 1 }}>
+        <View style={{ flex: 1, padding: 5, backgroundColor: '#fff', borderTopWidth: 2, borderColor: colors?.InactiveColor }}>
+            {/*
+            <View style={{ alignItems: 'center', flex: 1, padding: 20 }}>
                 <TouchableOpacity
                     style={{ flex: 0.5, aspectRatio: 1, marginVertical: 20 }}
                     onPress={() => { navigation.navigate('UserNameEditScreen', { userProfile: userProfile, setUserProfile: (data) => setUserProfile(data), isPressAvatar: true }) }}
@@ -69,12 +95,15 @@ const SettingScreen = ({ navigation, route }) => {
                     style={{ borderBottomWidth: 5, borderColor: colors?.msgBorderColor, marginVertical: 10 }}>
                     <Text style={{ fontSize: 32, fontWeight: 'bold' }}>{userProfile?.name ?? '   '}</Text>
                 </TouchableOpacity>
-                <View style={{ width: '100%', marginVertical: 5 }}>
+            </View>
+            */}
+            <View>
+                {/*<View style={{ width: '100%', marginVertical: 5 }}>
                     <MainActionButton
                         disabled={!userProfile}
                         title={'修改名稱'}
                         onPress={() => { navigation.navigate('UserNameEditScreen', { userProfile: userProfile, setUserProfile: (data) => setUserProfile(data) }) }} />
-                </View>
+                </View>*/}
                 {/* <View style={{ width: '100%', marginVertical: 5 }}>
                     <MainActionButton
                         disabled
@@ -87,9 +116,24 @@ const SettingScreen = ({ navigation, route }) => {
                         title={'聯絡客服'}
                         onPress={() => { }} />
                 </View> */}
+                <View>
+                {
+                    list.map((item, i) => (
+                        <TouchableOpacity onPress={item.onPress}>
+                            <ListItem key={i} bottomDivider>
+                                <ListItem.Content>
+                                <ListItem.Title>{item.title}</ListItem.Title>
+                                </ListItem.Content>
+                                {item.iconRight}
+                            </ListItem>
+                        </TouchableOpacity>
+                    ))
+                }
+                </View>
+                {/*
                 <View style={{ width: '100%', marginVertical: 5 }}>
                     <SecondActionButton
-                        title={'初次使用介紹'}
+                        title={'初次介紹'}
                         onPress={() => { route?.params?.setHadOpenApp?.(false) }} />
                 </View>
                 <View style={{ width: '100%', marginVertical: 5 }}>
@@ -97,6 +141,7 @@ const SettingScreen = ({ navigation, route }) => {
                         title={'關於玩野覓境'}
                         onPress={() => { navigation.navigate('Detail') }} />
                 </View>
+                */}
                 {/*
                 <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 10 }}>
                     <TouchableOpacity

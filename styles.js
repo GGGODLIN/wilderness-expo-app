@@ -658,7 +658,7 @@ export default StyleSheet.create({
     marginHorizontal: 10
   },
   tblhead: {
-    backgroundColor: '#f75336'
+    backgroundColor: '#f75336'//333333
   },
   tbltextHeader: {
     margin: 4,

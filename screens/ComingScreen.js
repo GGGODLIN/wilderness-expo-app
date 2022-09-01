@@ -10,7 +10,7 @@ import { ListItem, Icon, Header, Card } from '@rneui/themed'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
-const HomeScreen = ({ navigation, route }) => {
+const ComingScreen = ({ navigation, route }) => {
 
     const [userProfile, setUserProfile] = useState(null);
 
@@ -93,29 +93,6 @@ const HomeScreen = ({ navigation, route }) => {
         <View style={{ flex: 1, padding: 0, backgroundColor: '#fff', borderTopWidth: 2, borderColor: colors?.InactiveColor }}>
             <ScrollView>
                 <View style={{ alignItems: 'center', paddingBottom: 10 }}>
-                    <Image
-                        resizeMode="cover"
-                        style={{ width: '100%', height: '100%', maxHeight: 200 }}
-                        source={require('../assets/images/pexels-uriel-mont-6271392.jpg')}
-                    />
-                    <FlatList
-                        data={list}
-                        numColumns={3}
-                        renderItem={Item}
-                        keyExtractor={(item) => item.alt}
-                    />
-                    <Card style={{ width: '100%', padding: 0 }}>
-                        <Card.Title>熱門文章</Card.Title>
-                        <Card.Divider />
-
-                    </Card>
-                    <Card style={{ width: '100%', padding: 0 }}>
-                        <Card.Title>熱門地點</Card.Title>
-                        <Card.Divider />
-
-                    </Card>
-                </View>
-                <View style={{ alignItems: 'center', paddingBottom: 10 }}>
 
                 </View>
             </ScrollView>
@@ -123,4 +100,4 @@ const HomeScreen = ({ navigation, route }) => {
     );
 }
 
-export default HomeScreen
+export default ComingScreen

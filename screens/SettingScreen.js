@@ -53,16 +53,19 @@ const SettingScreen = ({ navigation, route }) => {
         },
         {
           title: '修改密碼',
+          iconRight: <ListItem.Chevron />,
         },
         {
           title: '初次介紹',
+          iconRight: <ListItem.Chevron />,
           onPress: () => { route?.params?.setHadOpenApp?.(false) },
         },
         {
           title: '聯絡我們',
+          iconRight: <ListItem.Chevron />,
         },
         {
-          title: '版本資訊',
+          title: '版本資訊 v1.0',
         },
       ]
 

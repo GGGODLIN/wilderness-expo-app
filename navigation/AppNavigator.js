@@ -6,6 +6,7 @@ import { TouchableOpacity } from 'react-native';
 import colors from '../constants/Colors';
 import DetailScreen from '../screens/DetailScreen';
 import HomeScreen from '../screens/HomeScreen';
+import ComingScreen from '../screens/ComingScreen';
 import MapScreen from '../screens/MapScreen';
 import SettingScreen from '../screens/SettingScreen';
 import UserNameEditScreen from '../screens/UserNameEditScreen';
@@ -26,7 +27,7 @@ function AppNavigator(props) {
             tabBarInactiveTintColor: '#9fa88d',
           }}
         >
-          <Tab.Screen name="Location" component={HomeScreen} 
+          <Tab.Screen name="Location" component={ComingScreen} 
             options={{
               tabBarLabel: '探索',
               tabBarIcon: ({ color, size }) => (
@@ -34,7 +35,7 @@ function AppNavigator(props) {
               ),
             }}
           />
-          <Tab.Screen name="Social" component={HomeScreen}
+          <Tab.Screen name="Social" component={ComingScreen}
             options={{
               tabBarLabel: '社群',
               tabBarIcon: ({ color, size }) => (
@@ -42,7 +43,7 @@ function AppNavigator(props) {
               ),
             }}
           />
-          <Tab.Screen name="Home" component={HomeScreen} 
+          <Tab.Screen name="玩野覓境" component={HomeScreen} 
             options={{
               tabBarLabel: '首頁',
               tabBarIcon: ({ color, size }) => (
@@ -50,7 +51,7 @@ function AppNavigator(props) {
               ),
             }}
           />
-          <Tab.Screen name="My" component={HomeScreen} 
+          <Tab.Screen name="My" component={ComingScreen} 
             options={{
               tabBarLabel: '私藏',
               tabBarIcon: ({ color, size }) => (

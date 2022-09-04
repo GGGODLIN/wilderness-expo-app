@@ -27,7 +27,7 @@ function AppNavigator(props) {
             tabBarInactiveTintColor: '#9fa88d',
           }}
         >
-          <Tab.Screen name="Location" component={ComingScreen} 
+          <Tab.Screen name="探索" component={ComingScreen} 
             options={{
               tabBarLabel: '探索',
               tabBarIcon: ({ color, size }) => (
@@ -35,7 +35,7 @@ function AppNavigator(props) {
               ),
             }}
           />
-          <Tab.Screen name="Social" component={ComingScreen}
+          <Tab.Screen name="社群" component={ComingScreen}
             options={{
               tabBarLabel: '社群',
               tabBarIcon: ({ color, size }) => (
@@ -51,7 +51,7 @@ function AppNavigator(props) {
               ),
             }}
           />
-          <Tab.Screen name="My" component={ComingScreen} 
+          <Tab.Screen name="私藏" component={ComingScreen} 
             options={{
               tabBarLabel: '私藏',
               tabBarIcon: ({ color, size }) => (

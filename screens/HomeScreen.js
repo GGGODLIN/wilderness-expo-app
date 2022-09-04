@@ -6,8 +6,9 @@ import avatars from '../assets/avatars';
 import { MainActionButton, SecondActionButton } from "../components/ActionButtons";
 import { api, dispatchFetchRequest } from "../constants/Backend";
 import colors from '../constants/Colors';
-import { ListItem, Icon, Header, Card } from '@rneui/themed'
+import { ListItem, Icon, Header, Card, Divider } from '@rneui/themed'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome5';
 
 
 const HomeScreen = ({ navigation, route }) => {
@@ -46,20 +47,47 @@ const HomeScreen = ({ navigation, route }) => {
         ).then()
     }
 
-    const list = [
+    const iconSize = 32;
+    const iconStyle = { color: colors?.InactiveColor };
+    const indexLinkList = [
         {
-            icon: <MaterialCommunityIcons name="campfire" size={40} style={{ color: colors?.InactiveColor }} />,
+            icon: <FontAwesome name="caravan" size={iconSize} style={iconStyle} />,
+            title: '車泊熱點',
+            component: <></>,
+        },
+        {
+            icon: <FontAwesome name="snowboarding" size={iconSize} style={iconStyle} />,
+            title: '滑水秘境',
+            component: <></>,
+        },
+        {
+            icon: <FontAwesome name="campground" size={iconSize} style={iconStyle} />,
+            title: '熱門營地',
+            component: <></>,
+        },
+        {
+            icon: <FontAwesome name="fish" size={iconSize} style={iconStyle} />,
+            title: '釣魚熱區',
+            component: <></>,
+        },
+        {
+            icon: <FontAwesome name="icons" size={iconSize} style={iconStyle} />,
+            title: '熱門文章',
+            component: <></>,
+        },
+        {
+            icon: <FontAwesome name="drumstick-bite" size={iconSize} style={iconStyle} />,
+            title: '露營美食',
+            component: <></>,
+        },
+        {
+            icon: <FontAwesome name="map-signs" size={iconSize} style={iconStyle} />,
             title: '好野入門',
             component: <></>,
         },
         {
-            icon: <MaterialCommunityIcons name="information-outline" size={40} style={{ color: colors?.InactiveColor }} />,
+            icon: <FontAwesome name="question-circle" size={iconSize} style={iconStyle} />,
             title: '常見問題',
-            component: <></>,
-        },
-        {
-            icon: <MaterialCommunityIcons name="alert" size={40} style={{ color: colors?.InactiveColor }} />,
-            title: '法規相關',
             component: <></>,
         },
     ]
@@ -91,19 +119,21 @@ const HomeScreen = ({ navigation, route }) => {
       
     return (
         <View style={{ flex: 1, padding: 0, backgroundColor: '#fff', borderTopWidth: 2, borderColor: colors?.InactiveColor }}>
+            <View style={{ alignItems: 'center', paddingBottom: 10 }}>
+                <Image
+                    resizeMode="cover"
+                    style={{ width: '100%', height: '100%', maxHeight: 200 }}
+                    source={require('../assets/images/pexels-uriel-mont-6271392.jpg')}
+                />
+                <FlatList
+                    data={indexLinkList}
+                    numColumns={4}
+                    renderItem={Item}
+                    keyExtractor={(item) => item.alt}
+                />
+            </View>
             <ScrollView>
                 <View style={{ alignItems: 'center', paddingBottom: 10 }}>
-                    <Image
-                        resizeMode="cover"
-                        style={{ width: '100%', height: '100%', maxHeight: 200 }}
-                        source={require('../assets/images/pexels-uriel-mont-6271392.jpg')}
-                    />
-                    <FlatList
-                        data={list}
-                        numColumns={3}
-                        renderItem={Item}
-                        keyExtractor={(item) => item.alt}
-                    />
                     <Card style={{ width: '100%', padding: 0 }}>
                         <Card.Title>熱門文章</Card.Title>
                         <Card.Divider />
@@ -114,9 +144,6 @@ const HomeScreen = ({ navigation, route }) => {
                         <Card.Divider />
 
                     </Card>
-                </View>
-                <View style={{ alignItems: 'center', paddingBottom: 10 }}>
-
                 </View>
             </ScrollView>
         </View>

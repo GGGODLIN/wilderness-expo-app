@@ -1,6 +1,6 @@
 import { useFocusEffect } from '@react-navigation/native';
 import React, { useState } from 'react';
-import { Linking, Text, TouchableOpacity, View, Image, FlatList, ScrollView } from 'react-native';
+import { StyleSheet, Linking, Text, TouchableOpacity, View, Image, FlatList, ScrollView } from 'react-native';
 import { Avatar } from 'react-native-elements';
 import avatars from '../assets/avatars';
 import { MainActionButton, SecondActionButton } from "../components/ActionButtons";
@@ -49,6 +49,7 @@ const HomeScreen = ({ navigation, route }) => {
 
     const iconSize = 32;
     const iconStyle = { color: colors?.InactiveColor };
+    const titleStyle = { color: colors?.InactiveColor, fontSize: 16 };
     const indexLinkList = [
         {
             icon: <FontAwesome name="caravan" size={iconSize} style={iconStyle} />,
@@ -101,7 +102,7 @@ const HomeScreen = ({ navigation, route }) => {
                     </View>
                     <View>
                         <TouchableOpacity>
-                            <Text style={{ color: colors?.InactiveColor, fontSize: 18 }}>{item.title}</Text>
+                            <Text style={titleStyle}>{item.title}</Text>
                         </TouchableOpacity>
                     </View>
                 </TouchableOpacity>
@@ -109,22 +110,31 @@ const HomeScreen = ({ navigation, route }) => {
         );
     };
     
-    const articles = [
+    const indexArticleList = [
         {
             title: 'abcdefgabcdefgabcdefgabcdefg',
             date: '2022-09-01',
-            image: '../assets/images/pexels-uriel-mont-6271392.jpg',
+            image: require('../assets/images/pexels-uriel-mont-6271392.jpg'),
         },
     ];
+    const articleList = ({ item }) => {
+        return (
+            <Image
+                style={styles.image}
+                resizeMode="cover"
+                source={item.image}
+            />
+        );
+    };
       
     return (
         <View style={{ flex: 1, padding: 0, backgroundColor: '#fff', borderTopWidth: 2, borderColor: colors?.InactiveColor }}>
+            <Image
+                resizeMode="cover"
+                style={{ width: '100%', height: '100%', maxHeight: 200 }}
+                source={require('../assets/images/pexels-uriel-mont-6271392.jpg')}
+            />
             <View style={{ alignItems: 'center', paddingBottom: 10 }}>
-                <Image
-                    resizeMode="cover"
-                    style={{ width: '100%', height: '100%', maxHeight: 200 }}
-                    source={require('../assets/images/pexels-uriel-mont-6271392.jpg')}
-                />
                 <FlatList
                     data={indexLinkList}
                     numColumns={4}
@@ -133,7 +143,21 @@ const HomeScreen = ({ navigation, route }) => {
                 />
             </View>
             <ScrollView>
-                <View style={{ alignItems: 'center', paddingBottom: 10 }}>
+
+                {articles.map((u, i) => {
+                    return (
+                        <View key={i} style={styles.articles}>
+                            <FlatList
+                                data={indexArticleList}
+                                numColumns={6}
+                                renderItem={articleList}
+                                keyExtractor={(item) => item.alt}
+                            />
+                            <Text style={styles.title}>{u.title}</Text>
+                        </View>
+                    );
+                })}
+                    {/*
                     <Card style={{ width: '100%', padding: 0 }}>
                         <Card.Title>熱門文章</Card.Title>
                         <Card.Divider />
@@ -144,10 +168,30 @@ const HomeScreen = ({ navigation, route }) => {
                         <Card.Divider />
 
                     </Card>
-                </View>
+                    */}
             </ScrollView>
         </View>
     );
 }
+
+
+const styles = StyleSheet.create({
+    articles: {
+      flexDirection: 'row',
+      marginBottom: 6,
+      alignItems: 'center', 
+      padding: 10,
+      paddingBottom: 10,
+    },
+    image: {
+      width: 80,
+      height: 80,
+      marginRight: 10,
+    },
+    title: {
+      fontSize: 16,
+      marginTop: 5,
+    },
+});
 
 export default HomeScreen

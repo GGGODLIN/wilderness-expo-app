@@ -25,6 +25,7 @@ function AppNavigator(props) {
           screenOptions={{
             tabBarActiveTintColor: '#93523c',
             tabBarInactiveTintColor: '#9fa88d',
+            initialRouteName: '玩野覓境',
           }}
         >
           <Tab.Screen name="探索" component={ComingScreen} 

@@ -49,7 +49,7 @@ const HomeScreen = ({ navigation, route }) => {
 
     const iconSize = 32;
     const iconStyle = { color: colors?.InactiveColor };
-    const titleStyle = { color: colors?.InactiveColor, fontSize: 16 };
+    const titleStyle = { color: '#666666', fontSize: 16 };
     const indexLinkList = [
         {
             icon: <FontAwesome name="caravan" size={iconSize} style={iconStyle} />,
@@ -112,18 +112,58 @@ const HomeScreen = ({ navigation, route }) => {
     
     const indexArticleList = [
         {
-            title: 'abcdefgabcdefgabcdefgabcdefg',
+            title: '第 16 露分享',
             date: '2022-09-01',
             image: require('../assets/images/pexels-uriel-mont-6271392.jpg'),
+            countViews: 125, 
+        },
+        {
+            title: '太平山露營分享',
+            date: '2022-09-01',
+            image: require('../assets/images/pexels-uriel-mont-6271392.jpg'),
+            countViews: 6521, 
+        },
+        {
+            title: '太平山露營分享',
+            date: '2022-09-01',
+            image: require('../assets/images/pexels-uriel-mont-6271392.jpg'),
+            countViews: 6521, 
         },
     ];
-    const articleList = ({ item }) => {
+    const articleImages = ({ item }) => {
         return (
-            <Image
-                style={styles.image}
-                resizeMode="cover"
-                source={item.image}
-            />
+            <>
+                <Image
+                    style={styles.image}
+                    resizeMode="cover"
+                    source={item.image}
+                />
+                <Image
+                    style={styles.image}
+                    resizeMode="cover"
+                    source={item.image}
+                />
+                <Image
+                    style={styles.image}
+                    resizeMode="cover"
+                    source={item.image}
+                />
+                <Image
+                    style={styles.image}
+                    resizeMode="cover"
+                    source={item.image}
+                />
+                <Image
+                    style={styles.image}
+                    resizeMode="cover"
+                    source={item.image}
+                />
+                <Image
+                    style={styles.image}
+                    resizeMode="cover"
+                    source={item.image}
+                />
+            </>
         );
     };
       
@@ -134,29 +174,40 @@ const HomeScreen = ({ navigation, route }) => {
                 style={{ width: '100%', height: '100%', maxHeight: 200 }}
                 source={require('../assets/images/pexels-uriel-mont-6271392.jpg')}
             />
-            <View style={{ alignItems: 'center', paddingBottom: 10 }}>
+            <View style={{ alignItems: 'center', paddingBottom: 20 }}>
                 <FlatList
                     data={indexLinkList}
                     numColumns={4}
+                    scrollEnabled={false}
                     renderItem={Item}
                     keyExtractor={(item) => item.alt}
                 />
             </View>
             <ScrollView>
 
-                {articles.map((u, i) => {
+                {indexArticleList.map((u, i) => {
                     return (
-                        <View key={i} style={styles.articles}>
-                            <FlatList
-                                data={indexArticleList}
-                                numColumns={6}
-                                renderItem={articleList}
-                                keyExtractor={(item) => item.alt}
-                            />
-                            <Text style={styles.title}>{u.title}</Text>
+                        <View key={i} style={{ marginBottom: 10 }}>
+                            <View style={{ alignItems: 'center', paddingBottom: 10 }}>
+                                <FlatList
+                                    data={indexArticleList}
+                                    numColumns={6}
+                                    scrollEnabled={false}
+                                    renderItem={articleImages}
+                                    keyExtractor={(item) => item.alt}
+                                />
+                            </View>
+                            <View style={{ flexDirection: 'row', justifyContent:'space-between', alignItems: 'left', paddingLeft: 10 }}>
+                                <Text style={{ fontSize: 16, color: '#666', }} color={'#999999'}>{u.title}</Text>
+                                <View style={{ flexDirection: 'row', justifyContent:'space-between', paddingRight: 5 }}>
+                                    <FontAwesome name="fire" size={10} style={{ color: '#AEAEAE', padding: 3 }} />
+                                    <Text style={{ fontSize: 16, marginRight: 5, color: '#999999', }}>{u.countViews}</Text>
+                                </View>
+                            </View>
                         </View>
                     );
                 })}
+                
                     {/*
                     <Card style={{ width: '100%', padding: 0 }}>
                         <Card.Title>熱門文章</Card.Title>
@@ -184,9 +235,9 @@ const styles = StyleSheet.create({
       paddingBottom: 10,
     },
     image: {
-      width: 80,
-      height: 80,
-      marginRight: 10,
+      width: 70,
+      height: 70,
+      margin: 1,
     },
     title: {
       fontSize: 16,

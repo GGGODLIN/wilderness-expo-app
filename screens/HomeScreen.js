@@ -58,7 +58,7 @@ const HomeScreen = ({ navigation, route }) => {
         },
         {
             icon: <FontAwesome name="snowboarding" size={iconSize} style={iconStyle} />,
-            title: '滑水秘境',
+            title: 'SUP秘境',
             component: <></>,
         },
         {
@@ -68,7 +68,7 @@ const HomeScreen = ({ navigation, route }) => {
         },
         {
             icon: <FontAwesome name="fish" size={iconSize} style={iconStyle} />,
-            title: '釣魚熱區',
+            title: '親子營區',
             component: <></>,
         },
         {

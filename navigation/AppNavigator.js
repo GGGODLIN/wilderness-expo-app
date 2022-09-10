@@ -60,7 +60,8 @@ function AppNavigator(props) {
               ),
             }}
           />
-          <Tab.Screen name="設定" component={SettingScreen}
+          <Tab.Screen name="設定"
+            children={()=> (<SettingScreen setHadOpenApp={props.setHadOpenApp} /> )}
             options={{
               tabBarLabel: '設定',
               tabBarIcon: ({ color, size }) => (

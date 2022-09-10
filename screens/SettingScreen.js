@@ -9,7 +9,7 @@ import colors from '../constants/Colors';
 import { ListItem, Icon } from '@rneui/themed'
 import { Header } from '@rneui/themed';
 
-const SettingScreen = ({ navigation, route }) => {
+const SettingScreen = ({ setHadOpenApp, navigation, route }) => {
 
     const [userProfile, setUserProfile] = useState(null);
 
@@ -58,7 +58,11 @@ const SettingScreen = ({ navigation, route }) => {
         {
           title: '初次介紹',
           iconRight: <ListItem.Chevron />,
-          onPress: () => { route?.params?.setHadOpenApp?.(false) },
+          onPress: () => {
+                setHadOpenApp(false)
+                console.log(route) 
+                //route?.params?.setHadOpenApp?.(false)
+            },
         },
         {
           title: '聯絡我們',

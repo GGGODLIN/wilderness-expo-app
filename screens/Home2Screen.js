@@ -2,7 +2,8 @@ import { FontAwesome, Ionicons, MaterialCommunityIcons } from '@expo/vector-icon
 import { useFocusEffect } from '@react-navigation/native';
 import * as Location from 'expo-location';
 import React, { useEffect, useRef, useState } from 'react';
-import { Alert, AppState, AsyncStorage, FlatList, Platform, StyleSheet, Text, TextInput, TouchableOpacity, unstable_batchedUpdates, View } from 'react-native';
+import { Alert, AppState, FlatList, Platform, StyleSheet, Text, TextInput, TouchableOpacity, unstable_batchedUpdates, View } from 'react-native';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Animatable from 'react-native-animatable';
 import { Avatar } from 'react-native-elements';
 import RNPickerSelect from 'react-native-picker-select';

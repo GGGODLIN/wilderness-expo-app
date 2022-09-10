@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
-import { AsyncStorage, KeyboardAvoidingView, Platform, SafeAreaView, StyleSheet } from 'react-native';
+import { KeyboardAvoidingView, Platform, SafeAreaView, StyleSheet, View } from 'react-native';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { handleLogin } from './helpers/loginActions';
 import AppNavigator from './navigation/AppNavigator';
 import IntroScreen from './screens/IntroScreen';
@@ -39,10 +40,7 @@ export default function App() {
           hidden={false}
           barStyle="dark-content"
         />
-        {hadOpenApp ?
-          <AppNavigator setHadOpenApp={setHadOpenApp} />
-          :
-          <IntroScreen setHadOpenApp={setHadOpenApp} />
+        {hadOpenApp ? <AppNavigator setHadOpenApp={setHadOpenApp} /> : <IntroScreen setHadOpenApp={setHadOpenApp} />
         }
       </KeyboardAvoidingView>
     </SafeAreaView>

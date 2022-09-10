@@ -10,7 +10,6 @@ import { ListItem, Icon, Header, Card, Divider } from '@rneui/themed'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome5';
 
-
 const HomeScreen = ({ navigation, route }) => {
 
     const [userProfile, setUserProfile] = useState(null);
@@ -138,6 +137,7 @@ const HomeScreen = ({ navigation, route }) => {
                     resizeMode="cover"
                     source={item.image}
                 />
+                {/*
                 <Image
                     style={styles.image}
                     resizeMode="cover"
@@ -163,6 +163,7 @@ const HomeScreen = ({ navigation, route }) => {
                     resizeMode="cover"
                     source={item.image}
                 />
+                */}
             </>
         );
     };
@@ -208,18 +209,6 @@ const HomeScreen = ({ navigation, route }) => {
                     );
                 })}
                 
-                    {/*
-                    <Card style={{ width: '100%', padding: 0 }}>
-                        <Card.Title>熱門文章</Card.Title>
-                        <Card.Divider />
-
-                    </Card>
-                    <Card style={{ width: '100%', padding: 0 }}>
-                        <Card.Title>熱門地點</Card.Title>
-                        <Card.Divider />
-
-                    </Card>
-                    */}
             </ScrollView>
         </View>
     );

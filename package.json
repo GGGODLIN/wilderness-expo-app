@@ -40,7 +40,6 @@
     "react-native-screens": "~3.11.1",
     "react-native-segmented-control-tab": "^4.0.0",
     "react-native-vector-icons": "^9.2.0",
-    "react-native-waterfall-layout": "^1.0.3",
     "react-native-web": "0.17.7"
   },
   "devDependencies": {

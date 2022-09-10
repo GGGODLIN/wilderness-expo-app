@@ -60,7 +60,7 @@ const SettingScreen = ({ setHadOpenApp, navigation, route }) => {
           iconRight: <ListItem.Chevron />,
           onPress: () => {
                 setHadOpenApp(false)
-                console.log(route) 
+                console.log(route)
                 //route?.params?.setHadOpenApp?.(false)
             },
         },

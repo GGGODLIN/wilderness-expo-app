@@ -11,7 +11,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome5';
 import MasonryList from '@react-native-seoul/masonry-list';
 import MapView from 'react-native-maps';
 
-const HomeScreen = ({ navigation, route }) => {
+const LocationScreen = ({ navigation, route }) => {
 
     const [userProfile, setUserProfile] = useState(null);
 
@@ -289,76 +289,21 @@ const HomeScreen = ({ navigation, route }) => {
 
     return (
         <View style={{ flex: 1, padding: 0, backgroundColor: '#fff', borderTopWidth: 2, borderColor: colors?.InactiveColor }}>
-            <Image
-                resizeMode="cover"
-                style={{ width: '100%', height: '100%', maxHeight: 200 }}
-                source={require('../assets/images/pexels-uriel-mont-6271392.jpg')}
-            />
-            <View style={{ alignItems: 'center', paddingBottom: 20 }}>
-                <FlatList
-                    data={indexLinkList}
-                    numColumns={4}
-                    scrollEnabled={false}
-                    renderItem={indexLinkListItem}
-                    keyExtractor={(item) => item.alt}
-                />
-            </View>
             <View style={{ alignItems: 'center', paddingBottom: 20 }}>
                 <MapView 
                     style={styles.map} 
                     initialRegion={{
-                        latitude: 37.78825,
-                        longitude: -122.4324,
-                        latitudeDelta: 0.0922,
-                        longitudeDelta: 0.0421,
-                      }}
+                        latitude: 23.166826, 
+                        longitude: 121.180767,
+                        latitudeDelta: 3,
+                        longitudeDelta: 3,
+                    }}
                 />
             </View>
-            <ScrollView>
-                {/*
-                <MasonryList
-                    data={indexWaterfallList}
-                    keyExtractor={(item) => item.id}
-                    numColumns={3}
-                    showsVerticalScrollIndicator={false}
-                    renderItem={indexWaterfallListItem}
-                />
-                */}
-                {/*
-                    refreshing={isLoadingNext}
-                    onRefresh={() => refetch({first: ITEM_CNT})}
-                    onEndReachedThreshold={0.1}
-                    onEndReached={() => loadNext(ITEM_CNT)}
-                */}
-                {indexWaterfallList.map((u, i) => {
-                    return (
-                        <View style={{ marginBottom: 10 }}>
-                            <View style={{ alignItems: 'center', paddingBottom: 10 }}>
-                                <FlatList
-                                    data={indexArticleList}
-                                    numColumns={6}
-                                    scrollEnabled={true}
-                                    renderItem={articleImages}
-                                    keyExtractor={(item) => item.alt}
-                                    style={{ height:70 }}
-                                />
-                            </View>
-                            <View style={{ flexDirection: 'row', justifyContent:'space-between', alignItems: 'left', paddingLeft: 10 }}>
-                                <Text style={{ fontSize: 16, color: '#666', }} color={'#999999'}>{u.title}</Text>
-                                <View style={{ flexDirection: 'row', justifyContent:'space-between', paddingRight: 5 }}>
-                                    <FontAwesome name="fire" size={10} style={{ color: '#AEAEAE', padding: 3 }} />
-                                    <Text style={{ fontSize: 16, marginRight: 5, color: '#999999', }}>{u.countViews}</Text>
-                                </View>
-                            </View>
-                        </View>
-                    );
-                })}
-            </ScrollView>
         </View>
     );
 }
 
-const win = Dimensions.get('window');
 const styles = StyleSheet.create({
     articles: {
       flexDirection: 'row',
@@ -376,16 +321,10 @@ const styles = StyleSheet.create({
       fontSize: 16,
       marginTop: 5,
     },
-    MasonryListImage: {
-        flex: 1,
-        alignSelf: 'stretch',
-        width: win.width,
-        height: win.height,
+    map: {
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height,
     },
-  map: {
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
-  },
 });
 
-export default HomeScreen
+export default LocationScreen

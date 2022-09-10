@@ -6,6 +6,7 @@ import { TouchableOpacity } from 'react-native';
 import colors from '../constants/Colors';
 import DetailScreen from '../screens/DetailScreen';
 import HomeScreen from '../screens/HomeScreen';
+import LocationScreen from '../screens/LocationScreen';
 import ComingScreen from '../screens/ComingScreen';
 import MapScreen from '../screens/MapScreen';
 import SettingScreen from '../screens/SettingScreen';
@@ -28,7 +29,7 @@ function AppNavigator(props) {
             initialRouteName: '玩野覓境',
           }}
         >
-          <Tab.Screen name="探索" component={ComingScreen} 
+          <Tab.Screen name="探索" component={LocationScreen} 
             options={{
               tabBarLabel: '探索',
               tabBarIcon: ({ color, size }) => (

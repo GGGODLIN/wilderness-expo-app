@@ -9,6 +9,7 @@ import colors from '../constants/Colors';
 import { ListItem, Icon, Header, Card, Divider } from '@rneui/themed'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome5';
+import MasonryList from '@react-native-seoul/masonry-list';
 
 const HomeScreen = ({ navigation, route }) => {
 
@@ -92,7 +93,7 @@ const HomeScreen = ({ navigation, route }) => {
         },
     ]
 
-    const Item = ({ item }) => {
+    const indexLinkListItem = ({ item }) => {
         return (
             <View style={{ alignItems: 'center', paddingLeft: 15, paddingRight: 15, paddingTop: 20, paddingBottom: 0 }}>
                 <TouchableOpacity>
@@ -129,6 +130,99 @@ const HomeScreen = ({ navigation, route }) => {
             countViews: 6521, 
         },
     ];
+
+    const indexWaterfallList = [
+        {
+            title: '露營分享1',
+            date: '2022-09-01',
+            image: require('../assets/images/views/view_1.jpg'),
+            countViews: 125,
+            component: <></>,
+        },
+        {
+            title: '露營分享2',
+            date: '2022-09-01',
+            image: require('../assets/images/views/view_2.jpg'),
+            countViews: 6521, 
+            component: <></>,
+        },
+        {
+            title: '露營分享3',
+            date: '2022-09-01',
+            image: require('../assets/images/views/view_3.jpg'),
+            countViews: 6521, 
+            component: <></>,
+        },
+        {
+            title: '露營分享',
+            date: '2022-09-01',
+            image: require('../assets/images/views/view_4.jpg'),
+            countViews: 6521, 
+            component: <></>,
+        },
+        {
+            title: '露營分享',
+            date: '2022-09-01',
+            image: require('../assets/images/views/view_5.jpg'),
+            countViews: 6521, 
+            component: <></>,
+        },
+        {
+            title: '露營分享',
+            date: '2022-09-01',
+            image: require('../assets/images/views/view_6.jpg'),
+            countViews: 6521, 
+            component: <></>,
+        },
+        {
+            title: '露營分享',
+            date: '2022-09-01',
+            image: require('../assets/images/views/view_7.jpg'),
+            countViews: 6521, 
+            component: <></>,
+        },
+        {
+            title: '露營分享',
+            date: '2022-09-01',
+            image: require('../assets/images/views/view_8.jpg'),
+            countViews: 6521, 
+            component: <></>,
+        },
+        {
+            title: '露營分享',
+            date: '2022-09-01',
+            image: require('../assets/images/views/view_9.jpg'),
+            countViews: 6521, 
+            component: <></>,
+        },
+        {
+            title: '露營分享',
+            date: '2022-09-01',
+            image: require('../assets/images/views/view_10.jpg'),
+            countViews: 6521, 
+            component: <></>,
+        },
+
+
+
+    ]
+
+    const indexWaterfallListItem = ({ item }) => {
+        return (
+            <View style={{ marginBottom: 10 }}>
+                <View style={{ alignItems: 'center', paddingBottom: 10 }}>
+                    <Image
+                        style={{ width: 100, height: 100 }}
+                        source={item.image}
+                    />
+                </View>
+                <View style={{ flexDirection: 'row', justifyContent:'space-between', alignItems: 'left', paddingLeft: 10 }}>
+                    <Text style={{ fontSize: 16, color: '#666', }} color={'#999999'}>{item.title}</Text>
+                </View>
+            </View>
+        );
+    };
+
     const articleImages = ({ item }) => {
         return (
             <>
@@ -180,36 +274,52 @@ const HomeScreen = ({ navigation, route }) => {
                     data={indexLinkList}
                     numColumns={4}
                     scrollEnabled={false}
-                    renderItem={Item}
+                    renderItem={indexLinkListItem}
                     keyExtractor={(item) => item.alt}
                 />
             </View>
             <ScrollView>
+                {/*key={i}*/}
 
-                {indexArticleList.map((u, i) => {
-                    return (
-                        <View key={i} style={{ marginBottom: 10 }}>
-                            <View style={{ alignItems: 'center', paddingBottom: 10 }}>
-                                <FlatList
-                                    data={indexArticleList}
-                                    numColumns={6}
-                                    scrollEnabled={false}
-                                    renderItem={articleImages}
-                                    keyExtractor={(item) => item.alt}
-                                />
-                            </View>
-                            <View style={{ flexDirection: 'row', justifyContent:'space-between', alignItems: 'left', paddingLeft: 10 }}>
-                                <Text style={{ fontSize: 16, color: '#666', }} color={'#999999'}>{u.title}</Text>
-                                <View style={{ flexDirection: 'row', justifyContent:'space-between', paddingRight: 5 }}>
-                                    <FontAwesome name="fire" size={10} style={{ color: '#AEAEAE', padding: 3 }} />
-                                    <Text style={{ fontSize: 16, marginRight: 5, color: '#999999', }}>{u.countViews}</Text>
-                                </View>
-                            </View>
-                        </View>
-                    );
-                })}
-                
+                <MasonryList
+                    data={indexWaterfallList}
+                    keyExtractor={(item): string => item.id}
+                    numColumns={2}
+                    showsVerticalScrollIndicator={false}
+                    renderItem={indexWaterfallListItem}
+                    /*
+                    refreshing={isLoadingNext}
+                    onRefresh={() => refetch({first: ITEM_CNT})}
+                    onEndReachedThreshold={0.1}
+                    onEndReached={() => loadNext(ITEM_CNT)}
+                    */
+                />
+
             </ScrollView>
+{/*
+{indexArticleList.map((u, i) => {
+    return (
+        <View style={{ marginBottom: 10 }}>
+            <View style={{ alignItems: 'center', paddingBottom: 10 }}>
+                <FlatList
+                    data={indexArticleList}
+                    numColumns={6}
+                    scrollEnabled={false}
+                    renderItem={articleImages}
+                    keyExtractor={(item) => item.alt}
+                />
+            </View>
+            <View style={{ flexDirection: 'row', justifyContent:'space-between', alignItems: 'left', paddingLeft: 10 }}>
+                <Text style={{ fontSize: 16, color: '#666', }} color={'#999999'}>{u.title}</Text>
+                <View style={{ flexDirection: 'row', justifyContent:'space-between', paddingRight: 5 }}>
+                    <FontAwesome name="fire" size={10} style={{ color: '#AEAEAE', padding: 3 }} />
+                    <Text style={{ fontSize: 16, marginRight: 5, color: '#999999', }}>{u.countViews}</Text>
+                </View>
+            </View>
+        </View>
+    );
+})}
+*/}
         </View>
     );
 }

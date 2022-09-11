@@ -30,6 +30,7 @@ export default function App() {
       await AsyncStorage.setItem('hadOpenApp', JSON.stringify(true))
     }
   }
+  
   return (
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView

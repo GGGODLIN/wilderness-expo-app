@@ -15,6 +15,43 @@ const LocationScreen = ({ navigation, route }) => {
 
     const [open, setOpen] = React.useState(false);
 
+    const [location, setLocation] = useState(null);
+    const [errorMsg, setErrorMsg] = useState(null);
+    const [address, setAddress] = useState(null);
+    // const [getLocation, setGetLocation] = useState(false);
+  
+    const getLocation = () => {
+      (async () => {
+        let { status } = await Location.requestPermissionsAsync();
+        if (status !== 'granted') {
+          setErrorMsg('Permission to access location was denied');
+        }
+  
+        Location.setGoogleApiKey(apiKey);
+  
+        console.log(status);
+  
+        let { coords } = await Location.getCurrentPositionAsync();
+  
+        setLocation(coords);
+  
+        console.log(coords);
+  
+        if (coords) {
+          let { longitude, latitude } = coords;
+  
+          let regionName = await Location.reverseGeocodeAsync({
+            longitude,
+            latitude,
+          });
+          setAddress(regionName[0]);
+          console.log(regionName, 'nothing');
+        }
+  
+        // console.log();
+      })();
+    };
+
     return (
         <View style={{ flex: 1, padding: 0, backgroundColor: '#fff', borderTopWidth: 2, borderColor: colors?.InactiveColor }}>
             <View style={{ alignItems: 'center', paddingBottom: 20 }}>
@@ -26,6 +63,7 @@ const LocationScreen = ({ navigation, route }) => {
                         latitudeDelta: 3,
                         longitudeDelta: 3,
                     }}
+                    showsUserLocation={true}
                 />
             </View>
                 <SpeedDial
@@ -41,7 +79,7 @@ const LocationScreen = ({ navigation, route }) => {
                     <SpeedDial.Action
                         icon={{ name: 'add', color: '#fff' }}
                         title="新增地點"
-                        onPress={() => console.log('Add Something')}
+                        onPress={() => getLocation()}
                         color='#333'
                     />
                     <SpeedDial.Action

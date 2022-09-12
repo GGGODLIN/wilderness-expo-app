@@ -46,7 +46,6 @@ const HomeScreen = ({ navigation, route }) => {
             }
         ).then()
     }
-
     
 
     const iconSize = 32;
@@ -301,17 +300,6 @@ const HomeScreen = ({ navigation, route }) => {
                     scrollEnabled={false}
                     renderItem={indexLinkListItem}
                     keyExtractor={(item) => item.alt}
-                />
-            </View>
-            <View style={{ alignItems: 'center', paddingBottom: 20 }}>
-                <MapView 
-                    style={styles.map} 
-                    initialRegion={{
-                        latitude: 37.78825,
-                        longitude: -122.4324,
-                        latitudeDelta: 0.0922,
-                        longitudeDelta: 0.0421,
-                      }}
                 />
             </View>
             <ScrollView>

@@ -14,6 +14,7 @@ import UserNameEditScreen from '../screens/UserNameEditScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Icon } from "@rneui/themed";
+import { CommunityScreen } from '../screens/CommunityScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -29,7 +30,7 @@ function AppNavigator(props) {
             initialRouteName: '玩野覓境',
           }}
         >
-          <Tab.Screen name="探索" component={LocationScreen} 
+          <Tab.Screen name="探索" component={LocationScreen}
             options={{
               tabBarLabel: '探索',
               tabBarIcon: ({ color, size }) => (
@@ -37,7 +38,7 @@ function AppNavigator(props) {
               ),
             }}
           />
-          <Tab.Screen name="社群" component={ComingScreen}
+          <Tab.Screen name="社群" component={CommunityScreen}
             options={{
               tabBarLabel: '社群',
               tabBarIcon: ({ color, size }) => (
@@ -45,7 +46,7 @@ function AppNavigator(props) {
               ),
             }}
           />
-          <Tab.Screen name="玩野覓境" component={HomeScreen} 
+          <Tab.Screen name="玩野覓境" component={HomeScreen}
             options={{
               tabBarLabel: '首頁',
               tabBarIcon: ({ color, size }) => (
@@ -53,7 +54,7 @@ function AppNavigator(props) {
               ),
             }}
           />
-          <Tab.Screen name="私藏" component={ComingScreen} 
+          <Tab.Screen name="私藏" component={ComingScreen}
             options={{
               tabBarLabel: '私藏',
               tabBarIcon: ({ color, size }) => (

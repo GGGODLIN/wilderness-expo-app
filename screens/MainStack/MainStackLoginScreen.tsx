@@ -28,6 +28,7 @@ import {
 } from '../../NavigationNames';
 import { Nav } from '../../Props';
 import FloatingLabelInput from '../../components/FloatingLabelInput';
+import Colors from '../../constants/Colors';
 import GuestLayout from '../../layouts/GuestLayout';
 
 const FormInput = ({
@@ -159,7 +160,7 @@ const SignInForm = () => {
         variant="solid"
         size="lg"
         mt={{ base: 5, md: 3 }}
-        style={{ backgroundColor: '#d97706' }}
+        style={{ backgroundColor: Colors.LOGO_COLOR_BROWN }}
         onPress={() => {
           navigation.navigate(MAIN_STACK_TABS);
         }}>
@@ -176,7 +177,7 @@ const SignInComponent = () => {
       contentContainerStyle={{
         flexGrow: 1,
       }}
-      style={{ flex: 1, backgroundColor: '#fcd34d' }}
+      style={{ flex: 1, backgroundColor: Colors.LOGO_COLOR_WHITE }}
       bounces={false}>
       <MobileHeader />
       <Box
@@ -319,7 +320,7 @@ function MobileHeader() {
               color: 'coolGray.400',
             }}
             _light={{
-              color: 'amber.600',
+              color: Colors.LOGO_COLOR_BROWN,
             }}>
             登入會員
           </Text>

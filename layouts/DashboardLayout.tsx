@@ -30,6 +30,7 @@ import Sidebar from '../components/Sidebar';
 import SidebarHomeAndMenu from '../components/SidebarHomeAndMenu';
 import SidebarPodcastScreen from '../components/SidebarPodcastScreen';
 import SidebarTopPerformingStocks from '../components/SidebarTopPerformingStocks';
+import Colors from '../constants/Colors';
 
 type DashboardLayoutProps = {
   scrollable?: boolean;
@@ -229,10 +230,10 @@ export function MobileHeader(props: MobileHeaderProps) {
       pb="2"
       _dark={{ bg: 'coolGray.900', borderColor: 'coolGray.800' }}
       _light={{
-        bg: { base: 'lime.700', md: 'white' },
+        bg: { base: Colors.LOGO_COLOR_WHITE, md: 'white' },
         borderColor: 'coolGray.200',
       }}
-      bg="lime.700">
+      bg={Colors.LOGO_COLOR_WHITE}>
       <HStack space="2" justifyContent="space-between">
         <HStack flex="1" space="2" justifyContent="space-between" alignItems="center">
           <>

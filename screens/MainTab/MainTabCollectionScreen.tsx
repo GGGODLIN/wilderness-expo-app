@@ -314,7 +314,7 @@ function MainContent() {
   );
 }
 
-export default function MainTabMessageScreen({ navigation }: NavigationProps): JSX.Element {
+export default function MainTabCollectionScreen({ navigation }: NavigationProps): JSX.Element {
   return (
     <ChatLayout title="Boss 高爾夫球社" displaySidebar={false} subTitle="1,239 人">
       <MainContent />

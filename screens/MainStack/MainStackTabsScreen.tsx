@@ -3,17 +3,18 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as React from 'react';
 
 import {
-  MAIN_TAB_GROUPS,
-  MAIN_TAB_EVENTS,
+  MAIN_TAB_COMMUNITY,
+  MAIN_TAB_EXPLORE,
   MAIN_TAB_HOME,
-  MAIN_TAB_MESSAGES,
+  MAIN_TAB_COLLECTION,
   MAIN_TAB_PROFILE,
 } from '../../NavigationNames';
 import { NavigationProps } from '../../Props';
-import MainTabClubsScreen from '../MainTab/MainTabClubsScreen';
-import MainTabEventsScreen from '../MainTab/MainTabEventsScreen';
+import Colors from '../../constants/Colors';
+import MainTabCollectionScreen from '../MainTab/MainTabCollectionScreen';
+import MainTabCommunityScreen from '../MainTab/MainTabCommunityScreen';
+import MainTabExploreScreen from '../MainTab/MainTabExploreScreen';
 import MainTabHomeScreen from '../MainTab/MainTabHomeScreen';
-import MainTabMessageScreen from '../MainTab/MainTabMessageScreen';
 import MainTabProfileStackScreen from '../MainTab/MainTabProfileStackScreen';
 
 const Tab = createBottomTabNavigator();
@@ -26,18 +27,18 @@ export default function MainStackTabsScreen({ navigation }: NavigationProps): JS
           let iconName: any; // FIXME 避免警告只好放 any :(
 
           switch (true) {
-            case route.name === MAIN_TAB_GROUPS:
+            case route.name === MAIN_TAB_COMMUNITY:
             default:
               iconName = focused ? 'people' : 'people-outline';
               break;
-            case route.name === MAIN_TAB_EVENTS:
-              iconName = focused ? 'flag' : 'flag-outline';
+            case route.name === MAIN_TAB_EXPLORE:
+              iconName = focused ? 'map' : 'map-outline';
               break;
             case route.name === MAIN_TAB_HOME:
               iconName = focused ? 'home' : 'home-outline';
               break;
-            case route.name === MAIN_TAB_MESSAGES:
-              iconName = focused ? 'chatbox' : 'chatbox-outline';
+            case route.name === MAIN_TAB_COLLECTION:
+              iconName = focused ? 'heart' : 'heart-outline';
               break;
             case route.name === MAIN_TAB_PROFILE:
               iconName = focused ? 'person' : 'person-outline';
@@ -46,20 +47,10 @@ export default function MainStackTabsScreen({ navigation }: NavigationProps): JS
           // You can return any component that you like here!
           return <Ionicons name={iconName} size={size} color={color} />;
         },
-        tabBarActiveTintColor: '#414BB2',
+        tabBarActiveTintColor: Colors.LOGO_COLOR_GREEN,
         tabBarInactiveTintColor: 'gray',
         headerShown: false,
       })}>
-      <Tab.Screen
-        name={MAIN_TAB_GROUPS}
-        component={MainTabClubsScreen}
-        options={{ tabBarLabel: '社團' }}
-      />
-      <Tab.Screen
-        name={MAIN_TAB_EVENTS}
-        component={MainTabEventsScreen}
-        options={{ tabBarLabel: '活動' }}
-      />
       <Tab.Screen
         name={MAIN_TAB_HOME}
         component={MainTabHomeScreen}
@@ -69,14 +60,24 @@ export default function MainStackTabsScreen({ navigation }: NavigationProps): JS
         }}
       />
       <Tab.Screen
-        name={MAIN_TAB_MESSAGES}
-        component={MainTabMessageScreen}
-        options={{ tabBarBadge: '99+', tabBarLabel: '訊息' }}
+        name={MAIN_TAB_COMMUNITY}
+        component={MainTabCommunityScreen}
+        options={{ tabBarLabel: '社群' }}
+      />
+      <Tab.Screen
+        name={MAIN_TAB_EXPLORE}
+        component={MainTabExploreScreen}
+        options={{ tabBarLabel: '探索' }}
+      />
+      <Tab.Screen
+        name={MAIN_TAB_COLLECTION}
+        component={MainTabCollectionScreen}
+        options={{ tabBarLabel: '私藏' }}
       />
       <Tab.Screen
         name={MAIN_TAB_PROFILE}
         component={MainTabProfileStackScreen}
-        options={{ tabBarLabel: '個人' }}
+        options={{ tabBarBadge: '99+', tabBarLabel: '個人' }}
       />
     </Tab.Navigator>
   );

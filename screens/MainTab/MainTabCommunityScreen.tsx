@@ -17,7 +17,7 @@ import Tab from '../../components/TopTab/Tab';
 import TopTabs from '../../components/TopTab/TopTabs';
 import GuestLayout from '../../layouts/GuestLayout';
 
-export default function MainTabClubsScreen({ navigation }: NavigationProps): JSX.Element {
+export default function MainTabCommunityScreen({ navigation }: NavigationProps): JSX.Element {
   return (
     <GuestLayout>
       <VStack px="4" mt="4" mb="5" space="9">

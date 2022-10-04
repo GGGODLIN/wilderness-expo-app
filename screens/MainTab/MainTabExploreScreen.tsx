@@ -7,7 +7,7 @@ import { NavigationProps } from '../../Props';
 import NativeMap from '../../components/NativeMap';
 import DashboardLayout from '../../layouts/DashboardLayout';
 
-export default function MainTabEventsScreen({ navigation }: NavigationProps): JSX.Element {
+export default function MainTabExploreScreen({ navigation }: NavigationProps): JSX.Element {
   const [textInput, setTextInput] = useState('');
   const [selectedAddress, setSelectedAddress] = useState('Home');
 

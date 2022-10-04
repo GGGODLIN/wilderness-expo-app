@@ -10,10 +10,10 @@ export const MAIN_STACK_PROFILE = 'MainStackProfileScreen';
 
 export const MAIN_STACK_TABS = 'MainStackTabsScreen';
 
-export const MAIN_TAB_GROUPS = 'MainTabClubsScreen'; // TODO: Rename to MAIN_TAB_CLUBS
-export const MAIN_TAB_EVENTS = 'MainTabEventsScreen';
+export const MAIN_TAB_COMMUNITY = 'MainTabCommunityScreen'; // TODO: Rename to MAIN_TAB_CLUBS
+export const MAIN_TAB_EXPLORE = 'MainTabExploreScreen';
 export const MAIN_TAB_HOME = 'MainTabHomeScreen';
-export const MAIN_TAB_MESSAGES = 'MainTabMessageScreen';
+export const MAIN_TAB_COLLECTION = 'MainTabCollectionScreen';
 export const MAIN_TAB_PROFILE = 'MainTabProfileStackScreen';
 
 export const PROFILE_STACK_SCORE = 'ProfileStackScore';
@@ -28,9 +28,9 @@ export const PROFILE_STACK_ABOUT = 'ProfileStackAbout';
 export const PROFILE_STACK_TERMS = 'ProfileStackTerms';
 
 export const NAME_MAPPING = {
-  [MAIN_TAB_GROUPS]: '社團', // TODO: Rename to MAIN_TAB_CLUBS
-  [MAIN_TAB_EVENTS]: '活動',
+  [MAIN_TAB_COMMUNITY]: '探索', // TODO: Rename to MAIN_TAB_CLUBS
+  [MAIN_TAB_EXPLORE]: '社群',
   [MAIN_TAB_HOME]: '首頁',
-  [MAIN_TAB_MESSAGES]: '訊息',
+  [MAIN_TAB_COLLECTION]: '私藏',
   [MAIN_TAB_PROFILE]: '個人',
 };

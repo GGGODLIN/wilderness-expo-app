@@ -1,5 +1,5 @@
 import { MaterialIcons } from '@expo/vector-icons';
-import { Button, HStack, Text, Icon, Input, Pressable, Box } from 'native-base';
+import { Button, HStack, Text, Icon, Input, Pressable, Box, Center } from 'native-base';
 import React, { useState } from 'react';
 import { Platform } from 'react-native';
 
@@ -10,6 +10,88 @@ import DashboardLayout from '../../layouts/DashboardLayout';
 export default function MainTabExploreScreen({ navigation }: NavigationProps): JSX.Element {
   const [textInput, setTextInput] = useState('');
   const [selectedAddress, setSelectedAddress] = useState('Home');
+
+  const tabs = [
+    {
+      id: 1,
+      title: '附近',
+      component: <NativeMap />,
+    },
+    {
+      id: 2,
+      title: '查詢',
+      component: <Text>查詢</Text>,
+    },
+    {
+      id: 3,
+      title: '私藏',
+      component: <Text>私藏</Text>,
+    },
+  ];
+
+  function TabItem({
+    tabName,
+    currentTab,
+    handleTabChange,
+  }: {
+    tabName: string;
+    currentTab: string;
+    handleTabChange: (tabTitle: string) => void;
+  }) {
+    return (
+      <Pressable onPress={() => handleTabChange(tabName)}>
+        <Text
+          fontSize="sm"
+          fontWeight="medium"
+          letterSpacing="0.4"
+          _light={{
+            color: tabName === currentTab ? 'primary.900' : 'coolGray.500',
+          }}
+          _dark={{
+            color: tabName === currentTab ? 'primary.500' : 'coolGray.400',
+          }}
+          px={4}
+          py={2}>
+          {tabName}
+        </Text>
+        {tabName === currentTab && (
+          <Box
+            borderTopLeftRadius="sm"
+            borderTopRightRadius="sm"
+            _light={{
+              bg: 'primary.900',
+            }}
+            _dark={{
+              bg: 'primary.500',
+            }}
+            h="1"
+          />
+        )}
+      </Pressable>
+    );
+  }
+  function Tabs() {
+    const [tabName, setTabName] = React.useState('Review');
+    const [tabChildren, setTabChildren] = useState<React.ReactNode>(<></>);
+    return (
+      <>
+        <HStack space="5" borderRadius="sm">
+          {tabs.map(({ id, title, component }) => (
+            <TabItem
+              key={id}
+              tabName={title}
+              currentTab={tabName}
+              handleTabChange={(tab) => {
+                setTabName(tab);
+                setTabChildren(component);
+              }}
+            />
+          ))}
+        </HStack>
+        {tabChildren}
+      </>
+    );
+  }
 
   const AddressBadge = ({
     label,
@@ -54,96 +136,10 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
         flex={1}
         _light={{ bg: 'white' }}
         _dark={{ bg: 'coolGray.800' }}>
-        <Input
-          borderWidth={1}
-          mx={3}
-          zIndex={1}
-          variant="unstyled"
-          position="absolute"
-          top={{ base: '5', md: '44' }}
-          left={{ base: 0, md: '8', xl: '35' }}
-          right={{ base: 0, md: '8', xl: '35' }}
-          py={3}
-          value={textInput}
-          onChangeText={setTextInput}
-          size="lg"
-          _light={{
-            bg: 'coolGray.50',
-            borderColor: 'coolGray.300',
-            placeholderTextColor: 'coolGray.400',
-            color: 'coolGray.800',
-          }}
-          _dark={{
-            bg: 'coolGray.800',
-            borderColor: 'coolGray.500',
-            placeholderTextColor: 'coolGray.400',
-            color: 'coolGray.50',
-          }}
-          _focus={{
-            _light: {
-              bg: 'coolGray.50',
-              borderColor: 'coolGray.300',
-              placeholderTextColor: 'coolGray.400',
-              color: 'coolGray.800',
-            },
-            _dark: {
-              bg: 'coolGray.800',
-              borderColor: 'coolGray.500',
-              placeholderTextColor: 'coolGray.400',
-              color: 'coolGray.50',
-            },
-          }}
-          _hover={{
-            _light: {
-              bg: 'coolGray.50',
-              borderColor: 'coolGray.300',
-              placeholderTextColor: 'coolGray.400',
-              color: 'coolGray.800',
-            },
-            _dark: {
-              bg: 'coolGray.800',
-              borderColor: 'coolGray.500',
-              placeholderTextColor: 'coolGray.400',
-              color: 'coolGray.50',
-            },
-          }}
-          InputLeftElement={
-            <Icon
-              as={<MaterialIcons name="search" />}
-              size="6"
-              ml="3"
-              _light={{
-                color: 'coolGray.400',
-              }}
-              _dark={{
-                color: 'coolGray.400',
-              }}
-            />
-          }
-          InputRightElement={
-            <Pressable
-              onPress={() => {
-                setTextInput('');
-              }}>
-              <Icon
-                as={<MaterialIcons name="close" />}
-                size="6"
-                mr="3"
-                _light={{
-                  color: 'coolGray.400',
-                }}
-                _dark={{
-                  color: 'coolGray.400',
-                }}
-              />
-            </Pressable>
-          }
-          placeholder="2118 Thornridge Cir. Syracuse,…"
-          fontSize="md"
-          fontWeight="medium"
-        />
+        <Center>
+          <Tabs />
+        </Center>
         {/*{Platform.OS === 'web' ? <WebMap /> : <NativeMap />}*/}
-        <NativeMap />
       </Box>
     </DashboardLayout>
   );

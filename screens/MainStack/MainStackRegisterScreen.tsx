@@ -25,6 +25,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { MAIN_STACK_LOGIN } from '../../NavigationNames';
 import { Nav } from '../../Props';
 import FloatingLabelInput from '../../components/FloatingLabelInput';
+import Colors from '../../constants/Colors';
 import GuestLayout from '../../layouts/GuestLayout';
 
 function MobileHeader() {
@@ -43,17 +44,17 @@ function MobileHeader() {
               size="6"
               as={MaterialIcons}
               name="keyboard-backspace"
-              color="amber.600"
+              color={Colors.LOGO_COLOR_BROWN}
             />
           </Pressable>
 
-          <Text color="amber.600" fontSize="lg">
+          <Text color={Colors.LOGO_COLOR_BROWN} fontSize="lg">
             登入
           </Text>
         </HStack>
         <VStack space={0.5}>
           <Text fontSize="3xl" fontWeight="bold" color="amber.900">
-            成為 玩野覓境 的新成員
+            跨出好野人的第一步
           </Text>
           <Text
             fontSize="md"
@@ -62,7 +63,7 @@ function MobileHeader() {
               color: 'coolGray.50',
             }}
             _light={{
-              color: 'amber.600',
+              color: Colors.LOGO_COLOR_BROWN,
             }}>
             註冊會員
           </Text>
@@ -264,7 +265,7 @@ const SignUpForm = () => {
         mt={{ base: 8, md: 6 }}
         variant="solid"
         size="lg"
-        style={{ backgroundColor: '#d97706' }}>
+        style={{ backgroundColor: Colors.LOGO_COLOR_BROWN }}>
         註冊
       </Button>
     </FormControl>
@@ -277,7 +278,11 @@ function SignUpFormComponent() {
       contentContainerStyle={{
         flexGrow: 1,
       }}
-      style={{ width: '100%', height: '100%', backgroundColor: '#fcd34d' }}
+      style={{
+        width: '100%',
+        height: '100%',
+        backgroundColor: Colors.LOGO_COLOR_WHITE_BACKGROUND,
+      }}
       bounces={false}>
       <MobileHeader />
       <Box

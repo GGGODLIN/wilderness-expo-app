@@ -177,7 +177,7 @@ const SignInComponent = () => {
       contentContainerStyle={{
         flexGrow: 1,
       }}
-      style={{ flex: 1, backgroundColor: Colors.LOGO_COLOR_WHITE }}
+      style={{ flex: 1, backgroundColor: Colors.LOGO_COLOR_WHITE_BACKGROUND }}
       bounces={false}>
       <MobileHeader />
       <Box
@@ -296,34 +296,16 @@ function MobileHeader() {
   return (
     <Hidden from="md">
       <VStack px="4" mt="4" mb="5" space="9">
-        {/*
-        <HStack space="2" alignItems="center">
-          <IconButton
-            p={0}
-            icon={
-              <Icon size="6" as={MaterialIcons} name="keyboard-backspace" color="coolGray.50" />
-            }
-          />
-          <Text color="coolGray.50" fontSize="lg">
-            Sign In
-          </Text>
-        </HStack>
-        */}
         <VStack space={0.5}>
-          <Text fontSize="3xl" fontWeight="bold" color="amber.900">
-            歡迎來到 玩野覓境
-          </Text>
-          <Text
-            fontSize="md"
-            fontWeight="normal"
-            _dark={{
-              color: 'coolGray.400',
-            }}
-            _light={{
-              color: Colors.LOGO_COLOR_BROWN,
-            }}>
-            登入會員
-          </Text>
+          <Center>
+            <Image
+              h="10"
+              w="56"
+              alt="玩野覓境"
+              resizeMode="contain"
+              source={require('../../assets/logo.png')}
+            />
+          </Center>
         </VStack>
       </VStack>
     </Hidden>

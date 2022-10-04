@@ -230,10 +230,10 @@ export function MobileHeader(props: MobileHeaderProps) {
       pb="2"
       _dark={{ bg: 'coolGray.900', borderColor: 'coolGray.800' }}
       _light={{
-        bg: { base: Colors.LOGO_COLOR_WHITE, md: 'white' },
+        bg: { base: Colors.LOGO_COLOR_WHITE_BACKGROUND, md: 'white' },
         borderColor: 'coolGray.200',
       }}
-      bg={Colors.LOGO_COLOR_WHITE}>
+      bg={Colors.LOGO_COLOR_WHITE_BACKGROUND}>
       <HStack space="2" justifyContent="space-between">
         <HStack flex="1" space="2" justifyContent="space-between" alignItems="center">
           <>

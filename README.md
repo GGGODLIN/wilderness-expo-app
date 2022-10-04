@@ -1,10 +1,9 @@
-# 玩野覓境 APP
+# NativeBase TypeScript Expo Template
 
-## 使用框架
+The official NativeBase TypeScript template for [Expo](https://docs.expo.io/)
 
-- React Native
-- Expo
+## Usage
 
-## 註冊域名
-
-wilderness.com.tw
+```sh
+expo init my-app --template @native-base/expo-template-typescript
+```

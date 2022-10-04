@@ -1,0 +1,299 @@
+import { MaterialIcons } from '@expo/vector-icons';
+import {
+  HStack,
+  Icon,
+  VStack,
+  Avatar,
+  Button,
+  Text,
+  Hidden,
+  IconButton,
+  ScrollView,
+  Box,
+  Circle,
+  useTheme,
+  useColorMode,
+} from 'native-base';
+import React from 'react';
+
+import { NavigationProps } from '../../Props';
+import FloatingLabelInput from '../../components/FloatingLabelInput';
+import DashboardLayout from '../../layouts/DashboardLayout';
+
+const bgColor = '#1f2937';
+
+type IconProps = {
+  iconName: string;
+  iconText: string;
+};
+
+const IconList: IconProps[] = [
+  {
+    iconName: 'person',
+    iconText: '修改資料',
+  },
+  {
+    iconName: 'lock',
+    iconText: '修改密碼',
+  },
+  {
+    iconName: 'group',
+    iconText: '我的社團',
+  },
+  {
+    iconName: 'flag',
+    iconText: '活動紀錄',
+  },
+  {
+    iconName: 'notifications',
+    iconText: '通知',
+  },
+  {
+    iconName: 'support-agent',
+    iconText: '聯絡協助',
+  },
+  {
+    iconName: 'policy',
+    iconText: '隱私權設定',
+  },
+  {
+    iconName: 'settings',
+    iconText: '設定',
+  },
+  {
+    iconName: 'exit-to-app',
+    iconText: '登出',
+  },
+];
+
+function OptionList() {
+  return (
+    <Box mt={2.5}>
+      {IconList.map((item, idx) => {
+        return (
+          <Button
+            key={idx}
+            variant="ghost"
+            justifyContent="flex-start"
+            py="3"
+            px="5"
+            _light={{
+              _text: { color: 'coolGray.800' },
+              _icon: { color: 'coolGray.800' },
+              _hover: {
+                _text: {
+                  color: 'coolGray.800',
+                },
+                _icon: {
+                  color: 'primary.900',
+                },
+                bg: 'coolGray.50',
+              },
+            }}
+            _dark={{
+              _text: { color: 'coolGray.50' },
+              _icon: { color: 'coolGray.50' },
+              _hover: {
+                _text: {
+                  color: 'primary.500',
+                },
+                _icon: {
+                  color: 'primary.500',
+                },
+                bg: 'coolGray.700',
+              },
+            }}
+            _text={{
+              fontSize: 'md',
+              fontWeight: 'medium',
+            }}
+            leftIcon={<Icon size={5} mr={2} as={MaterialIcons} name={item.iconName} />}>
+            {item.iconText}
+          </Button>
+        );
+      })}
+    </Box>
+  );
+}
+
+function WebDisplay() {
+  const { colors } = useTheme();
+  const { colorMode } = useColorMode();
+
+  return (
+    <VStack space={4}>
+      <HStack alignItems="center" justifyContent="space-between">
+        <Avatar source={require('../MainStack/images/janedoe.png')} w="24" h="24">
+          <Avatar.Badge
+            _light={{ bg: 'coolGray.50' }}
+            _dark={{ bg: 'coolGray.700', borderColor: 'coolGray.700' }}
+            p={2}
+            alignItems="center"
+            justifyContent="center">
+            <Circle>
+              <IconButton
+                p={0}
+                icon={<Icon size={3} as={MaterialIcons} name="photo-camera" color="coolGray.400" />}
+              />
+            </Circle>
+          </Avatar.Badge>
+        </Avatar>
+        <Button
+          variant="outline"
+          startIcon={
+            <Icon
+              as={MaterialIcons}
+              name="mode-edit"
+              _light={{
+                color: 'primary.900',
+              }}
+              _dark={{
+                color: 'coolGray.400',
+              }}
+              color="#45268F"
+              size={5}
+            />
+          }>
+          Edit Profile
+        </Button>
+      </HStack>
+      <Box mt={16}>
+        <FloatingLabelInput
+          w="100%"
+          isRequired
+          label="Full Name"
+          labelColor={colors.coolGray['400']}
+          defaultValue="Jon"
+          labelBGColor={colorMode === 'light' ? 'white' : bgColor}
+        />
+      </Box>
+      <VStack mt={6} space={7}>
+        <FloatingLabelInput
+          isRequired
+          label="Email"
+          labelColor={colors.coolGray['400']}
+          defaultValue="jondoe@example.com"
+          labelBGColor={colorMode === 'light' ? 'white' : bgColor}
+        />
+        <FloatingLabelInput
+          isRequired
+          label="Contact Number"
+          labelColor={colors.coolGray['400']}
+          defaultValue="+91-8239635900"
+          labelBGColor={colorMode === 'light' ? 'white' : bgColor}
+        />
+        <FloatingLabelInput
+          isRequired
+          label="Address"
+          labelColor={colors.coolGray['400']}
+          defaultValue="301, Bakers Street"
+          labelBGColor={colorMode === 'light' ? 'white' : bgColor}
+        />
+        <HStack alignItems="center" justifyContent="space-between">
+          <FloatingLabelInput
+            w="100%"
+            label="City"
+            defaultValue="Rochester"
+            containerWidth="48%"
+            isRequired
+            labelColor={colors.coolGray['400']}
+            labelBGColor={colorMode === 'light' ? 'white' : bgColor}
+          />
+          <FloatingLabelInput
+            w="100%"
+            isRequired
+            label="State"
+            defaultValue="New York"
+            labelColor={colors.coolGray['400']}
+            labelBGColor={colorMode === 'light' ? 'white' : bgColor}
+            containerWidth="48%"
+          />
+        </HStack>
+        <HStack alignItems="center" justifyContent="space-between">
+          <FloatingLabelInput
+            w="100%"
+            isRequired
+            label="Zip Code"
+            defaultValue="11357"
+            labelColor={colors.coolGray['400']}
+            labelBGColor={colorMode === 'light' ? 'white' : bgColor}
+            containerWidth="48%"
+          />
+          <FloatingLabelInput
+            w="100%"
+            isRequired
+            label="Country"
+            defaultValue="USA"
+            labelColor={colors.coolGray['400']}
+            labelBGColor={colorMode === 'light' ? 'white' : bgColor}
+            containerWidth="48%"
+          />
+        </HStack>
+      </VStack>
+    </VStack>
+  );
+}
+
+function MobileScreen() {
+  return (
+    <>
+      <Box
+        pb={6}
+        pt={1}
+        alignItems="center"
+        _light={{ bg: 'amber.300' }}
+        _dark={{ bg: 'coolGray.900' }}>
+        <Avatar source={require('../MainStack/images/janedoe.png')} width={20} height={20} />
+
+        <HStack alignItems="center" justifyContent="center" space={2} mt={3.5}>
+          <Text fontSize="xl" fontWeight="bold" color="amber.900">
+            Josh
+          </Text>
+          <IconButton
+            p={0}
+            icon={<Icon as={MaterialIcons} name="mode-edit" size={5} color="amber.700" />}
+          />
+        </HStack>
+        <Text
+          fontSize="sm"
+          fontWeight="medium"
+          textAlign="center"
+          _light={{ color: 'amber.600' }}
+          _dark={{ color: 'coolGray.400' }}>
+          0912345678
+        </Text>
+      </Box>
+      <ScrollView>
+        <OptionList />
+      </ScrollView>
+    </>
+  );
+}
+
+export default function MainTabProfileStackScreen({ navigation }: NavigationProps): JSX.Element {
+  return (
+    <DashboardLayout
+      title="個人檔案"
+      rightPanelMobileHeader
+      showIcons={false}
+      displayBackButton={false}
+      displayBackIcon={false}
+      displaySearchButton={false}>
+      <Box
+        px={{ md: '140' }}
+        pt={{ md: 8 }}
+        pb={{ md: '140' }}
+        rounded={{ md: 'sm' }}
+        _light={{ bg: 'white' }}
+        _dark={{ bg: 'coolGray.800' }}
+        flex="1">
+        <Hidden till="md">
+          <WebDisplay />
+        </Hidden>
+        <Hidden from="md">
+          <MobileScreen />
+        </Hidden>
+      </Box>
+    </DashboardLayout>
+  );
+}

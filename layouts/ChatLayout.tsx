@@ -25,6 +25,8 @@ import logo_light from '../assets/theme/header_light.png';
 import menu_dark from '../assets/theme/menu_dark.png';
 import menu_light from '../assets/theme/menu_light.png';
 import Sidebar from '../components/Sidebar';
+import Colors from '../constants/Colors';
+
 type ChatLayoutProps = {
   scrollable?: boolean;
   displayScreenTitle?: boolean;
@@ -267,9 +269,9 @@ export default function ChatLayout({
 
   return (
     <>
-      <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
+      <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
       <Box safeAreaTop _light={{ bg: 'amber.600' }} _dark={{ bg: 'coolGray.900' }} />
-      <VStack flex={1} _light={{ bg: 'white' }} _dark={{ bg: 'customGray' }}>
+      <VStack flex={1} _light={{ bg: 'white' }} _dark={{ bg: Colors.LOGO_COLOR_WHITE_BACKGROUND }}>
         <Hidden from="md">
           <MobileHeader
             title={props.title}

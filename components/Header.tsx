@@ -96,7 +96,7 @@ export default function Header({ ...props }: HeaderProps) {
                 w="56"
                 alt="NativeBase Startup+"
                 resizeMode="contain"
-                source={require('../assets/theme/header_logo_light.png')}
+                source={require('../assets/logo.png')}
               />
             ) : (
               <Image
@@ -104,7 +104,7 @@ export default function Header({ ...props }: HeaderProps) {
                 w="56"
                 alt="NativeBase Startup+"
                 resizeMode="contain"
-                source={require('../assets/theme/header_logo_dark.png')}
+                source={require('../assets/logo.png')}
               />
             )}
           </HStack>

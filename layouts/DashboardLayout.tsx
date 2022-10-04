@@ -22,10 +22,10 @@ import {
 } from 'native-base';
 import React from 'react';
 
-import logo_dark from '../assets/theme/header_dark.png';
-import logo_light from '../assets/theme/header_light.png';
-import menu_dark from '../assets/theme/menu_dark.png';
-import menu_light from '../assets/theme/menu_light.png';
+import logo_dark from '../assets/logo.png';
+import logo_light from '../assets/logo.png';
+import menu_dark from '../assets/logo.png';
+import menu_light from '../assets/logo.png';
 import Sidebar from '../components/Sidebar';
 import SidebarHomeAndMenu from '../components/SidebarHomeAndMenu';
 import SidebarPodcastScreen from '../components/SidebarPodcastScreen';
@@ -55,6 +55,7 @@ type DashboardLayoutProps = {
   showGroupInfoHeader?: boolean;
   displayBackIcon?: boolean;
   rightPanelMobileHeader?: boolean;
+  showBackButton?: boolean;
 };
 
 type MainContentProps = DashboardLayoutProps;
@@ -62,7 +63,7 @@ type MainContentProps = DashboardLayoutProps;
 type MobileHeaderProps = {
   title: string;
   subTitle?: string;
-  backButton: boolean;
+  backButton?: boolean;
   rightPanel?: boolean;
 };
 
@@ -247,7 +248,15 @@ export function MobileHeader(props: MobileHeaderProps) {
                 />
               )}
               <VStack>
-                <Text color="amber.900" fontSize="lg">
+                <Text
+                  fontSize="lg"
+                  marginLeft={5}
+                  _dark={{
+                    color: 'coolGray.200',
+                  }}
+                  _light={{
+                    color: Colors.LOGO_COLOR_BROWN,
+                  }}>
                   {props.title}
                 </Text>
                 {props.subTitle ? (
@@ -259,15 +268,33 @@ export function MobileHeader(props: MobileHeaderProps) {
             </HStack>
             {/* right panel */}
             <HStack space="1">
-              {/*
               <IconButton
                 variant="unstyled"
                 colorScheme="light"
                 onPress={toggleColorMode}
                 _icon={{ color: 'white' }}
-                icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+                icon={
+                  colorMode === 'light' ? (
+                    <MoonIcon
+                      _dark={{
+                        color: 'coolGray.200',
+                      }}
+                      _light={{
+                        color: Colors.LOGO_COLOR_BROWN,
+                      }}
+                    />
+                  ) : (
+                    <SunIcon
+                      _dark={{
+                        color: 'coolGray.200',
+                      }}
+                      _light={{
+                        color: Colors.LOGO_COLOR_BROWN,
+                      }}
+                    />
+                  )
+                }
               />
-              */}
               {props.rightPanel && (
                 <IconButton
                   variant="unstyled"
@@ -281,7 +308,7 @@ export function MobileHeader(props: MobileHeaderProps) {
                         color: 'coolGray.200',
                       }}
                       _light={{
-                        color: 'amber.900',
+                        color: Colors.LOGO_COLOR_BROWN,
                       }}
                     />
                   }
@@ -319,7 +346,7 @@ export default function DashboardLayout({
   },
   maxWidth = 1016,
   mobileHeader = {
-    backButton: true,
+    backButton: false,
   },
   ...props
 }: DashboardLayoutProps) {
@@ -330,14 +357,18 @@ export default function DashboardLayout({
 
   return (
     <>
-      <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
-      <Box safeAreaTop _light={{ bg: 'lime.700' }} _dark={{ bg: 'coolGray.900' }} />
-      <VStack flex={1} _light={{ bg: 'white' }} _dark={{ bg: 'customGray' }}>
+      <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
+      <Box
+        safeAreaTop
+        _light={{ bg: Colors.LOGO_COLOR_WHITE_BACKGROUND }}
+        _dark={{ bg: 'coolGray.900' }}
+      />
+      <VStack flex={1} _light={{ bg: 'white' }} _dark={{ bg: 'white' }}>
         <Hidden from="md">
           <MobileHeader
             title={props.title}
             subTitle={props.subTitle}
-            backButton={mobileHeader.backButton}
+            backButton={props.showBackButton}
             rightPanel={props.rightPanelMobileHeader}
           />
         </Hidden>

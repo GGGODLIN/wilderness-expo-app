@@ -11,7 +11,7 @@ type GuestLayoutProps = {
 export default function GuestLayout(props: GuestLayoutProps) {
   return (
     <>
-      <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
+      <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
       <Box
         safeAreaTop
         _light={{ bg: Colors.LOGO_COLOR_WHITE_BACKGROUND }}

@@ -18,6 +18,7 @@ import React from 'react';
 
 import { NavigationProps } from '../../Props';
 import FloatingLabelInput from '../../components/FloatingLabelInput';
+import Colors from '../../constants/Colors';
 import DashboardLayout from '../../layouts/DashboardLayout';
 
 const bgColor = '#1f2937';
@@ -37,24 +38,8 @@ const IconList: IconProps[] = [
     iconText: '修改密碼',
   },
   {
-    iconName: 'group',
-    iconText: '我的社團',
-  },
-  {
-    iconName: 'flag',
-    iconText: '活動紀錄',
-  },
-  {
-    iconName: 'notifications',
-    iconText: '通知',
-  },
-  {
     iconName: 'support-agent',
     iconText: '聯絡協助',
-  },
-  {
-    iconName: 'policy',
-    iconText: '隱私權設定',
   },
   {
     iconName: 'settings',
@@ -241,24 +226,76 @@ function MobileScreen() {
         pb={6}
         pt={1}
         alignItems="center"
-        _light={{ bg: 'amber.300' }}
+        _light={{ bg: Colors.LOGO_COLOR_WHITE_BACKGROUND }}
         _dark={{ bg: 'coolGray.900' }}>
         <Avatar source={require('../MainStack/images/janedoe.png')} width={20} height={20} />
-
         <HStack alignItems="center" justifyContent="center" space={2} mt={3.5}>
-          <Text fontSize="xl" fontWeight="bold" color="amber.900">
-            Josh
+          <Text
+            fontSize="xl"
+            fontWeight="bold"
+            _dark={{
+              color: 'coolGray.200',
+            }}
+            _light={{
+              color: Colors.LOGO_COLOR_BROWN,
+            }}>
+            好野人
           </Text>
+          {/*
           <IconButton
             p={0}
-            icon={<Icon as={MaterialIcons} name="mode-edit" size={5} color="amber.700" />}
+            icon={
+              <Icon
+                as={MaterialIcons}
+                name="mode-edit"
+                size={5}
+                _dark={{
+                  color: 'coolGray.200',
+                }}
+                _light={{
+                  color: Colors.LOGO_COLOR_GREEN_BACKGROUND,
+                }}
+              />
+            }
           />
+          */}
+        </HStack>
+        <HStack alignItems="center" justifyContent="center" space={2} mt={0}>
+          <Text
+            fontSize="xl"
+            fontWeight="bold"
+            _dark={{
+              color: 'coolGray.200',
+            }}
+            _light={{
+              color: Colors.LOGO_COLOR_BROWN,
+            }}>
+            Josh
+          </Text>
+          {/*
+          <IconButton
+            p={0}
+            icon={
+              <Icon
+                as={MaterialIcons}
+                name="mode-edit"
+                size={5}
+                _dark={{
+                  color: 'coolGray.200',
+                }}
+                _light={{
+                  color: Colors.LOGO_COLOR_GREEN_BACKGROUND,
+                }}
+              />
+            }
+          />
+          */}
         </HStack>
         <Text
           fontSize="sm"
           fontWeight="medium"
           textAlign="center"
-          _light={{ color: 'amber.600' }}
+          _light={{ color: Colors.LOGO_COLOR_BROWN }}
           _dark={{ color: 'coolGray.400' }}>
           0912345678
         </Text>
@@ -275,6 +312,7 @@ export default function MainTabProfileStackScreen({ navigation }: NavigationProp
     <DashboardLayout
       title="個人檔案"
       rightPanelMobileHeader
+      showBackButton={false}
       showIcons={false}
       displayBackButton={false}
       displayBackIcon={false}

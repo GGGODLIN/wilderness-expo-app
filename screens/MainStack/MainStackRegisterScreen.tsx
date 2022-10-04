@@ -53,7 +53,7 @@ function MobileHeader() {
         </HStack>
         <VStack space={0.5}>
           <Text fontSize="3xl" fontWeight="bold" color="amber.900">
-            成為 Sunshine 的新成員
+            成為 玩野覓境 的新成員
           </Text>
           <Text
             fontSize="md"

@@ -229,10 +229,10 @@ export function MobileHeader(props: MobileHeaderProps) {
       pb="2"
       _dark={{ bg: 'coolGray.900', borderColor: 'coolGray.800' }}
       _light={{
-        bg: { base: 'amber.300', md: 'white' },
+        bg: { base: 'lime.700', md: 'white' },
         borderColor: 'coolGray.200',
       }}
-      bg="amber.300">
+      bg="lime.700">
       <HStack space="2" justifyContent="space-between">
         <HStack flex="1" space="2" justifyContent="space-between" alignItems="center">
           <>
@@ -330,7 +330,7 @@ export default function DashboardLayout({
   return (
     <>
       <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
-      <Box safeAreaTop _light={{ bg: 'amber.300' }} _dark={{ bg: 'coolGray.900' }} />
+      <Box safeAreaTop _light={{ bg: 'lime.700' }} _dark={{ bg: 'coolGray.900' }} />
       <VStack flex={1} _light={{ bg: 'white' }} _dark={{ bg: 'customGray' }}>
         <Hidden from="md">
           <MobileHeader

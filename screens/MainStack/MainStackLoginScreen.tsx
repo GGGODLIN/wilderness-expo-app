@@ -276,7 +276,7 @@ function SideContainerWeb() {
   return (
     <Center
       flex="1"
-      _light={{ bg: 'primary.900' }}
+      _light={{ bg: 'white' }}
       _dark={{ bg: 'primary.700' }}
       borderTopLeftRadius={{ md: 'md' }}
       borderBottomLeftRadius={{ md: 'md' }}>
@@ -285,7 +285,7 @@ function SideContainerWeb() {
         size="80"
         alt="NativeBase Startup+ "
         resizeMode="contain"
-        source={require('./images/logo.png')}
+        source={require('../../assets/logo.png')}
       />
     </Center>
   );
@@ -310,7 +310,7 @@ function MobileHeader() {
         */}
         <VStack space={0.5}>
           <Text fontSize="3xl" fontWeight="bold" color="amber.900">
-            歡迎來到 Sunshine
+            歡迎來到 玩野覓境
           </Text>
           <Text
             fontSize="md"

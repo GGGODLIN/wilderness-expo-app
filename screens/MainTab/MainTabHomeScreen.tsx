@@ -257,7 +257,7 @@ function Banner() {
 export default function HomeScreen({ route, navigation }: NavigationProps): JSX.Element {
   return (
     <DashboardLayout
-      title="Sunshine"
+      title="玩野覓境"
       displayMenuButton
       displayScreenTitle={false}
       displayAlternateMobileHeader

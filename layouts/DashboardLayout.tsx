@@ -268,6 +268,8 @@ export function MobileHeader(props: MobileHeaderProps) {
             </HStack>
             {/* right panel */}
             <HStack space="1">
+              {/*
+              日夜切換功能
               <IconButton
                 variant="unstyled"
                 colorScheme="light"
@@ -295,6 +297,7 @@ export function MobileHeader(props: MobileHeaderProps) {
                   )
                 }
               />
+              */}
               {props.rightPanel && (
                 <IconButton
                   variant="unstyled"

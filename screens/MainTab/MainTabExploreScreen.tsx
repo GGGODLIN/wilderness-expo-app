@@ -1,31 +1,55 @@
 import { MaterialIcons } from '@expo/vector-icons';
-import { Button, HStack, Text, Icon, Input, Pressable, Box, Center } from 'native-base';
+import {
+  Button,
+  HStack,
+  Text,
+  Icon,
+  Input,
+  Pressable,
+  Box,
+  Center,
+  Container,
+  Heading,
+  Content,
+  VStack,
+} from 'native-base';
 import React, { useState } from 'react';
 import { Platform } from 'react-native';
 
 import { NavigationProps } from '../../Props';
 import NativeMap from '../../components/NativeMap';
+import Colors from '../../constants/Colors';
 import DashboardLayout from '../../layouts/DashboardLayout';
 
 export default function MainTabExploreScreen({ navigation }: NavigationProps): JSX.Element {
   const [textInput, setTextInput] = useState('');
   const [selectedAddress, setSelectedAddress] = useState('Home');
 
+  function Tab_1() {
+    return <NativeMap />;
+  }
+  function Tab_2() {
+    return <Text>2</Text>;
+  }
+  function Tab_3() {
+    return <Text>2</Text>;
+  }
+
   const tabs = [
     {
       id: 1,
       title: '附近',
-      component: <NativeMap />,
+      component: <Tab_1 />,
     },
     {
       id: 2,
       title: '查詢',
-      component: <Text>查詢</Text>,
+      component: <Tab_2 />,
     },
     {
       id: 3,
       title: '私藏',
-      component: <Text>私藏</Text>,
+      component: <Tab_3 />,
     },
   ];
 
@@ -45,7 +69,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
           fontWeight="medium"
           letterSpacing="0.4"
           _light={{
-            color: tabName === currentTab ? 'primary.900' : 'coolGray.500',
+            color: tabName === currentTab ? Colors.LOGO_COLOR_BROWN : 'coolGray.500',
           }}
           _dark={{
             color: tabName === currentTab ? 'primary.500' : 'coolGray.400',
@@ -59,7 +83,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
             borderTopLeftRadius="sm"
             borderTopRightRadius="sm"
             _light={{
-              bg: 'primary.900',
+              bg: Colors.LOGO_COLOR_BROWN,
             }}
             _dark={{
               bg: 'primary.500',
@@ -72,23 +96,33 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
   }
   function Tabs() {
     const [tabName, setTabName] = React.useState('Review');
-    const [tabChildren, setTabChildren] = useState<React.ReactNode>(<></>);
+    const [tabChildren, setTabChildren] = useState<React.ReactNode>(<Tab_1 />);
     return (
       <>
-        <HStack space="5" borderRadius="sm">
-          {tabs.map(({ id, title, component }) => (
-            <TabItem
-              key={id}
-              tabName={title}
-              currentTab={tabName}
-              handleTabChange={(tab) => {
-                setTabName(tab);
-                setTabChildren(component);
-              }}
-            />
-          ))}
-        </HStack>
-        {tabChildren}
+        <Center>
+          <HStack space="5" borderRadius="sm">
+            {tabs.map(({ id, title, component }) => (
+              <TabItem
+                key={id}
+                tabName={title}
+                currentTab={tabName}
+                handleTabChange={(tab) => {
+                  setTabName(tab);
+                  setTabChildren(component);
+                }}
+              />
+            ))}
+          </HStack>
+        </Center>
+        <Box
+          style={{
+            flex: 1,
+            width: '100%',
+            height: '100%',
+            minHeight: '100%',
+          }}>
+          {tabChildren}
+        </Box>
       </>
     );
   }
@@ -129,14 +163,16 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
   };
 
   return (
-    <DashboardLayout title="附近活動">
+    <DashboardLayout title="探索">
       <Box
         px={{ md: 8, xl: 35 }}
         py={{ md: 8 }}
         flex={1}
         _light={{ bg: 'white' }}
         _dark={{ bg: 'coolGray.800' }}>
-        <NativeMap />
+        <VStack space="5">
+          <Tabs />
+        </VStack>
         {/*{Platform.OS === 'web' ? <WebMap /> : <NativeMap />}*/}
       </Box>
     </DashboardLayout>

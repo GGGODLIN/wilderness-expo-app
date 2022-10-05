@@ -136,9 +136,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
         flex={1}
         _light={{ bg: 'white' }}
         _dark={{ bg: 'coolGray.800' }}>
-        <Center>
-          <Tabs />
-        </Center>
+        <NativeMap />
         {/*{Platform.OS === 'web' ? <WebMap /> : <NativeMap />}*/}
       </Box>
     </DashboardLayout>

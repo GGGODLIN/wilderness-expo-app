@@ -1,13 +1,9 @@
-import React from 'react';
 import { HStack, Image, Center, VStack, Pressable } from 'native-base';
-import { ResponsiveValue } from 'types';
+import React from 'react';
 import type { ImageSourcePropType } from 'react-native';
-import {
-  NativeScrollEvent,
-  NativeSyntheticEvent,
-  Platform,
-  ScrollView,
-} from 'react-native';
+import { NativeScrollEvent, NativeSyntheticEvent, Platform, ScrollView } from 'react-native';
+
+import { ResponsiveValue } from '../types';
 
 type Carousel = {
   images: ImageSourcePropType[];
@@ -28,8 +24,7 @@ export function Carousel({
   const ref = React.useRef<ScrollView>(null);
 
   React.useEffect(() => {
-    if (containerWidth)
-      ref.current?.scrollTo({ x: activeIndex * containerWidth });
+    if (containerWidth) ref.current?.scrollTo({ x: activeIndex * containerWidth });
   }, [activeIndex, containerWidth]);
 
   const timeout = React.useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -40,9 +35,7 @@ export function Carousel({
         clearTimeout(timeout.current);
       }
       timeout.current = setTimeout(() => {
-        const nextActiveIndex = Math.round(
-          e.nativeEvent.contentOffset.x / containerWidth
-        );
+        const nextActiveIndex = Math.round(e.nativeEvent.contentOffset.x / containerWidth);
         if (nextActiveIndex !== activeIndex) {
           setActiveIndex(nextActiveIndex);
         } else {
@@ -53,9 +46,7 @@ export function Carousel({
   };
 
   const onMomentumScrollEnd = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
-    const nextActiveIndex = Math.round(
-      e.nativeEvent.contentOffset.x / containerWidth
-    );
+    const nextActiveIndex = Math.round(e.nativeEvent.contentOffset.x / containerWidth);
     if (activeIndex !== nextActiveIndex) {
       setActiveIndex(nextActiveIndex);
       return nextActiveIndex;
@@ -63,10 +54,7 @@ export function Carousel({
   };
 
   return (
-    <VStack
-      flex={1}
-      onLayout={(e) => setContainerWidth(e.nativeEvent.layout.width)}
-    >
+    <VStack flex={1} onLayout={(e) => setContainerWidth(e.nativeEvent.layout.width)}>
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
@@ -75,8 +63,7 @@ export function Carousel({
         onScroll={Platform.OS === 'web' ? onScroll : undefined}
         onMomentumScrollEnd={onMomentumScrollEnd}
         scrollEventThrottle={16}
-        pagingEnabled={Platform.OS !== 'web'}
-      >
+        pagingEnabled={Platform.OS !== 'web'}>
         {images.map((image, idx) => {
           return (
             <Image
@@ -98,16 +85,10 @@ export function Carousel({
                   p="1"
                   rounded="full"
                   _light={{
-                    bg:
-                      index === activeIndex
-                        ? activeIndicatorBgColor
-                        : inactiveIndicatorBgColor,
+                    bg: index === activeIndex ? activeIndicatorBgColor : inactiveIndicatorBgColor,
                   }}
                   _dark={{
-                    bg:
-                      index === activeIndex
-                        ? activeIndicatorBgColor
-                        : inactiveIndicatorBgColor,
+                    bg: index === activeIndex ? activeIndicatorBgColor : inactiveIndicatorBgColor,
                   }}
                 />
               </Pressable>

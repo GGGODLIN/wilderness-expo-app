@@ -7,34 +7,18 @@ import { NavigationProps } from '../../Props';
 export default function MainStackEventDetailsScreen({ navigation }: NavigationProps): JSX.Element {
   return (
     <VStack>
-      <Center padding={3} borderTopWidth={1} borderBottomWidth={1}>
-        <HStack borderWidth={1} borderRadius="md">
-          <Box paddingX={5} paddingY={1}>
-            資訊
-          </Box>
-          <Box paddingX={5} paddingY={1}>
-            動態
-          </Box>
-          <Box paddingX={5} paddingY={1}>
-            參加者
-          </Box>
-          <Box paddingX={5} paddingY={1}>
-            訊息
-          </Box>
-        </HStack>
-      </Center>
       <ScrollView>
         <View>
           <VStack space={5} margin={5}>
-            <Heading>大熊高爾夫早場</Heading>
+            <Heading>45245</Heading>
             <Text bold fontSize="lg">
-              活動資訊
+              資訊
             </Text>
             <HStack>
               <Ionicons name="person" size={20} color="gray" />
               <VStack>
-                <Text>主辦人</Text>
-                <Text>ABC大大</Text>
+                <Text>452452</Text>
+                <Text>45254</Text>
               </VStack>
             </HStack>
             <HStack>
@@ -47,8 +31,8 @@ export default function MainStackEventDetailsScreen({ navigation }: NavigationPr
             <HStack>
               <Ionicons name="map" size={20} color="gray" />
               <VStack>
-                <Text>桃園球場</Text>
-                <Text>桃園市森林區大條馬路711號</Text>
+                <Text>452542</Text>
+                <Text>45245254</Text>
               </VStack>
             </HStack>
             <HStack>
@@ -64,11 +48,7 @@ export default function MainStackEventDetailsScreen({ navigation }: NavigationPr
             <HStack>
               <Ionicons name="cash" size={20} color="gray" />
               <VStack>
-                <Text>
-                  $1,000 / 每人{'\n'}
-                  午餐加訂便當者 + $100{'\n'}
-                  續攤下午茶者請勾下午茶
-                </Text>
+                <Text>452542</Text>
               </VStack>
             </HStack>
             <Text bold fontSize="lg">

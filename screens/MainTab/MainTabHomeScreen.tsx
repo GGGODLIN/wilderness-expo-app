@@ -96,7 +96,7 @@ const CarouselLayout = () => {
       py={{ base: '0', md: 0 }}
       _light={{ bg: 'transparent' }}
       _dark={{ bg: 'transparent' }}
-      height={{ base: 64, md: 80 }}>
+      height={{ base: 40, md: 20 }}>
       <Carousel
         images={[
           require('../../assets/images/views/view_9.jpg'),
@@ -107,7 +107,7 @@ const CarouselLayout = () => {
           require('../../assets/images/views/view_13.jpg'),
           require('../../assets/images/views/view_14.jpg'),
         ]}
-        height={{ base: 64, md: 80 }}
+        height={{ base: 40, md: 20 }}
         activeIndicatorBgColor="coolGray.500"
         inactiveIndicatorBgColor="coolGray.300"
       />
@@ -198,7 +198,7 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
             );
           })}
         </HStack>
-        <HStack space={6} justifyContent="center" pt={3}>
+        <HStack space={6} justifyContent="center" pt={3} pb={4}>
           {icons2.map((item, idx) => {
             return (
               <VStack>

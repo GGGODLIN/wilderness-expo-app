@@ -186,7 +186,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
     );
   }
   function Tabs() {
-    const [tabName, setTabName] = React.useState('Review');
+    const [tabName, setTabName] = React.useState('附近');
     const [tabChildren, setTabChildren] = useState<React.ReactNode>(<Tab_1 />);
     return (
       <>

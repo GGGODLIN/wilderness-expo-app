@@ -21,6 +21,7 @@ import { Platform } from 'react-native';
 
 import { NavigationProps } from '../../Props';
 import LocationList from '../../components/explore/LocationList';
+import PostsList from '../../components/home/PostsList';
 import Colors from '../../constants/Colors';
 import DashboardLayout from '../../layouts/DashboardLayout';
 
@@ -54,11 +55,36 @@ export default function MainTabCommunityScreen({ navigation }: NavigationProps):
       imageUri: require('../../assets/images/views/view_1.jpg'),
     },
   ];
-
+  const postsList = [
+    {
+      id: 1,
+      chapter: '露營地A',
+      name: '第一次露營就上手',
+      imageUri: require('../../assets/images/views/view_9.jpg'),
+    },
+    {
+      id: 2,
+      chapter: '露營地B',
+      name: '美食讀',
+      imageUri: require('../../assets/images/views/view_12.jpg'),
+    },
+    {
+      id: 3,
+      chapter: '露營地B',
+      name: '露營美食',
+      imageUri: require('../../assets/images/views/view_7.jpg'),
+    },
+    {
+      id: 4,
+      chapter: '露營地B',
+      name: '露營地ABC',
+      imageUri: require('../../assets/images/views/view_2.jpg'),
+    },
+  ];
   function Tab_1() {
     return (
       <ScrollView py={4}>
-        <LocationList courses={locationList} />
+        <PostsList courses={postsList} />
       </ScrollView>
     );
   }
@@ -137,7 +163,7 @@ export default function MainTabCommunityScreen({ navigation }: NavigationProps):
     );
   }
   function Tabs() {
-    const [tabName, setTabName] = React.useState('Review');
+    const [tabName, setTabName] = React.useState('熱門');
     const [tabChildren, setTabChildren] = useState<React.ReactNode>(<Tab_1 />);
     return (
       <>

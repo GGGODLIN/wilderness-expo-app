@@ -10,7 +10,6 @@ import {
   Center,
   Container,
   Heading,
-  Content,
   VStack,
   Select,
   Fab,

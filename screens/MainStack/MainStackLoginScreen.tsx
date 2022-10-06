@@ -1,4 +1,4 @@
-import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import {
   Button,
@@ -62,6 +62,7 @@ const SignInForm = () => {
   return (
     <FormControl>
       <FormInput
+        py={4}
         isRequired
         label="行動電話 或 Email"
         labelColor="#9CA3AF"

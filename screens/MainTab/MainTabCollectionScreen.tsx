@@ -15,6 +15,7 @@ import {
   Select,
   Fab,
   ScrollView,
+  Divider,
 } from 'native-base';
 import React, { useState } from 'react';
 import { Platform } from 'react-native';
@@ -55,24 +56,147 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
     },
   ];
 
+  type TrackProps = {
+    IconColorLight?: string;
+    IconColorDark?: string;
+  };
+
+  function TrackingIcon(props: TrackProps) {
+    return (
+      <Icon
+        size={5}
+        as={MaterialIcons}
+        name="circle"
+        _light={{
+          color: props.IconColorLight,
+        }}
+        _dark={{
+          color: props.IconColorDark,
+        }}
+      />
+    );
+  }
+
+  const trackingData = [
+    {
+      title: '陽明山三天兩夜',
+      description: '待決定圖片與內頁排版',
+      status: { type: true, time: '2022-10-08 05:38 pm' },
+    },
+    {
+      title: '陽明山三天兩夜',
+      description: '待決定圖片與內頁排版',
+      status: { type: true, time: '2022-10-08 05:38 pm' },
+    },
+    {
+      title: '陽明山三天兩夜',
+      description: '待決定圖片與內頁排版',
+      status: { type: true, time: '2022-10-08 05:38 pm' },
+    },
+    {
+      title: '陽明山三天兩夜',
+      description: '待決定圖片與內頁排版',
+      status: { type: true, time: '2022-10-08 05:38 pm' },
+    },
+    {
+      title: '陽明山三天兩夜',
+      description: '待決定圖片與內頁排版',
+      status: { type: true, time: '2022-10-08 05:38 pm' },
+    },
+  ];
+
+  const StatusStepComponent = ({
+    title,
+    description,
+    status,
+    key,
+  }: {
+    title: string;
+    description: string;
+    key: number;
+    status: { type: boolean; time: string };
+  }) => {
+    const arr = new Array(6).fill(0);
+    return (
+      <HStack justifyContent="flex-start" space="4" key={key}>
+        <VStack>
+          <TrackingIcon
+            IconColorLight={status.type ? 'coolGray.200' : 'primary.300'}
+            IconColorDark={status.type ? 'primary.500' : 'coolGray.400'}
+          />
+          <Divider
+            orientation="vertical"
+            _light={{ bg: 'coolGray.200' }}
+            _dark={{ bg: 'primary.500' }}
+            size="0.5"
+            ml="9.5"
+            flex={1}
+          />
+        </VStack>
+        <VStack mb="6" flex={1}>
+          <Text
+            _light={{ color: status.type ? 'coolGray.800' : 'coolGray.400' }}
+            _dark={{ color: status.type ? 'coolGray.50' : 'coolGray.500' }}
+            fontWeight="medium"
+            fontSize="sm"
+            mb="2px">
+            {title}
+          </Text>
+
+          <Text
+            _light={{ color: status.type ? 'coolGray.500' : 'coolGray.400' }}
+            _dark={{ color: status.type ? 'coolGray.400' : 'coolGray.500' }}
+            fontWeight="normal"
+            fontSize="xs">
+            {description}
+          </Text>
+          {status.type && (
+            <Text
+              _light={{ color: 'coolGray.400' }}
+              _dark={{ color: 'coolGray.500' }}
+              fontWeight="normal"
+              fontSize="xs">
+              {status.time}
+            </Text>
+          )}
+        </VStack>
+      </HStack>
+    );
+  };
+
+  function Tracking() {
+    return (
+      <Box px={{ base: '2', md: '0' }}>
+        {trackingData.map((item, index) => (
+          <StatusStepComponent
+            title={item.title}
+            description={item.description}
+            status={item.status}
+            key={index}
+          />
+        ))}
+      </Box>
+    );
+  }
+
   function Tab_1() {
     return (
-      <ScrollView>
+      <ScrollView py={4}>
         <LocationList courses={locationList} />
       </ScrollView>
     );
   }
   function Tab_2() {
     return (
-      <ScrollView>
-        <LocationList courses={locationList} />
+      <ScrollView py={4}>
+        <Tracking />
       </ScrollView>
     );
   }
   function Tab_3() {
     return (
-      <ScrollView>
-        <LocationList courses={locationList} />
+      <ScrollView py={4}>
+        <Text>會破版待修</Text>
       </ScrollView>
     );
   }
@@ -86,7 +210,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
     {
       id: 2,
       title: '旅行軌跡',
-      component: <Tab_3 />,
+      component: <Tab_2 />,
     },
     {
       id: 3,

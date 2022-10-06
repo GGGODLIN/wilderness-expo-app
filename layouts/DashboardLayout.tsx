@@ -56,6 +56,7 @@ type DashboardLayoutProps = {
   displayBackIcon?: boolean;
   rightPanelMobileHeader?: boolean;
   showBackButton?: boolean;
+  showNightButton?: boolean;
 };
 
 type MainContentProps = DashboardLayoutProps;
@@ -65,6 +66,7 @@ type MobileHeaderProps = {
   subTitle?: string;
   backButton?: boolean;
   rightPanel?: boolean;
+  showNightButton?: boolean;
 };
 
 type HeaderProps = {
@@ -268,36 +270,35 @@ export function MobileHeader(props: MobileHeaderProps) {
             </HStack>
             {/* right panel */}
             <HStack space="1">
-              {/*
-              日夜切換功能
-              <IconButton
-                variant="unstyled"
-                colorScheme="light"
-                onPress={toggleColorMode}
-                _icon={{ color: 'white' }}
-                icon={
-                  colorMode === 'light' ? (
-                    <MoonIcon
-                      _dark={{
-                        color: 'coolGray.200',
-                      }}
-                      _light={{
-                        color: Colors.LOGO_COLOR_BROWN,
-                      }}
-                    />
-                  ) : (
-                    <SunIcon
-                      _dark={{
-                        color: 'coolGray.200',
-                      }}
-                      _light={{
-                        color: Colors.LOGO_COLOR_BROWN,
-                      }}
-                    />
-                  )
-                }
-              />
-              */}
+              {props.showNightButton && (
+                <IconButton
+                  variant="unstyled"
+                  colorScheme="light"
+                  onPress={toggleColorMode}
+                  _icon={{ color: 'white' }}
+                  icon={
+                    colorMode === 'light' ? (
+                      <MoonIcon
+                        _dark={{
+                          color: 'coolGray.200',
+                        }}
+                        _light={{
+                          color: Colors.LOGO_COLOR_BROWN,
+                        }}
+                      />
+                    ) : (
+                      <SunIcon
+                        _dark={{
+                          color: 'coolGray.200',
+                        }}
+                        _light={{
+                          color: Colors.LOGO_COLOR_BROWN,
+                        }}
+                      />
+                    )
+                  }
+                />
+              )}
               {props.rightPanel && (
                 <IconButton
                   variant="unstyled"
@@ -373,6 +374,7 @@ export default function DashboardLayout({
             subTitle={props.subTitle}
             backButton={props.showBackButton}
             rightPanel={props.rightPanelMobileHeader}
+            showNightButton={props.showNightButton}
           />
         </Hidden>
         <Hidden till="md">

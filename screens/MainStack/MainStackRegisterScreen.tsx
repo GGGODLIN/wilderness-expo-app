@@ -126,6 +126,7 @@ const SignUpForm = () => {
   return (
     <FormControl>
       <FormInput
+        py={4}
         isRequired
         label="行動電話 或 Email"
         labelColor={colors.coolGray[400]}
@@ -135,6 +136,7 @@ const SignUpForm = () => {
         <FormControl.ErrorMessage>Please enter a valid email</FormControl.ErrorMessage>
       </FormInput>
       <FormInput
+        py={4}
         isRequired
         secureTextEntry={!showPass}
         label="設定密碼"
@@ -161,6 +163,7 @@ const SignUpForm = () => {
         <FormControl.ErrorMessage>Please enter a valid password</FormControl.ErrorMessage>
       </FormInput>
       <FormInput
+        py={4}
         isRequired
         secureTextEntry={!showConfirmPass}
         label="再輸入一次密碼"

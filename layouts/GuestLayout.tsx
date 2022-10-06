@@ -22,7 +22,7 @@ export default function GuestLayout(props: GuestLayoutProps) {
         my="auto"
         p={{ md: 8 }}
         _dark={{ bg: 'coolGray.900' }}
-        _light={{ bg: { md: Colors.LOGO_COLOR_WHITE, base: Colors.LOGO_COLOR_WHITE } }}>
+        _light={{ bg: { md: Colors.LOGO_COLOR_WHITE, base: Colors.LOGO_COLOR_WHITE_BACKGROUND } }}>
         <Stack
           w="100%"
           maxW={{ md: '1016' }}

@@ -316,7 +316,8 @@ export default function MainTabProfileStackScreen({ navigation }: NavigationProp
       showIcons={false}
       displayBackButton={false}
       displayBackIcon={false}
-      displaySearchButton={false}>
+      displaySearchButton={false}
+      showNightButton>
       <Box
         px={{ md: '140' }}
         pt={{ md: 8 }}

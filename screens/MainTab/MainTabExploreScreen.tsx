@@ -10,7 +10,6 @@ import {
   Center,
   Container,
   Heading,
-  Content,
   VStack,
   Select,
   Fab,
@@ -114,14 +113,14 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
   }
   function Tab_2() {
     return (
-      <ScrollView>
+      <ScrollView py={4}>
         <LocationList courses={locationList} />
       </ScrollView>
     );
   }
   function Tab_3() {
     return (
-      <ScrollView>
+      <ScrollView py={4}>
         <LocationList courses={locationList} />
       </ScrollView>
     );

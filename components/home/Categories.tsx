@@ -1,6 +1,8 @@
-import { MaterialIcons } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 import { Box, Icon, Text, VStack, FlatList, Center, IconButton } from 'native-base';
 import React from 'react';
+
+import Colors from '../../constants/Colors';
 type Icon = {
   name: string;
   text: string;
@@ -20,34 +22,35 @@ const Categories = ({ icons }: IconType) => {
       </Text>
   */}
       <FlatList
-        mt={4}
+        mt={0}
         data={icons}
         horizontal
         showsHorizontalScrollIndicator={false}
-        ItemSeparatorComponent={() => <Box w="8" />}
+        ItemSeparatorComponent={() => <Box w="4" />}
         renderItem={({ item }) => (
           <VStack space="2" alignItems="center">
             <Center
-              _light={{ bg: 'primary.100' }}
+              _light={{ bg: Colors.LOGO_COLOR_WHITE_BACKGROUND }}
               _dark={{ bg: 'coolGray.700' }}
               rounded="full"
-              w={{ base: 10, md: 12 }}
-              h={{ base: 10, md: 12 }}>
+              w={{ base: 16, md: 14 }}
+              h={{ base: 16, md: 14 }}>
               <IconButton
                 variant="unstyled"
                 icon={
                   <Icon
-                    as={MaterialIcons}
+                    as={FontAwesome5}
                     name={item.name}
-                    _light={{ color: 'primary.900' }}
+                    _light={{ color: Colors.LOGO_COLOR_GREEN }}
                     _dark={{ color: 'coolGray.50' }}
-                    size={6}
+                    size={8}
+                    textAlign="center"
                   />
                 }
               />
             </Center>
             <Text
-              fontSize={{ base: 'xs', md: 'sm' }}
+              fontSize={{ base: 'sm', md: 'sm' }}
               _light={{ color: { base: 'coolGray.800', md: 'coolGray.500' } }}
               _dark={{ color: { base: 'coolGray.50', md: 'coolGray.400' } }}
               textAlign="center">

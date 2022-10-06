@@ -263,7 +263,6 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
       displayAlternateMobileHeader
       rightPanelMobileHeader>
       <Banner />
-      <Categories icons={icons} />
       <ResumeCourses courses={resumedCourses} />
       <TopTabs>
         <Tab label="活動" selected />
@@ -279,10 +278,10 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
                 {10 + i * 2}
               </Circle>
               <Flex alignItems="center">
-                <Text>大雄高爾夫早場</Text>
+                <Text>asdasd</Text>
                 <Text>2022-09-10 09:00</Text>
               </Flex>
-              <Center>桃園球場</Center>
+              <Center>asd</Center>
             </HStack>
           </Pressable>
         ))}

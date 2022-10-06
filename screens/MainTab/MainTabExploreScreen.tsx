@@ -12,12 +12,16 @@ import {
   Heading,
   Content,
   VStack,
+  Select,
+  Fab,
+  ScrollView,
 } from 'native-base';
 import React, { useState } from 'react';
 import { Platform } from 'react-native';
 
 import { NavigationProps } from '../../Props';
 import NativeMap from '../../components/NativeMap';
+import LocationList from '../../components/explore/LocationList';
 import Colors from '../../constants/Colors';
 import DashboardLayout from '../../layouts/DashboardLayout';
 
@@ -25,14 +29,102 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
   const [textInput, setTextInput] = useState('');
   const [selectedAddress, setSelectedAddress] = useState('Home');
 
+  const locationList = [
+    {
+      id: 1,
+      chapter: '南投縣',
+      name: '露營地ABC',
+      imageUri: require('../../assets/images/views/view_1.jpg'),
+    },
+    {
+      id: 2,
+      chapter: '南投縣',
+      name: '露營地ABC',
+      imageUri: require('../../assets/images/views/view_3.jpg'),
+    },
+    {
+      id: 3,
+      chapter: '南投縣',
+      name: '露營地ABC',
+      imageUri: require('../../assets/images/views/view_5.jpg'),
+    },
+    {
+      id: 4,
+      chapter: '南投縣',
+      name: '露營地ABC',
+      imageUri: require('../../assets/images/views/view_4.jpg'),
+    },
+  ];
+
   function Tab_1() {
-    return <NativeMap />;
+    return (
+      <>
+        <NativeMap />
+        <Box py={4} px={{ base: 4, md: 4 }} _light={{ bg: 'white' }} _dark={{ bg: 'coolGray.800' }}>
+          <HStack space="2" mt={0} justifyContent="center" width="100%">
+            <Center>
+              <Select
+                placeholder="台中市"
+                selectedValue={textInput}
+                onValueChange={(itemValue) => setTextInput(itemValue)}
+                _light={{
+                  placeholderTextColor: 'coolGray.500',
+                  color: 'coolGray.800',
+                }}
+                _dark={{
+                  placeholderTextColor: 'coolGray.400',
+                  color: 'coolGray.50',
+                }}>
+                <Select.Item label="臺北市" value="臺北市" />
+                <Select.Item label="新北市" value="新北市" />
+                <Select.Item label="桃園市" value="桃園市" />
+                <Select.Item label="臺中市" value="臺中市" />
+                <Select.Item label="臺南市" value="臺南市" />
+                <Select.Item label="高雄市" value="高雄市" />
+              </Select>
+            </Center>
+            <Center>
+              <Select
+                placeholder="北屯區"
+                _light={{
+                  placeholderTextColor: 'coolGray.500',
+                  color: 'coolGray.800',
+                }}
+                _dark={{
+                  placeholderTextColor: 'coolGray.400',
+                  color: 'coolGray.50',
+                }}>
+                <Select.Item label="龍井區" value="龍井區" />
+                <Select.Item label="沙鹿區" value="沙鹿區" />
+                <Select.Item label="清水區" value="清水區" />
+                <Select.Item label="梧棲區" value="梧棲區" />
+              </Select>
+            </Center>
+          </HStack>
+        </Box>
+        {/*
+        <Fab
+          placement="bottom-right"
+          colorScheme="blue"
+          size="lg"
+          icon={<Icon name="share" as="Entypo" />}
+    />*/}
+      </>
+    );
   }
   function Tab_2() {
-    return <Text>2</Text>;
+    return (
+      <ScrollView>
+        <LocationList courses={locationList} />
+      </ScrollView>
+    );
   }
   function Tab_3() {
-    return <Text>2</Text>;
+    return (
+      <ScrollView>
+        <LocationList courses={locationList} />
+      </ScrollView>
+    );
   }
 
   const tabs = [

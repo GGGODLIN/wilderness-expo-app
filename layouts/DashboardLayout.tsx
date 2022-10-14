@@ -279,6 +279,7 @@ export function MobileHeader(props: MobileHeaderProps) {
                   icon={
                     colorMode === 'light' ? (
                       <MoonIcon
+                        size="4"
                         _dark={{
                           color: 'coolGray.200',
                         }}
@@ -288,6 +289,7 @@ export function MobileHeader(props: MobileHeaderProps) {
                       />
                     ) : (
                       <SunIcon
+                        size="4"
                         _dark={{
                           color: 'coolGray.200',
                         }}
@@ -305,7 +307,7 @@ export function MobileHeader(props: MobileHeaderProps) {
                   colorScheme="light"
                   icon={
                     <Icon
-                      size="6"
+                      size="4"
                       name="bell"
                       as={FontAwesome}
                       _dark={{

@@ -3,6 +3,10 @@ import { Icon, Center, useColorMode } from 'native-base';
 import React from 'react';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 
+type NativeMapProps = {
+  onPress?: (event: React.MouseEvent<HTMLElement>) => void;
+};
+
 const mapStandardStyle = [
   {
     elementType: 'labels.icon',
@@ -200,11 +204,12 @@ const mapDarkStyle = [
   },
 ];
 
-export default function NativeMap() {
+export default function NativeMap(props: NativeMapProps) {
   const { colorMode } = useColorMode();
 
   return (
     <MapView
+      onPress={props.onPress}
       style={{ flex: 1, minHeight: 330 }}
       provider={PROVIDER_GOOGLE}
       customMapStyle={colorMode === 'dark' ? mapDarkStyle : mapStandardStyle}

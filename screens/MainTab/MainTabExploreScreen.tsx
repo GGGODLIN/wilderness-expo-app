@@ -25,6 +25,7 @@ import Colors from '../../constants/Colors';
 import DashboardLayout from '../../layouts/DashboardLayout';
 
 export default function MainTabExploreScreen({ navigation }: NavigationProps): JSX.Element {
+  const [showFilter, setShowFilter] = useState('');
   const [textInput, setTextInput] = useState('');
   const [selectedAddress, setSelectedAddress] = useState('Home');
 
@@ -109,6 +110,8 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
           right={{ base: 0, md: '8', xl: '35' }}
           py={3}
           value={textInput}
+          onPress={() => setShowFilter('show')}
+          onFocus={() => setShowFilter('show')}
           onChangeText={setTextInput}
           size="lg"
           _light={{
@@ -182,66 +185,73 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
               />
             </Pressable>
           }
-          placeholder="2118 Thornridge Cir. Syracuse,…"
+          placeholder="搜尋"
           fontSize="md"
           fontWeight="medium"
         />
-        <NativeMap />
-        <Box py={4} px={{ base: 4, md: 0 }}>
-          <HStack
-            borderRadius="sm"
-            _dark={{ bg: 'coolGray.700' }}
-            _light={{ bg: 'primary.50' }}
-            p={3}
-            space={2}
-            alignItems="center">
-            <Icon
-              as={MaterialIcons}
-              name="location-on"
-              _light={{ color: 'primary.900' }}
-              _dark={{ color: 'primary.500' }}
-              size={4}
-            />
+        {showFilter == 'show' ? (
+          <Box py={4} px={{ base: 4, md: 0 }}>
+            <HStack
+              borderRadius="sm"
+              _dark={{ bg: 'coolGray.700' }}
+              _light={{ bg: 'primary.50' }}
+              p={3}
+              space={2}
+              alignItems="center">
+              <Icon
+                as={MaterialIcons}
+                name="location-on"
+                _light={{ color: 'primary.900' }}
+                _dark={{ color: 'primary.500' }}
+                size={4}
+              />
 
+              <Text
+                fontSize="md"
+                fontWeight="medium"
+                _light={{ color: 'coolGray.800' }}
+                _dark={{ color: 'coolGray.50' }}>
+                Thornridge Cir. Syracuse, Connecticut
+              </Text>
+            </HStack>
             <Text
-              fontSize="md"
-              fontWeight="medium"
               _light={{ color: 'coolGray.800' }}
-              _dark={{ color: 'coolGray.50' }}>
-              Thornridge Cir. Syracuse, Connecticut
+              _dark={{ color: 'coolGray.50' }}
+              fontSize="sm"
+              fontWeight="medium"
+              mt={6}>
+              Building Name/ House No.
             </Text>
-          </HStack>
-          <Text
-            _light={{ color: 'coolGray.800' }}
-            _dark={{ color: 'coolGray.50' }}
-            fontSize="sm"
-            fontWeight="medium"
-            mt={6}>
-            Building Name/ House No.
-          </Text>
-          <Input
-            placeholder="2118"
-            mt={3}
-            _light={{ color: 'coolGray.500' }}
-            _dark={{ color: 'coolGray.50' }}
-          />
-          <Text
-            _light={{ color: 'coolGray.800' }}
-            _dark={{ color: 'coolGray.50' }}
-            fontSize="sm"
-            fontWeight="medium"
-            mt={6}>
-            Address Label
-          </Text>
-          <HStack space="3" mt={3}>
-            <AddressBadge label="Home" currentSelectedAddress={selectedAddress} />
-            <AddressBadge label="Office" currentSelectedAddress={selectedAddress} />
-            <AddressBadge label="Other" currentSelectedAddress={selectedAddress} />
-          </HStack>
-          <Button mt={{ base: 5 }} variant="solid" size="lg">
-            SAVE ADDRESS
-          </Button>
-        </Box>
+            <Input
+              placeholder="2118"
+              mt={3}
+              _light={{ color: 'coolGray.500' }}
+              _dark={{ color: 'coolGray.50' }}
+            />
+            <Text
+              _light={{ color: 'coolGray.800' }}
+              _dark={{ color: 'coolGray.50' }}
+              fontSize="sm"
+              fontWeight="medium"
+              mt={6}>
+              Address Label
+            </Text>
+            <HStack space="3" mt={3}>
+              <AddressBadge label="Home" currentSelectedAddress={selectedAddress} />
+              <AddressBadge label="Office" currentSelectedAddress={selectedAddress} />
+              <AddressBadge label="Other" currentSelectedAddress={selectedAddress} />
+            </HStack>
+            <Button mt={{ base: 5 }} variant="solid" size="lg">
+              SAVE ADDRESS
+            </Button>
+          </Box>
+        ) : null}
+        <NativeMap
+          onPress={() => {
+            setShowFilter('');
+          }}
+        />
+
         {/*{Platform.OS === 'web' ? <WebMap /> : <NativeMap />}*/}
       </Box>
     </DashboardLayout>

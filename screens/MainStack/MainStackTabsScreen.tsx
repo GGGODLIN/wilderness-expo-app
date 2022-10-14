@@ -22,26 +22,34 @@ const Tab = createBottomTabNavigator();
 export default function MainStackTabsScreen({ navigation }: NavigationProps): JSX.Element {
   return (
     <Tab.Navigator
+      initialRouteName={MAIN_TAB_HOME}
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let iconName: any; // FIXME 避免警告只好放 any :(
+          const iconSizeHome = 32;
+          const iconSizeNormal = 28;
 
           switch (true) {
             case route.name === MAIN_TAB_COMMUNITY:
             default:
               iconName = focused ? 'people' : 'people-outline';
+              size = iconSizeNormal;
               break;
             case route.name === MAIN_TAB_EXPLORE:
               iconName = focused ? 'map' : 'map-outline';
+              size = iconSizeNormal;
               break;
             case route.name === MAIN_TAB_HOME:
               iconName = focused ? 'home' : 'home-outline';
+              size = iconSizeHome;
               break;
             case route.name === MAIN_TAB_COLLECTION:
               iconName = focused ? 'heart' : 'heart-outline';
+              size = iconSizeNormal;
               break;
             case route.name === MAIN_TAB_PROFILE:
               iconName = focused ? 'person' : 'person-outline';
+              size = iconSizeNormal;
           }
 
           // You can return any component that you like here!
@@ -52,14 +60,6 @@ export default function MainStackTabsScreen({ navigation }: NavigationProps): JS
         headerShown: false,
       })}>
       <Tab.Screen
-        name={MAIN_TAB_HOME}
-        component={MainTabHomeScreen}
-        options={{
-          headerShown: false,
-          tabBarLabel: '首頁',
-        }}
-      />
-      <Tab.Screen
         name={MAIN_TAB_COMMUNITY}
         component={MainTabCommunityScreen}
         options={{ tabBarLabel: '社群' }}
@@ -68,6 +68,14 @@ export default function MainStackTabsScreen({ navigation }: NavigationProps): JS
         name={MAIN_TAB_EXPLORE}
         component={MainTabExploreScreen}
         options={{ tabBarLabel: '探索' }}
+      />
+      <Tab.Screen
+        name={MAIN_TAB_HOME}
+        component={MainTabHomeScreen}
+        options={{
+          headerShown: false,
+          tabBarLabel: '首頁',
+        }}
       />
       <Tab.Screen
         name={MAIN_TAB_COLLECTION}

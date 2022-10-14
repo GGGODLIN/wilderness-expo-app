@@ -36,9 +36,9 @@ export default function App() {
           screenOptions={{
             headerShown: false,
           }}>
+          <MainStack.Screen component={MainStackTabsScreen} name={MAIN_STACK_TABS} />
           <MainStack.Screen component={MainStackLoginScreen} name={MAIN_STACK_LOGIN} />
           <MainStack.Screen component={MainStackRegisterScreen} name={MAIN_STACK_REGISTER} />
-          <MainStack.Screen component={MainStackTabsScreen} name={MAIN_STACK_TABS} />
           <MainStack.Screen
             component={MainStackResetPasswordScreen}
             name={MAIN_STACK_RESET_PASSWORD}

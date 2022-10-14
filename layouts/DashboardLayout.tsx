@@ -22,10 +22,12 @@ import {
 } from 'native-base';
 import React from 'react';
 
+/*
 import logo_dark from '../assets/logo.png';
 import logo_light from '../assets/logo.png';
 import menu_dark from '../assets/logo.png';
 import menu_light from '../assets/logo.png';
+*/
 import Sidebar from '../components/Sidebar';
 import SidebarHomeAndMenu from '../components/SidebarHomeAndMenu';
 import SidebarPodcastScreen from '../components/SidebarPodcastScreen';
@@ -93,6 +95,7 @@ export function Header(props: HeaderProps) {
       <VStack alignSelf="center" width="100%">
         <HStack alignItems="center" justifyContent="space-between">
           <HStack space="3" alignItems="center">
+            {/*
             <Pressable
               onPress={() => {
                 console.log('hello');
@@ -115,6 +118,7 @@ export function Header(props: HeaderProps) {
               resizeMode="contain"
               source={useColorModeValue(logo_light, logo_dark)}
             />
+            */}
           </HStack>
           {props.searchbar && (
             <Input
@@ -237,8 +241,8 @@ export function MobileHeader(props: MobileHeaderProps) {
         borderColor: 'coolGray.200',
       }}
       bg={Colors.LOGO_COLOR_WHITE_BACKGROUND}>
-      <HStack space="2" justifyContent="space-between">
-        <HStack flex="1" space="2" justifyContent="space-between" alignItems="center">
+      <HStack space="0" justifyContent="space-between">
+        <HStack flex="1" space="0" justifyContent="space-between" alignItems="center">
           <>
             <HStack alignItems="center" space="1">
               {props.backButton && (
@@ -269,17 +273,18 @@ export function MobileHeader(props: MobileHeaderProps) {
               </VStack>
             </HStack>
             {/* right panel */}
-            <HStack space="1">
+            <HStack space="0">
               {props.showNightButton && (
                 <IconButton
                   variant="unstyled"
                   colorScheme="light"
+                  py={0}
                   onPress={toggleColorMode}
                   _icon={{ color: 'white' }}
                   icon={
                     colorMode === 'light' ? (
                       <MoonIcon
-                        size="4"
+                        size="5"
                         _dark={{
                           color: 'coolGray.200',
                         }}
@@ -289,7 +294,7 @@ export function MobileHeader(props: MobileHeaderProps) {
                       />
                     ) : (
                       <SunIcon
-                        size="4"
+                        size="5"
                         _dark={{
                           color: 'coolGray.200',
                         }}
@@ -305,9 +310,10 @@ export function MobileHeader(props: MobileHeaderProps) {
                 <IconButton
                   variant="unstyled"
                   colorScheme="light"
+                  py={0}
                   icon={
                     <Icon
-                      size="4"
+                      size="5"
                       name="bell"
                       as={FontAwesome}
                       _dark={{

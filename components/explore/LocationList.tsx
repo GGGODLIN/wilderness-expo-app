@@ -31,7 +31,7 @@ const LocationList = ({ courses }: { courses: Course[] }) => {
     <VStack px={{ base: 0, md: 0 }} space={4}>
       {courses.map((item) => {
         return (
-          <Pressable>
+          <Pressable key={item.id}>
             <Center>
               <Card course={item} />
             </Center>

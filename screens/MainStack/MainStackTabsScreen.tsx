@@ -26,8 +26,8 @@ export default function MainStackTabsScreen({ navigation }: NavigationProps): JS
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let iconName: any; // FIXME 避免警告只好放 any :(
-          const iconSizeHome = 32;
-          const iconSizeNormal = 28;
+          const iconSizeHome = 28;
+          const iconSizeNormal = 22;
 
           switch (true) {
             case route.name === MAIN_TAB_COMMUNITY:

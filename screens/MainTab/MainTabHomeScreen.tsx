@@ -245,7 +245,7 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
       </Box>
       <ScrollView py={4}>
         {[...Array(10)].map((_, i) => (
-          <PostsList courses={resumedCourses} />
+          <PostsList key={i} courses={resumedCourses} />
         ))}
       </ScrollView>
     </DashboardLayout>

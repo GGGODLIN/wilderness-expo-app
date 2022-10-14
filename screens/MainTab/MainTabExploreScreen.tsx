@@ -28,196 +28,6 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
   const [textInput, setTextInput] = useState('');
   const [selectedAddress, setSelectedAddress] = useState('Home');
 
-  const locationList = [
-    {
-      id: 1,
-      chapter: '南投縣',
-      name: '露營地ABC',
-      imageUri: require('../../assets/images/views/view_1.jpg'),
-    },
-    {
-      id: 2,
-      chapter: '南投縣',
-      name: '露營地ABC',
-      imageUri: require('../../assets/images/views/view_3.jpg'),
-    },
-    {
-      id: 3,
-      chapter: '南投縣',
-      name: '露營地ABC',
-      imageUri: require('../../assets/images/views/view_5.jpg'),
-    },
-    {
-      id: 4,
-      chapter: '南投縣',
-      name: '露營地ABC',
-      imageUri: require('../../assets/images/views/view_4.jpg'),
-    },
-  ];
-
-  function Tab_1() {
-    return (
-      <>
-        <NativeMap />
-        <Box py={4} px={{ base: 4, md: 4 }} _light={{ bg: 'white' }} _dark={{ bg: 'coolGray.800' }}>
-          <HStack space="2" mt={0} justifyContent="center" width="100%">
-            <Center>
-              <Select
-                placeholder="台中市"
-                selectedValue={textInput}
-                onValueChange={(itemValue) => setTextInput(itemValue)}
-                _light={{
-                  placeholderTextColor: 'coolGray.500',
-                  color: 'coolGray.800',
-                }}
-                _dark={{
-                  placeholderTextColor: 'coolGray.400',
-                  color: 'coolGray.50',
-                }}>
-                <Select.Item label="臺北市" value="臺北市" />
-                <Select.Item label="新北市" value="新北市" />
-                <Select.Item label="桃園市" value="桃園市" />
-                <Select.Item label="臺中市" value="臺中市" />
-                <Select.Item label="臺南市" value="臺南市" />
-                <Select.Item label="高雄市" value="高雄市" />
-              </Select>
-            </Center>
-            <Center>
-              <Select
-                placeholder="北屯區"
-                _light={{
-                  placeholderTextColor: 'coolGray.500',
-                  color: 'coolGray.800',
-                }}
-                _dark={{
-                  placeholderTextColor: 'coolGray.400',
-                  color: 'coolGray.50',
-                }}>
-                <Select.Item label="龍井區" value="龍井區" />
-                <Select.Item label="沙鹿區" value="沙鹿區" />
-                <Select.Item label="清水區" value="清水區" />
-                <Select.Item label="梧棲區" value="梧棲區" />
-              </Select>
-            </Center>
-          </HStack>
-        </Box>
-        {/*
-        <Fab
-          placement="bottom-right"
-          colorScheme="blue"
-          size="lg"
-          icon={<Icon name="share" as="Entypo" />}
-    />*/}
-      </>
-    );
-  }
-  function Tab_2() {
-    return (
-      <ScrollView py={4}>
-        <LocationList courses={locationList} />
-      </ScrollView>
-    );
-  }
-  function Tab_3() {
-    return (
-      <ScrollView py={4}>
-        <LocationList courses={locationList} />
-      </ScrollView>
-    );
-  }
-
-  const tabs = [
-    {
-      id: 1,
-      title: '附近',
-      component: <Tab_1 />,
-    },
-    {
-      id: 2,
-      title: '查詢',
-      component: <Tab_2 />,
-    },
-    {
-      id: 3,
-      title: '私藏',
-      component: <Tab_3 />,
-    },
-  ];
-
-  function TabItem({
-    tabName,
-    currentTab,
-    handleTabChange,
-  }: {
-    tabName: string;
-    currentTab: string;
-    handleTabChange: (tabTitle: string) => void;
-  }) {
-    return (
-      <Pressable onPress={() => handleTabChange(tabName)}>
-        <Text
-          fontSize="sm"
-          fontWeight="medium"
-          letterSpacing="0.4"
-          _light={{
-            color: tabName === currentTab ? Colors.LOGO_COLOR_BROWN : 'coolGray.500',
-          }}
-          _dark={{
-            color: tabName === currentTab ? 'primary.500' : 'coolGray.400',
-          }}
-          px={4}
-          py={2}>
-          {tabName}
-        </Text>
-        {tabName === currentTab && (
-          <Box
-            borderTopLeftRadius="sm"
-            borderTopRightRadius="sm"
-            _light={{
-              bg: Colors.LOGO_COLOR_BROWN,
-            }}
-            _dark={{
-              bg: 'primary.500',
-            }}
-            h="1"
-          />
-        )}
-      </Pressable>
-    );
-  }
-  function Tabs() {
-    const [tabName, setTabName] = React.useState('附近');
-    const [tabChildren, setTabChildren] = useState<React.ReactNode>(<Tab_1 />);
-    return (
-      <>
-        <Center>
-          <HStack space="5" borderRadius="sm">
-            {tabs.map(({ id, title, component }) => (
-              <TabItem
-                key={id}
-                tabName={title}
-                currentTab={tabName}
-                handleTabChange={(tab) => {
-                  setTabName(tab);
-                  setTabChildren(component);
-                }}
-              />
-            ))}
-          </HStack>
-        </Center>
-        <Box
-          style={{
-            flex: 1,
-            width: '100%',
-            height: '100%',
-            minHeight: '100%',
-          }}>
-          {tabChildren}
-        </Box>
-      </>
-    );
-  }
-
   const AddressBadge = ({
     label,
     currentSelectedAddress,
@@ -253,6 +63,33 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
     );
   };
 
+  const locationList = [
+    {
+      id: 1,
+      chapter: '南投縣',
+      name: '露營地ABC',
+      imageUri: require('../../assets/images/views/view_1.jpg'),
+    },
+    {
+      id: 2,
+      chapter: '南投縣',
+      name: '露營地ABC',
+      imageUri: require('../../assets/images/views/view_3.jpg'),
+    },
+    {
+      id: 3,
+      chapter: '南投縣',
+      name: '露營地ABC',
+      imageUri: require('../../assets/images/views/view_5.jpg'),
+    },
+    {
+      id: 4,
+      chapter: '南投縣',
+      name: '露營地ABC',
+      imageUri: require('../../assets/images/views/view_4.jpg'),
+    },
+  ];
+
   return (
     <DashboardLayout title="探索">
       <Box
@@ -261,9 +98,150 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
         flex={1}
         _light={{ bg: 'white' }}
         _dark={{ bg: 'coolGray.800' }}>
-        <VStack space="5">
-          <Tabs />
-        </VStack>
+        <Input
+          borderWidth={1}
+          mx={3}
+          zIndex={1}
+          variant="unstyled"
+          position="absolute"
+          top={{ base: '5', md: '44' }}
+          left={{ base: 0, md: '8', xl: '35' }}
+          right={{ base: 0, md: '8', xl: '35' }}
+          py={3}
+          value={textInput}
+          onChangeText={setTextInput}
+          size="lg"
+          _light={{
+            bg: 'coolGray.50',
+            borderColor: 'coolGray.300',
+            placeholderTextColor: 'coolGray.400',
+            color: 'coolGray.800',
+          }}
+          _dark={{
+            bg: 'coolGray.800',
+            borderColor: 'coolGray.500',
+            placeholderTextColor: 'coolGray.400',
+            color: 'coolGray.50',
+          }}
+          _focus={{
+            _light: {
+              bg: 'coolGray.50',
+              borderColor: 'coolGray.300',
+              placeholderTextColor: 'coolGray.400',
+              color: 'coolGray.800',
+            },
+            _dark: {
+              bg: 'coolGray.800',
+              borderColor: 'coolGray.500',
+              placeholderTextColor: 'coolGray.400',
+              color: 'coolGray.50',
+            },
+          }}
+          _hover={{
+            _light: {
+              bg: 'coolGray.50',
+              borderColor: 'coolGray.300',
+              placeholderTextColor: 'coolGray.400',
+              color: 'coolGray.800',
+            },
+            _dark: {
+              bg: 'coolGray.800',
+              borderColor: 'coolGray.500',
+              placeholderTextColor: 'coolGray.400',
+              color: 'coolGray.50',
+            },
+          }}
+          InputLeftElement={
+            <Icon
+              as={<MaterialIcons name="search" />}
+              size="6"
+              ml="3"
+              _light={{
+                color: 'coolGray.400',
+              }}
+              _dark={{
+                color: 'coolGray.400',
+              }}
+            />
+          }
+          InputRightElement={
+            <Pressable
+              onPress={() => {
+                setTextInput('');
+              }}>
+              <Icon
+                as={<MaterialIcons name="close" />}
+                size="6"
+                mr="3"
+                _light={{
+                  color: 'coolGray.400',
+                }}
+                _dark={{
+                  color: 'coolGray.400',
+                }}
+              />
+            </Pressable>
+          }
+          placeholder="2118 Thornridge Cir. Syracuse,…"
+          fontSize="md"
+          fontWeight="medium"
+        />
+        <NativeMap />
+        <Box py={4} px={{ base: 4, md: 0 }}>
+          <HStack
+            borderRadius="sm"
+            _dark={{ bg: 'coolGray.700' }}
+            _light={{ bg: 'primary.50' }}
+            p={3}
+            space={2}
+            alignItems="center">
+            <Icon
+              as={MaterialIcons}
+              name="location-on"
+              _light={{ color: 'primary.900' }}
+              _dark={{ color: 'primary.500' }}
+              size={4}
+            />
+
+            <Text
+              fontSize="md"
+              fontWeight="medium"
+              _light={{ color: 'coolGray.800' }}
+              _dark={{ color: 'coolGray.50' }}>
+              Thornridge Cir. Syracuse, Connecticut
+            </Text>
+          </HStack>
+          <Text
+            _light={{ color: 'coolGray.800' }}
+            _dark={{ color: 'coolGray.50' }}
+            fontSize="sm"
+            fontWeight="medium"
+            mt={6}>
+            Building Name/ House No.
+          </Text>
+          <Input
+            placeholder="2118"
+            mt={3}
+            _light={{ color: 'coolGray.500' }}
+            _dark={{ color: 'coolGray.50' }}
+          />
+          <Text
+            _light={{ color: 'coolGray.800' }}
+            _dark={{ color: 'coolGray.50' }}
+            fontSize="sm"
+            fontWeight="medium"
+            mt={6}>
+            Address Label
+          </Text>
+          <HStack space="3" mt={3}>
+            <AddressBadge label="Home" currentSelectedAddress={selectedAddress} />
+            <AddressBadge label="Office" currentSelectedAddress={selectedAddress} />
+            <AddressBadge label="Other" currentSelectedAddress={selectedAddress} />
+          </HStack>
+          <Button mt={{ base: 5 }} variant="solid" size="lg">
+            SAVE ADDRESS
+          </Button>
+        </Box>
         {/*{Platform.OS === 'web' ? <WebMap /> : <NativeMap />}*/}
       </Box>
     </DashboardLayout>

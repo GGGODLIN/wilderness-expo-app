@@ -161,8 +161,6 @@ type ProductProps = {
   title: string;
   description: string;
   number: string;
-  rating: number;
-  numberOfRatings: number;
 };
 
 const itemList: ProductProps[] = [
@@ -171,48 +169,36 @@ const itemList: ProductProps[] = [
     title: 'HERE&NOW',
     description: '秘境分享',
     number: '200',
-    rating: 4.9,
-    numberOfRatings: 120,
   },
   {
     imageUri: require('../../assets/images/views/view_3.jpg'),
     title: 'Marks & Spencer',
     description: '達成第 20 露啦',
     number: '639',
-    rating: 4.9,
-    numberOfRatings: 120,
   },
   {
     imageUri: require('../../assets/images/views/view_7.jpg'),
     title: 'CENWELL',
     description: '動態內容',
     number: '399',
-    rating: 4.9,
-    numberOfRatings: 120,
   },
   {
     imageUri: require('../../assets/images/views/view_4.jpg'),
     title: 'U.S. Polo Assn. Kids',
     description: '動態內容',
     number: '849',
-    rating: 4.9,
-    numberOfRatings: 120,
   },
   {
     imageUri: require('../../assets/images/views/view_2.jpg'),
     title: 'Cherry Crumble',
     description: '動態內容',
     number: '899',
-    rating: 4.9,
-    numberOfRatings: 120,
   },
   {
     imageUri: require('../../assets/images/views/view_1.jpg'),
     title: 'BonOrganik',
     description: '動態內容',
     number: '259',
-    rating: 4.9,
-    numberOfRatings: 120,
   },
 ];
 
@@ -386,6 +372,24 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
         {[...Array(1)].map((_, i) => (
           <PostsList key={i} courses={resumedCourses} />
         ))}
+        */}
+        {/*
+        <Box
+          px={{ base: 2.5, md: '22' }}
+          py={{ base: '14', md: '22' }}
+          rounded={{ md: 'sm' }}
+          _light={{ bg: 'white' }}
+          _dark={{ bg: 'coolGray.800' }}
+          alignItems="center">
+          {itemList.map((item, i) => (
+            <Card
+              imageUri={item.imageUri}
+              title={item.title}
+              description={item.description}
+              number={item.number}
+            />
+          ))}
+        </Box>
         */}
         <MainPostList />
       </ScrollView>

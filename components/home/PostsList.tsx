@@ -1,6 +1,7 @@
 import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import {
+  View,
   Box,
   HStack,
   Icon,
@@ -28,17 +29,11 @@ export type Course = {
 
 const PostsList = ({ courses }: { courses: Course[] }) => {
   return (
-    <VStack px={{ base: 0, md: 0 }} space={4}>
+    <Box px={{ base: 0, md: 0 }} display="flex" flexDirection="row" justifyContent="space-between">
       {courses.map((item) => {
-        return (
-          <Pressable>
-            <Center>
-              <Card course={item} />
-            </Center>
-          </Pressable>
-        );
+        return <Card course={item} />;
       })}
-    </VStack>
+    </Box>
   );
 };
 
@@ -46,9 +41,10 @@ const Card = ({ course }: { course: Course }) => {
   const navigation = useNavigation<Nav>();
 
   return (
-    <Box overflow="hidden" rounded="lg" width={{ base: '95%', md: '334' }}>
-      <Pressable onPress={() => navigation.navigate(MAIN_STACK_POST)}>
-        {/* key={'eventList' + i + 1}*/}
+    <Box overflow="hidden" rounded="lg" width={{ base: '45%', md: '334' }} key={course.id}>
+      <Pressable
+        onPress={() => navigation.navigate(MAIN_STACK_POST)}
+        key={'postList_' + course.id + 1}>
         <Image height="112" source={course.imageUri} alt="Alternate Text" />
         <HStack
           _light={{ bg: 'coolGray.100' }}

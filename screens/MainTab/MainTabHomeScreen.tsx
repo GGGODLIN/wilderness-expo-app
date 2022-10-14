@@ -1,4 +1,4 @@
-import { AntDesign, MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
+import { AntDesign, MaterialIcons, FontAwesome5, Ionicons } from '@expo/vector-icons';
 import {
   HStack,
   Icon,
@@ -16,8 +16,12 @@ import {
   Center,
   Box,
   IconButton,
+  useBreakpointValue,
+  FlatList,
+  Link,
 } from 'native-base';
 import React from 'react';
+import { ImageSourcePropType, Platform, useWindowDimensions } from 'react-native';
 
 import { MAIN_STACK_EVENT_DETAILS } from '../../NavigationNames';
 import { NavigationProps } from '../../Props';
@@ -152,6 +156,140 @@ const icons2: Icon[] = [
   },
 ];
 
+type ProductProps = {
+  imageUri: ImageSourcePropType;
+  title: string;
+  description: string;
+  number: string;
+  rating: number;
+  numberOfRatings: number;
+};
+
+const itemList: ProductProps[] = [
+  {
+    imageUri: require('../../assets/images/views/view_9.jpg'),
+    title: 'HERE&NOW',
+    description: '秘境分享',
+    number: '200',
+    rating: 4.9,
+    numberOfRatings: 120,
+  },
+  {
+    imageUri: require('../../assets/images/views/view_3.jpg'),
+    title: 'Marks & Spencer',
+    description: '達成第 20 露啦',
+    number: '639',
+    rating: 4.9,
+    numberOfRatings: 120,
+  },
+  {
+    imageUri: require('../../assets/images/views/view_7.jpg'),
+    title: 'CENWELL',
+    description: '動態內容',
+    number: '399',
+    rating: 4.9,
+    numberOfRatings: 120,
+  },
+  {
+    imageUri: require('../../assets/images/views/view_4.jpg'),
+    title: 'U.S. Polo Assn. Kids',
+    description: '動態內容',
+    number: '849',
+    rating: 4.9,
+    numberOfRatings: 120,
+  },
+  {
+    imageUri: require('../../assets/images/views/view_2.jpg'),
+    title: 'Cherry Crumble',
+    description: '動態內容',
+    number: '899',
+    rating: 4.9,
+    numberOfRatings: 120,
+  },
+  {
+    imageUri: require('../../assets/images/views/view_1.jpg'),
+    title: 'BonOrganik',
+    description: '動態內容',
+    number: '259',
+    rating: 4.9,
+    numberOfRatings: 120,
+  },
+];
+
+function Card(props: ProductProps) {
+  const { width: windowWidth } = useWindowDimensions();
+  return (
+    <Box
+      width={{
+        base: windowWidth / 2 - 22,
+        sm: windowWidth / 3 - 22,
+        md: windowWidth / 3 - 56,
+        lg: windowWidth / 5 - 56,
+        xl: '173',
+      }}
+      p="0"
+      borderRadius="sm"
+      m={{ base: '1.5', md: '2.5' }}>
+      <Link href="" borderRadius="sm" overflow="hidden">
+        <Image w="100%" h="170" source={props.imageUri} alt="Alternate Text" resizeMode="cover" />
+      </Link>
+      <Text
+        mt="2"
+        fontSize="xs"
+        _light={{ color: 'coolGray.500' }}
+        _dark={{ color: 'coolGray.400' }}>
+        {props.description}
+      </Text>
+      <HStack mt="1" w="100%" justifyContent="space-between">
+        <Text fontSize="xs" _light={{ color: 'coolGray.600' }} _dark={{ color: 'coolGray.50' }}>
+          {props.number} likes
+        </Text>
+        <IconButton
+          p={0}
+          icon={
+            <Icon
+              size="4"
+              _light={{ color: 'primary.900' }}
+              _dark={{ color: 'primary.500' }}
+              as={MaterialIcons}
+              name="favorite-border"
+            />
+          }
+        />
+      </HStack>
+    </Box>
+  );
+}
+
+function MainPostList() {
+  const noColumn = useBreakpointValue({
+    base: 2,
+    sm: 3,
+    md: 3,
+    lg: 5,
+    xl: 5,
+  });
+  const { height } = useWindowDimensions();
+  return (
+    <Box
+      px={{ base: 2.5, md: '22' }}
+      py={{ base: '14', md: '22' }}
+      rounded={{ md: 'sm' }}
+      _light={{ bg: 'white' }}
+      _dark={{ bg: 'coolGray.800' }}
+      alignItems="center">
+      <FlatList
+        numColumns={noColumn}
+        data={itemList}
+        showsVerticalScrollIndicator={false}
+        renderItem={({ item }) => <Card {...item} />}
+        key={noColumn}
+        keyExtractor={(item, index) => 'key' + index}
+      />
+    </Box>
+  );
+}
+
 export default function HomeScreen({ route, navigation }: NavigationProps): JSX.Element {
   return (
     <DashboardLayout
@@ -160,81 +298,82 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
       displayScreenTitle={false}
       displayAlternateMobileHeader
       rightPanelMobileHeader>
-      <CarouselLayout />
-      <Box pt={4}>
-        <HStack space={6} justifyContent="center">
-          {icons.map((item, idx) => {
-            return (
-              <VStack>
-                <Center
-                  _light={{ bg: Colors.LOGO_COLOR_WHITE_BACKGROUND }}
-                  _dark={{ bg: 'coolGray.700' }}
-                  rounded="full"
-                  w={{ base: 16, md: 14 }}
-                  h={{ base: 16, md: 14 }}>
-                  <IconButton
-                    variant="unstyled"
-                    icon={
-                      <Icon
-                        as={FontAwesome5}
-                        name={item.name}
-                        _light={{ color: Colors.LOGO_COLOR_GREEN }}
-                        _dark={{ color: 'coolGray.50' }}
-                        size={8}
-                        textAlign="center"
-                      />
-                    }
-                  />
-                </Center>
-                <Text
-                  pt={2}
-                  fontSize={{ base: 'sm', md: 'sm' }}
-                  _light={{ color: { base: 'coolGray.800', md: 'coolGray.500' } }}
-                  _dark={{ color: { base: 'coolGray.50', md: 'coolGray.400' } }}
-                  textAlign="center">
-                  {item.text}
-                </Text>
-              </VStack>
-            );
-          })}
-        </HStack>
-        <HStack space={6} justifyContent="center" pt={3} pb={4}>
-          {icons2.map((item, idx) => {
-            return (
-              <VStack>
-                <Center
-                  _light={{ bg: Colors.LOGO_COLOR_WHITE_BACKGROUND }}
-                  _dark={{ bg: 'coolGray.700' }}
-                  rounded="full"
-                  w={{ base: 16, md: 14 }}
-                  h={{ base: 16, md: 14 }}>
-                  <IconButton
-                    variant="unstyled"
-                    icon={
-                      <Icon
-                        as={FontAwesome5}
-                        name={item.name}
-                        _light={{ color: Colors.LOGO_COLOR_GREEN }}
-                        _dark={{ color: 'coolGray.50' }}
-                        size={8}
-                        textAlign="center"
-                      />
-                    }
-                  />
-                </Center>
-                <Text
-                  pt={2}
-                  fontSize={{ base: 'sm', md: 'sm' }}
-                  _light={{ color: { base: 'coolGray.800', md: 'coolGray.500' } }}
-                  _dark={{ color: { base: 'coolGray.50', md: 'coolGray.400' } }}
-                  textAlign="center">
-                  {item.text}
-                </Text>
-              </VStack>
-            );
-          })}
-        </HStack>
-        {/*
+      <ScrollView>
+        <CarouselLayout />
+        <Box pt={4}>
+          <HStack space={6} justifyContent="center">
+            {icons.map((item, idx) => {
+              return (
+                <VStack key={'icon_' + idx}>
+                  <Center
+                    _light={{ bg: Colors.LOGO_COLOR_WHITE_BACKGROUND }}
+                    _dark={{ bg: 'coolGray.700' }}
+                    rounded="full"
+                    w={{ base: 16, md: 14 }}
+                    h={{ base: 16, md: 14 }}>
+                    <IconButton
+                      variant="unstyled"
+                      icon={
+                        <Icon
+                          as={FontAwesome5}
+                          name={item.name}
+                          _light={{ color: Colors.LOGO_COLOR_GREEN }}
+                          _dark={{ color: 'coolGray.50' }}
+                          size={8}
+                          textAlign="center"
+                        />
+                      }
+                    />
+                  </Center>
+                  <Text
+                    pt={2}
+                    fontSize={{ base: 'sm', md: 'sm' }}
+                    _light={{ color: { base: 'coolGray.800', md: 'coolGray.500' } }}
+                    _dark={{ color: { base: 'coolGray.50', md: 'coolGray.400' } }}
+                    textAlign="center">
+                    {item.text}
+                  </Text>
+                </VStack>
+              );
+            })}
+          </HStack>
+          <HStack space={6} justifyContent="center" pt={3} pb={4}>
+            {icons2.map((item, idx) => {
+              return (
+                <VStack key={'icon2_' + idx}>
+                  <Center
+                    _light={{ bg: Colors.LOGO_COLOR_WHITE_BACKGROUND }}
+                    _dark={{ bg: 'coolGray.700' }}
+                    rounded="full"
+                    w={{ base: 16, md: 14 }}
+                    h={{ base: 16, md: 14 }}>
+                    <IconButton
+                      variant="unstyled"
+                      icon={
+                        <Icon
+                          as={FontAwesome5}
+                          name={item.name}
+                          _light={{ color: Colors.LOGO_COLOR_GREEN }}
+                          _dark={{ color: 'coolGray.50' }}
+                          size={8}
+                          textAlign="center"
+                        />
+                      }
+                    />
+                  </Center>
+                  <Text
+                    pt={2}
+                    fontSize={{ base: 'sm', md: 'sm' }}
+                    _light={{ color: { base: 'coolGray.800', md: 'coolGray.500' } }}
+                    _dark={{ color: { base: 'coolGray.50', md: 'coolGray.400' } }}
+                    textAlign="center">
+                    {item.text}
+                  </Text>
+                </VStack>
+              );
+            })}
+          </HStack>
+          {/*
         <VStack _light={{ bg: 'white' }} _dark={{ bg: 'coolGray.800' }} space="0">
           <Categories icons={icons} />
         </VStack>
@@ -242,11 +381,13 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
           <Categories icons={icons2} />
         </VStack>
         */}
-      </Box>
-      <ScrollView py={4}>
-        {[...Array(10)].map((_, i) => (
+        </Box>
+        {/*
+        {[...Array(1)].map((_, i) => (
           <PostsList key={i} courses={resumedCourses} />
         ))}
+        */}
+        <MainPostList />
       </ScrollView>
     </DashboardLayout>
   );

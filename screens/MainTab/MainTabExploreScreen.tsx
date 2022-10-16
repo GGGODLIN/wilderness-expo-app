@@ -108,7 +108,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
         <Input
           borderWidth={1}
           mx={3}
-          zIndex={1}
+          zIndex={5}
           variant="unstyled"
           position="absolute"
           top={{ base: '5', md: '44' }}
@@ -196,7 +196,17 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
           fontWeight="medium"
         />
         {showFilter === 'show' ? (
-          <Box py={4} px={{ base: 4, md: 0 }}>
+          <Box
+            width="100%"
+            py={4}
+            px={{ base: 0, md: 0 }}
+            zIndex={2}
+            position="absolute"
+            alignItems="center"
+            right={0}
+            top={0}
+            _light={{ bg: 'white' }}
+            _dark={{ bg: 'coolGray.800' }}>
             <Text
               _light={{ color: 'coolGray.800' }}
               _dark={{ color: 'coolGray.50' }}
@@ -211,6 +221,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
               <AddressBadge label="WIFI" currentSelectedAddress={selectedAddress} />
             </HStack>
             <Button
+              width="80%"
               mt={{ base: 5 }}
               variant="solid"
               size="lg"

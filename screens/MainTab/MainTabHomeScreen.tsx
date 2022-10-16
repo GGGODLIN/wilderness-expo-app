@@ -335,7 +335,7 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
           <HStack space={6} justifyContent="center">
             {icons.map((item, idx) => {
               return (
-                <VStack key={'icon_' + idx}>
+                <VStack key={'icon_' + idx} overflow="visible">
                   <Center
                     _light={{ bg: Colors.LOGO_COLOR_WHITE_BACKGROUND }}
                     _dark={{ bg: 'coolGray.700' }}
@@ -352,6 +352,7 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
                           _dark={{ color: 'coolGray.50' }}
                           size={8}
                           textAlign="center"
+                          alignSelf="center"
                         />
                       }
                     />

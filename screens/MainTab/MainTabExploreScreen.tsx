@@ -16,7 +16,7 @@ import {
   ScrollView,
 } from 'native-base';
 import React, { useState } from 'react';
-import { Platform } from 'react-native';
+import { Platform, Keyboard } from 'react-native';
 
 import { NavigationProps } from '../../Props';
 import NativeMap from '../../components/NativeMap';
@@ -91,6 +91,11 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
       imageUri: require('../../assets/images/views/view_4.jpg'),
     },
   ];
+
+  function hideFilter() {
+    setShowFilter('');
+    Keyboard.dismiss();
+  }
 
   return (
     <DashboardLayout title="探索">
@@ -190,7 +195,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
           fontSize="md"
           fontWeight="medium"
         />
-        {showFilter == 'show' ? (
+        {showFilter === 'show' ? (
           <Box py={4} px={{ base: 4, md: 0 }}>
             <Text
               _light={{ color: 'coolGray.800' }}
@@ -221,6 +226,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
         ) : null}
         <NativeMap
           onPress={() => {
+            Keyboard.dismiss();
             setShowFilter('');
           }}
         />

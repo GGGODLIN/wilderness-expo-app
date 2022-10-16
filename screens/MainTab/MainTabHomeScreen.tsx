@@ -23,7 +23,7 @@ import {
 import React from 'react';
 import { ImageSourcePropType, Platform, useWindowDimensions } from 'react-native';
 
-import { MAIN_STACK_EVENT_DETAILS } from '../../NavigationNames';
+import { MAIN_STACK_POST } from '../../NavigationNames';
 import { NavigationProps } from '../../Props';
 import { Carousel } from '../../components/Carousel';
 import Tab from '../../components/TopTab/Tab';
@@ -200,83 +200,128 @@ const itemList: ProductProps[] = [
     description: '動態內容',
     number: '259',
   },
+  {
+    imageUri: require('../../assets/images/views/view_9.jpg'),
+    title: 'HERE&NOW',
+    description: '秘境分享',
+    number: '200',
+  },
+  {
+    imageUri: require('../../assets/images/views/view_3.jpg'),
+    title: 'Marks & Spencer',
+    description: '達成第 20 露啦',
+    number: '639',
+  },
+  {
+    imageUri: require('../../assets/images/views/view_7.jpg'),
+    title: 'CENWELL',
+    description: '動態內容',
+    number: '399',
+  },
+  {
+    imageUri: require('../../assets/images/views/view_4.jpg'),
+    title: 'U.S. Polo Assn. Kids',
+    description: '動態內容',
+    number: '849',
+  },
+  {
+    imageUri: require('../../assets/images/views/view_2.jpg'),
+    title: 'Cherry Crumble',
+    description: '動態內容',
+    number: '899',
+  },
+  {
+    imageUri: require('../../assets/images/views/view_1.jpg'),
+    title: 'BonOrganik',
+    description: '動態內容',
+    number: '259',
+  },
 ];
 
-function Card(props: ProductProps) {
-  const { width: windowWidth } = useWindowDimensions();
-  return (
-    <Box
-      width={{
-        base: windowWidth / 2 - 22,
-        sm: windowWidth / 3 - 22,
-        md: windowWidth / 3 - 56,
-        lg: windowWidth / 5 - 56,
-        xl: '173',
-      }}
-      p="0"
-      borderRadius="sm"
-      m={{ base: '1.5', md: '2.5' }}>
-      <Link href="" borderRadius="sm" overflow="hidden">
-        <Image w="100%" h="170" source={props.imageUri} alt="Alternate Text" resizeMode="cover" />
-      </Link>
-      <Text
-        mt="2"
-        fontSize="xs"
-        _light={{ color: 'coolGray.500' }}
-        _dark={{ color: 'coolGray.400' }}>
-        {props.description}
-      </Text>
-      <HStack mt="1" w="100%" justifyContent="space-between">
-        <Text fontSize="xs" _light={{ color: 'coolGray.600' }} _dark={{ color: 'coolGray.50' }}>
-          {props.number} likes
-        </Text>
-        <IconButton
-          p={0}
-          icon={
-            <Icon
-              size="4"
-              _light={{ color: 'primary.900' }}
-              _dark={{ color: 'primary.500' }}
-              as={MaterialIcons}
-              name="favorite-border"
-            />
-          }
-        />
-      </HStack>
-    </Box>
-  );
-}
-
-function MainPostList() {
-  const noColumn = useBreakpointValue({
-    base: 2,
-    sm: 3,
-    md: 3,
-    lg: 5,
-    xl: 5,
-  });
-  const { height } = useWindowDimensions();
-  return (
-    <Box
-      px={{ base: 2.5, md: '22' }}
-      py={{ base: '14', md: '22' }}
-      rounded={{ md: 'sm' }}
-      _light={{ bg: 'white' }}
-      _dark={{ bg: 'coolGray.800' }}
-      alignItems="center">
-      <FlatList
-        numColumns={noColumn}
-        data={itemList}
-        showsVerticalScrollIndicator={false}
-        renderItem={({ item }) => <Card {...item} />}
-        key={noColumn}
-        keyExtractor={(item, index) => 'key' + index}
-      />
-    </Box>
-  );
-}
-
 export default function HomeScreen({ route, navigation }: NavigationProps): JSX.Element {
+  function Card(props: ProductProps) {
+    const { width: windowWidth } = useWindowDimensions();
+    return (
+      <Box
+        width={{
+          base: windowWidth / 2 - 22,
+          sm: windowWidth / 3 - 22,
+          md: windowWidth / 3 - 56,
+          lg: windowWidth / 5 - 56,
+          xl: '173',
+        }}
+        p="0"
+        borderRadius="sm"
+        m={{ base: '1.5', md: '2.5' }}>
+        <Pressable onPress={() => navigation.navigate(MAIN_STACK_POST)}>
+          <Link href="" borderRadius="sm" overflow="hidden">
+            <Image
+              w="100%"
+              h="170"
+              source={props.imageUri}
+              alt="Alternate Text"
+              resizeMode="cover"
+            />
+          </Link>
+          <Text
+            mt="2"
+            fontSize="xs"
+            _light={{ color: 'coolGray.500' }}
+            _dark={{ color: 'coolGray.400' }}>
+            {props.description}
+          </Text>
+          <HStack mt="1" w="100%" justifyContent="space-between">
+            <Text fontSize="xs" _light={{ color: 'coolGray.600' }} _dark={{ color: 'coolGray.50' }}>
+              {props.number} likes
+            </Text>
+            <IconButton
+              p={0}
+              icon={
+                <Icon
+                  size="4"
+                  _light={{ color: 'primary.900' }}
+                  _dark={{ color: 'primary.500' }}
+                  as={MaterialIcons}
+                  name="favorite-border"
+                />
+              }
+            />
+          </HStack>
+        </Pressable>
+      </Box>
+    );
+  }
+
+  function MainPostList() {
+    const noColumn = useBreakpointValue({
+      base: 2,
+      sm: 3,
+      md: 3,
+      lg: 5,
+      xl: 5,
+    });
+    const { height } = useWindowDimensions();
+    return (
+      <Box
+        px={{ base: 2.5, md: '22' }}
+        py={{ base: '14', md: '22' }}
+        rounded={{ md: 'sm' }}
+        _light={{ bg: 'white' }}
+        _dark={{ bg: 'coolGray.800' }}
+        alignItems="center">
+        <FlatList
+          nestedScrollEnabled
+          numColumns={noColumn}
+          data={itemList}
+          showsVerticalScrollIndicator={false}
+          renderItem={({ item }) => <Card {...item} />}
+          key={noColumn}
+          keyExtractor={(item, index) => 'key' + index}
+        />
+      </Box>
+    );
+  }
+
   return (
     <DashboardLayout
       title="玩野覓境"

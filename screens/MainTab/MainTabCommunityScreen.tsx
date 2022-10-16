@@ -238,9 +238,7 @@ export default function MainTabCommunityScreen({ navigation }: NavigationProps):
         flex={1}
         _light={{ bg: 'white' }}
         _dark={{ bg: 'coolGray.800' }}>
-        <VStack space="5">
-          <Tabs />
-        </VStack>
+        <VStack space="5">{/*<Tabs />*/}</VStack>
         {/*{Platform.OS === 'web' ? <WebMap /> : <NativeMap />}*/}
       </Box>
     </DashboardLayout>

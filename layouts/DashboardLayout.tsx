@@ -53,6 +53,7 @@ type DashboardLayoutProps = {
   };
   title: string;
   subTitle?: string;
+  customIcon?: React.ReactNode;
   children: React.ReactNode;
   showGroupInfoHeader?: boolean;
   displayBackIcon?: boolean;
@@ -69,6 +70,7 @@ type MobileHeaderProps = {
   backButton?: boolean;
   rightPanel?: boolean;
   showNightButton?: boolean;
+  customIcon: React.ReactNode;
 };
 
 type HeaderProps = {
@@ -249,8 +251,21 @@ export function MobileHeader(props: MobileHeaderProps) {
                 <IconButton
                   variant="ghost"
                   colorScheme="light"
+                  py={0}
                   _icon={{ color: 'coolGray.50' }}
-                  icon={<Icon size="6" as={AntDesign} name="arrowleft" />}
+                  icon={
+                    <Icon
+                      size="5"
+                      _dark={{
+                        color: 'coolGray.200',
+                      }}
+                      _light={{
+                        color: Colors.LOGO_COLOR_BROWN,
+                      }}
+                      as={AntDesign}
+                      name="arrowleft"
+                    />
+                  }
                 />
               )}
               <VStack>
@@ -383,6 +398,7 @@ export default function DashboardLayout({
             backButton={props.showBackButton}
             rightPanel={props.rightPanelMobileHeader}
             showNightButton={props.showNightButton}
+            customIcon={props.customIcon}
           />
         </Hidden>
         <Hidden till="md">

@@ -45,9 +45,10 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
           setSelectedAddress(label);
         }}
         _light={{
-          bg: currentSelectedAddress === label ? 'primary.50' : 'transparent',
-          borderColor: currentSelectedAddress === label ? 'primary.50' : 'coolGray.300',
-          _pressed: { bg: 'primary.100' },
+          bg: currentSelectedAddress === label ? Colors.LOGO_COLOR_GREEN_BACKGROUND : 'transparent',
+          borderColor:
+            currentSelectedAddress === label ? Colors.LOGO_COLOR_GREEN_BACKGROUND : 'coolGray.300',
+          _pressed: { bg: Colors.LOGO_COLOR_GREEN_BACKGROUND },
         }}
         _dark={{
           bg: currentSelectedAddress === label ? 'coolGray.700' : 'transparent',
@@ -191,58 +192,30 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
         />
         {showFilter == 'show' ? (
           <Box py={4} px={{ base: 4, md: 0 }}>
-            <HStack
-              borderRadius="sm"
-              _dark={{ bg: 'coolGray.700' }}
-              _light={{ bg: 'primary.50' }}
-              p={3}
-              space={2}
-              alignItems="center">
-              <Icon
-                as={MaterialIcons}
-                name="location-on"
-                _light={{ color: 'primary.900' }}
-                _dark={{ color: 'primary.500' }}
-                size={4}
-              />
-
-              <Text
-                fontSize="md"
-                fontWeight="medium"
-                _light={{ color: 'coolGray.800' }}
-                _dark={{ color: 'coolGray.50' }}>
-                Thornridge Cir. Syracuse, Connecticut
-              </Text>
-            </HStack>
             <Text
               _light={{ color: 'coolGray.800' }}
               _dark={{ color: 'coolGray.50' }}
               fontSize="sm"
               fontWeight="medium"
-              mt={6}>
-              Building Name/ House No.
-            </Text>
-            <Input
-              placeholder="2118"
-              mt={3}
-              _light={{ color: 'coolGray.500' }}
-              _dark={{ color: 'coolGray.50' }}
-            />
-            <Text
-              _light={{ color: 'coolGray.800' }}
-              _dark={{ color: 'coolGray.50' }}
-              fontSize="sm"
-              fontWeight="medium"
-              mt={6}>
-              Address Label
+              mt={16}>
+              所有篩選項，待設定完整資料與圖示
             </Text>
             <HStack space="3" mt={3}>
-              <AddressBadge label="Home" currentSelectedAddress={selectedAddress} />
-              <AddressBadge label="Office" currentSelectedAddress={selectedAddress} />
-              <AddressBadge label="Other" currentSelectedAddress={selectedAddress} />
+              <AddressBadge label="水" currentSelectedAddress={selectedAddress} />
+              <AddressBadge label="營火" currentSelectedAddress={selectedAddress} />
+              <AddressBadge label="WIFI" currentSelectedAddress={selectedAddress} />
             </HStack>
-            <Button mt={{ base: 5 }} variant="solid" size="lg">
-              SAVE ADDRESS
+            <Button
+              mt={{ base: 5 }}
+              variant="solid"
+              size="lg"
+              _light={{
+                bg: Colors.LOGO_COLOR_BROWN,
+              }}
+              _dark={{
+                bg: 'coolGray.700',
+              }}>
+              查詢
             </Button>
           </Box>
         ) : null}

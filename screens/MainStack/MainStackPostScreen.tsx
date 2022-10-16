@@ -15,11 +15,14 @@ import {
   Hidden,
   IconButton,
   useColorModeValue,
+  Divider,
 } from 'native-base';
 import React, { useState } from 'react';
 import type { ImageSourcePropType } from 'react-native';
 
 import { NavigationProps } from '../../Props';
+import { Carousel } from '../../components/Carousel';
+import Colors from '../../constants/Colors';
 import DashboardLayout from '../../layouts/DashboardLayout';
 
 type SizesType = {
@@ -31,18 +34,78 @@ type ProductType = {
   category: string;
   rate: string;
   rating: number;
-  numberOfRatings: number;
+  datetime: string;
   description: string;
 };
+type ReviewsType = {
+  imageUrl: ImageSourcePropType;
+  name: string;
+  time: string;
+  review: string;
+};
 
-const product: ProductType = {
-  title: 'Body Suit',
+const postDetail: ProductType = {
+  title: '挑戰秘境最深處',
   category: 'Mother care',
   rate: '500',
   rating: 4.9,
-  numberOfRatings: 120,
-  description: `Yellow bodysuit, has a round neck with envelope detail along the shoulder, short sleeves and snap button closures along the crotch.Your Body suit has a round neck with detail along the shoulder,short sleeves and snap button closer along the front.`,
+  datetime: '2022-12-30',
+  description: '臨時湊成團的瀑布挑戰\n太\n太\n太驚險了',
 };
+
+const reviews: ReviewsType[] = [
+  {
+    imageUrl: require('../../assets/theme/trending1.png'),
+    name: '水亮亮',
+    time: '剛剛',
+    review: '下次也要去!',
+  },
+  {
+    imageUrl: require('../../assets/theme/trending1.png'),
+    name: '車老大',
+    time: '2022-10-30',
+    review: '我的天啊',
+  },
+];
+
+function Reviews() {
+  return (
+    <VStack mt={{ base: 4, md: 6 }} space={{ base: 6, md: 8 }}>
+      {reviews.map((item, idx) => {
+        return (
+          <VStack key={idx} space="3">
+            <HStack space="2">
+              <Avatar height="10" width="10" source={item.imageUrl} />
+              <VStack space="1">
+                <Text
+                  fontSize="sm"
+                  fontWeight="medium"
+                  _dark={{ color: 'coolGray.50' }}
+                  _light={{ color: 'coolGray.800' }}>
+                  {item.name}
+                </Text>
+              </VStack>
+              <Text
+                fontSize="sm"
+                ml="auto"
+                _light={{ color: 'coolGray.500' }}
+                _dark={{ color: 'coolGray.400' }}>
+                {item.time}
+              </Text>
+            </HStack>
+            <Text
+              alignItems="center"
+              _light={{ color: 'coolGray.800' }}
+              _dark={{ color: 'coolGray.50' }}
+              fontSize="sm">
+              {item.review}
+            </Text>
+          </VStack>
+        );
+      })}
+    </VStack>
+  );
+}
 
 const sizeOptions: SizesType[] = [
   {
@@ -60,11 +123,24 @@ const AddToCartButton = () => {
   const [favorite, setFavorite] = useState(false);
   return (
     <HStack space="4" alignItems="center">
+      <Button
+        flex={1}
+        size="lg"
+        variant="solid"
+        _light={{
+          bg: Colors.LOGO_COLOR_GREEN,
+        }}
+        _dark={{
+          bg: 'coolGray.700',
+        }}>
+        說點什麼
+      </Button>
       <IconButton
+        py={2}
         onPress={() => setFavorite(!favorite)}
         variant="subtle"
         _light={{
-          bg: 'primary.50',
+          bg: Colors.LOGO_COLOR_WHITE_BACKGROUND,
         }}
         _dark={{
           bg: 'coolGray.700',
@@ -75,13 +151,10 @@ const AddToCartButton = () => {
             name={favorite ? 'favorite' : 'favorite-border'}
             as={MaterialIcons}
             _dark={{ color: 'primary.500' }}
-            _light={{ color: 'primary.900' }}
+            _light={{ color: Colors.LOGO_COLOR_BROWN }}
           />
         }
       />
-      <Button flex={1} size="lg" variant="solid">
-        CONTINUE
-      </Button>
     </HStack>
   );
 };
@@ -166,22 +239,18 @@ function ProductInfo({ productInfo }: { productInfo: ProductType }) {
   return (
     <Box>
       <HStack alignItems="center" space="1" mt={{ base: 4, md: 0 }}>
-        <Text fontSize="lg" color={textColorA} fontWeight="medium">
+        <Text fontSize="xl" color={textColorA} fontWeight="bold">
           {productInfo.title}
         </Text>
-        <Icon size="4" name="star" as={MaterialIcons} color="amber.400" ml="auto" />
-        <Text fontSize="sm" fontWeight="normal" color={textColorA} lineHeight="21">
-          {productInfo.rating}
-        </Text>
-        <Text fontSize="sm" fontWeight="normal" color={textColorB} lineHeight="21">
-          {productInfo.numberOfRatings}
+        <Text fontSize="sm" fontWeight="normal" color={textColorB} lineHeight="21" ml="auto">
+          {productInfo.datetime}
         </Text>
       </HStack>
       <Text fontSize="md" fontWeight="normal" color={textColorB} lineHeight="24">
-        {productInfo.category}
+        {productInfo.description}
       </Text>
-      <Text fontSize="xl" fontWeight="medium" color={textColorA} lineHeight="30">
-        ₹{productInfo.rate}
+      <Text fontSize="lg" fontWeight="medium" color={textColorB} lineHeight="30" my={4}>
+        {productInfo.rate} likes
       </Text>
     </Box>
   );
@@ -200,9 +269,39 @@ function Description({ productDescription }: { productDescription: string }) {
   );
 }
 
+const CarouselLayout = () => {
+  return (
+    <Box
+      px={{ base: '0', md: 0 }}
+      py={{ base: '0', md: 0 }}
+      _light={{ bg: 'transparent' }}
+      _dark={{ bg: 'transparent' }}
+      height={{ base: 300, md: 20 }}>
+      <Carousel
+        images={[
+          require('../../assets/images/views/view_9.jpg'),
+          require('../../assets/images/views/view_10.jpg'),
+          require('../../assets/images/views/view_15.jpg'),
+          require('../../assets/images/views/view_11.jpg'),
+          require('../../assets/images/views/view_12.jpg'),
+          require('../../assets/images/views/view_13.jpg'),
+          require('../../assets/images/views/view_14.jpg'),
+        ]}
+        height={{ base: 300, md: 20 }}
+        activeIndicatorBgColor="coolGray.500"
+        inactiveIndicatorBgColor="coolGray.300"
+      />
+    </Box>
+  );
+};
+
 export default function MainStackPostScreen({ navigation }: NavigationProps): JSX.Element {
   return (
-    <DashboardLayout title="動態內頁" displaySidebar={false} header={{ searchbar: false }}>
+    <DashboardLayout
+      title="動態內頁"
+      displaySidebar={false}
+      header={{ searchbar: false }}
+      showBackButton>
       <ScrollView bounces={false}>
         <Stack
           px={{ base: '4', md: '8' }}
@@ -212,24 +311,19 @@ export default function MainStackPostScreen({ navigation }: NavigationProps): JS
           _light={{ bg: 'white' }}
           _dark={{ bg: 'coolGray.800' }}
           direction={{ base: 'column', md: 'row' }}>
-          <Box
-            p={2}
-            _light={{ bg: 'primary.50' }}
-            _dark={{ bg: 'coolGray.700' }}
-            borderRadius="md"
-            alignItems="center"
-            w={{ base: '100%', md: '55%' }}
-            h={{ base: '262', md: '652' }}
-            justifyContent="center"
-            mr={{ base: 0, md: 4 }}>
-            <Image
-              w={{ base: 'full', md: 'full' }}
-              h={{ base: '246', md: 'full' }}
-              rounded={{ base: 'none', md: 'lg' }}
-              alt="Alternate Text"
-              source={require('../../assets/images/views/view_9.jpg')}
-            />
-          </Box>
+          <CarouselLayout />
+          <ProductInfo productInfo={postDetail} />
+          <AddToCartButton />
+          <Divider
+            mt="5"
+            _light={{
+              color: 'coolGray.200',
+            }}
+            _dark={{
+              color: 'coolGray.700',
+            }}
+          />
+          <Reviews />
         </Stack>
       </ScrollView>
     </DashboardLayout>

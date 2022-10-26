@@ -15,13 +15,18 @@ import {
   Hidden,
   IconButton,
   useColorModeValue,
+  useTheme,
+  FormControl,
   Divider,
+  TextArea,
 } from 'native-base';
 import React, { useState } from 'react';
 import type { ImageSourcePropType } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import { NavigationProps } from '../../Props';
 import { Carousel } from '../../components/Carousel';
+import FloatingLabelInput from '../../components/FloatingLabelInput';
 import Colors from '../../constants/Colors';
 import DashboardLayout from '../../layouts/DashboardLayout';
 
@@ -124,7 +129,12 @@ const AddToCartButton = () => {
   const [star, setStar] = useState(false);
 
   return (
-    <HStack space="4" alignItems="center">
+    <HStack
+      space="4"
+      alignItems="center"
+      px={4}
+      p={2}
+      style={{ backgroundColor: Colors.LOGO_COLOR_WHITE_BACKGROUND }}>
       <Text
         fontSize="sm"
         fontWeight="medium"
@@ -137,7 +147,7 @@ const AddToCartButton = () => {
         mx={0}
         py={2}
         onPress={() => setFavorite(!favorite)}
-        variant="subtle"
+        variant="light"
         _light={{
           bg: Colors.LOGO_COLOR_WHITE_BACKGROUND,
         }}
@@ -158,7 +168,7 @@ const AddToCartButton = () => {
         mx={0}
         py={2}
         onPress={() => setStar(!star)}
-        variant="subtle"
+        variant="light"
         _light={{
           bg: Colors.LOGO_COLOR_WHITE_BACKGROUND,
         }}
@@ -167,7 +177,7 @@ const AddToCartButton = () => {
         }}
         icon={
           <Icon
-            size="6"
+            size="7"
             name={star ? 'star' : 'star-border'}
             as={MaterialIcons}
             _dark={{ color: 'primary.500' }}
@@ -324,6 +334,86 @@ const CarouselLayout = () => {
   );
 };
 
+function LeaveMessage() {
+  type DeactivateForm = {
+    reason: string;
+    password: string;
+  };
+
+  const { colors } = useTheme();
+
+  const [deactivateForm, setDeactivateForm] = React.useState<DeactivateForm>({
+    reason: '',
+    password: '',
+  });
+
+  const { reason, password } = deactivateForm;
+
+  const confirmPassLabelBGColor = useColorModeValue('white', colors.coolGray[800]);
+
+  const handleFormUpdate = (name: string, value: string) =>
+    setDeactivateForm((prev) => ({ ...prev, [name]: value }));
+
+  return (
+    <Box
+      px={{ base: 4, md: 60, lg: 140 }}
+      py={{ base: 4, md: 8 }}
+      rounded={{ md: 'sm' }}
+      _light={{ bg: 'white' }}
+      _dark={{ bg: 'coolGray.800' }}
+      flex={1}>
+      <Divider my={4} />
+      <Box>
+        <FormControl>
+          <VStack space="0">
+            <HStack space="2">
+              <Avatar
+                height="6"
+                width="6"
+                source={require('../../assets/images/views/view_9.jpg')}
+              />
+              <VStack space="0" alignItems="center">
+                <Text
+                  fontSize="sm"
+                  fontWeight="medium"
+                  py={1}
+                  _dark={{ color: 'coolGray.50' }}
+                  _light={{ color: 'coolGray.700' }}>
+                  使用者名稱
+                </Text>
+              </VStack>
+            </HStack>
+          </VStack>
+          <VStack space="3" mt="2">
+            <TextArea
+              fontSize="14"
+              lineHeight="21"
+              textAlignVertical="top"
+              placeholderTextColor={useColorModeValue('coolGray.500', 'coolGray.400')}
+              _light={{ color: 'coolGray.800' }}
+              _dark={{ color: 'coolGray.50' }}
+              value={reason}
+              onChangeText={(txt) => handleFormUpdate('reason', txt)}
+              placeholder="留言..."
+              h="84"
+            />
+          </VStack>
+          <Box mt="0">
+            <Text
+              mt={{ base: '4', md: '6' }}
+              fontSize="sm"
+              _light={{ color: 'coolGray.500' }}
+              _dark={{ color: 'coolGray.400' }}
+              lineHeight="21">
+              說明:
+            </Text>
+          </Box>
+        </FormControl>
+      </Box>
+    </Box>
+  );
+}
+
 export default function MainStackPostScreen({ navigation }: NavigationProps): JSX.Element {
   function CustomIcon() {
     return (
@@ -376,7 +466,7 @@ export default function MainStackPostScreen({ navigation }: NavigationProps): JS
       customIcon={<CustomIcon />}
       customTitle={<CustomTitle />}
       showBackButton>
-      <ScrollView bounces={false}>
+      <KeyboardAwareScrollView style={{ flex: 1 }} bounces={false}>
         <Stack px={{ base: '0', md: '8' }} py={{ base: '0', md: '8' }}>
           <CarouselLayout />
         </Stack>
@@ -389,7 +479,7 @@ export default function MainStackPostScreen({ navigation }: NavigationProps): JS
           _dark={{ bg: 'coolGray.800' }}
           direction={{ base: 'column', md: 'row' }}>
           <ProductInfo productInfo={postDetail} />
-          <AddToCartButton />
+
           <Divider
             mt="5"
             _light={{
@@ -401,7 +491,9 @@ export default function MainStackPostScreen({ navigation }: NavigationProps): JS
           />
           <Reviews />
         </Stack>
-      </ScrollView>
+        <LeaveMessage />
+      </KeyboardAwareScrollView>
+      <AddToCartButton />
     </DashboardLayout>
   );
 }

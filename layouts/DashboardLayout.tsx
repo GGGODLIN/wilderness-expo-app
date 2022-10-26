@@ -1,4 +1,5 @@
 import { AntDesign, FontAwesome } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 import {
   Box,
   VStack,
@@ -28,6 +29,7 @@ import logo_light from '../assets/logo.png';
 import menu_dark from '../assets/logo.png';
 import menu_light from '../assets/logo.png';
 */
+import { Nav, NavigationProps } from '../Props';
 import Sidebar from '../components/Sidebar';
 import SidebarHomeAndMenu from '../components/SidebarHomeAndMenu';
 import SidebarPodcastScreen from '../components/SidebarPodcastScreen';
@@ -54,6 +56,7 @@ type DashboardLayoutProps = {
   title: string;
   subTitle?: string;
   customIcon?: React.ReactNode;
+  customTitle?: React.ReactNode;
   children: React.ReactNode;
   showGroupInfoHeader?: boolean;
   displayBackIcon?: boolean;
@@ -71,6 +74,7 @@ type MobileHeaderProps = {
   rightPanel?: boolean;
   showNightButton?: boolean;
   customIcon: React.ReactNode;
+  customTitle: React.ReactNode;
 };
 
 type HeaderProps = {
@@ -230,6 +234,7 @@ function MainContent(props: MainContentProps) {
 }
 
 export function MobileHeader(props: MobileHeaderProps) {
+  const navigation = useNavigation<Nav>();
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
@@ -249,37 +254,43 @@ export function MobileHeader(props: MobileHeaderProps) {
             <HStack alignItems="center" space="1">
               {props.backButton && (
                 <IconButton
+                  onPress={() => navigation.goBack()}
                   variant="ghost"
                   colorScheme="light"
                   py={0}
+                  pr={0}
                   _icon={{ color: 'coolGray.50' }}
                   icon={
                     <Icon
-                      size="5"
+                      size="6"
                       _dark={{
                         color: 'coolGray.200',
                       }}
                       _light={{
                         color: Colors.LOGO_COLOR_BROWN,
                       }}
-                      as={AntDesign}
-                      name="arrowleft"
+                      as={FontAwesome}
+                      name="angle-left"
                     />
                   }
                 />
               )}
               <VStack>
-                <Text
-                  fontSize="lg"
-                  marginLeft={5}
-                  _dark={{
-                    color: 'coolGray.200',
-                  }}
-                  _light={{
-                    color: Colors.LOGO_COLOR_BROWN,
-                  }}>
-                  {props.title}
-                </Text>
+                {props.customTitle ? (
+                  props.customTitle
+                ) : (
+                  <Text
+                    fontSize="lg"
+                    marginLeft={props.backButton ? 0 : 5}
+                    _dark={{
+                      color: 'coolGray.200',
+                    }}
+                    _light={{
+                      color: Colors.LOGO_COLOR_BROWN,
+                    }}>
+                    {props.title}
+                  </Text>
+                )}
                 {props.subTitle ? (
                   <Text color="coolGray.50" fontSize="sm" fontWeight="normal">
                     {props.subTitle}
@@ -328,8 +339,8 @@ export function MobileHeader(props: MobileHeaderProps) {
                   py={0}
                   icon={
                     <Icon
-                      size="5"
-                      name="bell"
+                      size="6"
+                      name="navicon"
                       as={FontAwesome}
                       _dark={{
                         color: 'coolGray.200',
@@ -341,6 +352,7 @@ export function MobileHeader(props: MobileHeaderProps) {
                   }
                 />
               )}
+              {props.customIcon}
             </HStack>
           </>
         </HStack>
@@ -399,6 +411,7 @@ export default function DashboardLayout({
             rightPanel={props.rightPanelMobileHeader}
             showNightButton={props.showNightButton}
             customIcon={props.customIcon}
+            customTitle={props.customTitle}
           />
         </Hidden>
         <Hidden till="md">

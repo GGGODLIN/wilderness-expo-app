@@ -350,7 +350,7 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
                           name={item.name}
                           _light={{ color: Colors.LOGO_COLOR_GREEN }}
                           _dark={{ color: 'coolGray.50' }}
-                          size={8}
+                          size={6}
                           textAlign="center"
                           alignSelf="center"
                         />
@@ -387,7 +387,7 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
                           name={item.name}
                           _light={{ color: Colors.LOGO_COLOR_GREEN }}
                           _dark={{ color: 'coolGray.50' }}
-                          size={8}
+                          size={6}
                           textAlign="center"
                         />
                       }

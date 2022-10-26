@@ -1,4 +1,4 @@
-import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons, FontAwesome } from '@expo/vector-icons';
 import {
   Box,
   HStack,
@@ -75,7 +75,7 @@ function Reviews() {
         return (
           <VStack key={idx} space="3">
             <HStack space="2">
-              <Avatar height="10" width="10" source={item.imageUrl} />
+              <Avatar height="6" width="6" source={item.imageUrl} />
               <VStack space="1">
                 <Text
                   fontSize="sm"
@@ -121,21 +121,20 @@ const sizeOptions: SizesType[] = [
 
 const AddToCartButton = () => {
   const [favorite, setFavorite] = useState(false);
+  const [star, setStar] = useState(false);
+
   return (
     <HStack space="4" alignItems="center">
-      <Button
-        flex={1}
-        size="lg"
-        variant="solid"
-        _light={{
-          bg: Colors.LOGO_COLOR_GREEN,
-        }}
-        _dark={{
-          bg: 'coolGray.700',
-        }}>
-        說點什麼
-      </Button>
+      <Text
+        fontSize="sm"
+        fontWeight="medium"
+        color={useColorModeValue('coolGray.500', 'coolGray.400')}
+        lineHeight="30"
+        my={2}>
+        500 likes
+      </Text>
       <IconButton
+        mx={0}
         py={2}
         onPress={() => setFavorite(!favorite)}
         variant="subtle"
@@ -155,6 +154,39 @@ const AddToCartButton = () => {
           />
         }
       />
+      <IconButton
+        mx={0}
+        py={2}
+        onPress={() => setStar(!star)}
+        variant="subtle"
+        _light={{
+          bg: Colors.LOGO_COLOR_WHITE_BACKGROUND,
+        }}
+        _dark={{
+          bg: 'coolGray.700',
+        }}
+        icon={
+          <Icon
+            size="6"
+            name={star ? 'star' : 'star-border'}
+            as={MaterialIcons}
+            _dark={{ color: 'primary.500' }}
+            _light={{ color: Colors.LOGO_COLOR_BROWN }}
+          />
+        }
+      />
+      <Button
+        flex={1}
+        size="lg"
+        variant="solid"
+        _light={{
+          bg: Colors.LOGO_COLOR_GREEN,
+        }}
+        _dark={{
+          bg: 'coolGray.700',
+        }}>
+        說點什麼
+      </Button>
     </HStack>
   );
 };
@@ -237,8 +269,8 @@ function ProductInfo({ productInfo }: { productInfo: ProductType }) {
   const textColorB = useColorModeValue('coolGray.500', 'coolGray.400');
 
   return (
-    <Box>
-      <HStack alignItems="center" space="1" mt={{ base: 4, md: 0 }}>
+    <Box mb={4}>
+      <HStack alignItems="center" space="1" mt={{ base: 4, md: 0 }} mb={4}>
         <Text fontSize="xl" color={textColorA} fontWeight="bold">
           {productInfo.title}
         </Text>
@@ -248,9 +280,6 @@ function ProductInfo({ productInfo }: { productInfo: ProductType }) {
       </HStack>
       <Text fontSize="md" fontWeight="normal" color={textColorB} lineHeight="24">
         {productInfo.description}
-      </Text>
-      <Text fontSize="lg" fontWeight="medium" color={textColorB} lineHeight="30" my={4}>
-        {productInfo.rate} likes
       </Text>
     </Box>
   );
@@ -296,22 +325,69 @@ const CarouselLayout = () => {
 };
 
 export default function MainStackPostScreen({ navigation }: NavigationProps): JSX.Element {
+  function CustomIcon() {
+    return (
+      <IconButton
+        variant="unstyled"
+        colorScheme="light"
+        py={0}
+        icon={
+          <Icon
+            size="5"
+            name="navicon"
+            as={FontAwesome}
+            _dark={{
+              color: 'coolGray.200',
+            }}
+            _light={{
+              color: Colors.LOGO_COLOR_BROWN,
+            }}
+          />
+        }
+      />
+    );
+  }
+
+  function CustomTitle() {
+    return (
+      <VStack space="0">
+        <HStack space="2">
+          <Avatar height="6" width="6" source={require('../../assets/images/views/view_9.jpg')} />
+          <VStack space="0" alignItems="center">
+            <Text
+              fontSize="sm"
+              fontWeight="medium"
+              py={1}
+              _dark={{ color: 'coolGray.50' }}
+              _light={{ color: 'coolGray.700' }}>
+              作者名稱
+            </Text>
+          </VStack>
+        </HStack>
+      </VStack>
+    );
+  }
+
   return (
     <DashboardLayout
       title="動態內頁"
       displaySidebar={false}
       header={{ searchbar: false }}
+      customIcon={<CustomIcon />}
+      customTitle={<CustomTitle />}
       showBackButton>
       <ScrollView bounces={false}>
+        <Stack px={{ base: '0', md: '8' }} py={{ base: '0', md: '8' }}>
+          <CarouselLayout />
+        </Stack>
         <Stack
           px={{ base: '4', md: '8' }}
-          py={{ base: '5', md: '8' }}
+          py={{ base: '0', md: '8' }}
           flex={1}
           rounded={{ md: 'sm' }}
           _light={{ bg: 'white' }}
           _dark={{ bg: 'coolGray.800' }}
           direction={{ base: 'column', md: 'row' }}>
-          <CarouselLayout />
           <ProductInfo productInfo={postDetail} />
           <AddToCartButton />
           <Divider

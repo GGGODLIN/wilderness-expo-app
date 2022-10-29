@@ -196,7 +196,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
   function Tab_3() {
     return (
       <ScrollView py={4}>
-        <Text>會破版待修</Text>
+        <Text>換元件中</Text>
       </ScrollView>
     );
   }

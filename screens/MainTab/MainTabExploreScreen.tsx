@@ -394,7 +394,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
                 _dark={{ color: 'coolGray.50' }}
                 my={0}
                 lineHeight="24">
-                活動分類 (元件單選，大分類，下拉或橫轉)
+                分類 (元件單選，大分類，下拉或橫轉)
               </Text>
               <Divider
                 ml={2}
@@ -405,8 +405,8 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
               />
             </HStack>
             <HStack space="3" mt={3} alignItems="flex-start">
-              <AddressBadge label="高爾夫" currentSelectedAddress={selectedAddress} />
-              <AddressBadge label="籃球" currentSelectedAddress={selectedAddress} />
+              <AddressBadge label="車泊" currentSelectedAddress={selectedAddress} />
+              <AddressBadge label="SUP" currentSelectedAddress={selectedAddress} />
               <AddressBadge label="親子活動" currentSelectedAddress={selectedAddress} />
             </HStack>
             <HStack alignItems="center" mx="3" mt="2">
@@ -416,41 +416,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
                 _dark={{ color: 'coolGray.50' }}
                 my={0}
                 lineHeight="24">
-                活動日期 (日期元件，日期區間 與星期選擇)
-              </Text>
-              <Divider
-                ml={2}
-                mr={0}
-                _light={{ bg: 'coolGray.200' }}
-                _dark={{ bg: 'coolGray.700' }}
-                flex={1}
-              />
-            </HStack>
-            <HStack alignItems="center" mx="3" mt="2">
-              <Text
-                fontWeight="normal"
-                _light={{ color: 'coolGray.900' }}
-                _dark={{ color: 'coolGray.50' }}
-                my={0}
-                lineHeight="24">
-                活動時間 (元件單選，上午下午晚上凌晨)
-              </Text>
-              <Divider
-                ml={2}
-                mr={0}
-                _light={{ bg: 'coolGray.200' }}
-                _dark={{ bg: 'coolGray.700' }}
-                flex={1}
-              />
-            </HStack>
-            <HStack alignItems="center" mx="3" mt="2">
-              <Text
-                fontWeight="normal"
-                _light={{ color: 'coolGray.900' }}
-                _dark={{ color: 'coolGray.50' }}
-                my={0}
-                lineHeight="24">
-                其他單選項 (待單選元件)
+                其他篩選元件弄好一起顯示
               </Text>
               <Divider
                 ml={2}

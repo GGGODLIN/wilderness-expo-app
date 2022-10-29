@@ -278,24 +278,24 @@ const ActionButton = () => {
         size="lg"
         variant="solid"
         _light={{
-          bg: 'black',
+          bg: Colors.LOGO_COLOR_GREEN,
         }}
         _dark={{
           bg: 'coolGray.700',
         }}>
-        追蹤
+        收藏
       </Button>
       <Button
         flex={1}
         size="lg"
         variant="solid"
         _light={{
-          bg: 'black',
+          bg: Colors.LOGO_COLOR_BROWN,
         }}
         _dark={{
           bg: 'coolGray.700',
         }}>
-        報名
+        導航
       </Button>
     </HStack>
   );
@@ -409,40 +409,6 @@ export default function LocationDetailsScreen({ navigation }: NavigationProps): 
                 </Text>
               </VStack>
             </HStack>
-            <HStack>
-              <VStack space="0" alignItems="stretch" justifyContent="flex-end">
-                {props.clubsName != null && (
-                  <Pressable
-                    onPress={() => {
-                      console.log('hello');
-                    }}>
-                    <Text
-                      fontSize="sm"
-                      fontWeight="medium"
-                      _dark={{ color: 'coolGray.50' }}
-                      _light={{ color: 'coolGray.700' }}
-                      textAlign="right">
-                      {props.clubsName}
-                    </Text>
-                  </Pressable>
-                )}
-                {props.eventName != null && (
-                  <Pressable
-                    onPress={() => {
-                      console.log('hello');
-                    }}>
-                    <Text
-                      fontSize="sm"
-                      fontWeight="medium"
-                      _dark={{ color: 'coolGray.50' }}
-                      _light={{ color: 'coolGray.700' }}
-                      textAlign="right">
-                      {props.eventName}
-                    </Text>
-                  </Pressable>
-                )}
-              </VStack>
-            </HStack>
           </HStack>
           <Text
             onPress={() => navigation.navigate(MAIN_STACK_POST)}
@@ -463,7 +429,7 @@ export default function LocationDetailsScreen({ navigation }: NavigationProps): 
                   _light={{ color: 'coolGray.500' }}
                   _dark={{ color: 'coolGray.500' }}
                   as={MaterialIcons}
-                  name={favorite ? 'thumb-up' : 'thumb-up-off-alt'}
+                  name={favorite ? 'favorite' : 'favorite-border'}
                 />
                 <Text
                   my="2"
@@ -552,116 +518,41 @@ export default function LocationDetailsScreen({ navigation }: NavigationProps): 
           <HStack>
             <VStack>
               <Text fontWeight="bold" fontSize="lg" color="coolGray.400">
-                2023-12-12 (週日) 18:00
+                SUP、關鍵字樣式
               </Text>
               <Text fontWeight="bold" fontSize="3xl" color="coolGray.700">
-                [疾風羽球館] 菜鳥雙人 晚上八點到九點
+                太平山小徑
               </Text>
             </VStack>
           </HStack>
           <HStack justifyContent="space-between">
             <VStack w="50%">
               <Text fontWeight="bold" color="coolGray.400">
-                主辦
+                交通資訊
               </Text>
-              <HStack space="2" alignItems="center">
-                <Avatar
-                  height="6"
-                  width="6"
-                  source={{
-                    uri: 'https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
-                  }}
-                />
-                <VStack space="0" alignItems="flex-start">
-                  <HStack alignItems="flex-start" justifyContent="flex-start">
-                    <Text
-                      textAlign="left"
-                      fontSize="xs"
-                      fontWeight="medium"
-                      py={0}
-                      _dark={{ color: 'coolGray.50' }}
-                      _light={{ color: 'coolGray.700' }}>
-                      主辦人
-                    </Text>
-                  </HStack>
-                  <HStack>
-                    <Text
-                      fontSize="xs"
-                      fontWeight="medium"
-                      py={0}
-                      _dark={{ color: 'coolGray.50' }}
-                      _light={{ color: 'coolGray.700' }}>
-                      社團名稱
-                    </Text>
-                  </HStack>
-                </VStack>
-              </HStack>
-            </VStack>
-            <VStack w="50%">
-              <Text fontWeight="bold" color="coolGray.400">
-                地點
-              </Text>
-              <Text color="coolGray.700">疾風羽球館{'\n'}台北市信義區逛大街100號</Text>
-              <Text color="blue.700">前往導航</Text>
+              <Text color="coolGray.700">無停車格</Text>
             </VStack>
           </HStack>
           <HStack justifyContent="space-between">
             <VStack w="50%">
               <Text fontWeight="bold" color="coolGray.400">
-                活動時間
+                人潮流量
               </Text>
-              <Text color="coolGray.700">2022-12-12{'\n'}18:00~20:00</Text>
-              <Text color="blue.700">設定提醒</Text>
+              <Text color="coolGray.700">低</Text>
             </VStack>
             <VStack w="50%">
               <Text fontWeight="bold" color="coolGray.400">
-                報名時間
+                蚊蟲等級
               </Text>
-              <Text color="coolGray.700">2022-11-12 12:00{'\n'}~ 2022-12-10 12:00</Text>
-              <Text color="blue.700">設定提醒</Text>
+              <Text color="coolGray.700">多</Text>
             </VStack>
           </HStack>
           <HStack justifyContent="space-between">
-            <VStack w="50%">
-              <Text fontWeight="bold" color="coolGray.400">
-                費用選項
-              </Text>
-              <Text color="coolGray.700">每人 500 元</Text>
-            </VStack>
-            <VStack w="50%">
-              <Text fontWeight="bold" color="coolGray.400">
-                支付方式
-              </Text>
-              <Text color="coolGray.700">現場</Text>
-            </VStack>
-          </HStack>
-          <HStack justifyContent="space-between">
-            <VStack w="50%">
-              <Text fontWeight="bold" color="coolGray.400">
-                報名限制
-              </Text>
-              <Text color="coolGray.700">限社團成員</Text>
-              <Text color="coolGray.700">出席率 90%</Text>
-            </VStack>
-            <VStack w="50%">
-              <Text fontWeight="bold" color="coolGray.400">
-                攜伴限制
-              </Text>
-              <Text color="coolGray.700">可攜伴 1 位</Text>
-            </VStack>
-          </HStack>
-          <HStack justifyContent="space-between">
-            <VStack w="50%">
+            <VStack w="100%">
               <Text fontWeight="bold" color="coolGray.400">
                 注意事項
               </Text>
-              <Text color="coolGray.700">
-                1. 注意事項內容{'\n'}
-                2. 注意事項內容{'\n'}
-                3. 注意事項內容{'\n'}
-                4. 注意事項內容{'\n'}
-                5. 注意事項內容
-              </Text>
+              <Text color="coolGray.700">無</Text>
             </VStack>
           </HStack>
         </VStack>
@@ -669,6 +560,21 @@ export default function LocationDetailsScreen({ navigation }: NavigationProps): 
     );
   }
   function Tab_2() {
+    return (
+      <ScrollView py={2}>
+        <VStack space={4} mt={5} px={4}>
+          <HStack justifyContent="space-between">
+            <VStack w="100%">
+              <Text fontWeight="bold" color="coolGray.400">
+                營地類型
+              </Text>
+            </VStack>
+          </HStack>
+        </VStack>
+      </ScrollView>
+    );
+  }
+  function Tab_3() {
     const textColor = useColorModeValue('coolGray.800', 'coolGray.50');
     return (
       <ScrollView py={2}>
@@ -685,41 +591,6 @@ export default function LocationDetailsScreen({ navigation }: NavigationProps): 
       </ScrollView>
     );
   }
-  function Tab_3() {
-    const textColor = useColorModeValue('coolGray.800', 'coolGray.50');
-
-    return (
-      <ScrollView py={2}>
-        <VStack mt={5} px={0} alignItems="center">
-          <FlatList
-            nestedScrollEnabled
-            numColumns={4}
-            data={member}
-            showsVerticalScrollIndicator={false}
-            renderItem={({ item, index }) => {
-              return (
-                <VStack alignItems="center" key={index} space="1" w="90" h="100">
-                  <Avatar source={{ uri: item.imageUrl }} height={10} width={10} />
-                  <Text fontWeight="bold" color={textColor}>
-                    {item.name}
-                  </Text>
-                </VStack>
-              );
-            }}
-            keyExtractor={(item, index) => 'eventlist' + index}
-          />
-        </VStack>
-      </ScrollView>
-    );
-  }
-  function Tab_4() {
-    const textColor = useColorModeValue('coolGray.800', 'coolGray.50');
-    return (
-      <ScrollView py={2}>
-        <Text>轉跳至訊息頁</Text>
-      </ScrollView>
-    );
-  }
 
   const tabs = [
     {
@@ -729,18 +600,13 @@ export default function LocationDetailsScreen({ navigation }: NavigationProps): 
     },
     {
       id: 2,
-      title: '動態',
+      title: '設施',
       component: <Tab_2 />,
     },
     {
       id: 3,
-      title: '參加者',
+      title: '動態',
       component: <Tab_3 />,
-    },
-    {
-      id: 4,
-      title: '訊息',
-      component: <Tab_4 />,
     },
   ];
 
@@ -794,8 +660,8 @@ export default function LocationDetailsScreen({ navigation }: NavigationProps): 
     );
   }
   function Tabs() {
-    const [tabName, setTabName] = React.useState(tabs[0].title);
-    const [tabChildren, setTabChildren] = useState<React.ReactNode>(tabs[0].component);
+    const [tabName, setTabName] = React.useState(tabs[1].title);
+    const [tabChildren, setTabChildren] = useState<React.ReactNode>(tabs[1].component);
     return (
       <>
         <Center backgroundColor="white">
@@ -866,9 +732,12 @@ export default function LocationDetailsScreen({ navigation }: NavigationProps): 
   }
 
   return (
-    <DashboardLayout title="活動資訊" showBackButton>
+    <DashboardLayout title="地點資訊" showBackButton>
       <KeyboardAwareScrollView style={{ flex: 1 }} bounces={false}>
-        <Stack flex={1} _light={{ bg: Colors.LOGO_COLOR_BROWN }} _dark={{ bg: 'coolGray.800' }}>
+        <Stack
+          flex={1}
+          _light={{ bg: Colors.LOGO_COLOR_WHITE_BACKGROUND }}
+          _dark={{ bg: 'coolGray.800' }}>
           <Box
             pt={5}
             px={{ md: 8, xl: 35 }}

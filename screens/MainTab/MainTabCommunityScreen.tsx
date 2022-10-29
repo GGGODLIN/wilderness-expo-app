@@ -27,7 +27,7 @@ import {
 import React, { useState } from 'react';
 import { ImageSourcePropType, Platform, useWindowDimensions } from 'react-native';
 
-import { MAIN_STACK_POST } from '../../NavigationNames';
+import { MAIN_STACK_CREATE_POST, MAIN_STACK_POST } from '../../NavigationNames';
 import { NavigationProps } from '../../Props';
 import { Carousel } from '../../components/Carousel';
 import LocationList from '../../components/explore/LocationList';
@@ -477,6 +477,9 @@ export default function MainTabCommunityScreen({ navigation }: NavigationProps):
           shadow={2}
           size="sm"
           icon={<Icon color="white" as={AntDesign} name="plus" size="sm" />}
+          onPress={() => {
+            navigation.navigate(MAIN_STACK_CREATE_POST);
+          }}
         />
       </Stack>
     </DashboardLayout>

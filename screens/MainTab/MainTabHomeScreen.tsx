@@ -19,6 +19,7 @@ import {
   useBreakpointValue,
   FlatList,
   Link,
+  Avatar,
 } from 'native-base';
 import React from 'react';
 import { ImageSourcePropType, Platform, useWindowDimensions } from 'react-native';
@@ -239,7 +240,7 @@ const itemList: ProductProps[] = [
 ];
 
 export default function HomeScreen({ route, navigation }: NavigationProps): JSX.Element {
-  function Card(props: ProductProps) {
+  function PostCard(props: ProductProps) {
     const { width: windowWidth } = useWindowDimensions();
     return (
       <Box
@@ -270,11 +271,27 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
             _dark={{ color: 'coolGray.400' }}>
             {props.description}
           </Text>
-          <HStack mt="1" w="100%" justifyContent="space-between">
-            <Text fontSize="xs" _light={{ color: 'coolGray.600' }} _dark={{ color: 'coolGray.50' }}>
-              {props.number} likes
-            </Text>
+          <HStack mt="1" w="100%" justifyContent="flex-start" alignItems="center">
+            <Avatar
+              height="5"
+              width="5"
+              source={{
+                uri: 'https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+              }}
+            />
+            <HStack space="0" alignItems="flex-start" justifyContent="flex-start">
+              <Text
+                fontSize="sm"
+                fontWeight="medium"
+                py={1}
+                mx={2}
+                _dark={{ color: 'coolGray.50' }}
+                _light={{ color: 'coolGray.700' }}>
+                作者名稱
+              </Text>
+            </HStack>
             <IconButton
+              ml="auto"
               p={0}
               icon={
                 <Icon
@@ -292,6 +309,13 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
     );
   }
 
+  const noColumn = useBreakpointValue({
+    base: 2,
+    sm: 3,
+    md: 3,
+    lg: 5,
+    xl: 5,
+  });
   function MainPostList() {
     const noColumn = useBreakpointValue({
       base: 2,
@@ -314,11 +338,25 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
           numColumns={noColumn}
           data={itemList}
           showsVerticalScrollIndicator={false}
-          renderItem={({ item }) => <Card {...item} />}
+          renderItem={({ item, index }) => <PostCard key={index} {...item} />}
           key={noColumn}
-          keyExtractor={(item, index) => 'key' + index}
+          keyExtractor={(item, index) => 'home-post-key-' + index}
         />
       </Box>
+    );
+  }
+
+  function CustomTitle() {
+    return (
+      <VStack space="0" alignItems="center" justifyContent="center" height="10" py="0" pl="2">
+        <Image
+          textAlign="center"
+          width="100"
+          alt="logo"
+          resizeMode="contain"
+          source={require('../../assets/logo.png')}
+        />
+      </VStack>
     );
   }
 
@@ -328,6 +366,7 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
       displayMenuButton
       displayScreenTitle={false}
       displayAlternateMobileHeader
+      customTitle={<CustomTitle />}
       rightPanelMobileHeader>
       <ScrollView>
         <CarouselLayout />

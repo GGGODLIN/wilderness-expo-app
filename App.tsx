@@ -14,6 +14,7 @@ import {
   MAIN_STACK_REGISTER,
   MAIN_STACK_RESET_PASSWORD,
   MAIN_STACK_TABS,
+  PROFILE_STACK_NOTIFICATIONS,
 } from './NavigationNames';
 import MainStackClubDetailsScreen from './screens/MainStack/MainStackClubDetailsScreen';
 import MainStackEventDetailsScreen from './screens/MainStack/MainStackEventDetailsScreen';
@@ -24,6 +25,7 @@ import MainStackProfileScreen from './screens/MainStack/MainStackProfileScreen';
 import MainStackRegisterScreen from './screens/MainStack/MainStackRegisterScreen';
 import MainStackResetPasswordScreen from './screens/MainStack/MainStackResetPasswordScreen';
 import MainStackTabsScreen from './screens/MainStack/MainStackTabsScreen';
+import ProfileStackNotifications from './screens/Profile/ProfileStackNotifications';
 
 const Tab = createBottomTabNavigator();
 const MainStack = createNativeStackNavigator();
@@ -51,6 +53,10 @@ export default function App() {
           <MainStack.Screen component={MainStackMessageScreen} name={MAIN_STACK_MESSAGES} />
           <MainStack.Screen component={MainStackPostScreen} name={MAIN_STACK_POST} />
           <MainStack.Screen component={MainStackProfileScreen} name={MAIN_STACK_PROFILE} />
+          <MainStack.Screen
+            component={ProfileStackNotifications}
+            name={PROFILE_STACK_NOTIFICATIONS}
+          />
         </MainStack.Navigator>
       </NavigationContainer>
     </NativeBaseProvider>

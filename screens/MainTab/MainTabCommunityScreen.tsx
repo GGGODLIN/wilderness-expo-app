@@ -13,17 +13,104 @@ import {
   VStack,
   Select,
   Fab,
+  useBreakpointValue,
+  FlatList,
   ScrollView,
   Divider,
+  Image,
+  Card,
 } from 'native-base';
 import React, { useState } from 'react';
-import { Platform } from 'react-native';
+import { ImageSourcePropType, Platform, useWindowDimensions } from 'react-native';
 
 import { NavigationProps } from '../../Props';
+import { Carousel } from '../../components/Carousel';
 import LocationList from '../../components/explore/LocationList';
 import PostsList from '../../components/home/PostsList';
 import Colors from '../../constants/Colors';
 import DashboardLayout from '../../layouts/DashboardLayout';
+
+type ProductProps = {
+  imageUri: ImageSourcePropType;
+  title: string;
+  description: string;
+  number: string;
+};
+
+const itemList: ProductProps[] = [
+  {
+    imageUri: require('../../assets/images/views/view_9.jpg'),
+    title: 'HERE&NOW',
+    description: '秘境分享',
+    number: '200',
+  },
+  {
+    imageUri: require('../../assets/images/views/view_3.jpg'),
+    title: 'Marks & Spencer',
+    description: '達成第 20 露啦',
+    number: '639',
+  },
+  {
+    imageUri: require('../../assets/images/views/view_7.jpg'),
+    title: 'CENWELL',
+    description: '動態內容',
+    number: '399',
+  },
+  {
+    imageUri: require('../../assets/images/views/view_4.jpg'),
+    title: 'U.S. Polo Assn. Kids',
+    description: '動態內容',
+    number: '849',
+  },
+  {
+    imageUri: require('../../assets/images/views/view_2.jpg'),
+    title: 'Cherry Crumble',
+    description: '動態內容',
+    number: '899',
+  },
+  {
+    imageUri: require('../../assets/images/views/view_1.jpg'),
+    title: 'BonOrganik',
+    description: '動態內容',
+    number: '259',
+  },
+  {
+    imageUri: require('../../assets/images/views/view_9.jpg'),
+    title: 'HERE&NOW',
+    description: '秘境分享',
+    number: '200',
+  },
+  {
+    imageUri: require('../../assets/images/views/view_3.jpg'),
+    title: 'Marks & Spencer',
+    description: '達成第 20 露啦',
+    number: '639',
+  },
+  {
+    imageUri: require('../../assets/images/views/view_7.jpg'),
+    title: 'CENWELL',
+    description: '動態內容',
+    number: '399',
+  },
+  {
+    imageUri: require('../../assets/images/views/view_4.jpg'),
+    title: 'U.S. Polo Assn. Kids',
+    description: '動態內容',
+    number: '849',
+  },
+  {
+    imageUri: require('../../assets/images/views/view_2.jpg'),
+    title: 'Cherry Crumble',
+    description: '動態內容',
+    number: '899',
+  },
+  {
+    imageUri: require('../../assets/images/views/view_1.jpg'),
+    title: 'BonOrganik',
+    description: '動態內容',
+    number: '259',
+  },
+];
 
 export default function MainTabCommunityScreen({ navigation }: NavigationProps): JSX.Element {
   const [textInput, setTextInput] = useState('');
@@ -81,24 +168,131 @@ export default function MainTabCommunityScreen({ navigation }: NavigationProps):
       imageUri: require('../../assets/images/views/view_2.jpg'),
     },
   ];
+  type CarousalTye = {
+    imageUri: ImageSourcePropType;
+    name: string;
+  };
+  const trending: CarousalTye[] = [
+    {
+      imageUri: require('../../assets/images/views/view_9.jpg'),
+      name: 'Story Seeds',
+    },
+    {
+      imageUri: require('../../assets/images/views/view_9.jpg'),
+      name: 'Dare to lead',
+    },
+    {
+      imageUri: require('../../assets/images/views/view_9.jpg'),
+      name: 'Artificial Intelligence',
+    },
+    {
+      imageUri: require('../../assets/images/views/view_9.jpg'),
+      name: 'Angular',
+    },
+    {
+      imageUri: require('../../assets/images/views/view_9.jpg'),
+      name: 'AR/VR',
+    },
+  ];
+
+  function MainPostList() {
+    const noColumn = useBreakpointValue({
+      base: 2,
+      sm: 3,
+      md: 3,
+      lg: 5,
+      xl: 5,
+    });
+    const { height } = useWindowDimensions();
+    return (
+      <Box
+        px={{ base: 2.5, md: '22' }}
+        py={{ base: '14', md: '22' }}
+        rounded={{ md: 'sm' }}
+        _light={{ bg: 'white' }}
+        _dark={{ bg: 'coolGray.800' }}
+        alignItems="center">
+        <FlatList
+          nestedScrollEnabled
+          numColumns={noColumn}
+          data={itemList}
+          showsVerticalScrollIndicator={false}
+          renderItem={({ item }) => <Card {...item} />}
+          key={noColumn}
+          keyExtractor={(item, index) => 'key' + index}
+        />
+        <Text>元件載入有問題</Text>
+      </Box>
+    );
+  }
+
+  function Carousal({ itemList, heading }: { itemList: CarousalTye[]; heading: string }) {
+    const Separator = () => <Box w="4" flex="1" />;
+    return (
+      <VStack space={4} mt={5}>
+        <HStack justifyContent="space-between" px={{ base: 4, md: 8 }}>
+          <Text
+            fontSize="md"
+            fontWeight="bold"
+            _dark={{ color: 'coolGray.50' }}
+            _light={{ color: 'coolGray.800' }}>
+            {heading}
+          </Text>
+          <Pressable>
+            <Text
+              _dark={{ color: 'primary.500' }}
+              _light={{ color: 'primary.900' }}
+              fontSize="sm"
+              fontWeight="medium">
+              檢視更多
+            </Text>
+          </Pressable>
+        </HStack>
+        <FlatList
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          px={{ base: 4, md: 8 }}
+          mr={{ base: 4, md: 0 }}
+          data={itemList}
+          keyExtractor={(_, index) => `trending-${index}`}
+          ItemSeparatorComponent={Separator}
+          renderItem={({ item }) => (
+            <Pressable borderRadius="sm">
+              <Image
+                borderTopRadius="sm"
+                source={item.imageUri}
+                alt={item.name}
+                w={{ base: 192, md: 224 }}
+                h={112}
+              />
+            </Pressable>
+          )}
+        />
+      </VStack>
+    );
+  }
+
   function Tab_1() {
     return (
-      <ScrollView py={4}>
-        <PostsList courses={postsList} />
-      </ScrollView>
+      <>
+        <Carousal itemList={trending} heading="推薦" />
+        <ScrollView py={4}>
+          <MainPostList />
+        </ScrollView>
+      </>
     );
   }
   function Tab_2() {
     return (
       <ScrollView py={4}>
-        <Text>會破版待修</Text>
+        <Text>元件載入有問題</Text>
       </ScrollView>
     );
   }
   function Tab_3() {
     return (
       <ScrollView py={4}>
-        <Text>會破版待修</Text>
+        <Text>元件載入有問題</Text>
       </ScrollView>
     );
   }
@@ -230,6 +424,40 @@ export default function MainTabCommunityScreen({ navigation }: NavigationProps):
     );
   };
 
+  const CarouselLayout = () => {
+    const noColumn = useBreakpointValue({
+      base: 2,
+      sm: 3,
+      md: 3,
+      lg: 5,
+      xl: 5,
+    });
+
+    return (
+      <Box
+        px={{ base: '0', md: 0 }}
+        py={{ base: '0', md: 0 }}
+        _light={{ bg: 'transparent' }}
+        _dark={{ bg: 'transparent' }}
+        height={{ base: 40, md: 20 }}>
+        <FlatList
+          horizontal
+          numColumns={noColumn}
+          data={itemList}
+          showsVerticalScrollIndicator={false}
+          renderItem={({ item }) => (
+            <VStack>
+              <Image source={item.imageUri} />
+              <Text>{item.description}</Text>
+            </VStack>
+          )}
+          key={noColumn}
+          keyExtractor={(item, index) => 'key' + index}
+        />
+      </Box>
+    );
+  };
+
   return (
     <DashboardLayout title="社群">
       <Box
@@ -238,7 +466,9 @@ export default function MainTabCommunityScreen({ navigation }: NavigationProps):
         flex={1}
         _light={{ bg: 'white' }}
         _dark={{ bg: 'coolGray.800' }}>
-        <VStack space="5">{/*<Tabs />*/}</VStack>
+        <VStack space="5">
+          <Tabs />
+        </VStack>
         {/*{Platform.OS === 'web' ? <WebMap /> : <NativeMap />}*/}
       </Box>
     </DashboardLayout>

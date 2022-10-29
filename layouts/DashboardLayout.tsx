@@ -20,6 +20,7 @@ import {
   useColorModeValue,
   SunIcon,
   Button,
+  Badge,
 } from 'native-base';
 import React from 'react';
 
@@ -29,6 +30,7 @@ import logo_light from '../assets/logo.png';
 import menu_dark from '../assets/logo.png';
 import menu_light from '../assets/logo.png';
 */
+import { PROFILE_STACK_NOTIFICATIONS } from '../NavigationNames';
 import { Nav, NavigationProps } from '../Props';
 import Sidebar from '../components/Sidebar';
 import SidebarHomeAndMenu from '../components/SidebarHomeAndMenu';
@@ -333,24 +335,42 @@ export function MobileHeader(props: MobileHeaderProps) {
                 />
               )}
               {props.rightPanel && (
-                <IconButton
-                  variant="unstyled"
-                  colorScheme="light"
-                  py={0}
-                  icon={
-                    <Icon
-                      size="6"
-                      name="navicon"
-                      as={FontAwesome}
-                      _dark={{
-                        color: 'coolGray.200',
-                      }}
-                      _light={{
-                        color: Colors.LOGO_COLOR_BROWN,
-                      }}
+                <Box alignItems="center">
+                  <VStack>
+                    <Badge // bg="red.400"
+                      colorScheme="danger"
+                      rounded="full"
+                      mb={-4}
+                      mr={0}
+                      zIndex={1}
+                      variant="solid"
+                      alignSelf="flex-end"
+                      _text={{
+                        fontSize: 12,
+                      }}>
+                      9
+                    </Badge>
+                    <IconButton
+                      mr="1"
+                      variant="unstyled"
+                      colorScheme="light"
+                      onPress={() => navigation.navigate(PROFILE_STACK_NOTIFICATIONS)}
+                      icon={
+                        <Icon
+                          size="5"
+                          name="bell"
+                          as={FontAwesome}
+                          _dark={{
+                            color: 'coolGray.200',
+                          }}
+                          _light={{
+                            color: Colors.LOGO_COLOR_BROWN,
+                          }}
+                        />
+                      }
                     />
-                  }
-                />
+                  </VStack>
+                </Box>
               )}
               {props.customIcon}
             </HStack>

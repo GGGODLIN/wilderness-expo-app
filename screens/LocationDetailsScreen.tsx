@@ -750,8 +750,8 @@ export default function LocationDetailsScreen({ navigation }: NavigationProps): 
     );
   }
   function Tabs() {
-    const [tabName, setTabName] = React.useState(tabs[1].title);
-    const [tabChildren, setTabChildren] = useState<React.ReactNode>(tabs[1].component);
+    const [tabName, setTabName] = React.useState(tabs[0].title);
+    const [tabChildren, setTabChildren] = useState<React.ReactNode>(tabs[0].component);
     return (
       <>
         <Center backgroundColor="white">

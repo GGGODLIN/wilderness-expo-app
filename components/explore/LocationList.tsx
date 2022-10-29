@@ -16,7 +16,7 @@ import {
 import React from 'react';
 import { ImageSourcePropType, Platform } from 'react-native';
 
-import { MAIN_STACK_POST } from '../../NavigationNames';
+import { MAIN_STACK_LOCATION_DETAILS } from '../../NavigationNames';
 import { Nav, NavigationProps } from '../../Props';
 
 export type Course = {
@@ -47,7 +47,7 @@ const Card = ({ course }: { course: Course }) => {
 
   return (
     <Box overflow="hidden" rounded="lg" width={{ base: '80', md: '334' }}>
-      <Pressable onPress={() => navigation.navigate(MAIN_STACK_POST)}>
+      <Pressable onPress={() => navigation.navigate(MAIN_STACK_LOCATION_DETAILS)}>
         {/* key={'eventList' + i + 1}*/}
         <Image height="112" source={course.imageUri} alt="Alternate Text" />
         <HStack

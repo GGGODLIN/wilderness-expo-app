@@ -15,11 +15,13 @@ import {
   Select,
   Fab,
   ScrollView,
+  Image,
   Divider,
 } from 'native-base';
 import React, { useState } from 'react';
 import { Platform } from 'react-native';
 
+import { MAIN_STACK_CREATE_LOCATION, MAIN_STACK_LOCATION_DETAILS } from '../../NavigationNames';
 import { NavigationProps } from '../../Props';
 import LocationList from '../../components/explore/LocationList';
 import Colors from '../../constants/Colors';
@@ -32,30 +34,149 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
   const locationList = [
     {
       id: 1,
-      chapter: '南投縣',
-      name: '露營地ABC',
-      imageUri: require('../../assets/images/views/view_1.jpg'),
+      image:
+        'https://storage.googleapis.com/smiletaiwan-cms-cwg-tw/article/202003/article-5e6b3844e5039.jpg',
+      name: '活動 1',
+      description: '我是活動 1',
+      latitude: 25.01,
+      longitude: 121.54,
+      avatorImageUri:
+        'https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+      author: '作者',
+      clubsName: '這是一個名字很長長長長的社團',
+      eventName: '點我連到活動頁',
+      imageUri: require('../../assets/images/views/view_3.jpg'),
+      title: '地點 A',
+      dateStart: '2022-12-25',
+      dateEnd: '2022-12-30',
+      timeStart: '18:00',
+      timeEnd: '20:00',
+      week: '週日',
+      like: 639,
+      liked: true,
+      tags: '關鍵字、關鍵字、待加樣式',
     },
     {
       id: 2,
-      chapter: '南投縣',
-      name: '露營地ABC',
-      imageUri: require('../../assets/images/views/view_1.jpg'),
+      image:
+        'https://storage.googleapis.com/smiletaiwan-cms-cwg-tw/article/202003/article-5e6b3844e5039.jpg',
+      name: '活動 2',
+      description: '活動 2 簡介',
+      latitude: 25.02,
+      longitude: 121.52,
+      avatorImageUri:
+        'https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+      author: '作者',
+      clubsName: null,
+      eventName: '點我連到活動頁',
+      imageUri: require('../../assets/images/views/view_3.jpg'),
+      title: '地點 B',
+      dateStart: '2022-12-25',
+      dateEnd: '2022-12-30',
+      timeStart: '18:00',
+      timeEnd: '20:00',
+      week: '週日',
+      like: 639,
+      liked: true,
+      tags: '關鍵字、關鍵字、待加樣式',
     },
     {
       id: 3,
-      chapter: '南投縣',
-      name: '露營地ABC',
-      imageUri: require('../../assets/images/views/view_1.jpg'),
+      image:
+        'https://storage.googleapis.com/smiletaiwan-cms-cwg-tw/article/202003/article-5e6b3844e5039.jpg',
+      name: '活動3',
+      description: '我是活動 3',
+      latitude: 25.03,
+      longitude: 121.51,
+      avatorImageUri:
+        'https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+      author: '作者',
+      clubsName: null,
+      eventName: '點我連到活動頁',
+      imageUri: require('../../assets/images/views/view_3.jpg'),
+      title: '地點 C',
+      dateStart: '2022-12-25',
+      dateEnd: '2022-12-30',
+      timeStart: '18:00',
+      timeEnd: '20:00',
+      week: '週日',
+      like: 639,
+      liked: true,
+      tags: '關鍵字、關鍵字、待加樣式',
     },
     {
       id: 4,
-      chapter: '南投縣',
-      name: '露營地ABC',
-      imageUri: require('../../assets/images/views/view_1.jpg'),
+      image:
+        'https://storage.googleapis.com/smiletaiwan-cms-cwg-tw/article/202003/article-5e6b3844e5039.jpg',
+      name: '活動4',
+      description: '我是活動 4',
+      latitude: 25.04,
+      longitude: 121.55,
+      avatorImageUri:
+        'https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+      author: '作者',
+      clubsName: '點我連到社團頁',
+      eventName: null,
+      imageUri: require('../../assets/images/views/view_3.jpg'),
+      title: '這是一個很長的標題這是一個很長的標題這是一個很長的標題',
+      dateStart: '2022-12-25',
+      dateEnd: '2022-12-30',
+      timeStart: '18:00',
+      timeEnd: '20:00',
+      week: '週日',
+      like: 639,
+      liked: true,
+      tags: '關鍵字、關鍵字、待加樣式',
+    },
+    {
+      id: 5,
+      image:
+        'https://storage.googleapis.com/smiletaiwan-cms-cwg-tw/article/202003/article-5e6b3844e5039.jpg',
+      name: '活動5',
+      description: '我是活動 5',
+      latitude: 25.05,
+      longitude: 121.58,
+      avatorImageUri:
+        'https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+      author: '作者',
+      clubsName: null,
+      eventName: '點我連到活動頁',
+      imageUri: require('../../assets/images/views/view_3.jpg'),
+      title: '地點 F',
+      dateStart: '2022-12-25',
+      dateEnd: '2022-12-30',
+      timeStart: '18:00',
+      timeEnd: '20:00',
+      week: '週日',
+      like: 639,
+      liked: true,
+      tags: '關鍵字、關鍵字、待加樣式',
+    },
+    {
+      id: 6,
+      image:
+        'https://storage.googleapis.com/smiletaiwan-cms-cwg-tw/article/202003/article-5e6b3844e5039.jpg',
+      name: '活動6',
+      description: '我是活動 6',
+      latitude: 25.06,
+      longitude: 121.57,
+      avatorImageUri:
+        'https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+      author: '作者',
+      clubsName: null,
+      eventName: '點我連到活動頁',
+      imageUri: require('../../assets/images/views/view_3.jpg'),
+      title: '地點 G',
+      dateStart: '2022-12-25',
+      dateEnd: '2022-12-30',
+      timeStart: '18:00',
+      timeEnd: '20:00',
+      week: '週日',
+      like: 639,
+      liked: true,
+      tags: '關鍵字、關鍵字、待加樣式',
     },
   ];
-
   type TrackProps = {
     IconColorLight?: string;
     IconColorDark?: string;
@@ -182,7 +303,47 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
   function Tab_1() {
     return (
       <ScrollView py={4}>
-        <LocationList courses={locationList} />
+        <VStack space={5} alignItems="center" mx={1} mb={0}>
+          {locationList.map((props, index) => (
+            <Pressable key={index} onPress={() => navigation.navigate(MAIN_STACK_LOCATION_DETAILS)}>
+              <VStack
+                shadow={2}
+                borderRadius="2xl"
+                bgColor="white"
+                key={'pan_' + props.id}
+                height={200}
+                w={300}>
+                <Image
+                  borderTopLeftRadius="2xl"
+                  borderTopRightRadius="2xl"
+                  source={{ uri: props.image }}
+                  alt="image"
+                  width="100%"
+                  height="120"
+                  resizeMode="cover"
+                />
+                <VStack px={4}>
+                  <Text
+                    mt="2"
+                    fontSize="xs"
+                    fontWeight="medium"
+                    _light={{ color: 'coolGray.500' }}
+                    _dark={{ color: 'coolGray.400' }}>
+                    {props.tags}
+                  </Text>
+                  <Text
+                    mt="0"
+                    fontSize="sm"
+                    fontWeight="medium"
+                    _light={{ color: 'coolGray.900' }}
+                    _dark={{ color: 'coolGray.400' }}>
+                    {props.title}
+                  </Text>
+                </VStack>
+              </VStack>
+            </Pressable>
+          ))}
+        </VStack>
       </ScrollView>
     );
   }

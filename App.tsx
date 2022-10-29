@@ -6,6 +6,7 @@ import * as React from 'react';
 
 import {
   MAIN_STACK_CLUB_DETAILS,
+  MAIN_STACK_CREATE_LOCATION,
   MAIN_STACK_CREATE_POST,
   MAIN_STACK_EVENT_DETAILS,
   MAIN_STACK_LOCATION_DETAILS,
@@ -19,6 +20,7 @@ import {
   PROFILE_STACK_NOTIFICATIONS,
 } from './NavigationNames';
 import LocationDetailsScreen from './screens/LocationDetailsScreen';
+import CreateLocationScreen from './screens/MainStack/CreateLocationScreen';
 import CreatePostScreen from './screens/MainStack/CreatePostScreen';
 import MainStackClubDetailsScreen from './screens/MainStack/MainStackClubDetailsScreen';
 import MainStackEventDetailsScreen from './screens/MainStack/MainStackEventDetailsScreen';
@@ -63,6 +65,7 @@ export default function App() {
           />
           <MainStack.Screen component={LocationDetailsScreen} name={MAIN_STACK_LOCATION_DETAILS} />
           <MainStack.Screen component={CreatePostScreen} name={MAIN_STACK_CREATE_POST} />
+          <MainStack.Screen component={CreateLocationScreen} name={MAIN_STACK_CREATE_LOCATION} />
         </MainStack.Navigator>
       </NavigationContainer>
     </NativeBaseProvider>

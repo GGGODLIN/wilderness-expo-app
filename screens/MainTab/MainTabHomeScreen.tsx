@@ -350,7 +350,6 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
     return (
       <VStack space="0" alignItems="center" justifyContent="center" height="10" py="0" pl="2">
         <Image
-          textAlign="center"
           width="100"
           alt="logo"
           resizeMode="contain"
@@ -444,38 +443,7 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
               );
             })}
           </HStack>
-          {/*
-        <VStack _light={{ bg: 'white' }} _dark={{ bg: 'coolGray.800' }} space="0">
-          <Categories icons={icons} />
-        </VStack>
-        <VStack _light={{ bg: 'white' }} _dark={{ bg: 'coolGray.800' }} space="0">
-          <Categories icons={icons2} />
-        </VStack>
-        */}
         </Box>
-        {/*
-        {[...Array(1)].map((_, i) => (
-          <PostsList key={i} courses={resumedCourses} />
-        ))}
-        */}
-        {/*
-        <Box
-          px={{ base: 2.5, md: '22' }}
-          py={{ base: '14', md: '22' }}
-          rounded={{ md: 'sm' }}
-          _light={{ bg: 'white' }}
-          _dark={{ bg: 'coolGray.800' }}
-          alignItems="center">
-          {itemList.map((item, i) => (
-            <Card
-              imageUri={item.imageUri}
-              title={item.title}
-              description={item.description}
-              number={item.number}
-            />
-          ))}
-        </Box>
-        */}
         <MainPostList />
       </ScrollView>
     </DashboardLayout>

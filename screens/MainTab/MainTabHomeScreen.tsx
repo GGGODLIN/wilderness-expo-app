@@ -411,8 +411,9 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
                       </Center>
                       <Text
                         pt={2}
+                        fontWeight="bold"
                         fontSize={{ base: 'sm', md: 'sm' }}
-                        _light={{ color: { base: 'coolGray.800', md: 'coolGray.500' } }}
+                        _light={{ color: { base: 'coolGray.500', md: 'coolGray.500' } }}
                         _dark={{ color: { base: 'coolGray.50', md: 'coolGray.400' } }}
                         textAlign="center">
                         {item.text}
@@ -447,8 +448,9 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
                       </Center>
                       <Text
                         pt={2}
+                        fontWeight="bold"
                         fontSize={{ base: 'sm', md: 'sm' }}
-                        _light={{ color: { base: 'coolGray.800', md: 'coolGray.500' } }}
+                        _light={{ color: { base: 'coolGray.500', md: 'coolGray.500' } }}
                         _dark={{ color: { base: 'coolGray.50', md: 'coolGray.400' } }}
                         textAlign="center">
                         {item.text}

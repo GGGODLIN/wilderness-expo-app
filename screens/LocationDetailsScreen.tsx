@@ -1,4 +1,4 @@
-import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons, FontAwesome5, FontAwesome } from '@expo/vector-icons';
 import {
   Button,
   HStack,
@@ -17,6 +17,7 @@ import {
   useColorModeValue,
   useBreakpointValue,
   FlatList,
+  IconButton,
 } from 'native-base';
 import React, { useState } from 'react';
 import { Platform, ImageSourcePropType, useWindowDimensions } from 'react-native';
@@ -509,6 +510,44 @@ export default function LocationDetailsScreen({ navigation }: NavigationProps): 
     );
   }
 
+  type Icon = {
+    name: string;
+    text: string;
+    active: boolean;
+  };
+  const icons: Icon[] = [
+    {
+      name: 'caravan',
+      text: '收費營地',
+      active: true,
+    },
+    {
+      name: 'caravan',
+      text: '公共營地',
+      active: false,
+    },
+    {
+      name: 'caravan',
+      text: '露營車',
+      active: false,
+    },
+    {
+      name: 'caravan',
+      text: '露營車',
+      active: false,
+    },
+    {
+      name: 'caravan',
+      text: '無提供',
+      active: false,
+    },
+    {
+      name: 'caravan',
+      text: '有提供',
+      active: true,
+    },
+  ];
+
   function Tab_1() {
     const textColor = useColorModeValue('coolGray.800', 'coolGray.50');
     return (
@@ -568,6 +607,57 @@ export default function LocationDetailsScreen({ navigation }: NavigationProps): 
               <Text fontWeight="bold" color="coolGray.400">
                 營地類型
               </Text>
+              <HStack space={6} justifyContent="space-between" alignItems="center" pt={4}>
+                <FlatList
+                  nestedScrollEnabled
+                  numColumns={4}
+                  data={icons}
+                  showsVerticalScrollIndicator={false}
+                  renderItem={({ item, index }) => (
+                    <VStack key={'icon_' + index} overflow="visible" mx={2} mb={4}>
+                      <Center
+                        _light={{ bg: 'coolGray.50' }}
+                        _dark={{ bg: 'coolGray.700' }}
+                        rounded="full"
+                        w={{ base: 16, md: 14 }}
+                        h={{ base: 16, md: 14 }}>
+                        <IconButton
+                          variant="unstyled"
+                          icon={
+                            <Icon
+                              as={FontAwesome5}
+                              name={item.name}
+                              _light={{
+                                color: item.active ? 'coolGray.500' : 'coolGray.200',
+                              }}
+                              _dark={{ color: 'coolGray.50' }}
+                              size={6}
+                              textAlign="center"
+                              alignSelf="center"
+                            />
+                          }
+                        />
+                      </Center>
+                      <Text
+                        pt={2}
+                        fontSize={{ base: 'sm', md: 'sm' }}
+                        _light={{ color: item.active ? 'coolGray.800' : 'coolGray.300' }}
+                        _dark={{ color: { base: 'coolGray.50', md: 'coolGray.400' } }}
+                        textAlign="center">
+                        {item.text}
+                      </Text>
+                    </VStack>
+                  )}
+                  keyExtractor={(item, index) => 'home-post-key-' + index}
+                />
+              </HStack>
+            </VStack>
+          </HStack>
+          <HStack justifyContent="space-between">
+            <VStack w="100%">
+              <Text fontWeight="bold" color="coolGray.400">
+                以此類推其他分類
+              </Text>
             </VStack>
           </HStack>
         </VStack>
@@ -605,7 +695,7 @@ export default function LocationDetailsScreen({ navigation }: NavigationProps): 
     },
     {
       id: 3,
-      title: '動態',
+      title: '打卡',
       component: <Tab_3 />,
     },
   ];

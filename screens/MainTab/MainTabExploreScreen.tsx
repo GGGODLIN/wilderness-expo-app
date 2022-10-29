@@ -25,7 +25,7 @@ import MapView, {
   Region,
 } from 'react-native-maps';
 
-import { MAIN_STACK_EVENT_DETAILS } from '../../NavigationNames';
+import { LOCATION_DETAILS } from '../../NavigationNames';
 import { NavigationProps } from '../../Props';
 import Colors from '../../constants/Colors';
 import DashboardLayout from '../../layouts/DashboardLayout';
@@ -245,7 +245,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
       <IconButton
         variant="unstyled"
         colorScheme="light"
-        onPress={() => navigation.navigate(MAIN_STACK_EVENT_DETAILS)}
+        onPress={() => navigation.navigate(LOCATION_DETAILS)}
         icon={
           <Icon
             size="5"
@@ -492,10 +492,9 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
             }}>
             <HStack space={5} alignItems="flex-start" mx={10} mb={0}>
               {locationList.map((props, index) => (
-                <Pressable
-                  key={index}
-                  onPress={() => navigation.navigate(MAIN_STACK_EVENT_DETAILS)}>
+                <Pressable key={index} onPress={() => navigation.navigate(LOCATION_DETAILS)}>
                   <Box
+                    shadow={2}
                     borderRadius="2xl"
                     bgColor="white"
                     key={'pan_' + props.id}
@@ -545,7 +544,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
             colorScheme="light"
             shadow={2}
             size="sm"
-            onPress={() => navigation.navigate(MAIN_STACK_EVENT_DETAILS)}
+            onPress={() => navigation.navigate(LOCATION_DETAILS)}
             icon={<Icon color="white" as={AntDesign} name="plus" size="sm" />}
           />
         )}

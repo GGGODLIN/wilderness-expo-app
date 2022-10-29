@@ -15,7 +15,9 @@ import {
   MAIN_STACK_RESET_PASSWORD,
   MAIN_STACK_TABS,
   PROFILE_STACK_NOTIFICATIONS,
+  LOCATION_DETAILS,
 } from './NavigationNames';
+import LocationDetailsScreen from './screens/LocationDetailsScreen';
 import MainStackClubDetailsScreen from './screens/MainStack/MainStackClubDetailsScreen';
 import MainStackEventDetailsScreen from './screens/MainStack/MainStackEventDetailsScreen';
 import MainStackLoginScreen from './screens/MainStack/MainStackLoginScreen';
@@ -57,6 +59,7 @@ export default function App() {
             component={ProfileStackNotifications}
             name={PROFILE_STACK_NOTIFICATIONS}
           />
+          <MainStack.Screen component={LocationDetailsScreen} name={LOCATION_DETAILS} />
         </MainStack.Navigator>
       </NavigationContainer>
     </NativeBaseProvider>

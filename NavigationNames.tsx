@@ -7,6 +7,7 @@ export const MAIN_STACK_EVENT_DETAILS = 'MainStackEventDetailsScreen';
 export const MAIN_STACK_MESSAGES = 'MainStackMessagesScreen';
 export const MAIN_STACK_POST = 'MainStackPostScreen';
 export const MAIN_STACK_PROFILE = 'MainStackProfileScreen';
+export const LOCATION_DETAILS = 'LocationDetailsScreen';
 
 export const MAIN_STACK_TABS = 'MainStackTabsScreen';
 

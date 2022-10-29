@@ -3,6 +3,7 @@ import {
   HStack,
   Icon,
   Text,
+  Stack,
   VStack,
   Button,
   ScrollView,
@@ -367,85 +368,101 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
       displayAlternateMobileHeader
       customTitle={<CustomTitle />}
       rightPanelMobileHeader>
-      <ScrollView>
-        <CarouselLayout />
-        <Box pt={4}>
-          <HStack space={6} justifyContent="center">
-            {icons.map((item, idx) => {
-              return (
-                <VStack key={'icon_' + idx} overflow="visible">
-                  <Center
-                    _light={{ bg: Colors.LOGO_COLOR_WHITE_BACKGROUND }}
-                    _dark={{ bg: 'coolGray.700' }}
-                    rounded="full"
-                    w={{ base: 16, md: 14 }}
-                    h={{ base: 16, md: 14 }}>
-                    <IconButton
-                      variant="unstyled"
-                      icon={
-                        <Icon
-                          as={FontAwesome5}
-                          name={item.name}
-                          _light={{ color: Colors.LOGO_COLOR_GREEN }}
-                          _dark={{ color: 'coolGray.50' }}
-                          size={6}
-                          textAlign="center"
-                          alignSelf="center"
+      <Stack
+        flex={1}
+        _light={{ bg: Colors.LOGO_COLOR_WHITE_BACKGROUND }}
+        _dark={{ bg: 'coolGray.800' }}>
+        <Box
+          pt={5}
+          px={{ md: 8, xl: 35 }}
+          py={{ md: 8 }}
+          flex={1}
+          _light={{ bg: 'white' }}
+          _dark={{ bg: 'coolGray.800' }}
+          bg="white"
+          borderTopLeftRadius="2xl"
+          borderTopRightRadius="2xl">
+          <ScrollView>
+            <Box pt={0}>
+              <HStack space={6} justifyContent="center">
+                {icons.map((item, idx) => {
+                  return (
+                    <VStack key={'icon_' + idx} overflow="visible">
+                      <Center
+                        _light={{ bg: Colors.LOGO_COLOR_WHITE_BACKGROUND }}
+                        _dark={{ bg: 'coolGray.700' }}
+                        rounded="full"
+                        w={{ base: 16, md: 14 }}
+                        h={{ base: 16, md: 14 }}>
+                        <IconButton
+                          variant="unstyled"
+                          icon={
+                            <Icon
+                              as={FontAwesome5}
+                              name={item.name}
+                              _light={{ color: Colors.LOGO_COLOR_GREEN }}
+                              _dark={{ color: 'coolGray.50' }}
+                              size={6}
+                              textAlign="center"
+                              alignSelf="center"
+                            />
+                          }
                         />
-                      }
-                    />
-                  </Center>
-                  <Text
-                    pt={2}
-                    fontSize={{ base: 'sm', md: 'sm' }}
-                    _light={{ color: { base: 'coolGray.800', md: 'coolGray.500' } }}
-                    _dark={{ color: { base: 'coolGray.50', md: 'coolGray.400' } }}
-                    textAlign="center">
-                    {item.text}
-                  </Text>
-                </VStack>
-              );
-            })}
-          </HStack>
-          <HStack space={6} justifyContent="center" pt={3} pb={4}>
-            {icons2.map((item, idx) => {
-              return (
-                <VStack key={'icon2_' + idx}>
-                  <Center
-                    _light={{ bg: Colors.LOGO_COLOR_WHITE_BACKGROUND }}
-                    _dark={{ bg: 'coolGray.700' }}
-                    rounded="full"
-                    w={{ base: 16, md: 14 }}
-                    h={{ base: 16, md: 14 }}>
-                    <IconButton
-                      variant="unstyled"
-                      icon={
-                        <Icon
-                          as={FontAwesome5}
-                          name={item.name}
-                          _light={{ color: Colors.LOGO_COLOR_GREEN }}
-                          _dark={{ color: 'coolGray.50' }}
-                          size={6}
-                          textAlign="center"
+                      </Center>
+                      <Text
+                        pt={2}
+                        fontSize={{ base: 'sm', md: 'sm' }}
+                        _light={{ color: { base: 'coolGray.800', md: 'coolGray.500' } }}
+                        _dark={{ color: { base: 'coolGray.50', md: 'coolGray.400' } }}
+                        textAlign="center">
+                        {item.text}
+                      </Text>
+                    </VStack>
+                  );
+                })}
+              </HStack>
+              <HStack space={6} justifyContent="center" pt={3} pb={4}>
+                {icons2.map((item, idx) => {
+                  return (
+                    <VStack key={'icon2_' + idx}>
+                      <Center
+                        _light={{ bg: Colors.LOGO_COLOR_WHITE_BACKGROUND }}
+                        _dark={{ bg: 'coolGray.700' }}
+                        rounded="full"
+                        w={{ base: 16, md: 14 }}
+                        h={{ base: 16, md: 14 }}>
+                        <IconButton
+                          variant="unstyled"
+                          icon={
+                            <Icon
+                              as={FontAwesome5}
+                              name={item.name}
+                              _light={{ color: Colors.LOGO_COLOR_GREEN }}
+                              _dark={{ color: 'coolGray.50' }}
+                              size={6}
+                              textAlign="center"
+                            />
+                          }
                         />
-                      }
-                    />
-                  </Center>
-                  <Text
-                    pt={2}
-                    fontSize={{ base: 'sm', md: 'sm' }}
-                    _light={{ color: { base: 'coolGray.800', md: 'coolGray.500' } }}
-                    _dark={{ color: { base: 'coolGray.50', md: 'coolGray.400' } }}
-                    textAlign="center">
-                    {item.text}
-                  </Text>
-                </VStack>
-              );
-            })}
-          </HStack>
+                      </Center>
+                      <Text
+                        pt={2}
+                        fontSize={{ base: 'sm', md: 'sm' }}
+                        _light={{ color: { base: 'coolGray.800', md: 'coolGray.500' } }}
+                        _dark={{ color: { base: 'coolGray.50', md: 'coolGray.400' } }}
+                        textAlign="center">
+                        {item.text}
+                      </Text>
+                    </VStack>
+                  );
+                })}
+              </HStack>
+            </Box>
+            <CarouselLayout />
+            <MainPostList />
+          </ScrollView>
         </Box>
-        <MainPostList />
-      </ScrollView>
+      </Stack>
     </DashboardLayout>
   );
 }

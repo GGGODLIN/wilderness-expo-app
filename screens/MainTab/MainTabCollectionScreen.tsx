@@ -10,6 +10,7 @@ import {
   Center,
   Container,
   Heading,
+  Stack,
   VStack,
   Select,
   Fab,
@@ -230,42 +231,50 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
     return (
       <Pressable onPress={() => handleTabChange(tabName)}>
         <Text
-          fontSize="sm"
+          paddingX={5}
+          paddingY={1}
+          fontSize="lg"
           fontWeight="medium"
           letterSpacing="0.4"
           _light={{
-            color: tabName === currentTab ? Colors.LOGO_COLOR_BROWN : 'coolGray.500',
+            color: tabName === currentTab ? 'coolGray.700' : 'coolGray.400',
           }}
           _dark={{
             color: tabName === currentTab ? 'primary.500' : 'coolGray.400',
-          }}
-          px={4}
-          py={2}>
+          }}>
           {tabName}
         </Text>
-        {tabName === currentTab && (
+        {tabName === currentTab ? (
           <Box
-            borderTopLeftRadius="sm"
-            borderTopRightRadius="sm"
             _light={{
-              bg: Colors.LOGO_COLOR_BROWN,
+              bg: Colors.LOGO_COLOR_GREEN,
             }}
             _dark={{
-              bg: 'primary.500',
+              bg: 'amber.900',
             }}
-            h="1"
+            h="0.5"
+          />
+        ) : (
+          <Box
+            _light={{
+              bg: Colors.LOGO_COLOR_WHITE_BACKGROUND,
+            }}
+            _dark={{
+              bg: 'white',
+            }}
+            h="0.5"
           />
         )}
       </Pressable>
     );
   }
   function Tabs() {
-    const [tabName, setTabName] = React.useState('Review');
-    const [tabChildren, setTabChildren] = useState<React.ReactNode>(<Tab_1 />);
+    const [tabName, setTabName] = React.useState(tabs[0].title);
+    const [tabChildren, setTabChildren] = useState<React.ReactNode>(tabs[0].component);
     return (
       <>
-        <Center>
-          <HStack space="5" borderRadius="sm">
+        <Center backgroundColor="white">
+          <HStack my={0}>
             {tabs.map(({ id, title, component }) => (
               <TabItem
                 key={id}
@@ -329,15 +338,25 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
 
   return (
     <DashboardLayout title="私藏">
-      <Box
-        px={{ md: 8, xl: 35 }}
-        py={{ md: 8 }}
+      <Stack
         flex={1}
-        _light={{ bg: 'white' }}
+        _light={{ bg: Colors.LOGO_COLOR_WHITE_BACKGROUND }}
         _dark={{ bg: 'coolGray.800' }}>
-        <VStack space="5">{/*<Tabs />*/}</VStack>
-        {/*{Platform.OS === 'web' ? <WebMap /> : <NativeMap />}*/}
-      </Box>
+        <Box
+          pt={5}
+          px={{ md: 8, xl: 35 }}
+          py={{ md: 8 }}
+          flex={1}
+          _light={{ bg: 'white' }}
+          _dark={{ bg: 'coolGray.800' }}
+          bg="white"
+          borderTopLeftRadius="2xl"
+          borderTopRightRadius="2xl">
+          <VStack space="5">
+            <Tabs />
+          </VStack>
+        </Box>
+      </Stack>
     </DashboardLayout>
   );
 }

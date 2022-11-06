@@ -472,7 +472,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
               }}>
               <Icon as={MaterialIcons} color={Colors.LOGO_COLOR_BROWN} name="place" size={10} />
               <Text shadow="2" color={Colors.LOGO_COLOR_BROWN}>
-                {location.altitude} m
+                {location.altitude} 公尺
               </Text>
             </Marker>
           ))}
@@ -524,7 +524,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
                       <Text
                         mt="2"
                         fontSize="xs"
-                        fontWeight="medium"
+                        fontWeight="normal"
                         _light={{ color: 'coolGray.500' }}
                         _dark={{ color: 'coolGray.400' }}>
                         {props.tags}
@@ -536,6 +536,9 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
                         _light={{ color: 'coolGray.900' }}
                         _dark={{ color: 'coolGray.400' }}>
                         {props.title}
+                      </Text>
+                      <Text shadow="2" color={Colors.LOGO_COLOR_BROWN}>
+                        {props.altitude} 公尺
                       </Text>
                     </VStack>
                   </Box>

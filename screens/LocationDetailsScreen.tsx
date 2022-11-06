@@ -296,6 +296,30 @@ const ActionButton = () => {
         _dark={{
           bg: 'coolGray.700',
         }}>
+        打卡
+      </Button>
+      <Button
+        flex={1}
+        size="lg"
+        variant="solid"
+        _light={{
+          bg: Colors.LOGO_COLOR_BROWN,
+        }}
+        _dark={{
+          bg: 'coolGray.700',
+        }}>
+        分享
+      </Button>
+      <Button
+        flex={1}
+        size="lg"
+        variant="solid"
+        _light={{
+          bg: Colors.LOGO_COLOR_BROWN,
+        }}
+        _dark={{
+          bg: 'coolGray.700',
+        }}>
         導航
       </Button>
     </HStack>
@@ -565,6 +589,12 @@ export default function LocationDetailsScreen({ navigation }: NavigationProps): 
             </VStack>
           </HStack>
           <HStack justifyContent="space-between">
+            <VStack w="50%">
+              <Text fontWeight="bold" color="coolGray.400">
+                海拔
+              </Text>
+              <Text color="coolGray.700">700 公尺</Text>
+            </VStack>
             <VStack w="50%">
               <Text fontWeight="bold" color="coolGray.400">
                 交通資訊

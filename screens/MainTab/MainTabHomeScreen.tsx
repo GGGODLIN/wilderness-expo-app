@@ -159,7 +159,7 @@ const icons2: Icon[] = [
   },
 ];
 
-type ProductProps = {
+type PostProps = {
   imageRes: string;
   imageUri: ImageSourcePropType;
   title: string;
@@ -167,7 +167,7 @@ type ProductProps = {
   number: string;
 };
 
-const itemList: ProductProps[] = [
+const itemList: PostProps[] = [
   {
     imageRes: 'https://picsum.photos/200',
     imageUri: require('../../assets/images/views/view_9.jpg'),
@@ -283,7 +283,7 @@ const itemList: ProductProps[] = [
 ];
 
 export default function HomeScreen({ route, navigation }: NavigationProps): JSX.Element {
-  function PostCard(props: { item: ProductProps }) {
+  function PostCard(props: { item: PostProps }) {
     const { width: windowWidth } = useWindowDimensions();
     return (
       <Box

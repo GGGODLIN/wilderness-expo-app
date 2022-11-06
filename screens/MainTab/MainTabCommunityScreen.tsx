@@ -1,4 +1,5 @@
 import { MaterialCommunityIcons, MaterialIcons, FontAwesome, AntDesign } from '@expo/vector-icons';
+import MasonryList from '@react-native-seoul/masonry-list';
 import {
   Button,
   HStack,
@@ -36,87 +37,127 @@ import Colors from '../../constants/Colors';
 import DashboardLayout from '../../layouts/DashboardLayout';
 
 type PostProps = {
+  imageRes: string;
   imageUri: ImageSourcePropType;
   title: string;
   description: string;
   number: string;
 };
 
-const postList: PostProps[] = [
+const itemList: PostProps[] = [
   {
+    imageRes: 'https://picsum.photos/200',
     imageUri: require('../../assets/images/views/view_9.jpg'),
     title: 'HERE&NOW',
-    description: '秘境分享',
+    description: '秘境分享\n第二行\n第三行',
     number: '200',
   },
   {
+    imageRes: 'https://picsum.photos/200',
     imageUri: require('../../assets/images/views/view_3.jpg'),
     title: 'Marks & Spencer',
     description: '達成第 20 露啦',
     number: '639',
   },
   {
+    imageRes: 'https://picsum.photos/200',
     imageUri: require('../../assets/images/views/view_7.jpg'),
     title: 'CENWELL',
-    description: '動態內容',
+    description: '動態內容動態內容動態內容動態內容動態內容動態內容',
     number: '399',
   },
   {
+    imageRes: 'https://picsum.photos/200',
     imageUri: require('../../assets/images/views/view_4.jpg'),
     title: 'U.S. Polo Assn. Kids',
     description: '動態內容',
     number: '849',
   },
   {
+    imageRes: 'https://picsum.photos/200',
     imageUri: require('../../assets/images/views/view_2.jpg'),
     title: 'Cherry Crumble',
     description: '動態內容',
     number: '899',
   },
   {
+    imageRes: 'https://picsum.photos/200',
     imageUri: require('../../assets/images/views/view_1.jpg'),
     title: 'BonOrganik',
     description: '動態內容',
     number: '259',
   },
   {
+    imageRes: 'https://picsum.photos/200',
     imageUri: require('../../assets/images/views/view_9.jpg'),
     title: 'HERE&NOW',
     description: '秘境分享',
     number: '200',
   },
   {
+    imageRes: 'https://picsum.photos/200',
     imageUri: require('../../assets/images/views/view_3.jpg'),
     title: 'Marks & Spencer',
     description: '達成第 20 露啦',
     number: '639',
   },
   {
+    imageRes: 'https://picsum.photos/200',
     imageUri: require('../../assets/images/views/view_7.jpg'),
     title: 'CENWELL',
     description: '動態內容',
     number: '399',
   },
   {
+    imageRes: 'https://picsum.photos/200',
     imageUri: require('../../assets/images/views/view_4.jpg'),
     title: 'U.S. Polo Assn. Kids',
     description: '動態內容',
     number: '849',
   },
   {
+    imageRes: 'https://picsum.photos/200',
     imageUri: require('../../assets/images/views/view_2.jpg'),
     title: 'Cherry Crumble',
     description: '動態內容',
     number: '899',
   },
   {
+    imageRes: 'https://picsum.photos/200',
+    imageUri: require('../../assets/images/views/view_1.jpg'),
+    title: 'BonOrganik',
+    description: '動態內容',
+    number: '259',
+  },
+  {
+    imageRes: 'https://picsum.photos/200',
+    imageUri: require('../../assets/images/views/view_7.jpg'),
+    title: 'CENWELL',
+    description: '動態內容',
+    number: '399',
+  },
+  {
+    imageRes: 'https://picsum.photos/200',
+    imageUri: require('../../assets/images/views/view_4.jpg'),
+    title: 'U.S. Polo Assn. Kids',
+    description: '動態內容',
+    number: '849',
+  },
+  {
+    imageRes: 'https://picsum.photos/200',
+    imageUri: require('../../assets/images/views/view_2.jpg'),
+    title: 'Cherry Crumble',
+    description: '動態內容',
+    number: '899',
+  },
+  {
+    imageRes: 'https://picsum.photos/200',
     imageUri: require('../../assets/images/views/view_1.jpg'),
     title: 'BonOrganik',
     description: '動態內容',
     number: '259',
   },
 ];
-
 export default function MainTabCommunityScreen({ navigation }: NavigationProps): JSX.Element {
   const [textInput, setTextInput] = useState('');
   const [selectedAddress, setSelectedAddress] = useState('Home');
@@ -179,28 +220,28 @@ export default function MainTabCommunityScreen({ navigation }: NavigationProps):
   };
   const trending: CarousalTye[] = [
     {
-      imageUri: require('../../assets/images/views/view_9.jpg'),
+      imageUri: { uri: 'https://picsum.photos/200' },
       name: 'Story Seeds',
     },
     {
-      imageUri: require('../../assets/images/views/view_9.jpg'),
+      imageUri: { uri: 'https://picsum.photos/200' },
       name: 'Dare to lead',
     },
     {
-      imageUri: require('../../assets/images/views/view_9.jpg'),
+      imageUri: { uri: 'https://picsum.photos/200' },
       name: 'Artificial Intelligence',
     },
     {
-      imageUri: require('../../assets/images/views/view_9.jpg'),
+      imageUri: { uri: 'https://picsum.photos/200' },
       name: 'Angular',
     },
     {
-      imageUri: require('../../assets/images/views/view_9.jpg'),
+      imageUri: { uri: 'https://picsum.photos/200' },
       name: 'AR/VR',
     },
   ];
 
-  function PostCard(props: PostProps) {
+  function PostCard(props: { item: PostProps }) {
     const { width: windowWidth } = useWindowDimensions();
     return (
       <Box
@@ -219,7 +260,7 @@ export default function MainTabCommunityScreen({ navigation }: NavigationProps):
             <Image
               w="100%"
               h="170"
-              source={props.imageUri}
+              source={{ uri: props.item.imageRes }}
               alt="Alternate Text"
               resizeMode="cover"
             />
@@ -229,7 +270,7 @@ export default function MainTabCommunityScreen({ navigation }: NavigationProps):
             fontSize="xs"
             _light={{ color: 'coolGray.500' }}
             _dark={{ color: 'coolGray.400' }}>
-            {props.description}
+            {props.item.description}
           </Text>
           <HStack mt="1" w="100%" justifyContent="flex-start" alignItems="center">
             <Avatar
@@ -247,7 +288,7 @@ export default function MainTabCommunityScreen({ navigation }: NavigationProps):
                 mx={2}
                 _dark={{ color: 'coolGray.50' }}
                 _light={{ color: 'coolGray.700' }}>
-                作者名稱
+                {props.item.title}
               </Text>
             </HStack>
             <IconButton
@@ -286,14 +327,12 @@ export default function MainTabCommunityScreen({ navigation }: NavigationProps):
         _light={{ bg: 'white' }}
         _dark={{ bg: 'coolGray.800' }}
         alignItems="center">
-        <FlatList
-          nestedScrollEnabled
-          numColumns={noColumn}
-          data={postList}
+        <MasonryList
           showsVerticalScrollIndicator={false}
-          renderItem={({ item, index }) => <PostCard key={index} {...item} />}
-          key={noColumn}
-          keyExtractor={(item, index) => 'home-post-key-' + index}
+          numColumns={2}
+          data={itemList}
+          renderItem={({ item }) => <PostCard item={item} />}
+          keyExtractor={(item, index) => 'key' + index}
         />
       </Box>
     );
@@ -455,6 +494,7 @@ export default function MainTabCommunityScreen({ navigation }: NavigationProps):
         flex={1}
         _light={{ bg: Colors.LOGO_COLOR_WHITE_BACKGROUND }}
         _dark={{ bg: 'coolGray.800' }}>
+        <Carousal itemList={trending} heading="推薦" />
         <Box
           pt={5}
           px={{ md: 8, xl: 35 }}
@@ -465,7 +505,6 @@ export default function MainTabCommunityScreen({ navigation }: NavigationProps):
           bg="white"
           borderTopLeftRadius="2xl"
           borderTopRightRadius="2xl">
-          <Carousal itemList={trending} heading="推薦" />
           <VStack space="5">
             <Tabs />
           </VStack>

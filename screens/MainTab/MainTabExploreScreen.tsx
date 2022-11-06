@@ -186,7 +186,7 @@ const DEFAULT_MAPVIEW_REGION = {
 };
 
 export default function MainTabExploreScreen({ navigation }: NavigationProps): JSX.Element {
-  const [showLocationCard, setShowLocationCard] = useState(false);
+  const [showLocationCard, setShowLocationCard] = useState(true);
   const [showFilter, setShowFilter] = useState(false);
   const [textInput, setTextInput] = useState('');
   const [selectedAddress, setSelectedAddress] = useState('Home');

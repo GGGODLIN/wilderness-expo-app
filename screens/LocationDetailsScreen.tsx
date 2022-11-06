@@ -871,8 +871,8 @@ export default function LocationDetailsScreen({ navigation }: NavigationProps): 
             _light={{ bg: 'white' }}
             _dark={{ bg: 'coolGray.800' }}
             bg="white"
-            borderTopLeftRadius="2xl"
-            borderTopRightRadius="2xl">
+            borderTopLeftRadius="30"
+            borderTopRightRadius="30">
             <VStack space="5">
               <Tabs />
             </VStack>

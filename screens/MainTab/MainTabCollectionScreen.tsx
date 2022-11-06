@@ -314,8 +314,8 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
                 height={200}
                 w={300}>
                 <Image
-                  borderTopLeftRadius="2xl"
-                  borderTopRightRadius="2xl"
+                  borderTopLeftRadius="30"
+                  borderTopRightRadius="30"
                   source={{ uri: props.image }}
                   alt="image"
                   width="100%"
@@ -511,8 +511,8 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
           _light={{ bg: 'white' }}
           _dark={{ bg: 'coolGray.800' }}
           bg="white"
-          borderTopLeftRadius="2xl"
-          borderTopRightRadius="2xl">
+          borderTopLeftRadius="30"
+          borderTopRightRadius="30">
           <VStack space="5">
             <Tabs />
           </VStack>

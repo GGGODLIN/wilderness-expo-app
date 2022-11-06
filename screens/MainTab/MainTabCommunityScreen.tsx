@@ -510,6 +510,7 @@ export default function MainTabCommunityScreen({ navigation }: NavigationProps):
           </VStack>
         </Box>
         <Fab
+          zIndex={99}
           renderInPortal={false}
           bg={Colors.LOGO_COLOR_BROWN}
           colorScheme="light"

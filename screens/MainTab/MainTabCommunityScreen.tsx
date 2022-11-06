@@ -256,15 +256,13 @@ export default function MainTabCommunityScreen({ navigation }: NavigationProps):
         borderRadius="sm"
         m={{ base: '1.5', md: '2.5' }}>
         <Pressable onPress={() => navigation.navigate(MAIN_STACK_POST)}>
-          <Link href="" borderRadius="sm" overflow="hidden">
-            <Image
-              w="100%"
-              h="170"
-              source={{ uri: props.item.imageRes }}
-              alt="Alternate Text"
-              resizeMode="cover"
-            />
-          </Link>
+          <Image
+            w="100%"
+            h="170"
+            source={{ uri: props.item.imageRes }}
+            alt="Alternate Text"
+            resizeMode="cover"
+          />
           <Text
             mt="2"
             fontSize="xs"

@@ -1,4 +1,5 @@
 import { AntDesign, MaterialIcons, FontAwesome5, Ionicons } from '@expo/vector-icons';
+import MasonryList from '@react-native-seoul/masonry-list';
 import {
   HStack,
   Icon,
@@ -159,6 +160,7 @@ const icons2: Icon[] = [
 ];
 
 type ProductProps = {
+  imageRes: string;
   imageUri: ImageSourcePropType;
   title: string;
   description: string;
@@ -167,72 +169,112 @@ type ProductProps = {
 
 const itemList: ProductProps[] = [
   {
+    imageRes: 'https://picsum.photos/200',
     imageUri: require('../../assets/images/views/view_9.jpg'),
     title: 'HERE&NOW',
-    description: '秘境分享',
+    description: '秘境分享\n第二行\n第三行',
     number: '200',
   },
   {
+    imageRes: 'https://picsum.photos/200',
     imageUri: require('../../assets/images/views/view_3.jpg'),
     title: 'Marks & Spencer',
     description: '達成第 20 露啦',
     number: '639',
   },
   {
+    imageRes: 'https://picsum.photos/200',
     imageUri: require('../../assets/images/views/view_7.jpg'),
     title: 'CENWELL',
-    description: '動態內容',
+    description: '動態內容動態內容動態內容動態內容動態內容動態內容',
     number: '399',
   },
   {
+    imageRes: 'https://picsum.photos/200',
     imageUri: require('../../assets/images/views/view_4.jpg'),
     title: 'U.S. Polo Assn. Kids',
     description: '動態內容',
     number: '849',
   },
   {
+    imageRes: 'https://picsum.photos/200',
     imageUri: require('../../assets/images/views/view_2.jpg'),
     title: 'Cherry Crumble',
     description: '動態內容',
     number: '899',
   },
   {
+    imageRes: 'https://picsum.photos/200',
     imageUri: require('../../assets/images/views/view_1.jpg'),
     title: 'BonOrganik',
     description: '動態內容',
     number: '259',
   },
   {
+    imageRes: 'https://picsum.photos/200',
     imageUri: require('../../assets/images/views/view_9.jpg'),
     title: 'HERE&NOW',
     description: '秘境分享',
     number: '200',
   },
   {
+    imageRes: 'https://picsum.photos/200',
     imageUri: require('../../assets/images/views/view_3.jpg'),
     title: 'Marks & Spencer',
     description: '達成第 20 露啦',
     number: '639',
   },
   {
+    imageRes: 'https://picsum.photos/200',
     imageUri: require('../../assets/images/views/view_7.jpg'),
     title: 'CENWELL',
     description: '動態內容',
     number: '399',
   },
   {
+    imageRes: 'https://picsum.photos/200',
     imageUri: require('../../assets/images/views/view_4.jpg'),
     title: 'U.S. Polo Assn. Kids',
     description: '動態內容',
     number: '849',
   },
   {
+    imageRes: 'https://picsum.photos/200',
     imageUri: require('../../assets/images/views/view_2.jpg'),
     title: 'Cherry Crumble',
     description: '動態內容',
     number: '899',
   },
   {
+    imageRes: 'https://picsum.photos/200',
+    imageUri: require('../../assets/images/views/view_1.jpg'),
+    title: 'BonOrganik',
+    description: '動態內容',
+    number: '259',
+  },
+  {
+    imageRes: 'https://picsum.photos/200',
+    imageUri: require('../../assets/images/views/view_7.jpg'),
+    title: 'CENWELL',
+    description: '動態內容',
+    number: '399',
+  },
+  {
+    imageRes: 'https://picsum.photos/200',
+    imageUri: require('../../assets/images/views/view_4.jpg'),
+    title: 'U.S. Polo Assn. Kids',
+    description: '動態內容',
+    number: '849',
+  },
+  {
+    imageRes: 'https://picsum.photos/200',
+    imageUri: require('../../assets/images/views/view_2.jpg'),
+    title: 'Cherry Crumble',
+    description: '動態內容',
+    number: '899',
+  },
+  {
+    imageRes: 'https://picsum.photos/200',
     imageUri: require('../../assets/images/views/view_1.jpg'),
     title: 'BonOrganik',
     description: '動態內容',
@@ -241,7 +283,7 @@ const itemList: ProductProps[] = [
 ];
 
 export default function HomeScreen({ route, navigation }: NavigationProps): JSX.Element {
-  function PostCard(props: ProductProps) {
+  function PostCard(props: { item: ProductProps }) {
     const { width: windowWidth } = useWindowDimensions();
     return (
       <Box
@@ -260,7 +302,7 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
             <Image
               w="100%"
               h="170"
-              source={props.imageUri}
+              source={{ uri: props.item.imageRes }}
               alt="Alternate Text"
               resizeMode="cover"
             />
@@ -270,7 +312,7 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
             fontSize="xs"
             _light={{ color: 'coolGray.500' }}
             _dark={{ color: 'coolGray.400' }}>
-            {props.description}
+            {props.item.description}
           </Text>
           <HStack mt="1" w="100%" justifyContent="flex-start" alignItems="center">
             <Avatar
@@ -288,7 +330,7 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
                 mx={2}
                 _dark={{ color: 'coolGray.50' }}
                 _light={{ color: 'coolGray.700' }}>
-                作者名稱
+                {props.item.title}
               </Text>
             </HStack>
             <IconButton
@@ -318,6 +360,11 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
     xl: 5,
   });
   function MainPostList() {
+    type Offer = {
+      imageRes: string;
+      discount: string;
+      type: string;
+    };
     const noColumn = useBreakpointValue({
       base: 2,
       sm: 3,
@@ -334,14 +381,12 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
         _light={{ bg: 'white' }}
         _dark={{ bg: 'coolGray.800' }}
         alignItems="center">
-        <FlatList
-          nestedScrollEnabled
-          numColumns={noColumn}
-          data={itemList}
+        <MasonryList
           showsVerticalScrollIndicator={false}
-          renderItem={({ item, index }) => <PostCard key={index} {...item} />}
-          key={noColumn}
-          keyExtractor={(item, index) => 'home-post-key-' + index}
+          numColumns={2}
+          data={itemList}
+          renderItem={({ item }) => <PostCard item={item} />}
+          keyExtractor={(item: Offer, index: number) => 'key' + index}
         />
       </Box>
     );

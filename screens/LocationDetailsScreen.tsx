@@ -608,48 +608,83 @@ export default function LocationDetailsScreen({ navigation }: NavigationProps): 
                 營地類型
               </Text>
               <HStack space={6} justifyContent="space-between" alignItems="center" pt={4}>
-                <FlatList
-                  nestedScrollEnabled
-                  numColumns={4}
-                  data={icons}
-                  showsVerticalScrollIndicator={false}
-                  renderItem={({ item, index }) => (
-                    <VStack key={'icon_' + index} overflow="visible" mx={2} mb={4}>
-                      <Center
-                        _light={{ bg: 'coolGray.50' }}
-                        _dark={{ bg: 'coolGray.700' }}
-                        rounded="full"
-                        w={{ base: 16, md: 14 }}
-                        h={{ base: 16, md: 14 }}>
-                        <IconButton
-                          variant="unstyled"
-                          icon={
-                            <Icon
-                              as={FontAwesome5}
-                              name={item.name}
-                              _light={{
-                                color: item.active ? 'coolGray.500' : 'coolGray.200',
-                              }}
-                              _dark={{ color: 'coolGray.50' }}
-                              size={6}
-                              textAlign="center"
-                              alignSelf="center"
-                            />
-                          }
-                        />
-                      </Center>
+                <Stack flexWrap="wrap" direction="row" space="2">
+                  {icons.map((item, index) => (
+                    <HStack
+                      key={'icon_' + index}
+                      overflow="visible"
+                      mx={0}
+                      mb={2}
+                      alignItems="center"
+                      justifyContent="center">
+                      <IconButton
+                        variant="unstyled"
+                        icon={
+                          <Icon
+                            as={FontAwesome5}
+                            name={item.name}
+                            _light={{
+                              color: item.active ? 'coolGray.500' : 'coolGray.200',
+                            }}
+                            _dark={{ color: 'coolGray.50' }}
+                            size={4}
+                            textAlign="center"
+                            alignSelf="center"
+                          />
+                        }
+                      />
                       <Text
-                        pt={2}
                         fontSize={{ base: 'sm', md: 'sm' }}
                         _light={{ color: item.active ? 'coolGray.800' : 'coolGray.300' }}
                         _dark={{ color: { base: 'coolGray.50', md: 'coolGray.400' } }}
                         textAlign="center">
                         {item.text}
                       </Text>
-                    </VStack>
+                    </HStack>
+                  ))}
+                </Stack>
+                {/*
+                <FlatList
+                  nestedScrollEnabled
+                  numColumns={4}
+                  data={icons}
+                  showsVerticalScrollIndicator={false}
+                  renderItem={({ item, index }) => (
+                    <HStack
+                      key={'icon_' + index}
+                      overflow="visible"
+                      mx={2}
+                      mb={4}
+                      alignItems="center"
+                      justifyContent="center">
+                      <IconButton
+                        variant="unstyled"
+                        icon={
+                          <Icon
+                            as={FontAwesome5}
+                            name={item.name}
+                            _light={{
+                              color: item.active ? 'coolGray.500' : 'coolGray.200',
+                            }}
+                            _dark={{ color: 'coolGray.50' }}
+                            size={4}
+                            textAlign="center"
+                            alignSelf="center"
+                          />
+                        }
+                      />
+                      <Text
+                        fontSize={{ base: 'sm', md: 'sm' }}
+                        _light={{ color: item.active ? 'coolGray.800' : 'coolGray.300' }}
+                        _dark={{ color: { base: 'coolGray.50', md: 'coolGray.400' } }}
+                        textAlign="center">
+                        {item.text}
+                      </Text>
+                    </HStack>
                   )}
                   keyExtractor={(item, index) => 'home-post-key-' + index}
                 />
+                      */}
               </HStack>
             </VStack>
           </HStack>

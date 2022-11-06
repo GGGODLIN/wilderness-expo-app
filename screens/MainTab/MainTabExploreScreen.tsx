@@ -55,6 +55,7 @@ const locationList = [
     like: 639,
     liked: true,
     tags: '關鍵字、關鍵字、待加樣式',
+    altitude: 123,
   },
   {
     id: 2,
@@ -79,6 +80,7 @@ const locationList = [
     like: 639,
     liked: true,
     tags: '關鍵字、關鍵字、待加樣式',
+    altitude: 567,
   },
   {
     id: 3,
@@ -103,6 +105,7 @@ const locationList = [
     like: 639,
     liked: true,
     tags: '關鍵字、關鍵字、待加樣式',
+    altitude: 999,
   },
   {
     id: 4,
@@ -127,6 +130,7 @@ const locationList = [
     like: 639,
     liked: true,
     tags: '關鍵字、關鍵字、待加樣式',
+    altitude: 1234,
   },
   {
     id: 5,
@@ -151,6 +155,7 @@ const locationList = [
     like: 639,
     liked: true,
     tags: '關鍵字、關鍵字、待加樣式',
+    altitude: 5432,
   },
   {
     id: 6,
@@ -175,6 +180,7 @@ const locationList = [
     like: 639,
     liked: true,
     tags: '關鍵字、關鍵字、待加樣式',
+    altitude: 1243,
   },
 ];
 
@@ -464,7 +470,10 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
                 setShowLocationCard(true);
                 panRef!.current!.scrollTo({ x: index * (screenWidth - 60), y: 0, animated: true });
               }}>
-              <Icon as={MaterialIcons} color="primary.900" name="place" size={10} />
+              <Icon as={MaterialIcons} color={Colors.LOGO_COLOR_BROWN} name="place" size={10} />
+              <Text shadow="2" color={Colors.LOGO_COLOR_BROWN}>
+                {location.altitude} m
+              </Text>
             </Marker>
           ))}
         </MapView>
@@ -536,20 +545,18 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
           </ScrollView>
         </Box>
         {/* ========= Pan Part - End ========= */}
-        {showLocationCard || (
-          <Fab
-            position="absolute"
-            bottom={-20}
-            height={12}
-            renderInPortal={false}
-            bg="amber.900"
-            colorScheme="light"
-            shadow={2}
-            size="sm"
-            onPress={() => navigation.navigate(MAIN_STACK_CREATE_LOCATION)}
-            icon={<Icon color="white" as={AntDesign} name="plus" size="sm" />}
-          />
-        )}
+        <Fab
+          position="absolute"
+          bottom={-20}
+          height={12}
+          renderInPortal={false}
+          bg={Colors.LOGO_COLOR_BROWN}
+          colorScheme="light"
+          shadow={2}
+          size="sm"
+          onPress={() => navigation.navigate(MAIN_STACK_CREATE_LOCATION)}
+          icon={<Icon color="white" as={AntDesign} name="plus" size="sm" />}
+        />
       </Box>
     </DashboardLayout>
   );

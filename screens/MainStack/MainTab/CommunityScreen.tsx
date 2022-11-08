@@ -28,13 +28,13 @@ import {
 import React, { useState } from 'react';
 import { ImageSourcePropType, Platform, useWindowDimensions } from 'react-native';
 
-import { MAIN_STACK_CREATE_POST, MAIN_STACK_POST } from '../../NavigationNames';
-import { NavigationProps } from '../../Props';
-import { Carousel } from '../../components/Carousel';
-import LocationList from '../../components/explore/LocationList';
-import PostsList from '../../components/home/PostsList';
-import Colors from '../../constants/Colors';
-import DashboardLayout from '../../layouts/DashboardLayout';
+import { MAIN_STACK_CREATE_POST, MAIN_STACK_POST } from '../../../NavigationNames';
+import { NavigationProps } from '../../../Props';
+import { Carousel } from '../../../components/Carousel';
+import LocationList from '../../../components/explore/LocationList';
+import PostsList from '../../../components/home/PostsList';
+import Colors from '../../../constants/Colors';
+import DashboardLayout from '../../../layouts/DashboardLayout';
 
 type PostProps = {
   imageRes: string;
@@ -47,112 +47,112 @@ type PostProps = {
 const itemList: PostProps[] = [
   {
     imageRes: 'https://picsum.photos/200',
-    imageUri: require('../../assets/images/views/view_9.jpg'),
+    imageUri: require('../../../assets/images/views/view_9.jpg'),
     title: 'HERE&NOW',
     description: '秘境分享\n第二行\n第三行',
     number: '200',
   },
   {
     imageRes: 'https://picsum.photos/200',
-    imageUri: require('../../assets/images/views/view_3.jpg'),
+    imageUri: require('../../../assets/images/views/view_3.jpg'),
     title: 'Marks & Spencer',
     description: '達成第 20 露啦',
     number: '639',
   },
   {
     imageRes: 'https://picsum.photos/200',
-    imageUri: require('../../assets/images/views/view_7.jpg'),
+    imageUri: require('../../../assets/images/views/view_7.jpg'),
     title: 'CENWELL',
     description: '動態內容動態內容動態內容動態內容動態內容動態內容',
     number: '399',
   },
   {
     imageRes: 'https://picsum.photos/200',
-    imageUri: require('../../assets/images/views/view_4.jpg'),
+    imageUri: require('../../../assets/images/views/view_4.jpg'),
     title: 'U.S. Polo Assn. Kids',
     description: '動態內容',
     number: '849',
   },
   {
     imageRes: 'https://picsum.photos/200',
-    imageUri: require('../../assets/images/views/view_2.jpg'),
+    imageUri: require('../../../assets/images/views/view_2.jpg'),
     title: 'Cherry Crumble',
     description: '動態內容',
     number: '899',
   },
   {
     imageRes: 'https://picsum.photos/200',
-    imageUri: require('../../assets/images/views/view_1.jpg'),
+    imageUri: require('../../../assets/images/views/view_1.jpg'),
     title: 'BonOrganik',
     description: '動態內容',
     number: '259',
   },
   {
     imageRes: 'https://picsum.photos/200',
-    imageUri: require('../../assets/images/views/view_9.jpg'),
+    imageUri: require('../../../assets/images/views/view_9.jpg'),
     title: 'HERE&NOW',
     description: '秘境分享',
     number: '200',
   },
   {
     imageRes: 'https://picsum.photos/200',
-    imageUri: require('../../assets/images/views/view_3.jpg'),
+    imageUri: require('../../../assets/images/views/view_3.jpg'),
     title: 'Marks & Spencer',
     description: '達成第 20 露啦',
     number: '639',
   },
   {
     imageRes: 'https://picsum.photos/200',
-    imageUri: require('../../assets/images/views/view_7.jpg'),
+    imageUri: require('../../../assets/images/views/view_7.jpg'),
     title: 'CENWELL',
     description: '動態內容',
     number: '399',
   },
   {
     imageRes: 'https://picsum.photos/200',
-    imageUri: require('../../assets/images/views/view_4.jpg'),
+    imageUri: require('../../../assets/images/views/view_4.jpg'),
     title: 'U.S. Polo Assn. Kids',
     description: '動態內容',
     number: '849',
   },
   {
     imageRes: 'https://picsum.photos/200',
-    imageUri: require('../../assets/images/views/view_2.jpg'),
+    imageUri: require('../../../assets/images/views/view_2.jpg'),
     title: 'Cherry Crumble',
     description: '動態內容',
     number: '899',
   },
   {
     imageRes: 'https://picsum.photos/200',
-    imageUri: require('../../assets/images/views/view_1.jpg'),
+    imageUri: require('../../../assets/images/views/view_1.jpg'),
     title: 'BonOrganik',
     description: '動態內容',
     number: '259',
   },
   {
     imageRes: 'https://picsum.photos/200',
-    imageUri: require('../../assets/images/views/view_7.jpg'),
+    imageUri: require('../../../assets/images/views/view_7.jpg'),
     title: 'CENWELL',
     description: '動態內容',
     number: '399',
   },
   {
     imageRes: 'https://picsum.photos/200',
-    imageUri: require('../../assets/images/views/view_4.jpg'),
+    imageUri: require('../../../assets/images/views/view_4.jpg'),
     title: 'U.S. Polo Assn. Kids',
     description: '動態內容',
     number: '849',
   },
   {
     imageRes: 'https://picsum.photos/200',
-    imageUri: require('../../assets/images/views/view_2.jpg'),
+    imageUri: require('../../../assets/images/views/view_2.jpg'),
     title: 'Cherry Crumble',
     description: '動態內容',
     number: '899',
   },
   {
     imageRes: 'https://picsum.photos/200',
-    imageUri: require('../../assets/images/views/view_1.jpg'),
+    imageUri: require('../../../assets/images/views/view_1.jpg'),
     title: 'BonOrganik',
     description: '動態內容',
     number: '259',
@@ -167,25 +167,25 @@ export default function MainTabCommunityScreen({ navigation }: NavigationProps):
       id: 1,
       chapter: '南投縣',
       name: '露營地ABC',
-      imageUri: require('../../assets/images/views/view_1.jpg'),
+      imageUri: require('../../../assets/images/views/view_1.jpg'),
     },
     {
       id: 2,
       chapter: '南投縣',
       name: '露營地ABC',
-      imageUri: require('../../assets/images/views/view_1.jpg'),
+      imageUri: require('../../../assets/images/views/view_1.jpg'),
     },
     {
       id: 3,
       chapter: '南投縣',
       name: '露營地ABC',
-      imageUri: require('../../assets/images/views/view_1.jpg'),
+      imageUri: require('../../../assets/images/views/view_1.jpg'),
     },
     {
       id: 4,
       chapter: '南投縣',
       name: '露營地ABC',
-      imageUri: require('../../assets/images/views/view_1.jpg'),
+      imageUri: require('../../../assets/images/views/view_1.jpg'),
     },
   ];
   const postsList = [
@@ -193,25 +193,25 @@ export default function MainTabCommunityScreen({ navigation }: NavigationProps):
       id: 1,
       chapter: '露營地A',
       name: '第一次露營就上手',
-      imageUri: require('../../assets/images/views/view_9.jpg'),
+      imageUri: require('../../../assets/images/views/view_9.jpg'),
     },
     {
       id: 2,
       chapter: '露營地B',
       name: '美食讀',
-      imageUri: require('../../assets/images/views/view_12.jpg'),
+      imageUri: require('../../../assets/images/views/view_12.jpg'),
     },
     {
       id: 3,
       chapter: '露營地B',
       name: '露營美食',
-      imageUri: require('../../assets/images/views/view_7.jpg'),
+      imageUri: require('../../../assets/images/views/view_7.jpg'),
     },
     {
       id: 4,
       chapter: '露營地B',
       name: '露營地ABC',
-      imageUri: require('../../assets/images/views/view_2.jpg'),
+      imageUri: require('../../../assets/images/views/view_2.jpg'),
     },
   ];
   type CarousalTye = {

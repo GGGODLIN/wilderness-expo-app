@@ -21,11 +21,11 @@ import {
 import React, { useState } from 'react';
 import { Platform } from 'react-native';
 
-import { MAIN_STACK_CREATE_LOCATION, MAIN_STACK_LOCATION_DETAILS } from '../../NavigationNames';
-import { NavigationProps } from '../../Props';
-import LocationList from '../../components/explore/LocationList';
-import Colors from '../../constants/Colors';
-import DashboardLayout from '../../layouts/DashboardLayout';
+import { MAIN_STACK_CREATE_LOCATION, MAIN_STACK_LOCATION_DETAILS } from '../../../NavigationNames';
+import { NavigationProps } from '../../../Props';
+import LocationList from '../../../components/explore/LocationList';
+import Colors from '../../../constants/Colors';
+import DashboardLayout from '../../../layouts/DashboardLayout';
 
 export default function MainTabExploreScreen({ navigation }: NavigationProps): JSX.Element {
   const [textInput, setTextInput] = useState('');
@@ -45,7 +45,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
       author: '作者',
       clubsName: '這是一個名字很長長長長的社團',
       eventName: '點我連到活動頁',
-      imageUri: require('../../assets/images/views/view_3.jpg'),
+      imageUri: require('../../../assets/images/views/view_3.jpg'),
       title: '地點 A',
       dateStart: '2022-12-25',
       dateEnd: '2022-12-30',
@@ -69,7 +69,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
       author: '作者',
       clubsName: null,
       eventName: '點我連到活動頁',
-      imageUri: require('../../assets/images/views/view_3.jpg'),
+      imageUri: require('../../../assets/images/views/view_3.jpg'),
       title: '地點 B',
       dateStart: '2022-12-25',
       dateEnd: '2022-12-30',
@@ -93,7 +93,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
       author: '作者',
       clubsName: null,
       eventName: '點我連到活動頁',
-      imageUri: require('../../assets/images/views/view_3.jpg'),
+      imageUri: require('../../../assets/images/views/view_3.jpg'),
       title: '地點 C',
       dateStart: '2022-12-25',
       dateEnd: '2022-12-30',
@@ -117,7 +117,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
       author: '作者',
       clubsName: '點我連到社團頁',
       eventName: null,
-      imageUri: require('../../assets/images/views/view_3.jpg'),
+      imageUri: require('../../../assets/images/views/view_3.jpg'),
       title: '這是一個很長的標題這是一個很長的標題這是一個很長的標題',
       dateStart: '2022-12-25',
       dateEnd: '2022-12-30',
@@ -141,7 +141,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
       author: '作者',
       clubsName: null,
       eventName: '點我連到活動頁',
-      imageUri: require('../../assets/images/views/view_3.jpg'),
+      imageUri: require('../../../assets/images/views/view_3.jpg'),
       title: '地點 F',
       dateStart: '2022-12-25',
       dateEnd: '2022-12-30',
@@ -165,7 +165,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
       author: '作者',
       clubsName: null,
       eventName: '點我連到活動頁',
-      imageUri: require('../../assets/images/views/view_3.jpg'),
+      imageUri: require('../../../assets/images/views/view_3.jpg'),
       title: '地點 G',
       dateStart: '2022-12-25',
       dateEnd: '2022-12-30',

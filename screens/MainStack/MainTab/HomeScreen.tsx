@@ -26,15 +26,15 @@ import {
 import React from 'react';
 import { ImageSourcePropType, Platform, useWindowDimensions } from 'react-native';
 
-import { MAIN_STACK_POST } from '../../NavigationNames';
-import { NavigationProps } from '../../Props';
-import { Carousel } from '../../components/Carousel';
-import Tab from '../../components/TopTab/Tab';
-import Categories from '../../components/home/Categories';
-import PostsList from '../../components/home/PostsList';
-import Colors from '../../constants/Colors';
-import DashboardLayout from '../../layouts/DashboardLayout';
-import GuestLayout from '../../layouts/GuestLayout';
+import { MAIN_STACK_POST } from '../../../NavigationNames';
+import { NavigationProps } from '../../../Props';
+import { Carousel } from '../../../components/Carousel';
+import Tab from '../../../components/TopTab/Tab';
+import Categories from '../../../components/home/Categories';
+import PostsList from '../../../components/home/PostsList';
+import Colors from '../../../constants/Colors';
+import DashboardLayout from '../../../layouts/DashboardLayout';
+import GuestLayout from '../../../layouts/GuestLayout';
 
 type Icon = {
   name: string;
@@ -45,28 +45,28 @@ const trendingCourses = [
   {
     id: 1,
     name: 'Artificial Intelligence',
-    imageUri: require('../../assets/theme/trending1.png'),
+    imageUri: require('../../../assets/theme/trending1.png'),
   },
   {
     id: 2,
     name: 'Machine Learning',
-    imageUri: require('../../assets/theme/trending2.png'),
+    imageUri: require('../../../assets/theme/trending2.png'),
   },
   {
     id: 3,
     name: 'AWS SysOps Associate',
-    imageUri: require('../../assets/theme/trending3.png'),
+    imageUri: require('../../../assets/theme/trending3.png'),
   },
 
   {
     id: 4,
     name: 'Angular Training Course',
-    imageUri: require('../../assets/theme/chair.jpeg'),
+    imageUri: require('../../../assets/theme/chair.jpeg'),
   },
   {
     id: 5,
     name: 'Artificial Intelligence',
-    imageUri: require('../../assets/theme/trending1.png'),
+    imageUri: require('../../../assets/theme/trending1.png'),
   },
 ];
 const resumedCourses = [
@@ -74,25 +74,25 @@ const resumedCourses = [
     id: 1,
     chapter: 'test',
     name: 'test',
-    imageUri: require('../../assets/images/views/view_3.jpg'),
+    imageUri: require('../../../assets/images/views/view_3.jpg'),
   },
   {
     id: 2,
     chapter: 'test',
     name: 'test',
-    imageUri: require('../../assets/images/views/view_3.jpg'),
+    imageUri: require('../../../assets/images/views/view_3.jpg'),
   },
   {
     id: 3,
     chapter: 'test',
     name: 'test',
-    imageUri: require('../../assets/images/views/view_3.jpg'),
+    imageUri: require('../../../assets/images/views/view_3.jpg'),
   },
   {
     id: 4,
     chapter: 'test',
     name: 'test',
-    imageUri: require('../../assets/images/views/view_3.jpg'),
+    imageUri: require('../../../assets/images/views/view_3.jpg'),
   },
 ];
 
@@ -106,13 +106,13 @@ const CarouselLayout = () => {
       height={{ base: 40, md: 20 }}>
       <Carousel
         images={[
-          require('../../assets/images/views/view_9.jpg'),
-          require('../../assets/images/views/view_10.jpg'),
-          require('../../assets/images/views/view_15.jpg'),
-          require('../../assets/images/views/view_11.jpg'),
-          require('../../assets/images/views/view_12.jpg'),
-          require('../../assets/images/views/view_13.jpg'),
-          require('../../assets/images/views/view_14.jpg'),
+          require('../../../assets/images/views/view_9.jpg'),
+          require('../../../assets/images/views/view_10.jpg'),
+          require('../../../assets/images/views/view_15.jpg'),
+          require('../../../assets/images/views/view_11.jpg'),
+          require('../../../assets/images/views/view_12.jpg'),
+          require('../../../assets/images/views/view_13.jpg'),
+          require('../../../assets/images/views/view_14.jpg'),
         ]}
         height={{ base: 40, md: 20 }}
         activeIndicatorBgColor="coolGray.500"
@@ -170,112 +170,112 @@ type PostProps = {
 const itemList: PostProps[] = [
   {
     imageRes: 'https://picsum.photos/200',
-    imageUri: require('../../assets/images/views/view_9.jpg'),
+    imageUri: require('../../../assets/images/views/view_9.jpg'),
     title: 'HERE&NOW',
     description: '秘境分享\n第二行\n第三行',
     number: '200',
   },
   {
     imageRes: 'https://picsum.photos/200',
-    imageUri: require('../../assets/images/views/view_3.jpg'),
+    imageUri: require('../../../assets/images/views/view_3.jpg'),
     title: 'Marks & Spencer',
     description: '達成第 20 露啦',
     number: '639',
   },
   {
     imageRes: 'https://picsum.photos/200',
-    imageUri: require('../../assets/images/views/view_7.jpg'),
+    imageUri: require('../../../assets/images/views/view_7.jpg'),
     title: 'CENWELL',
     description: '動態內容動態內容動態內容動態內容動態內容動態內容',
     number: '399',
   },
   {
     imageRes: 'https://picsum.photos/200',
-    imageUri: require('../../assets/images/views/view_4.jpg'),
+    imageUri: require('../../../assets/images/views/view_4.jpg'),
     title: 'U.S. Polo Assn. Kids',
     description: '動態內容',
     number: '849',
   },
   {
     imageRes: 'https://picsum.photos/200',
-    imageUri: require('../../assets/images/views/view_2.jpg'),
+    imageUri: require('../../../assets/images/views/view_2.jpg'),
     title: 'Cherry Crumble',
     description: '動態內容',
     number: '899',
   },
   {
     imageRes: 'https://picsum.photos/200',
-    imageUri: require('../../assets/images/views/view_1.jpg'),
+    imageUri: require('../../../assets/images/views/view_1.jpg'),
     title: 'BonOrganik',
     description: '動態內容',
     number: '259',
   },
   {
     imageRes: 'https://picsum.photos/200',
-    imageUri: require('../../assets/images/views/view_9.jpg'),
+    imageUri: require('../../../assets/images/views/view_9.jpg'),
     title: 'HERE&NOW',
     description: '秘境分享',
     number: '200',
   },
   {
     imageRes: 'https://picsum.photos/200',
-    imageUri: require('../../assets/images/views/view_3.jpg'),
+    imageUri: require('../../../assets/images/views/view_3.jpg'),
     title: 'Marks & Spencer',
     description: '達成第 20 露啦',
     number: '639',
   },
   {
     imageRes: 'https://picsum.photos/200',
-    imageUri: require('../../assets/images/views/view_7.jpg'),
+    imageUri: require('../../../assets/images/views/view_7.jpg'),
     title: 'CENWELL',
     description: '動態內容',
     number: '399',
   },
   {
     imageRes: 'https://picsum.photos/200',
-    imageUri: require('../../assets/images/views/view_4.jpg'),
+    imageUri: require('../../../assets/images/views/view_4.jpg'),
     title: 'U.S. Polo Assn. Kids',
     description: '動態內容',
     number: '849',
   },
   {
     imageRes: 'https://picsum.photos/200',
-    imageUri: require('../../assets/images/views/view_2.jpg'),
+    imageUri: require('../../../assets/images/views/view_2.jpg'),
     title: 'Cherry Crumble',
     description: '動態內容',
     number: '899',
   },
   {
     imageRes: 'https://picsum.photos/200',
-    imageUri: require('../../assets/images/views/view_1.jpg'),
+    imageUri: require('../../../assets/images/views/view_1.jpg'),
     title: 'BonOrganik',
     description: '動態內容',
     number: '259',
   },
   {
     imageRes: 'https://picsum.photos/200',
-    imageUri: require('../../assets/images/views/view_7.jpg'),
+    imageUri: require('../../../assets/images/views/view_7.jpg'),
     title: 'CENWELL',
     description: '動態內容',
     number: '399',
   },
   {
     imageRes: 'https://picsum.photos/200',
-    imageUri: require('../../assets/images/views/view_4.jpg'),
+    imageUri: require('../../../assets/images/views/view_4.jpg'),
     title: 'U.S. Polo Assn. Kids',
     description: '動態內容',
     number: '849',
   },
   {
     imageRes: 'https://picsum.photos/200',
-    imageUri: require('../../assets/images/views/view_2.jpg'),
+    imageUri: require('../../../assets/images/views/view_2.jpg'),
     title: 'Cherry Crumble',
     description: '動態內容',
     number: '899',
   },
   {
     imageRes: 'https://picsum.photos/200',
-    imageUri: require('../../assets/images/views/view_1.jpg'),
+    imageUri: require('../../../assets/images/views/view_1.jpg'),
     title: 'BonOrganik',
     description: '動態內容',
     number: '259',
@@ -397,7 +397,7 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
           width="100"
           alt="logo"
           resizeMode="contain"
-          source={require('../../assets/logo.png')}
+          source={require('../../../assets/logo.png')}
         />
       </VStack>
     );

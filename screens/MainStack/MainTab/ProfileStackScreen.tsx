@@ -16,11 +16,11 @@ import {
 } from 'native-base';
 import React from 'react';
 
-import { MAIN_STACK_POST, MAIN_STACK_LOGIN, MAIN_STACK_REGISTER } from '../../NavigationNames';
-import { NavigationProps } from '../../Props';
-import FloatingLabelInput from '../../components/FloatingLabelInput';
-import Colors from '../../constants/Colors';
-import DashboardLayout from '../../layouts/DashboardLayout';
+import { MAIN_STACK_POST, MAIN_STACK_LOGIN, MAIN_STACK_REGISTER } from '../../../NavigationNames';
+import { NavigationProps } from '../../../Props';
+import FloatingLabelInput from '../../../components/FloatingLabelInput';
+import Colors from '../../../constants/Colors';
+import DashboardLayout from '../../../layouts/DashboardLayout';
 
 const bgColor = '#1f2937';
 
@@ -113,7 +113,7 @@ export default function MainTabProfileStackScreen({ navigation }: NavigationProp
     return (
       <VStack space={4}>
         <HStack alignItems="center" justifyContent="space-between">
-          <Avatar source={require('../MainStack/images/janedoe.png')} w="24" h="24">
+          <Avatar source={require('../images/janedoe.png')} w="24" h="24">
             <Avatar.Badge
               _light={{ bg: 'coolGray.50' }}
               _dark={{ bg: 'coolGray.700', borderColor: 'coolGray.700' }}
@@ -235,7 +235,7 @@ export default function MainTabProfileStackScreen({ navigation }: NavigationProp
           alignItems="center"
           _light={{ bg: Colors.LOGO_COLOR_WHITE_BACKGROUND }}
           _dark={{ bg: 'coolGray.900' }}>
-          <Avatar source={require('../MainStack/images/janedoe.png')} width={20} height={20} />
+          <Avatar source={require('../images/janedoe.png')} width={20} height={20} />
           <HStack alignItems="center" justifyContent="center" space={2} mt={3.5}>
             <Text
               fontSize="xl"

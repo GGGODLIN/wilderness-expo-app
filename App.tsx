@@ -19,19 +19,19 @@ import {
   MAIN_STACK_TABS,
   PROFILE_STACK_NOTIFICATIONS,
 } from './NavigationNames';
-import LocationDetailsScreen from './screens/LocationDetailsScreen';
+import MainStackClubDetailsScreen from './screens/MainStack/ClubDetailsScreen';
 import CreateLocationScreen from './screens/MainStack/CreateLocationScreen';
 import CreatePostScreen from './screens/MainStack/CreatePostScreen';
-import MainStackClubDetailsScreen from './screens/MainStack/MainStackClubDetailsScreen';
-import MainStackEventDetailsScreen from './screens/MainStack/MainStackEventDetailsScreen';
-import MainStackLoginScreen from './screens/MainStack/MainStackLoginScreen';
-import MainStackMessageScreen from './screens/MainStack/MainStackMessageScreen';
-import MainStackPostScreen from './screens/MainStack/MainStackPostScreen';
-import MainStackProfileScreen from './screens/MainStack/MainStackProfileScreen';
-import MainStackRegisterScreen from './screens/MainStack/MainStackRegisterScreen';
-import MainStackResetPasswordScreen from './screens/MainStack/MainStackResetPasswordScreen';
-import MainStackTabsScreen from './screens/MainStack/MainStackTabsScreen';
-import ProfileStackNotifications from './screens/Profile/ProfileStackNotifications';
+import MainStackEventDetailsScreen from './screens/MainStack/EventDetailsScreen';
+import LocationDetailsScreen from './screens/MainStack/LocationDetailsScreen';
+import MainStackLoginScreen from './screens/MainStack/LoginScreen';
+import MainStackMessageScreen from './screens/MainStack/MessageScreen';
+import MainStackPostScreen from './screens/MainStack/PostScreen';
+import MainStackProfileScreen from './screens/MainStack/ProfileScreen';
+import MainStackRegisterScreen from './screens/MainStack/RegisterScreen';
+import MainStackResetPasswordScreen from './screens/MainStack/ResetPasswordScreen';
+import MainStackTabsScreen from './screens/MainStack/TabsScreen';
+import ProfileStackNotifications from './screens/ProfileStack/ProfileStackNotifications';
 
 const Tab = createBottomTabNavigator();
 const MainStack = createNativeStackNavigator();

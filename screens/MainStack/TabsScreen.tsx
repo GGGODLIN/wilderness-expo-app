@@ -11,11 +11,11 @@ import {
 } from '../../NavigationNames';
 import { NavigationProps } from '../../Props';
 import Colors from '../../constants/Colors';
-import MainTabCollectionScreen from '../MainTab/MainTabCollectionScreen';
-import MainTabCommunityScreen from '../MainTab/MainTabCommunityScreen';
-import MainTabExploreScreen from '../MainTab/MainTabExploreScreen';
-import MainTabHomeScreen from '../MainTab/MainTabHomeScreen';
-import MainTabProfileStackScreen from '../MainTab/MainTabProfileStackScreen';
+import MainTabCollectionScreen from './MainTab/CollectionScreen';
+import MainTabCommunityScreen from './MainTab/CommunityScreen';
+import MainTabExploreScreen from './MainTab/ExploreScreen';
+import MainTabHomeScreen from './MainTab/HomeScreen';
+import MainTabProfileStackScreen from './MainTab/ProfileStackScreen';
 
 const Tab = createBottomTabNavigator();
 

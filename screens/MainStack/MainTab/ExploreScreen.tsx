@@ -25,11 +25,11 @@ import MapView, {
   Region,
 } from 'react-native-maps';
 
-import { MAIN_STACK_CREATE_LOCATION, MAIN_STACK_LOCATION_DETAILS } from '../../NavigationNames';
-import { NavigationProps } from '../../Props';
-import Colors from '../../constants/Colors';
-import DashboardLayout from '../../layouts/DashboardLayout';
-import { getRegionFromMarkers } from '../../utils/MapUtils';
+import { MAIN_STACK_CREATE_LOCATION, MAIN_STACK_LOCATION_DETAILS } from '../../../NavigationNames';
+import { NavigationProps } from '../../../Props';
+import Colors from '../../../constants/Colors';
+import DashboardLayout from '../../../layouts/DashboardLayout';
+import { getRegionFromMarkers } from '../../../utils/MapUtils';
 
 const locationList = [
   {
@@ -45,7 +45,7 @@ const locationList = [
     author: '作者',
     clubsName: '這是一個名字很長長長長的社團',
     eventName: '點我連到活動頁',
-    imageUri: require('../../assets/images/views/view_3.jpg'),
+    imageUri: require('../../../assets/images/views/view_3.jpg'),
     title: '地點 A',
     dateStart: '2022-12-25',
     dateEnd: '2022-12-30',
@@ -70,7 +70,7 @@ const locationList = [
     author: '作者',
     clubsName: null,
     eventName: '點我連到活動頁',
-    imageUri: require('../../assets/images/views/view_3.jpg'),
+    imageUri: require('../../../assets/images/views/view_3.jpg'),
     title: '地點 B',
     dateStart: '2022-12-25',
     dateEnd: '2022-12-30',
@@ -95,7 +95,7 @@ const locationList = [
     author: '作者',
     clubsName: null,
     eventName: '點我連到活動頁',
-    imageUri: require('../../assets/images/views/view_3.jpg'),
+    imageUri: require('../../../assets/images/views/view_3.jpg'),
     title: '地點 C',
     dateStart: '2022-12-25',
     dateEnd: '2022-12-30',
@@ -120,7 +120,7 @@ const locationList = [
     author: '作者',
     clubsName: '點我連到社團頁',
     eventName: null,
-    imageUri: require('../../assets/images/views/view_3.jpg'),
+    imageUri: require('../../../assets/images/views/view_3.jpg'),
     title: '這是一個很長的標題這是一個很長的標題這是一個很長的標題',
     dateStart: '2022-12-25',
     dateEnd: '2022-12-30',
@@ -145,7 +145,7 @@ const locationList = [
     author: '作者',
     clubsName: null,
     eventName: '點我連到活動頁',
-    imageUri: require('../../assets/images/views/view_3.jpg'),
+    imageUri: require('../../../assets/images/views/view_3.jpg'),
     title: '地點 F',
     dateStart: '2022-12-25',
     dateEnd: '2022-12-30',
@@ -170,7 +170,7 @@ const locationList = [
     author: '作者',
     clubsName: null,
     eventName: '點我連到活動頁',
-    imageUri: require('../../assets/images/views/view_3.jpg'),
+    imageUri: require('../../../assets/images/views/view_3.jpg'),
     title: '地點 G',
     dateStart: '2022-12-25',
     dateEnd: '2022-12-30',

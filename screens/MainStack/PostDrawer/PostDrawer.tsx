@@ -12,6 +12,7 @@ import {
   MAIN_STACK_POST_DRAWER_POST_EDIT,
   MAIN_STACK_POST_DRAWER_POST_REPORT,
 } from '../../../NavigationNames';
+import Colors from '../../../constants/Colors';
 import PostEditScreen from './PostEditScreen';
 import PostReportScreen from './PostReportScreen';
 import PostDetailsScreen from './PostScreen';
@@ -24,6 +25,8 @@ export default function PostDrawer(): JSX.Element {
       screenOptions={{
         drawerPosition: 'right',
         headerShown: false,
+        drawerActiveBackgroundColor: Colors.LOGO_COLOR_WHITE_BACKGROUND,
+        drawerActiveTintColor: Colors.LOGO_COLOR_GREEN,
       }}
       drawerContent={(props) => <CustomDrawerContent {...props} />}>
       <Drawer.Screen

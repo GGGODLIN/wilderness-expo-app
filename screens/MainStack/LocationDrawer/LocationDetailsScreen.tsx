@@ -1,4 +1,5 @@
 import { MaterialIcons, FontAwesome5, FontAwesome } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 import {
   Button,
   HStack,
@@ -24,7 +25,7 @@ import { Platform, ImageSourcePropType, useWindowDimensions } from 'react-native
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import { MAIN_STACK_EVENT_DETAILS, MAIN_STACK_POST } from '../../../NavigationNames';
-import { NavigationProps } from '../../../Props';
+import { Nav, NavigationProps } from '../../../Props';
 import { Carousel } from '../../../components/Carousel';
 import NativeMap from '../../../components/NativeMap';
 import Colors from '../../../constants/Colors';
@@ -847,6 +848,33 @@ export default function LocationDetailsScreen({ navigation }: NavigationProps): 
     );
   }
 
+  function CustomIcon() {
+    const navigation = useNavigation<Nav>();
+    return (
+      <IconButton
+        variant="unstyled"
+        colorScheme="light"
+        py={0}
+        icon={
+          <Icon
+            size="5"
+            name="navicon"
+            as={FontAwesome}
+            _dark={{
+              color: 'coolGray.200',
+            }}
+            _light={{
+              color: Colors.LOGO_COLOR_BROWN,
+            }}
+          />
+        }
+        onPress={() => {
+          navigation.openDrawer();
+        }}
+      />
+    );
+  }
+
   function CustomTitle() {
     return (
       <VStack space="0">
@@ -887,7 +915,7 @@ export default function LocationDetailsScreen({ navigation }: NavigationProps): 
   }
 
   return (
-    <DashboardLayout title="地點資訊" showBackButton>
+    <DashboardLayout title="地點資訊" showBackButton customIcon={<CustomIcon />}>
       <KeyboardAwareScrollView style={{ flex: 1 }} bounces={false}>
         <Stack
           flex={1}

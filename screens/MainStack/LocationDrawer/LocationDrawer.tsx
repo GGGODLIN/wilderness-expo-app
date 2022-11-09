@@ -12,6 +12,7 @@ import {
   MAIN_STACK_LOCATION_DRAWER_POST_EDIT,
   MAIN_STACK_LOCATION_DRAWER_POST_REPORT,
 } from '../../../NavigationNames';
+import Colors from '../../../constants/Colors';
 import LocationDetailsScreen from './LocationDetailsScreen';
 import LocationEditScreen from './LocationEditScreen';
 import LocationReportScreen from './LocationReportScreen';
@@ -24,6 +25,9 @@ export default function LocationDrawer(): JSX.Element {
       screenOptions={{
         drawerPosition: 'right',
         headerShown: false,
+
+        drawerActiveBackgroundColor: Colors.LOGO_COLOR_WHITE_BACKGROUND,
+        drawerActiveTintColor: Colors.LOGO_COLOR_GREEN,
       }}
       drawerContent={(props) => <CustomDrawerContent {...props} />}>
       <Drawer.Screen

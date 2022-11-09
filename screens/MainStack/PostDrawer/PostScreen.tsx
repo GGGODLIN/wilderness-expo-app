@@ -1,4 +1,5 @@
 import { MaterialIcons, FontAwesome } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 import {
   Box,
   HStack,
@@ -24,7 +25,7 @@ import React, { useState } from 'react';
 import type { ImageSourcePropType } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-import { NavigationProps } from '../../../Props';
+import { Nav, NavigationProps } from '../../../Props';
 import { Carousel } from '../../../components/Carousel';
 import FloatingLabelInput from '../../../components/FloatingLabelInput';
 import Colors from '../../../constants/Colors';
@@ -396,6 +397,7 @@ function LeaveMessage() {
               onChangeText={(txt) => handleFormUpdate('reason', txt)}
               placeholder="留言..."
               h="84"
+              autoCompleteType={undefined}
             />
           </VStack>
           <Box mt="0">
@@ -414,54 +416,54 @@ function LeaveMessage() {
   );
 }
 
+function CustomIcon() {
+  const navigation = useNavigation<Nav>();
+  return (
+    <IconButton
+      variant="unstyled"
+      colorScheme="light"
+      py={0}
+      icon={
+        <Icon
+          size="5"
+          name="navicon"
+          as={FontAwesome}
+          _dark={{
+            color: 'coolGray.200',
+          }}
+          _light={{
+            color: Colors.LOGO_COLOR_BROWN,
+          }}
+        />
+      }
+      onPress={() => {
+        navigation.openDrawer();
+      }}
+    />
+  );
+}
+
+function CustomTitle() {
+  return (
+    <VStack space="0">
+      <HStack space="2">
+        <Avatar height="6" width="6" source={require('../../../assets/images/views/view_9.jpg')} />
+        <VStack space="0" alignItems="center">
+          <Text
+            fontSize="sm"
+            fontWeight="medium"
+            py={1}
+            _dark={{ color: 'coolGray.50' }}
+            _light={{ color: 'coolGray.700' }}>
+            作者名稱
+          </Text>
+        </VStack>
+      </HStack>
+    </VStack>
+  );
+}
+
 export default function MainStackPostScreen({ navigation }: NavigationProps): JSX.Element {
-  function CustomIcon() {
-    return (
-      <IconButton
-        variant="unstyled"
-        colorScheme="light"
-        py={0}
-        icon={
-          <Icon
-            size="5"
-            name="navicon"
-            as={FontAwesome}
-            _dark={{
-              color: 'coolGray.200',
-            }}
-            _light={{
-              color: Colors.LOGO_COLOR_BROWN,
-            }}
-          />
-        }
-      />
-    );
-  }
-
-  function CustomTitle() {
-    return (
-      <VStack space="0">
-        <HStack space="2">
-          <Avatar
-            height="6"
-            width="6"
-            source={require('../../../assets/images/views/view_9.jpg')}
-          />
-          <VStack space="0" alignItems="center">
-            <Text
-              fontSize="sm"
-              fontWeight="medium"
-              py={1}
-              _dark={{ color: 'coolGray.50' }}
-              _light={{ color: 'coolGray.700' }}>
-              作者名稱
-            </Text>
-          </VStack>
-        </HStack>
-      </VStack>
-    );
-  }
-
   return (
     <DashboardLayout
       title="動態內頁"

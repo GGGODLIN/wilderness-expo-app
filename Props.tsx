@@ -8,4 +8,7 @@ export type NavigationProps = {
 export type Nav = {
   navigate: (value: string) => void;
   goBack: () => void;
+  openDrawer: () => void;
+  closeDrawer: () => void;
+  toggleDrawer: () => void;
 };

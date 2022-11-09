@@ -200,29 +200,29 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
 
   const trackingData = [
     {
-      title: '陽明山三天兩夜',
+      title: '這個月內的活動',
       description: '待決定圖片與內頁排版',
       status: { type: true, time: '2022-10-08 05:38 pm' },
     },
     {
-      title: '陽明山三天兩夜',
+      title: '這個月內的活動',
       description: '待決定圖片與內頁排版',
       status: { type: true, time: '2022-10-08 05:38 pm' },
     },
     {
-      title: '陽明山三天兩夜',
+      title: '超出這個月的活動',
       description: '待決定圖片與內頁排版',
-      status: { type: true, time: '2022-10-08 05:38 pm' },
+      status: { type: false, time: '2022-10-08 05:38 pm' },
     },
     {
       title: '陽明山三天兩夜',
       description: '待決定圖片與內頁排版',
-      status: { type: true, time: '2022-10-08 05:38 pm' },
+      status: { type: false, time: '2022-10-08 05:38 pm' },
     },
     {
       title: '陽明山三天兩夜',
       description: '待決定圖片與內頁排版',
-      status: { type: true, time: '2022-10-08 05:38 pm' },
+      status: { type: false, time: '2022-10-08 05:38 pm' },
     },
   ];
 
@@ -239,15 +239,15 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
   }) => {
     const arr = new Array(6).fill(0);
     return (
-      <HStack justifyContent="flex-start" space="4" key={key}>
+      <HStack justifyContent="flex-start" space="4" key={key} px="2">
         <VStack>
           <TrackingIcon
-            IconColorLight={status.type ? 'coolGray.200' : 'primary.300'}
+            IconColorLight={status.type ? Colors.LOGO_COLOR_BROWN : 'coolGray.200'}
             IconColorDark={status.type ? 'primary.500' : 'coolGray.400'}
           />
           <Divider
             orientation="vertical"
-            _light={{ bg: 'coolGray.200' }}
+            _light={{ bg: status.type ? Colors.LOGO_COLOR_BROWN : 'coolGray.200' }}
             _dark={{ bg: 'primary.500' }}
             size="0.5"
             ml="9.5"
@@ -281,6 +281,14 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
             </Text>
           )}
         </VStack>
+        <Image
+          mb="2"
+          w="20"
+          h="16"
+          source={{ uri: 'https://picsum.photos/200' }}
+          alt="Alternate Text"
+          resizeMode="cover"
+        />
       </HStack>
     );
   };
@@ -361,6 +369,13 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
       </ScrollView>
     );
   }
+  function Tab_4() {
+    return (
+      <ScrollView py={4}>
+        <Text>換元件中</Text>
+      </ScrollView>
+    );
+  }
 
   const tabs = [
     {
@@ -375,8 +390,13 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
     },
     {
       id: 3,
-      title: '成就稱號',
+      title: '露營裝備',
       component: <Tab_3 />,
+    },
+    {
+      id: 4,
+      title: '成就稱號',
+      component: <Tab_4 />,
     },
   ];
 
@@ -392,7 +412,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
     return (
       <Pressable onPress={() => handleTabChange(tabName)}>
         <Text
-          paddingX={5}
+          paddingX={3}
           paddingY={1}
           fontSize="lg"
           fontWeight="medium"

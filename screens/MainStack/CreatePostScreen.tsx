@@ -1,5 +1,6 @@
+import { Text } from 'native-base';
 import React from 'react';
 
 export default function CreatePostScreen(): JSX.Element {
-  return <></>;
+  return <Text>CreatePostScreen</Text>;
 }

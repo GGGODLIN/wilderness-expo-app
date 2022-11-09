@@ -23,12 +23,12 @@ import React, { useState } from 'react';
 import { Platform, ImageSourcePropType, useWindowDimensions } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-import { MAIN_STACK_EVENT_DETAILS, MAIN_STACK_POST } from '../../NavigationNames';
-import { NavigationProps } from '../../Props';
-import { Carousel } from '../../components/Carousel';
-import NativeMap from '../../components/NativeMap';
-import Colors from '../../constants/Colors';
-import DashboardLayout from '../../layouts/DashboardLayout';
+import { MAIN_STACK_EVENT_DETAILS, MAIN_STACK_POST } from '../../../NavigationNames';
+import { NavigationProps } from '../../../Props';
+import { Carousel } from '../../../components/Carousel';
+import NativeMap from '../../../components/NativeMap';
+import Colors from '../../../constants/Colors';
+import DashboardLayout from '../../../layouts/DashboardLayout';
 
 type List = {
   imageUrl: string;
@@ -336,11 +336,11 @@ const CarouselLayout = () => {
       height={{ base: 300, md: 20 }}>
       <Carousel
         images={[
-          require('../../assets/images/views/view_3.jpg'),
-          require('../../assets/images/views/view_3.jpg'),
-          require('../../assets/images/views/view_3.jpg'),
-          require('../../assets/images/views/view_3.jpg'),
-          require('../../assets/images/views/view_3.jpg'),
+          require('../../../assets/images/views/view_3.jpg'),
+          require('../../../assets/images/views/view_3.jpg'),
+          require('../../../assets/images/views/view_3.jpg'),
+          require('../../../assets/images/views/view_3.jpg'),
+          require('../../../assets/images/views/view_3.jpg'),
         ]}
         height={{ base: 300, md: 20 }}
         activeIndicatorBgColor="coolGray.500"
@@ -368,7 +368,7 @@ const itemList: PostProps[] = [
     author: '作者',
     clubsName: '這是一個名字很長長長長的社團',
     eventName: '馬拉松活動',
-    imageUri: require('../../assets/images/views/view_3.jpg'),
+    imageUri: require('../../../assets/images/views/view_3.jpg'),
     description: '動態內容第一行\n二\n三\n四',
     like: 200,
     liked: false,
@@ -379,7 +379,7 @@ const itemList: PostProps[] = [
     author: '作者',
     clubsName: '',
     eventName: '點我連到活動頁',
-    imageUri: require('../../assets/images/views/view_3.jpg'),
+    imageUri: require('../../../assets/images/views/view_3.jpg'),
     description: '這邊動態有按過讚',
     like: 639,
     liked: true,
@@ -390,7 +390,7 @@ const itemList: PostProps[] = [
     author: '作者',
     clubsName: '點我連到社團頁',
     eventName: '',
-    imageUri: require('../../assets/images/views/view_3.jpg'),
+    imageUri: require('../../../assets/images/views/view_3.jpg'),
     description: '動態內容',
     like: 399,
     liked: false,
@@ -401,7 +401,7 @@ const itemList: PostProps[] = [
     author: '作者',
     clubsName: '',
     eventName: '',
-    imageUri: require('../../assets/images/views/view_3.jpg'),
+    imageUri: require('../../../assets/images/views/view_3.jpg'),
     description: '動態內容',
     like: 849,
     liked: true,

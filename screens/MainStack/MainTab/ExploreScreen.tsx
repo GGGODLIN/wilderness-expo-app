@@ -1,4 +1,4 @@
-import { MaterialCommunityIcons, MaterialIcons, FontAwesome, AntDesign } from '@expo/vector-icons';
+import { MaterialIcons, FontAwesome, AntDesign } from '@expo/vector-icons';
 import {
   Button,
   HStack,
@@ -12,18 +12,10 @@ import {
   Image,
   Fab,
   VStack,
-  FlatList,
-  Avatar,
 } from 'native-base';
-import React, { LegacyRef, useEffect, useRef, useState } from 'react';
-import { ColorPropType, Keyboard, Dimensions, ScrollView } from 'react-native';
-import MapView, {
-  Animated as MapViewAnimated,
-  AnimatedRegion,
-  Marker,
-  PROVIDER_GOOGLE,
-  Region,
-} from 'react-native-maps';
+import React, { useEffect, useRef, useState } from 'react';
+import { Keyboard, Dimensions, ScrollView } from 'react-native';
+import MapView, { AnimatedRegion, Marker, PROVIDER_GOOGLE, Region } from 'react-native-maps';
 
 import { MAIN_STACK_CREATE_LOCATION, MAIN_STACK_LOCATION_DETAILS } from '../../../NavigationNames';
 import { NavigationProps } from '../../../Props';

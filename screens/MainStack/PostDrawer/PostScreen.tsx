@@ -24,11 +24,11 @@ import React, { useState } from 'react';
 import type { ImageSourcePropType } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-import { NavigationProps } from '../../Props';
-import { Carousel } from '../../components/Carousel';
-import FloatingLabelInput from '../../components/FloatingLabelInput';
-import Colors from '../../constants/Colors';
-import DashboardLayout from '../../layouts/DashboardLayout';
+import { NavigationProps } from '../../../Props';
+import { Carousel } from '../../../components/Carousel';
+import FloatingLabelInput from '../../../components/FloatingLabelInput';
+import Colors from '../../../constants/Colors';
+import DashboardLayout from '../../../layouts/DashboardLayout';
 
 type SizesType = {
   size: string;
@@ -60,13 +60,13 @@ const postDetail: ProductType = {
 
 const reviews: ReviewsType[] = [
   {
-    imageUrl: require('../../assets/theme/trending1.png'),
+    imageUrl: require('../../../assets/theme/trending1.png'),
     name: '水亮亮',
     time: '剛剛',
     review: '下次也要去!',
   },
   {
-    imageUrl: require('../../assets/theme/trending1.png'),
+    imageUrl: require('../../../assets/theme/trending1.png'),
     name: '車老大',
     time: '2022-10-30',
     review: '我的天啊',
@@ -318,13 +318,13 @@ const CarouselLayout = () => {
       height={{ base: 300, md: 20 }}>
       <Carousel
         images={[
-          require('../../assets/images/views/view_9.jpg'),
-          require('../../assets/images/views/view_10.jpg'),
-          require('../../assets/images/views/view_15.jpg'),
-          require('../../assets/images/views/view_11.jpg'),
-          require('../../assets/images/views/view_12.jpg'),
-          require('../../assets/images/views/view_13.jpg'),
-          require('../../assets/images/views/view_14.jpg'),
+          require('../../../assets/images/views/view_9.jpg'),
+          require('../../../assets/images/views/view_10.jpg'),
+          require('../../../assets/images/views/view_15.jpg'),
+          require('../../../assets/images/views/view_11.jpg'),
+          require('../../../assets/images/views/view_12.jpg'),
+          require('../../../assets/images/views/view_13.jpg'),
+          require('../../../assets/images/views/view_14.jpg'),
         ]}
         height={{ base: 300, md: 20 }}
         activeIndicatorBgColor="coolGray.500"
@@ -370,7 +370,7 @@ function LeaveMessage() {
               <Avatar
                 height="6"
                 width="6"
-                source={require('../../assets/images/views/view_9.jpg')}
+                source={require('../../../assets/images/views/view_9.jpg')}
               />
               <VStack space="0" alignItems="center">
                 <Text
@@ -442,7 +442,11 @@ export default function MainStackPostScreen({ navigation }: NavigationProps): JS
     return (
       <VStack space="0">
         <HStack space="2">
-          <Avatar height="6" width="6" source={require('../../assets/images/views/view_9.jpg')} />
+          <Avatar
+            height="6"
+            width="6"
+            source={require('../../../assets/images/views/view_9.jpg')}
+          />
           <VStack space="0" alignItems="center">
             <Text
               fontSize="sm"

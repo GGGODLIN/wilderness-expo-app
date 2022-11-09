@@ -11,14 +11,15 @@ import * as React from 'react';
 import { useRef } from 'react';
 
 import {
-  MAIN_STACK_CLUB_DETAILS,
   MAIN_STACK_CREATE_LOCATION,
   MAIN_STACK_CREATE_POST,
   MAIN_STACK_EVENT_DETAILS,
   MAIN_STACK_LOCATION_DETAILS,
+  MAIN_STACK_LOCATION_DRAWER,
   MAIN_STACK_LOGIN,
   MAIN_STACK_MESSAGES,
   MAIN_STACK_POST,
+  MAIN_STACK_POST_DRAWER,
   MAIN_STACK_PROFILE,
   MAIN_STACK_REGISTER,
   MAIN_STACK_RESET_PASSWORD,
@@ -26,14 +27,15 @@ import {
   PROFILE_STACK_NOTIFICATIONS,
 } from './NavigationNames';
 import { Nav } from './Props';
-import MainStackClubDetailsScreen from './screens/MainStack/ClubDetailsScreen';
 import CreateLocationScreen from './screens/MainStack/CreateLocationScreen';
 import CreatePostScreen from './screens/MainStack/CreatePostScreen';
 import MainStackEventDetailsScreen from './screens/MainStack/EventDetailsScreen';
-import LocationDetailsScreen from './screens/MainStack/LocationDetailsScreen';
+import LocationDetailsScreen from './screens/MainStack/LocationDrawer/LocationDetailsScreen';
+import LocationDrawer from './screens/MainStack/LocationDrawer/LocationDrawer';
 import MainStackLoginScreen from './screens/MainStack/LoginScreen';
 import MainStackMessageScreen from './screens/MainStack/MessageScreen';
-import MainStackPostScreen from './screens/MainStack/PostScreen';
+import PostDrawer from './screens/MainStack/PostDrawer/PostDrawer';
+import MainStackPostScreen from './screens/MainStack/PostDrawer/PostScreen';
 import MainStackProfileScreen from './screens/MainStack/ProfileScreen';
 import MainStackRegisterScreen from './screens/MainStack/RegisterScreen';
 import MainStackResetPasswordScreen from './screens/MainStack/ResetPasswordScreen';
@@ -86,19 +88,18 @@ export default function App() {
             component={MainStackResetPasswordScreen}
             name={MAIN_STACK_RESET_PASSWORD}
           />
-          <MainStack.Screen component={MainStackClubDetailsScreen} name={MAIN_STACK_CLUB_DETAILS} />
           <MainStack.Screen
             component={MainStackEventDetailsScreen}
             name={MAIN_STACK_EVENT_DETAILS}
           />
           <MainStack.Screen component={MainStackMessageScreen} name={MAIN_STACK_MESSAGES} />
-          <MainStack.Screen component={MainStackPostScreen} name={MAIN_STACK_POST} />
+          <MainStack.Screen component={PostDrawer} name={MAIN_STACK_POST_DRAWER} />
           <MainStack.Screen component={MainStackProfileScreen} name={MAIN_STACK_PROFILE} />
           <MainStack.Screen
             component={ProfileStackNotifications}
             name={PROFILE_STACK_NOTIFICATIONS}
           />
-          <MainStack.Screen component={LocationDetailsScreen} name={MAIN_STACK_LOCATION_DETAILS} />
+          <MainStack.Screen component={LocationDrawer} name={MAIN_STACK_LOCATION_DRAWER} />
           <MainStack.Screen component={CreatePostScreen} name={MAIN_STACK_CREATE_POST} />
           <MainStack.Screen component={CreateLocationScreen} name={MAIN_STACK_CREATE_LOCATION} />
         </MainStack.Navigator>

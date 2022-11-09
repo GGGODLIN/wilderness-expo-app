@@ -17,7 +17,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Keyboard, Dimensions, ScrollView } from 'react-native';
 import MapView, { AnimatedRegion, Marker, PROVIDER_GOOGLE, Region } from 'react-native-maps';
 
-import { MAIN_STACK_CREATE_LOCATION, MAIN_STACK_LOCATION_DETAILS } from '../../../NavigationNames';
+import {
+  MAIN_STACK_CREATE_LOCATION,
+  MAIN_STACK_LOCATION_DETAILS,
+  MAIN_STACK_CREATE_POST,
+} from '../../../NavigationNames';
 import { NavigationProps } from '../../../Props';
 import Colors from '../../../constants/Colors';
 import DashboardLayout from '../../../layouts/DashboardLayout';
@@ -550,7 +554,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
           colorScheme="light"
           shadow={2}
           size="sm"
-          onPress={() => navigation.navigate(MAIN_STACK_CREATE_LOCATION)}
+          onPress={() => navigation.navigate(MAIN_STACK_CREATE_POST)}
           icon={<Icon color="white" as={AntDesign} name="plus" size="sm" />}
         />
       </Box>

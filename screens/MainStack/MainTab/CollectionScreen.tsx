@@ -22,7 +22,11 @@ import {
 import React, { useState } from 'react';
 import { Platform } from 'react-native';
 
-import { MAIN_STACK_CREATE_LOCATION, MAIN_STACK_LOCATION_DETAILS } from '../../../NavigationNames';
+import {
+  MAIN_STACK_CREATE_LOCATION,
+  MAIN_STACK_LOCATION_DETAILS,
+  MAIN_STACK_POST,
+} from '../../../NavigationNames';
 import { NavigationProps } from '../../../Props';
 import LocationList from '../../../components/explore/LocationList';
 import Colors from '../../../constants/Colors';
@@ -50,13 +54,13 @@ const trendingContentList: Content[] = [
     description: '達到露營 100 次',
     discountedPrice: '$5,53,000',
     actualPrice: '5,000',
-    Progress: 20,
+    Progress: 100,
   },
   {
     imageUri: 'https://picsum.photos/200',
-    itemName: '滑水',
+    itemName: '企鵝王',
     itemCompany: 'YK',
-    description: '達到露營 100 次',
+    description: '達到滑水 100 次',
     discountedPrice: '$5,53,000',
     actualPrice: '5,000',
     Progress: 50,
@@ -284,57 +288,59 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
   }) => {
     const arr = new Array(6).fill(0);
     return (
-      <HStack justifyContent="flex-start" space="4" key={key} px="2">
-        <VStack>
-          <TrackingIcon
-            IconColorLight={status.type ? Colors.LOGO_COLOR_BROWN : 'coolGray.200'}
-            IconColorDark={status.type ? 'primary.500' : 'coolGray.400'}
-          />
-          <Divider
-            orientation="vertical"
-            _light={{ bg: status.type ? Colors.LOGO_COLOR_BROWN : 'coolGray.200' }}
-            _dark={{ bg: 'primary.500' }}
-            size="0.5"
-            ml="9.5"
-            flex={1}
-          />
-        </VStack>
-        <VStack mb="6" flex={1}>
-          <Text
-            _light={{ color: status.type ? 'coolGray.800' : 'coolGray.400' }}
-            _dark={{ color: status.type ? 'coolGray.50' : 'coolGray.500' }}
-            fontWeight="medium"
-            fontSize="sm"
-            mb="2px">
-            {title}
-          </Text>
-
-          <Text
-            _light={{ color: status.type ? 'coolGray.500' : 'coolGray.400' }}
-            _dark={{ color: status.type ? 'coolGray.400' : 'coolGray.500' }}
-            fontWeight="normal"
-            fontSize="xs">
-            {description}
-          </Text>
-          {status.type && (
+      <Pressable onPress={() => navigation.navigate(MAIN_STACK_POST)}>
+        <HStack justifyContent="flex-start" space="4" key={key} px="2">
+          <VStack>
+            <TrackingIcon
+              IconColorLight={status.type ? Colors.LOGO_COLOR_BROWN : 'coolGray.200'}
+              IconColorDark={status.type ? 'primary.500' : 'coolGray.400'}
+            />
+            <Divider
+              orientation="vertical"
+              _light={{ bg: status.type ? Colors.LOGO_COLOR_BROWN : 'coolGray.200' }}
+              _dark={{ bg: 'primary.500' }}
+              size="0.5"
+              ml="9.5"
+              flex={1}
+            />
+          </VStack>
+          <VStack mb="6" flex={1}>
             <Text
-              _light={{ color: 'coolGray.400' }}
-              _dark={{ color: 'coolGray.500' }}
+              _light={{ color: status.type ? 'coolGray.800' : 'coolGray.400' }}
+              _dark={{ color: status.type ? 'coolGray.50' : 'coolGray.500' }}
+              fontWeight="medium"
+              fontSize="sm"
+              mb="2px">
+              {title}
+            </Text>
+
+            <Text
+              _light={{ color: status.type ? 'coolGray.500' : 'coolGray.400' }}
+              _dark={{ color: status.type ? 'coolGray.400' : 'coolGray.500' }}
               fontWeight="normal"
               fontSize="xs">
-              {status.time}
+              {description}
             </Text>
-          )}
-        </VStack>
-        <Image
-          mb="2"
-          w="20"
-          h="16"
-          source={{ uri: 'https://picsum.photos/200' }}
-          alt="Alternate Text"
-          resizeMode="cover"
-        />
-      </HStack>
+            {status.type && (
+              <Text
+                _light={{ color: 'coolGray.400' }}
+                _dark={{ color: 'coolGray.500' }}
+                fontWeight="normal"
+                fontSize="xs">
+                {status.time}
+              </Text>
+            )}
+          </VStack>
+          <Image
+            mb="2"
+            w="20"
+            h="16"
+            source={{ uri: 'https://picsum.photos/200' }}
+            alt="Alternate Text"
+            resizeMode="cover"
+          />
+        </HStack>
+      </Pressable>
     );
   };
 
@@ -357,7 +363,9 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
     return (
       <Pressable
         borderRadius="lg"
-        _light={{ bg: 'coolGray.50' }}
+        _light={{
+          bg: props.item.Progress == 100 ? Colors.LOGO_COLOR_WHITE_BACKGROUND : 'coolGray.50',
+        }}
         _dark={{ bg: 'coolGray.700' }}
         w="100%"
         mb={2}>
@@ -366,9 +374,12 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
             <Text
               fontSize="sm"
               fontWeight="medium"
-              _light={{ color: 'coolGray.800' }}
+              _light={{
+                color: props.item.Progress == 100 ? Colors.LOGO_COLOR_BROWN : 'coolGray.800',
+              }}
               _dark={{ color: 'coolGray.50' }}>
               {props.item.itemName}
+              {props.item.Progress == 100 && ' (已獲得)'}
             </Text>
 
             <Progress

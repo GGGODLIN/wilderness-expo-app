@@ -253,7 +253,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
               color: 'coolGray.200',
             }}
             _light={{
-              color: 'white',
+              color: Colors.LOGO_COLOR_BROWN,
             }}
           />
         }
@@ -263,13 +263,14 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
 
   function CustomTitle() {
     return (
-      <HStack alignItems="center" justifyContent="space-between">
+      <HStack alignItems="flex-start" justifyContent="space-between">
         <Input
+          w="300"
           borderWidth={1}
           py={2}
           my={1}
           mb={2}
-          mx={4}
+          mx={2}
           borderRadius="2xl"
           bg="white"
           variant="unstyled"
@@ -472,7 +473,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
         {/* ========= Map Part - End ========= */}
 
         {/* ========= Pan Part - Start ========= */}
-        <Box zIndex={showLocationCard ? 3 : -1} position="absolute" bottom={0} left={0} right={0}>
+        <Box zIndex={showLocationCard ? 3 : -1} position="absolute" bottom={10} left={0} right={0}>
           <ScrollView
             ref={panRef}
             horizontal
@@ -542,7 +543,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
         {/* ========= Pan Part - End ========= */}
         <Fab
           position="absolute"
-          bottom={-20}
+          bottom={0}
           height={12}
           renderInPortal={false}
           bg={Colors.LOGO_COLOR_BROWN}

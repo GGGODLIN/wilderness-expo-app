@@ -1,8 +1,14 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer } from '@react-navigation/native';
+import {
+  createNavigationContainerRef,
+  NavigationContainer,
+  useNavigation,
+} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Accelerometer } from 'expo-sensors';
 import { NativeBaseProvider } from 'native-base';
 import * as React from 'react';
+import { useRef } from 'react';
 
 import {
   MAIN_STACK_CLUB_DETAILS,
@@ -19,6 +25,7 @@ import {
   MAIN_STACK_TABS,
   PROFILE_STACK_NOTIFICATIONS,
 } from './NavigationNames';
+import { Nav } from './Props';
 import MainStackClubDetailsScreen from './screens/MainStack/ClubDetailsScreen';
 import CreateLocationScreen from './screens/MainStack/CreateLocationScreen';
 import CreatePostScreen from './screens/MainStack/CreatePostScreen';
@@ -33,13 +40,41 @@ import MainStackResetPasswordScreen from './screens/MainStack/ResetPasswordScree
 import MainStackTabsScreen from './screens/MainStack/TabsScreen';
 import ProfileStackNotifications from './screens/ProfileStack/ProfileStackNotifications';
 
-const Tab = createBottomTabNavigator();
+const configureShake = (onShake: (acceleration: number) => void) => {
+  // update value every 100ms.
+  // Adjust this interval to detect
+  // faster (20ms) or slower shakes (500ms)
+  Accelerometer.setUpdateInterval(100);
+
+  // at each update, we have acceleration registered on 3 axis
+  // 1 = no device movement, only acceleration caused by gravity
+  const onUpdate = ({ x, y, z }: { x: number; y: number; z: number }) => {
+    // compute a total acceleration value, here with a square sum
+    // you can eventually change the formula
+    // if you want to prioritize an axis
+    const acceleration = Math.sqrt(x * x + y * y + z * z);
+
+    // Adjust sensibility, because it can depend of usage (& devices)
+    const sensibility = 2;
+    if (acceleration >= sensibility) {
+      onShake(acceleration);
+    }
+  };
+
+  Accelerometer.addListener(onUpdate);
+};
+
 const MainStack = createNativeStackNavigator();
+const navigationRef = createNavigationContainerRef();
 
 export default function App() {
+  configureShake((acceleration) => {
+    navigationRef.navigate(MAIN_STACK_LOCATION_DETAILS);
+    console.log('Shake detected with acceleration ', acceleration);
+  });
   return (
     <NativeBaseProvider>
-      <NavigationContainer>
+      <NavigationContainer ref={navigationRef}>
         <MainStack.Navigator
           screenOptions={{
             headerShown: false,

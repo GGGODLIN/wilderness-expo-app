@@ -407,19 +407,16 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
   function Tab_1() {
     return (
       <ScrollView py={4}>
-        <VStack space={5} alignItems="center" mx={1} mb={0}>
+        <VStack space={5} alignItems="center" mx={1} mb={0} px={2}>
           {locationList.map((props, index) => (
-            <Pressable key={index} onPress={() => navigation.navigate(MAIN_STACK_LOCATION_DETAILS)}>
-              <VStack
-                shadow={2}
-                borderRadius="2xl"
-                bgColor="white"
-                key={'pan_' + props.id}
-                height={200}
-                w={300}>
+            <Pressable
+              key={index}
+              onPress={() => navigation.navigate(MAIN_STACK_LOCATION_DETAILS)}
+              w="100%">
+              <VStack bgColor="white" key={'pan_' + props.id} height={200} w="100%">
                 <Image
-                  borderTopLeftRadius="30"
-                  borderTopRightRadius="30"
+                  borderTopLeftRadius="10"
+                  borderTopRightRadius="10"
                   source={{ uri: props.image }}
                   alt="image"
                   width="100%"
@@ -512,7 +509,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
     return (
       <Pressable onPress={() => handleTabChange(tabName)}>
         <Text
-          paddingX={3}
+          paddingX={2}
           paddingY={1}
           fontSize="lg"
           fontWeight="medium"

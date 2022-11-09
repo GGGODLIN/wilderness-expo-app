@@ -17,6 +17,7 @@ import {
   ScrollView,
   Image,
   Divider,
+  Progress,
 } from 'native-base';
 import React, { useState } from 'react';
 import { Platform } from 'react-native';
@@ -26,6 +27,50 @@ import { NavigationProps } from '../../../Props';
 import LocationList from '../../../components/explore/LocationList';
 import Colors from '../../../constants/Colors';
 import DashboardLayout from '../../../layouts/DashboardLayout';
+
+type Content = {
+  imageUri: string;
+  itemName: string;
+  itemCompany: string;
+  description: string;
+  discountedPrice: string;
+  actualPrice: string;
+  Progress: number;
+};
+
+type MobileIcon = {
+  iconName: string;
+  iconText: string;
+};
+const trendingContentList: Content[] = [
+  {
+    imageUri: 'https://picsum.photos/200',
+    itemName: '好野人',
+    itemCompany: 'BABY GROW',
+    description: '達到露營 100 次',
+    discountedPrice: '$5,53,000',
+    actualPrice: '5,000',
+    Progress: 20,
+  },
+  {
+    imageUri: 'https://picsum.photos/200',
+    itemName: '滑水',
+    itemCompany: 'YK',
+    description: '達到露營 100 次',
+    discountedPrice: '$5,53,000',
+    actualPrice: '5,000',
+    Progress: 50,
+  },
+  {
+    imageUri: 'https://picsum.photos/200',
+    itemName: '街頭霸王',
+    itemCompany: 'YK',
+    description: '達到車泊 100 次',
+    discountedPrice: '$5,53,000',
+    actualPrice: '5,000',
+    Progress: 90,
+  },
+];
 
 export default function MainTabExploreScreen({ navigation }: NavigationProps): JSX.Element {
   const [textInput, setTextInput] = useState('');
@@ -308,6 +353,46 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
     );
   }
 
+  function TrendingFundraisersCard(props: { item: Content }) {
+    return (
+      <Pressable
+        borderRadius="lg"
+        _light={{ bg: 'coolGray.50' }}
+        _dark={{ bg: 'coolGray.700' }}
+        w="100%"
+        mb={2}>
+        <Box borderRadius="lg">
+          <VStack p={3} space={2}>
+            <Text
+              fontSize="sm"
+              fontWeight="medium"
+              _light={{ color: 'coolGray.800' }}
+              _dark={{ color: 'coolGray.50' }}>
+              {props.item.itemName}
+            </Text>
+
+            <Progress
+              value={props.item.Progress}
+              _light={{ bg: Colors.LOGO_COLOR_WHITE_BACKGROUND }}
+              _dark={{ bg: 'coolGray.500' }}
+              _filledTrack={{ bg: Colors.LOGO_COLOR_BROWN }}
+            />
+
+            <HStack alignItems="center" justifyContent="space-between">
+              <Text
+                fontSize="xs"
+                fontWeight="medium"
+                _light={{ color: 'coolGray.500' }}
+                _dark={{ color: 'coolGray.400' }}>
+                {props.item.description}
+              </Text>
+            </HStack>
+          </VStack>
+        </Box>
+      </Pressable>
+    );
+  }
+
   function Tab_1() {
     return (
       <ScrollView py={4}>
@@ -365,14 +450,18 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
   function Tab_3() {
     return (
       <ScrollView py={4}>
-        <Text>換元件中</Text>
+        <Text>製作中</Text>
       </ScrollView>
     );
   }
   function Tab_4() {
     return (
       <ScrollView py={4}>
-        <Text>換元件中</Text>
+        <VStack mx="4" px={{ md: 2 }} space={0} mt="3" alignItems="center">
+          {trendingContentList.map((item, index) => {
+            return <TrendingFundraisersCard key={index} item={item} />;
+          })}
+        </VStack>
       </ScrollView>
     );
   }

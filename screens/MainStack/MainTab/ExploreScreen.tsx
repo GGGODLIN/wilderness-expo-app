@@ -247,7 +247,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
       <IconButton
         variant="unstyled"
         colorScheme="light"
-        onPress={() => navigation.navigate(MAIN_STACK_LOCATION_DETAILS)}
+        onPress={() => navigation.navigate(MAIN_STACK_CREATE_LOCATION)}
         icon={
           <Icon
             size="5"
@@ -517,27 +517,47 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
                       height="120"
                       resizeMode="cover"
                     />
-                    <VStack px={4}>
-                      <Text
-                        mt="2"
-                        fontSize="xs"
-                        fontWeight="normal"
-                        _light={{ color: 'coolGray.500' }}
-                        _dark={{ color: 'coolGray.400' }}>
-                        {props.tags}
-                      </Text>
-                      <Text
-                        mt="0"
-                        fontSize="sm"
-                        fontWeight="medium"
-                        _light={{ color: 'coolGray.900' }}
-                        _dark={{ color: 'coolGray.400' }}>
-                        {props.title}
-                      </Text>
-                      <Text shadow="2" color={Colors.LOGO_COLOR_BROWN}>
-                        {props.altitude} 公尺
-                      </Text>
-                    </VStack>
+                    <HStack justifyContent="space-between">
+                      <VStack px={4}>
+                        <Text
+                          mt="2"
+                          fontSize="xs"
+                          fontWeight="normal"
+                          _light={{ color: 'coolGray.500' }}
+                          _dark={{ color: 'coolGray.400' }}>
+                          {props.tags}
+                        </Text>
+                        <Text
+                          mt="0"
+                          fontSize="sm"
+                          fontWeight="medium"
+                          _light={{ color: 'coolGray.900' }}
+                          _dark={{ color: 'coolGray.400' }}>
+                          {props.title}
+                        </Text>
+                        <Text shadow="2" color={Colors.LOGO_COLOR_BROWN}>
+                          {props.altitude} 公尺
+                        </Text>
+                      </VStack>
+                      <IconButton
+                        variant="unstyled"
+                        colorScheme="light"
+                        onPress={() => navigation.navigate(MAIN_STACK_CREATE_POST)}
+                        icon={
+                          <Icon
+                            size="7"
+                            name="check-square-o"
+                            as={FontAwesome}
+                            _dark={{
+                              color: 'coolGray.200',
+                            }}
+                            _light={{
+                              color: Colors.LOGO_COLOR_BROWN,
+                            }}
+                          />
+                        }
+                      />
+                    </HStack>
                   </Box>
                 </Pressable>
               ))}
@@ -545,6 +565,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
           </ScrollView>
         </Box>
         {/* ========= Pan Part - End ========= */}
+        {/*
         <Fab
           position="absolute"
           bottom={0}
@@ -557,6 +578,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
           onPress={() => navigation.navigate(MAIN_STACK_CREATE_POST)}
           icon={<Icon color="white" as={AntDesign} name="plus" size="sm" />}
         />
+        */}
       </Box>
     </DashboardLayout>
   );

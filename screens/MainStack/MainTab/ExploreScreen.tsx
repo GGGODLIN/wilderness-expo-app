@@ -1,4 +1,5 @@
 import { MaterialIcons, FontAwesome, AntDesign } from '@expo/vector-icons';
+import * as ExpoLocation from 'expo-location';
 import {
   Button,
   HStack,
@@ -14,14 +15,10 @@ import {
   VStack,
 } from 'native-base';
 import React, { useEffect, useRef, useState } from 'react';
-import { Keyboard, Dimensions, ScrollView } from 'react-native';
+import { Keyboard, Dimensions, ScrollView, PermissionsAndroid } from 'react-native';
 import MapView, { AnimatedRegion, Marker, PROVIDER_GOOGLE, Region } from 'react-native-maps';
 
-import {
-  MAIN_STACK_CREATE_LOCATION,
-  MAIN_STACK_LOCATION_DETAILS,
-  MAIN_STACK_CREATE_POST,
-} from '../../../NavigationNames';
+import { MAIN_STACK_LOCATION_DETAILS, MAIN_STACK_CREATE_POST } from '../../../NavigationNames';
 import { NavigationProps } from '../../../Props';
 import Colors from '../../../constants/Colors';
 import DashboardLayout from '../../../layouts/DashboardLayout';
@@ -192,6 +189,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
   const [showFilter, setShowFilter] = useState(false);
   const [textInput, setTextInput] = useState('');
   const [selectedAddress, setSelectedAddress] = useState('Home');
+  const [mapErrorMsg, setMapErrorMsg] = useState<string | null>(null);
   const screenWidth = Dimensions.get('screen').width;
   const mapRef = useRef<MapView | null>(null);
   const panRef = useRef<ScrollView | null>(null);
@@ -199,11 +197,32 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
   const currentRegion = new AnimatedRegion(DEFAULT_MAPVIEW_REGION);
 
   useEffect(() => {
+    (async () => {
+      const { status } = await ExpoLocation.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setMapErrorMsg('Permission to access location was denied');
+        return;
+      }
+
+      const location = await ExpoLocation.getCurrentPositionAsync({});
+      mapRef!.current!.animateToRegion(
+        {
+          latitude: location.coords.latitude,
+          longitude: location.coords.longitude,
+          latitudeDelta: 0.02,
+          longitudeDelta: 0.02,
+        },
+        1000
+      );
+    })();
+
+    //FIXME 改成定位完成後移動到當前位置
     const markers = locationList.map((location) => ({
       latitude: location.latitude,
       longitude: location.longitude,
     }));
     const region = getRegionFromMarkers(markers);
+
     mapRef!.current!.animateToRegion(region, 1000);
   }, []);
 
@@ -374,6 +393,16 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
     currentRegion.setValue(region);
   };
 
+  if (mapErrorMsg) {
+    return (
+      <DashboardLayout title="活動" customIcon={<CustomIcon />} customTitle={<CustomTitle />}>
+        <Box px={{ md: 8, xl: 35 }} py={{ md: 5 }} flex={1}>
+          <Text>{mapErrorMsg}</Text>
+        </Box>
+      </DashboardLayout>
+    );
+  }
+
   return (
     <DashboardLayout title="活動" customIcon={<CustomIcon />} customTitle={<CustomTitle />}>
       <Box px={{ md: 8, xl: 35 }} py={{ md: 5 }} flex={1}>
@@ -454,7 +483,8 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
           style={{ flex: 1, minHeight: 700, height: '100%' }}
           provider={PROVIDER_GOOGLE}
           region={DEFAULT_MAPVIEW_REGION}
-          onRegionChangeComplete={onRegionChangeComplete}>
+          onRegionChangeComplete={onRegionChangeComplete}
+          showsUserLocation>
           {locationList.map((location, index) => (
             <Marker
               key={location.id}

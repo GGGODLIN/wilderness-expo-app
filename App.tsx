@@ -9,6 +9,8 @@ import { Accelerometer } from 'expo-sensors';
 import { NativeBaseProvider } from 'native-base';
 import * as React from 'react';
 import { useRef } from 'react';
+import { PermissionsAndroid } from 'react-native';
+import { enableLatestRenderer } from 'react-native-maps';
 
 import {
   MAIN_STACK_CREATE_LOCATION,
@@ -41,6 +43,8 @@ import MainStackRegisterScreen from './screens/MainStack/RegisterScreen';
 import MainStackResetPasswordScreen from './screens/MainStack/ResetPasswordScreen';
 import MainStackTabsScreen from './screens/MainStack/TabsScreen';
 import ProfileStackNotifications from './screens/ProfileStack/ProfileStackNotifications';
+
+enableLatestRenderer();
 
 const configureShake = (onShake: (acceleration: number) => void) => {
   // update value every 100ms.

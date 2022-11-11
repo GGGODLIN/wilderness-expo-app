@@ -184,6 +184,17 @@ const DEFAULT_MAPVIEW_REGION = {
   longitude: 121.535002,
 };
 
+const mapStyle = [
+  {
+    featureType: 'poi',
+    stylers: [
+      {
+        visibility: 'off',
+      },
+    ],
+  },
+];
+
 export default function MainTabExploreScreen({ navigation }: NavigationProps): JSX.Element {
   const [showLocationCard, setShowLocationCard] = useState(true);
   const [showFilter, setShowFilter] = useState(false);
@@ -484,7 +495,8 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
           provider={PROVIDER_GOOGLE}
           region={DEFAULT_MAPVIEW_REGION}
           onRegionChangeComplete={onRegionChangeComplete}
-          showsUserLocation>
+          showsUserLocation
+          customMapStyle={mapStyle}>
           {locationList.map((location, index) => (
             <Marker
               key={location.id}

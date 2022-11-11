@@ -548,7 +548,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
                     borderRadius="2xl"
                     bgColor="white"
                     key={'pan_' + props.id}
-                    height={200}
+                    height={260}
                     width={screenWidth - 80}>
                     <Image
                       borderTopLeftRadius="30"
@@ -559,8 +559,8 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
                       height="120"
                       resizeMode="cover"
                     />
-                    <HStack justifyContent="space-between">
-                      <VStack px={4}>
+                    <HStack flex={1}>
+                      <VStack px={4} flex={1}>
                         <Text
                           mt="2"
                           fontSize="xs"

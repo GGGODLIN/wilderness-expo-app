@@ -593,12 +593,14 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
               }}>
               <VStack alignItems="center">
                 <Icon as={MaterialIcons} color={Colors.LOGO_COLOR_BROWN} name="place" size={10} />
-                <Text shadow="2" fontSize="xs" color={Colors.LOGO_COLOR_BROWN} textAlign="center">
-                  海拔 {location.altitude} 公尺
-                </Text>
-                <Text shadow="2" fontSize="xs" color={Colors.LOGO_COLOR_BROWN} textAlign="center">
-                  距離 1200 公尺
-                </Text>
+                <VStack bg="#FFFFFF70" borderRadius="xl" px="1" py="1">
+                  <Text fontSize="xs" color={Colors.LOGO_COLOR_BROWN} textAlign="center">
+                    海拔 {location.altitude} 公尺
+                  </Text>
+                  <Text fontSize="xs" color={Colors.LOGO_COLOR_BROWN} textAlign="center">
+                    距離 1200 公尺
+                  </Text>
+                </VStack>
               </VStack>
             </Marker>
           ))}

@@ -1,4 +1,4 @@
-import { MaterialIcons, FontAwesome, AntDesign } from '@expo/vector-icons';
+import { MaterialIcons, FontAwesome, AntDesign, Ionicons } from '@expo/vector-icons';
 import * as ExpoLocation from 'expo-location';
 import {
   Button,
@@ -13,12 +13,17 @@ import {
   Image,
   Fab,
   VStack,
+  Center,
 } from 'native-base';
 import React, { useEffect, useRef, useState } from 'react';
 import { Keyboard, Dimensions, ScrollView, PermissionsAndroid } from 'react-native';
 import MapView, { AnimatedRegion, Marker, PROVIDER_GOOGLE, Region } from 'react-native-maps';
 
-import { MAIN_STACK_LOCATION_DETAILS, MAIN_STACK_CREATE_POST } from '../../../NavigationNames';
+import {
+  MAIN_STACK_LOCATION_DETAILS,
+  MAIN_STACK_CREATE_POST,
+  MAIN_STACK_CREATE_LOCATION,
+} from '../../../NavigationNames';
 import { NavigationProps } from '../../../Props';
 import Colors from '../../../constants/Colors';
 import DashboardLayout from '../../../layouts/DashboardLayout';
@@ -47,7 +52,16 @@ const locationList = [
     week: '週日',
     like: 639,
     liked: true,
-    tags: '關鍵字、關鍵字、待加樣式',
+    tags: [
+      {
+        id: 1,
+        title: '私人營地',
+      },
+      {
+        id: 2,
+        title: '需要預約',
+      },
+    ],
     altitude: 123,
   },
   {
@@ -72,7 +86,16 @@ const locationList = [
     week: '週日',
     like: 639,
     liked: true,
-    tags: '關鍵字、關鍵字、待加樣式',
+    tags: [
+      {
+        id: 1,
+        title: 'SUP',
+      },
+      {
+        id: 2,
+        title: '水上地點',
+      },
+    ],
     altitude: 567,
   },
   {
@@ -97,7 +120,12 @@ const locationList = [
     week: '週日',
     like: 639,
     liked: true,
-    tags: '關鍵字、關鍵字、待加樣式',
+    tags: [
+      {
+        id: 1,
+        title: '親子營地',
+      },
+    ],
     altitude: 999,
   },
   {
@@ -114,7 +142,7 @@ const locationList = [
     clubsName: '點我連到社團頁',
     eventName: null,
     imageUri: require('../../../assets/images/views/view_3.jpg'),
-    title: '這是一個很長的標題這是一個很長的標題這是一個很長的標題',
+    title: '這是一個很長的標題這是一個很長的標題',
     dateStart: '2022-12-25',
     dateEnd: '2022-12-30',
     timeStart: '18:00',
@@ -122,7 +150,12 @@ const locationList = [
     week: '週日',
     like: 639,
     liked: true,
-    tags: '關鍵字、關鍵字、待加樣式',
+    tags: [
+      {
+        id: 1,
+        title: '車泊熱點',
+      },
+    ],
     altitude: 1234,
   },
   {
@@ -147,7 +180,12 @@ const locationList = [
     week: '週日',
     like: 639,
     liked: true,
-    tags: '關鍵字、關鍵字、待加樣式',
+    tags: [
+      {
+        id: 1,
+        title: '深山',
+      },
+    ],
     altitude: 5432,
   },
   {
@@ -172,7 +210,20 @@ const locationList = [
     week: '週日',
     like: 639,
     liked: true,
-    tags: '關鍵字、關鍵字、待加樣式',
+    tags: [
+      {
+        id: 1,
+        title: '關鍵字',
+      },
+      {
+        id: 2,
+        title: '關鍵字',
+      },
+      {
+        id: 3,
+        title: '關鍵字',
+      },
+    ],
     altitude: 1243,
   },
 ];
@@ -223,7 +274,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
           latitudeDelta: 0.02,
           longitudeDelta: 0.02,
         },
-        1000
+        300
       );
     })();
 
@@ -234,7 +285,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
     }));
     const region = getRegionFromMarkers(markers);
 
-    mapRef!.current!.animateToRegion(region, 1000);
+    mapRef!.current!.animateToRegion(region, 300);
   }, []);
 
   const AddressBadge = ({
@@ -272,34 +323,10 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
     );
   };
 
-  function CustomIcon() {
-    return (
-      <IconButton
-        variant="unstyled"
-        colorScheme="light"
-        onPress={() => navigation.navigate(MAIN_STACK_CREATE_LOCATION)}
-        icon={
-          <Icon
-            size="5"
-            name="plus"
-            as={FontAwesome}
-            _dark={{
-              color: 'coolGray.200',
-            }}
-            _light={{
-              color: Colors.LOGO_COLOR_BROWN,
-            }}
-          />
-        }
-      />
-    );
-  }
-
   function CustomTitle() {
     return (
       <HStack alignItems="flex-start" justifyContent="space-between">
         <Input
-          w="300"
           borderWidth={1}
           py={2}
           my={1}
@@ -406,7 +433,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
 
   if (mapErrorMsg) {
     return (
-      <DashboardLayout title="活動" customIcon={<CustomIcon />} customTitle={<CustomTitle />}>
+      <DashboardLayout title="活動" customTitle={<CustomTitle />}>
         <Box px={{ md: 8, xl: 35 }} py={{ md: 5 }} flex={1}>
           <Text>{mapErrorMsg}</Text>
         </Box>
@@ -415,7 +442,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
   }
 
   return (
-    <DashboardLayout title="活動" customIcon={<CustomIcon />} customTitle={<CustomTitle />}>
+    <DashboardLayout title="活動" customTitle={<CustomTitle />}>
       <Box px={{ md: 8, xl: 35 }} py={{ md: 5 }} flex={1}>
         {showFilter ? (
           <Box
@@ -509,10 +536,15 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
                 setShowLocationCard(true);
                 panRef!.current!.scrollTo({ x: index * (screenWidth - 60), y: 0, animated: true });
               }}>
-              <Icon as={MaterialIcons} color={Colors.LOGO_COLOR_BROWN} name="place" size={10} />
-              <Text shadow="2" color={Colors.LOGO_COLOR_BROWN}>
-                {location.altitude} 公尺
-              </Text>
+              <VStack alignItems="center">
+                <Icon as={MaterialIcons} color={Colors.LOGO_COLOR_BROWN} name="place" size={10} />
+                <Text shadow="2" fontSize="xs" color={Colors.LOGO_COLOR_BROWN} textAlign="center">
+                  海拔 {location.altitude} 公尺
+                </Text>
+                <Text shadow="2" fontSize="xs" color={Colors.LOGO_COLOR_BROWN} textAlign="center">
+                  距離 1200 公尺
+                </Text>
+              </VStack>
             </Marker>
           ))}
         </MapView>
@@ -536,7 +568,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
                 },
               ];
               const region = getRegionFromMarkers(markers);
-              mapRef!.current!.animateToRegion(region, 1000);
+              mapRef!.current!.animateToRegion(region, 300);
             }}>
             <HStack space={5} alignItems="flex-start" mx={10} mb={0}>
               {locationList.map((props, index) => (
@@ -548,57 +580,90 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
                     borderRadius="2xl"
                     bgColor="white"
                     key={'pan_' + props.id}
-                    height={260}
+                    height={220}
                     width={screenWidth - 80}>
-                    <Image
-                      borderTopLeftRadius="30"
-                      borderTopRightRadius="30"
-                      source={{ uri: props.image }}
-                      alt="image"
-                      width="100%"
-                      height="120"
-                      resizeMode="cover"
-                    />
+                    <Box>
+                      <Image
+                        borderTopLeftRadius="30"
+                        borderTopRightRadius="30"
+                        source={{ uri: props.image }}
+                        alt="image"
+                        width="100%"
+                        height="120"
+                        resizeMode="cover"
+                      />
+                      <HStack position="absolute" bottom="2" left="3">
+                        {props.tags.map((item, index) => (
+                          <Box
+                            shadow="2"
+                            borderWidth="1"
+                            borderColor="coolGray.300"
+                            borderRadius="xl"
+                            mr="1"
+                            mt="2"
+                            my="1"
+                            px="2"
+                            py="1">
+                            <Text fontSize="xs" fontWeight="normal" color="white">
+                              {item.title}
+                            </Text>
+                          </Box>
+                        ))}
+                      </HStack>
+                    </Box>
                     <HStack flex={1}>
-                      <VStack px={4} flex={1}>
-                        <Text
-                          mt="2"
-                          fontSize="xs"
-                          fontWeight="normal"
-                          _light={{ color: 'coolGray.500' }}
-                          _dark={{ color: 'coolGray.400' }}>
-                          {props.tags}
-                        </Text>
+                      <VStack pt="2" px={4} flex={1} width="80%">
                         <Text
                           mt="0"
-                          fontSize="sm"
+                          fontSize="lg"
                           fontWeight="medium"
                           _light={{ color: 'coolGray.900' }}
                           _dark={{ color: 'coolGray.400' }}>
                           {props.title}
                         </Text>
-                        <Text shadow="2" color={Colors.LOGO_COLOR_BROWN}>
-                          {props.altitude} 公尺
-                        </Text>
+                        <Text color={Colors.LOGO_COLOR_BROWN}>海拔 {props.altitude} 公尺</Text>
+                        <Text color={Colors.LOGO_COLOR_BROWN}>距離 123 公里</Text>
                       </VStack>
-                      <IconButton
-                        variant="unstyled"
-                        colorScheme="light"
-                        onPress={() => navigation.navigate(MAIN_STACK_CREATE_POST)}
-                        icon={
-                          <Icon
-                            size="7"
-                            name="check-square-o"
-                            as={FontAwesome}
-                            _dark={{
-                              color: 'coolGray.200',
-                            }}
-                            _light={{
-                              color: Colors.LOGO_COLOR_BROWN,
-                            }}
-                          />
-                        }
-                      />
+                      <VStack alignItems="top" justifyContent="stretch">
+                        <Pressable
+                          mt="2"
+                          mr="2"
+                          onPress={() => navigation.navigate(MAIN_STACK_CREATE_POST)}>
+                          <Center
+                            _light={{ bg: Colors.LOGO_COLOR_WHITE_BACKGROUND }}
+                            _dark={{ bg: 'coolGray.700' }}
+                            rounded="full"
+                            w="12"
+                            h="12"
+                            textAlign="center"
+                            alignItems="center"
+                            justifyContent="center">
+                            <IconButton
+                              variant="unstyled"
+                              colorScheme="light"
+                              mx="0"
+                              my="0"
+                              ml="1"
+                              px="0"
+                              py="0"
+                              icon={
+                                <Icon
+                                  size="6"
+                                  name="street-view"
+                                  as={FontAwesome}
+                                  _dark={{
+                                    color: 'coolGray.200',
+                                  }}
+                                  _light={{
+                                    color: Colors.LOGO_COLOR_BROWN,
+                                  }}
+                                />
+                              }
+                            />
+                          </Center>
+                          <Text textAlign="center">打卡</Text>
+                        </Pressable>
+                      </VStack>
                     </HStack>
                   </Box>
                 </Pressable>
@@ -607,6 +672,51 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
           </ScrollView>
         </Box>
         {/* ========= Pan Part - End ========= */}
+        <VStack space="3" position="absolute" top="10" right="0" mt="2" mr="2">
+          <Pressable shadow="2" onPress={() => navigation.navigate(MAIN_STACK_CREATE_LOCATION)}>
+            <Center
+              _light={{ bg: Colors.LOGO_COLOR_GREEN }}
+              _dark={{ bg: 'coolGray.700' }}
+              rounded="full"
+              w="10"
+              h="10"
+              textAlign="center"
+              alignItems="center"
+              justifyContent="center">
+              <IconButton
+                variant="unstyled"
+                colorScheme="light"
+                mx="0"
+                my="0"
+                pl="0"
+                px="0"
+                py="0"
+                icon={<Icon size="5" name="md-add" as={Ionicons} color="white" />}
+              />
+            </Center>
+          </Pressable>
+          <Pressable shadow="2" onPress={() => undefined}>
+            <Center
+              _light={{ bg: Colors.LOGO_COLOR_GREEN }}
+              _dark={{ bg: 'coolGray.700' }}
+              rounded="full"
+              w="10"
+              h="10"
+              textAlign="center"
+              alignItems="center"
+              justifyContent="center">
+              <IconButton
+                variant="unstyled"
+                colorScheme="light"
+                mx="0"
+                my="0"
+                px="0"
+                py="0"
+                icon={<Icon size="5" name="md-navigate-outline" as={Ionicons} color="white" />}
+              />
+            </Center>
+          </Pressable>
+        </VStack>
         {/*
         <Fab
           position="absolute"

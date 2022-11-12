@@ -1,4 +1,4 @@
-import { MaterialIcons, FontAwesome5, FontAwesome } from '@expo/vector-icons';
+import { MaterialIcons, FontAwesome5, FontAwesome, Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import {
   Button,
@@ -19,12 +19,17 @@ import {
   useBreakpointValue,
   FlatList,
   IconButton,
+  Link,
 } from 'native-base';
 import React, { useState } from 'react';
 import { Platform, ImageSourcePropType, useWindowDimensions, Linking, Share } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-import { MAIN_STACK_EVENT_DETAILS, MAIN_STACK_POST } from '../../../NavigationNames';
+import {
+  MAIN_STACK_EVENT_DETAILS,
+  MAIN_STACK_POST,
+  MAIN_STACK_CREATE_POST,
+} from '../../../NavigationNames';
 import { Nav, NavigationProps } from '../../../Props';
 import { Carousel } from '../../../components/Carousel';
 import NativeMap from '../../../components/NativeMap';
@@ -265,6 +270,7 @@ const member: List[] = [
 ];
 
 const ActionButton = () => {
+  const navigation = useNavigation<Nav>();
   const [favorite, setFavorite] = useState(false);
 
   const onShare = async () => {
@@ -286,57 +292,94 @@ const ActionButton = () => {
     <HStack
       space="4"
       alignItems="center"
+      justifyContent="space-between"
       px={4}
       p={2}
+      mb={8}
       style={{ backgroundColor: 'white' }}
       shadow={2}>
-      <Button
-        flex={1}
-        size="lg"
-        variant="solid"
+      <IconButton
+        w="20%"
+        mx={0}
+        py={2}
+        px={4}
+        onPress={() => setFavorite(!favorite)}
+        variant="light"
         _light={{
-          bg: Colors.LOGO_COLOR_GREEN,
-        }}
-        _dark={{
-          bg: 'coolGray.700',
-        }}>
-        收藏
-      </Button>
-      <Button
-        flex={1}
-        size="lg"
-        variant="solid"
-        _light={{
-          bg: Colors.LOGO_COLOR_BROWN,
-        }}
-        _dark={{
-          bg: 'coolGray.700',
-        }}>
-        打卡
-      </Button>
-      <Button
-        flex={1}
-        size="lg"
-        variant="solid"
-        _light={{
-          bg: Colors.LOGO_COLOR_BROWN,
+          bg: Colors.LOGO_COLOR_WHITE_BACKGROUND,
         }}
         _dark={{
           bg: 'coolGray.700',
         }}
-        onPress={onShare}>
-        分享
-      </Button>
-      <Button
-        flex={1}
-        size="lg"
-        variant="solid"
+        icon={
+          <Icon
+            size="6"
+            name={favorite ? 'heart' : 'heart-outline'}
+            as={Ionicons}
+            _dark={{ color: 'primary.500' }}
+            _light={{ color: Colors.LOGO_COLOR_BROWN }}
+          />
+        }
+      />
+      <IconButton
+        w="20%"
+        mx={0}
+        py={2}
+        px={4}
+        onPress={() => navigation.navigate(MAIN_STACK_CREATE_POST)}
+        variant="light"
         _light={{
-          bg: Colors.LOGO_COLOR_BROWN,
+          bg: Colors.LOGO_COLOR_WHITE_BACKGROUND,
         }}
         _dark={{
           bg: 'coolGray.700',
         }}
+        icon={
+          <Icon
+            size="6"
+            name="md-golf-outline"
+            as={Ionicons}
+            _dark={{
+              color: 'coolGray.200',
+            }}
+            _light={{
+              color: Colors.LOGO_COLOR_BROWN,
+            }}
+          />
+        }
+      />
+      <IconButton
+        w="20%"
+        mx={0}
+        py={2}
+        px={4}
+        onPress={onShare}
+        variant="light"
+        _light={{
+          bg: Colors.LOGO_COLOR_WHITE_BACKGROUND,
+        }}
+        _dark={{
+          bg: 'coolGray.700',
+        }}
+        icon={
+          <Icon
+            size="6"
+            name="md-share-social"
+            as={Ionicons}
+            _dark={{
+              color: 'coolGray.200',
+            }}
+            _light={{
+              color: Colors.LOGO_COLOR_BROWN,
+            }}
+          />
+        }
+      />
+      <IconButton
+        w="20%"
+        mx={0}
+        py={2}
+        px={4}
         onPress={() => {
           const lat = 25.01;
           const lng = 121.54;
@@ -350,9 +393,28 @@ const ActionButton = () => {
           });
 
           Linking.openURL(url!);
-        }}>
-        導航
-      </Button>
+        }}
+        variant="light"
+        _light={{
+          bg: Colors.LOGO_COLOR_WHITE_BACKGROUND,
+        }}
+        _dark={{
+          bg: 'coolGray.700',
+        }}
+        icon={
+          <Icon
+            size="6"
+            name="md-navigate-outline"
+            as={Ionicons}
+            _dark={{
+              color: 'coolGray.200',
+            }}
+            _light={{
+              color: Colors.LOGO_COLOR_BROWN,
+            }}
+          />
+        }
+      />
     </HStack>
   );
 };
@@ -605,15 +667,39 @@ export default function LocationDetailsScreen({ navigation }: NavigationProps): 
 
   function Tab_1() {
     const textColor = useColorModeValue('coolGray.800', 'coolGray.50');
+    const tags = [
+      {
+        id: 1,
+        title: 'SUP',
+      },
+      {
+        id: 2,
+        title: '私人營地',
+      },
+    ];
     return (
-      <ScrollView>
+      <ScrollView minHeight="800">
         <CarouselLayout />
         <VStack space={4} mt={5} px={4}>
           <HStack>
             <VStack>
-              <Text fontWeight="bold" fontSize="lg" color="coolGray.400">
-                SUP、關鍵字樣式
-              </Text>
+              <HStack>
+                {tags.map((item, index) => (
+                  <Box
+                    borderWidth="1"
+                    borderColor="coolGray.300"
+                    borderRadius="xl"
+                    mr="1"
+                    mt="2"
+                    my="1"
+                    px="2"
+                    py="1">
+                    <Text fontSize="xs" fontWeight="normal" color="coolGray.500">
+                      {item.title}
+                    </Text>
+                  </Box>
+                ))}
+              </HStack>
               <Text fontWeight="bold" fontSize="3xl" color="coolGray.700">
                 太平山小徑
               </Text>
@@ -622,9 +708,23 @@ export default function LocationDetailsScreen({ navigation }: NavigationProps): 
           <HStack justifyContent="space-between">
             <VStack w="50%">
               <Text fontWeight="bold" color="coolGray.400">
+                座標
+              </Text>
+              <Text color="coolGray.700">25.127717, 121.635882</Text>
+            </VStack>
+            <VStack w="50%">
+              <Text fontWeight="bold" color="coolGray.400">
                 海拔
               </Text>
               <Text color="coolGray.700">700 公尺</Text>
+            </VStack>
+          </HStack>
+          <HStack justifyContent="space-between">
+            <VStack w="50%">
+              <Text fontWeight="bold" color="coolGray.400">
+                地址
+              </Text>
+              <Text color="coolGray.700">221 新北市汐止區夢湖路</Text>
             </VStack>
             <VStack w="50%">
               <Text fontWeight="bold" color="coolGray.400">
@@ -633,6 +733,7 @@ export default function LocationDetailsScreen({ navigation }: NavigationProps): 
               <Text color="coolGray.700">無停車格</Text>
             </VStack>
           </HStack>
+
           <HStack justifyContent="space-between">
             <VStack w="50%">
               <Text fontWeight="bold" color="coolGray.400">
@@ -653,6 +754,38 @@ export default function LocationDetailsScreen({ navigation }: NavigationProps): 
                 注意事項
               </Text>
               <Text color="coolGray.700">無</Text>
+            </VStack>
+          </HStack>
+          <HStack justifyContent="space-between">
+            <VStack w="50%">
+              <Text fontWeight="bold" color="coolGray.400">
+                營地資訊
+              </Text>
+              <Text color="coolGray.700">私人營地</Text>
+            </VStack>
+            <VStack w="50%">
+              <Text fontWeight="bold" color="coolGray.400">
+                預約管道
+              </Text>
+              <Link
+                href="https://www.google.com.tw/"
+                _text={{
+                  fontSize: 'sm',
+                  fontWeight: 'bold',
+                  textDecoration: 'none',
+                }}
+                _light={{
+                  _text: {
+                    color: 'primary.900',
+                  },
+                }}
+                _dark={{
+                  _text: {
+                    color: 'primary.500',
+                  },
+                }}>
+                預約連結
+              </Link>
             </VStack>
           </HStack>
         </VStack>

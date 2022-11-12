@@ -467,7 +467,6 @@ export default function MainStackPostScreen({ navigation }: NavigationProps): JS
   return (
     <DashboardLayout
       title="動態內頁"
-      displaySidebar={false}
       header={{ searchbar: false }}
       customIcon={<CustomIcon />}
       customTitle={<CustomTitle />}

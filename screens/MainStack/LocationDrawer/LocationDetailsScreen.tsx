@@ -21,7 +21,7 @@ import {
   IconButton,
 } from 'native-base';
 import React, { useState } from 'react';
-import { Platform, ImageSourcePropType, useWindowDimensions } from 'react-native';
+import { Platform, ImageSourcePropType, useWindowDimensions, Linking } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import { MAIN_STACK_EVENT_DETAILS, MAIN_STACK_POST } from '../../../NavigationNames';
@@ -320,6 +320,20 @@ const ActionButton = () => {
         }}
         _dark={{
           bg: 'coolGray.700',
+        }}
+        onPress={() => {
+          const lat = 25.01;
+          const lng = 121.54;
+          const label = 'Custom Label';
+
+          const scheme = Platform.select({ ios: 'maps:0,0?q=', android: 'geo:0,0?q=' });
+          const latLng = `${lat},${lng}`;
+          const url = Platform.select({
+            ios: `${scheme}${label}@${latLng}`,
+            android: `${scheme}${latLng}(${label})`,
+          });
+
+          Linking.openURL(url!);
         }}>
         導航
       </Button>

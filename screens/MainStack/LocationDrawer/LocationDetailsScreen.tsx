@@ -21,7 +21,7 @@ import {
   IconButton,
 } from 'native-base';
 import React, { useState } from 'react';
-import { Platform, ImageSourcePropType, useWindowDimensions, Linking } from 'react-native';
+import { Platform, ImageSourcePropType, useWindowDimensions, Linking, Share } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import { MAIN_STACK_EVENT_DETAILS, MAIN_STACK_POST } from '../../../NavigationNames';
@@ -267,6 +267,21 @@ const member: List[] = [
 const ActionButton = () => {
   const [favorite, setFavorite] = useState(false);
 
+  const onShare = async () => {
+    const result = await Share.share({
+      message: '太平山小徑',
+    });
+    if (result.action === Share.sharedAction) {
+      if (result.activityType) {
+        // shared with activity type of result.activityType
+      } else {
+        // shared
+      }
+    } else if (result.action === Share.dismissedAction) {
+      // dismissed
+    }
+  };
+
   return (
     <HStack
       space="4"
@@ -308,7 +323,8 @@ const ActionButton = () => {
         }}
         _dark={{
           bg: 'coolGray.700',
-        }}>
+        }}
+        onPress={onShare}>
         分享
       </Button>
       <Button

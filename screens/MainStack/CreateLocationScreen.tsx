@@ -356,6 +356,14 @@ export default function CreateLocationScreen({ navigation }: NavigationProps): J
               borderBottomColor: 'coolGray.900',
             }}
           />
+          <Text
+            fontSize="xl"
+            fontWeight="bold"
+            _light={{ color: 'coolGray.700' }}
+            _dark={{ color: 'coolGray.50' }}
+            mb={2}>
+            地點介紹
+          </Text>
           <TextArea
             mb="4"
             bg="white"
@@ -367,7 +375,7 @@ export default function CreateLocationScreen({ navigation }: NavigationProps): J
             _dark={{ color: 'coolGray.50' }}
             value={reason}
             onChangeText={(txt) => handleFormUpdate('reason', txt)}
-            placeholder="簡短介紹 (選填)"
+            placeholder="如何描述這個地方 (必填)"
             h="84"
             autoCompleteType={undefined}
           />

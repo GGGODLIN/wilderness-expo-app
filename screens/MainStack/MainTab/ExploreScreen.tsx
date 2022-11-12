@@ -573,7 +573,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
             <HStack space={5} alignItems="flex-start" mx={10} mb={0}>
               {locationList.map((props, index) => (
                 <Pressable
-                  key={index}
+                  key={'location' + index}
                   onPress={() => navigation.navigate(MAIN_STACK_LOCATION_DETAILS)}>
                   <Box
                     shadow={2}
@@ -593,7 +593,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
                         resizeMode="cover"
                       />
                       <HStack position="absolute" bottom="2" left="3">
-                        {props.tags.map((item, index) => (
+                        {props.tags.map((item, tags_index) => (
                           <Box
                             shadow="2"
                             borderWidth="1"
@@ -603,7 +603,8 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
                             mt="2"
                             my="1"
                             px="2"
-                            py="1">
+                            py="1"
+                            key={'location' + index + '.tag' + tags_index}>
                             <Text fontSize="xs" fontWeight="normal" color="white">
                               {item.title}
                             </Text>
@@ -624,11 +625,12 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
                         <Text color={Colors.LOGO_COLOR_BROWN}>海拔 {props.altitude} 公尺</Text>
                         <Text color={Colors.LOGO_COLOR_BROWN}>距離 123 公里</Text>
                       </VStack>
-                      <VStack alignItems="top" justifyContent="stretch">
+                      <VStack>
                         <Pressable
                           mt="2"
                           mr="2"
-                          onPress={() => navigation.navigate(MAIN_STACK_CREATE_POST)}>
+                          onPress={() => navigation.navigate(MAIN_STACK_CREATE_POST)}
+                          flex={1}>
                           <Center
                             _light={{ bg: Colors.LOGO_COLOR_WHITE_BACKGROUND }}
                             _dark={{ bg: 'coolGray.700' }}

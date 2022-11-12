@@ -55,6 +55,16 @@ const planOptionsList2: OptionListType[] = [
 ];
 
 export default function CreatePostScreen({ navigation }: NavigationProps): JSX.Element {
+  type FormData = {
+    email: string;
+    password: string;
+    birthday?: Date;
+  };
+  const [formData, setFormData] = useState<FormData>({
+    email: '',
+    password: '',
+  });
+
   function PlanDescriptionItem({ planTitle }: { planTitle: string }) {
     return (
       <HStack space="3" w={{ base: '100%', md: '50%' }} mb="5">
@@ -242,23 +252,44 @@ export default function CreatePostScreen({ navigation }: NavigationProps): JSX.E
   return (
     <DashboardLayout title="打卡" showBackButton>
       <Box
-        px={{ md: 8, xl: 35 }}
+        px={{ md: 0, xl: 35 }}
         py={{ md: 8 }}
         flex={1}
         _light={{ bg: 'white' }}
         _dark={{ bg: 'coolGray.800' }}>
-        <VStack space="5" px="10" py="4">
+        <VStack space="0" px="4" py="4">
+          <Text mb="6" color="coolGray.700">
+            露營地名稱
+          </Text>
           <Text
             fontSize="2xl"
             fontWeight="bold"
             _light={{ color: 'coolGray.800' }}
             _dark={{ color: 'coolGray.50' }}
             mb={0}>
-            標註此地點
+            標題
           </Text>
-          <Text mb="6" color="coolGray.700">
-            露營地名稱
-          </Text>
+          <Input
+            isRequired
+            backgroundColor="white"
+            borderColor="white"
+            borderTopWidth="0"
+            borderRightWidth="0"
+            borderLeftWidth="0"
+            borderBottomColor="coolGray.100"
+            borderBottomWidth="2"
+            py="4"
+            mb="2"
+            placeholder="請輸入標題 (必填)"
+            size="lg"
+            defaultValue={formData.email}
+            onChangeText={(email: string) => setFormData((prev) => ({ ...prev, email }))}
+            style={{
+              backgroundColor: 'white',
+              borderColor: 'white',
+              borderBottomColor: 'coolGray.900',
+            }}
+          />
           <Button
             variant="solid"
             size="lg"

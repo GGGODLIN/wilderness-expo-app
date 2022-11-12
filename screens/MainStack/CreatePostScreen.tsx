@@ -258,13 +258,21 @@ export default function CreatePostScreen({ navigation }: NavigationProps): JSX.E
         _light={{ bg: 'white' }}
         _dark={{ bg: 'coolGray.800' }}>
         <VStack space="0" px="4" py="4">
+          <Text
+            fontSize="xl"
+            fontWeight="bold"
+            _light={{ color: 'coolGray.700' }}
+            _dark={{ color: 'coolGray.50' }}
+            mb={0}>
+            位置
+          </Text>
           <Text mb="6" color="coolGray.700">
-            露營地名稱
+            青春露營地
           </Text>
           <Text
-            fontSize="2xl"
+            fontSize="xl"
             fontWeight="bold"
-            _light={{ color: 'coolGray.800' }}
+            _light={{ color: 'coolGray.700' }}
             _dark={{ color: 'coolGray.50' }}
             mb={0}>
             標題

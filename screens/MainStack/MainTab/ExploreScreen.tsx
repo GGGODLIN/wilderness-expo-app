@@ -645,14 +645,14 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
                               colorScheme="light"
                               mx="0"
                               my="0"
-                              ml="1"
+                              ml="0"
                               px="0"
                               py="0"
                               icon={
                                 <Icon
                                   size="6"
-                                  name="street-view"
-                                  as={FontAwesome}
+                                  name="md-golf-outline"
+                                  as={Ionicons}
                                   _dark={{
                                     color: 'coolGray.200',
                                   }}

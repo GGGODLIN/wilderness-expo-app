@@ -125,7 +125,7 @@ const sizeOptions: SizesType[] = [
   },
 ];
 
-const AddToCartButton = () => {
+const Action = () => {
   const [favorite, setFavorite] = useState(false);
   const [star, setStar] = useState(false);
 
@@ -314,8 +314,7 @@ const CarouselLayout = () => {
     <Box
       px={{ base: '0', md: 0 }}
       py={{ base: '0', md: 0 }}
-      _light={{ bg: 'transparent' }}
-      _dark={{ bg: 'transparent' }}
+      bg="white"
       height={{ base: 300, md: 20 }}>
       <Carousel
         images={[
@@ -446,7 +445,7 @@ function CustomIcon() {
 function CustomTitle() {
   return (
     <VStack space="0">
-      <HStack space="2">
+      <HStack space="2" py={2}>
         <Avatar height="6" width="6" source={require('../../../assets/images/views/view_9.jpg')} />
         <VStack space="0" alignItems="center">
           <Text
@@ -498,7 +497,7 @@ export default function MainStackPostScreen({ navigation }: NavigationProps): JS
         </Stack>
         <LeaveMessage />
       </KeyboardAwareScrollView>
-      <AddToCartButton />
+      <Action />
     </DashboardLayout>
   );
 }

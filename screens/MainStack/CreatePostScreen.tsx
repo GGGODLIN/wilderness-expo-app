@@ -1,4 +1,5 @@
 import { MaterialIcons, Ionicons } from '@expo/vector-icons';
+import * as ImagePicker from 'expo-image-picker';
 import {
   Button,
   HStack,
@@ -11,6 +12,8 @@ import {
   ScrollView,
   VStack,
   Select,
+  TextArea,
+  Image,
 } from 'native-base';
 import React, { useState } from 'react';
 import { Platform } from 'react-native';
@@ -64,6 +67,20 @@ export default function CreatePostScreen({ navigation }: NavigationProps): JSX.E
     email: '',
     password: '',
   });
+
+  const [image, setImage] = useState<string>('');
+  const pickImage = async () => {
+    const result: ImagePicker.ImagePickerResult = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    if (!result.cancelled) {
+      setImage(result.uri);
+    }
+  };
 
   function PlanDescriptionItem({ planTitle }: { planTitle: string }) {
     return (
@@ -248,9 +265,21 @@ export default function CreatePostScreen({ navigation }: NavigationProps): JSX.E
       </>
     );
   }
+  type DeactivateForm = {
+    reason: string;
+    password: string;
+  };
 
+  const [deactivateForm, setDeactivateForm] = React.useState<DeactivateForm>({
+    reason: '',
+    password: '',
+  });
+  const handleFormUpdate = (name: string, value: string) =>
+    setDeactivateForm((prev) => ({ ...prev, [name]: value }));
+
+  const { reason, password } = deactivateForm;
   return (
-    <DashboardLayout title="打卡" showBackButton>
+    <DashboardLayout title="發文/打卡" showBackButton>
       <Box
         px={{ md: 0, xl: 35 }}
         py={{ md: 8 }}
@@ -298,13 +327,62 @@ export default function CreatePostScreen({ navigation }: NavigationProps): JSX.E
               borderBottomColor: 'coolGray.900',
             }}
           />
+          <TextArea
+            mb="4"
+            bg="white"
+            fontSize="14"
+            lineHeight="21"
+            textAlignVertical="top"
+            placeholderTextColor="coolGray.500"
+            _light={{ color: 'coolGray.800' }}
+            _dark={{ color: 'coolGray.50' }}
+            value={reason}
+            onChangeText={(txt) => handleFormUpdate('reason', txt)}
+            placeholder="內文 (選填)"
+            h="84"
+            autoCompleteType={undefined}
+          />
+          <Text
+            fontSize="xl"
+            fontWeight="bold"
+            _light={{ color: 'coolGray.700' }}
+            _dark={{ color: 'coolGray.50' }}
+            mb={0}>
+            選擇幾張好看的照片
+          </Text>
+
+          <Center
+            width="100%"
+            height="116"
+            _light={{ borderColor: 'coolGray.300' }}
+            _dark={{ borderColor: 'coolGray.700' }}
+            borderWidth="1"
+            borderStyle="dashed"
+            mt={{ base: 3 }}>
+            <Pressable alignItems="center" onPress={pickImage}>
+              {image === '' ? (
+                <>
+                  <Icon as={MaterialIcons} name="cloud-upload" color="coolGray.400" size="6" />
+                  <Text
+                    fontSize="sm"
+                    mt="0.5"
+                    _light={{ color: 'coolGray.500' }}
+                    _dark={{ color: 'coolGray.400' }}>
+                    Upload
+                  </Text>
+                </>
+              ) : (
+                <Image source={{ uri: image }} width="100" height="100" />
+              )}
+            </Pressable>
+          </Center>
           <Button
+            mt="4"
             variant="solid"
             size="lg"
-            mt="auto"
             style={{ backgroundColor: Colors.LOGO_COLOR_BROWN }}
             onPress={() => navigation.navigate(MAIN_STACK_POST)}>
-            下一步
+            發表
           </Button>
         </VStack>
       </Box>

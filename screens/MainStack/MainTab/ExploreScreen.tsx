@@ -593,7 +593,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
               }}>
               <VStack alignItems="center">
                 <Icon as={MaterialIcons} color={Colors.LOGO_COLOR_BROWN} name="place" size={10} />
-                <VStack bg="#FFFFFF70" borderRadius="xl" px="1" py="1">
+                <VStack bg="#FFFFFFA0" borderRadius="xl" px="1" py="1">
                   <Text fontSize="xs" color={Colors.LOGO_COLOR_BROWN} textAlign="center">
                     海拔 {location.altitude} 公尺
                   </Text>

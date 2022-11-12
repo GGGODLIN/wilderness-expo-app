@@ -14,6 +14,7 @@ import {
   Fab,
   VStack,
   Center,
+  useToast,
 } from 'native-base';
 import React, { useEffect, useRef, useState } from 'react';
 import { Keyboard, Dimensions, ScrollView, PermissionsAndroid } from 'react-native';
@@ -255,6 +256,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
   const screenWidth = Dimensions.get('screen').width;
   const mapRef = useRef<MapView | null>(null);
   const panRef = useRef<ScrollView | null>(null);
+  const toast = useToast();
 
   const currentRegion = new AnimatedRegion(DEFAULT_MAPVIEW_REGION);
 
@@ -523,6 +525,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
           region={DEFAULT_MAPVIEW_REGION}
           onRegionChangeComplete={onRegionChangeComplete}
           showsUserLocation
+          showsMyLocationButton={false}
           customMapStyle={mapStyle}>
           {locationList.map((location, index) => (
             <Marker
@@ -697,7 +700,20 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
               />
             </Center>
           </Pressable>
-          <Pressable shadow="2" onPress={() => undefined}>
+          <Pressable
+            shadow="2"
+            onPress={async () => {
+              toast.show({
+                description: '位置更新中',
+              });
+              const location = await ExpoLocation.getCurrentPositionAsync({});
+              mapRef!.current!.animateToRegion({
+                latitude: location.coords.latitude,
+                longitude: location.coords.longitude,
+                latitudeDelta: 0.0922,
+                longitudeDelta: 0.0421,
+              });
+            }}>
             <Center
               _light={{ bg: Colors.LOGO_COLOR_GREEN }}
               _dark={{ bg: 'coolGray.700' }}

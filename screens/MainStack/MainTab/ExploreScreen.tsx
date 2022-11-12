@@ -15,6 +15,8 @@ import {
   VStack,
   Center,
   useToast,
+  Select,
+  CheckIcon,
 } from 'native-base';
 import React, { useEffect, useRef, useState } from 'react';
 import { Keyboard, Dimensions, ScrollView, PermissionsAndroid } from 'react-native';
@@ -256,6 +258,11 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
   const screenWidth = Dimensions.get('screen').width;
   const mapRef = useRef<MapView | null>(null);
   const panRef = useRef<ScrollView | null>(null);
+
+  const [country, setCountry] = React.useState('');
+  const [area, setArea] = React.useState('');
+  const [level, setLevel] = React.useState('');
+
   const toast = useToast();
 
   const currentRegion = new AnimatedRegion(DEFAULT_MAPVIEW_REGION);
@@ -299,9 +306,10 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
   }) => {
     return (
       <Pressable
-        px={8}
-        py={3}
+        px={4}
+        py={1}
         borderWidth={1}
+        borderRadius="2xl"
         onPress={() => {
           setSelectedAddress(label);
         }}
@@ -443,15 +451,23 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
     );
   }
 
+  const tags = [
+    { id: 1, title: '營地' },
+    { id: 2, title: '親子' },
+    { id: 3, title: 'SUP' },
+    { id: 4, title: '山林' },
+  ];
+
   return (
     <DashboardLayout title="活動" customTitle={<CustomTitle />}>
       <Box px={{ md: 8, xl: 35 }} py={{ md: 5 }} flex={1}>
         {showFilter ? (
           <Box
+            shadow={2}
             width="100%"
             py={4}
             px={{ base: 0, md: 0 }}
-            pt={4}
+            pt={2}
             zIndex={2}
             position="absolute"
             alignItems="center"
@@ -459,44 +475,80 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
             top={0}
             _light={{ bg: 'white' }}
             _dark={{ bg: 'coolGray.800' }}>
-            <HStack alignItems="center" mx="3">
-              <Text
-                fontWeight="normal"
-                _light={{ color: 'coolGray.900' }}
-                _dark={{ color: 'coolGray.50' }}
-                my={0}
-                lineHeight="24">
-                分類 (元件單選，大分類，下拉或橫轉)
-              </Text>
-              <Divider
-                ml={2}
-                mr={0}
-                _light={{ bg: 'coolGray.200' }}
-                _dark={{ bg: 'coolGray.700' }}
-                flex={1}
-              />
+            <HStack space="2">
+              <Select
+                selectedValue={country}
+                minWidth="45%"
+                accessibilityLabel="選擇縣市"
+                placeholder="選擇縣市"
+                _selectedItem={{
+                  bg: 'coolGray.200',
+                  endIcon: <CheckIcon size="5" />,
+                }}
+                mt={1}
+                onValueChange={(itemValue) => setCountry(itemValue)}>
+                <Select.Item label="不限制縣市" value="" />
+                <Select.Item label="台北市" value="台北" />
+                <Select.Item label="新北市" value="新北" />
+                <Select.Item label="桃園市" value="桃園" />
+                <Select.Item label="台中市" value="台中" />
+                <Select.Item label="台中市" value="台中" />
+                <Select.Item label="待串接整合縣市" value="2" />
+              </Select>
+              <Select
+                selectedValue={area}
+                minWidth="45%"
+                accessibilityLabel="選擇區域"
+                placeholder="選擇區域"
+                _selectedItem={{
+                  bg: 'coolGray.200',
+                  endIcon: <CheckIcon size="5" />,
+                }}
+                mt={1}
+                onValueChange={(itemValue) => setArea(itemValue)}>
+                <Select.Item label="不限制區域" value="" />
+                <Select.Item label="北區" value="北區" />
+                <Select.Item label="中區" value="中區" />
+                <Select.Item label="南區" value="南區" />
+                <Select.Item label="待串接整合區域" value="2" />
+              </Select>
+            </HStack>
+            <HStack space="2">
+              <Select
+                selectedValue={level}
+                minWidth="45%"
+                accessibilityLabel="選擇推薦程度"
+                placeholder="選擇推薦程度"
+                _selectedItem={{
+                  bg: 'coolGray.200',
+                  endIcon: <CheckIcon size="5" />,
+                }}
+                mt={1}
+                onValueChange={(itemValue) => setLevel(itemValue)}>
+                <Select.Item label="不限制" value="0" />
+                <Select.Item label="人氣推薦" value="1" />
+                <Select.Item label="官方推薦" value="2" />
+              </Select>
+              <Select
+                selectedValue={level}
+                minWidth="45%"
+                accessibilityLabel="選擇擁擠程度"
+                placeholder="選擇擁擠程度"
+                _selectedItem={{
+                  bg: 'coolGray.200',
+                  endIcon: <CheckIcon size="5" />,
+                }}
+                mt={1}
+                onValueChange={(itemValue) => setLevel(itemValue)}>
+                <Select.Item label="空曠" value="0" />
+                <Select.Item label="偶爾" value="1" />
+                <Select.Item label="總是" value="2" />
+              </Select>
             </HStack>
             <HStack space="3" mt={3} alignItems="flex-start">
-              <AddressBadge label="車泊" currentSelectedAddress={selectedAddress} />
-              <AddressBadge label="SUP" currentSelectedAddress={selectedAddress} />
-              <AddressBadge label="親子活動" currentSelectedAddress={selectedAddress} />
-            </HStack>
-            <HStack alignItems="center" mx="3" mt="2">
-              <Text
-                fontWeight="normal"
-                _light={{ color: 'coolGray.900' }}
-                _dark={{ color: 'coolGray.50' }}
-                my={0}
-                lineHeight="24">
-                其他篩選元件弄好一起顯示
-              </Text>
-              <Divider
-                ml={2}
-                mr={0}
-                _light={{ bg: 'coolGray.200' }}
-                _dark={{ bg: 'coolGray.700' }}
-                flex={1}
-              />
+              {tags.map((item, index) => (
+                <AddressBadge label={item.title} currentSelectedAddress={selectedAddress} />
+              ))}
             </HStack>
             <Button
               width="80%"

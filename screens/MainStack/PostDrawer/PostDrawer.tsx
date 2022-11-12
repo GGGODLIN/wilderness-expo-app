@@ -32,17 +32,17 @@ export default function PostDrawer(): JSX.Element {
       <Drawer.Screen
         name={MAIN_STACK_POST_DRAWER_POST_DETAILS}
         component={PostDetailsScreen}
-        options={{ title: '貼文內容' }}
+        options={{ title: '內容' }}
       />
       <Drawer.Screen
         name={MAIN_STACK_POST_DRAWER_POST_EDIT}
         component={PostEditScreen}
-        options={{ title: '編輯貼文' }}
+        options={{ title: '編輯' }}
       />
       <Drawer.Screen
         name={MAIN_STACK_POST_DRAWER_POST_REPORT}
         component={PostReportScreen}
-        options={{ title: '檢舉貼文' }}
+        options={{ title: '檢舉' }}
       />
     </Drawer.Navigator>
   );
@@ -52,9 +52,8 @@ function CustomDrawerContent(props: DrawerContentComponentProps) {
   return (
     <DrawerContentScrollView {...props}>
       <DrawerItemList {...props} />
-      <DrawerItem label="分享貼文" onPress={() => {}} />
-      <DrawerItem label="邀請朋友" onPress={() => {}} />
-      <DrawerItem label="刪除貼文" onPress={() => {}} />
+      <DrawerItem label="分享" onPress={() => {}} />
+      <DrawerItem label="刪除" onPress={() => {}} />
     </DrawerContentScrollView>
   );
 }

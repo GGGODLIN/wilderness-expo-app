@@ -794,7 +794,7 @@ export default function LocationDetailsScreen({ navigation }: NavigationProps): 
   }
   function Tab_2() {
     return (
-      <ScrollView py={2}>
+      <ScrollView py={2} minHeight="800">
         <VStack space={4} mt={5} px={4}>
           <HStack justifyContent="space-between">
             <VStack w="100%">
@@ -896,7 +896,7 @@ export default function LocationDetailsScreen({ navigation }: NavigationProps): 
   function Tab_3() {
     const textColor = useColorModeValue('coolGray.800', 'coolGray.50');
     return (
-      <ScrollView py={2}>
+      <ScrollView py={2} minHeight="800">
         <Box
           flex={1}
           px={{ base: 2.5, md: '22' }}

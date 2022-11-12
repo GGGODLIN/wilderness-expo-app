@@ -33,17 +33,17 @@ export default function LocationDrawer(): JSX.Element {
       <Drawer.Screen
         name={MAIN_STACK_LOCATION_DRAWER_POST_DETAILS}
         component={LocationDetailsScreen}
-        options={{ title: '貼文內容' }}
+        options={{ title: '內容' }}
       />
       <Drawer.Screen
         name={MAIN_STACK_LOCATION_DRAWER_POST_EDIT}
         component={LocationEditScreen}
-        options={{ title: '編輯貼文' }}
+        options={{ title: '編輯' }}
       />
       <Drawer.Screen
         name={MAIN_STACK_LOCATION_DRAWER_POST_REPORT}
         component={LocationReportScreen}
-        options={{ title: '檢舉貼文' }}
+        options={{ title: '檢舉' }}
       />
     </Drawer.Navigator>
   );
@@ -53,9 +53,7 @@ function CustomDrawerContent(props: DrawerContentComponentProps) {
   return (
     <DrawerContentScrollView {...props}>
       <DrawerItemList {...props} />
-      <DrawerItem label="分享貼文" onPress={() => {}} />
-      <DrawerItem label="邀請朋友" onPress={() => {}} />
-      <DrawerItem label="刪除貼文" onPress={() => {}} />
+      <DrawerItem label="分享" onPress={() => {}} />
     </DrawerContentScrollView>
   );
 }

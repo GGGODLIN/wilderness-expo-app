@@ -276,41 +276,9 @@ export default function PostReportScreen({ navigation }: NavigationProps): JSX.E
             fontWeight="bold"
             _light={{ color: 'coolGray.700' }}
             _dark={{ color: 'coolGray.50' }}
-            mb={0}>
-            位置
+            mb={2}>
+            請輸入原因
           </Text>
-          <Text mb="6" color="coolGray.700">
-            青春露營地
-          </Text>
-          <Text
-            fontSize="xl"
-            fontWeight="bold"
-            _light={{ color: 'coolGray.700' }}
-            _dark={{ color: 'coolGray.50' }}
-            mb={0}>
-            標題
-          </Text>
-          <Input
-            isRequired
-            backgroundColor="white"
-            borderColor="white"
-            borderTopWidth="0"
-            borderRightWidth="0"
-            borderLeftWidth="0"
-            borderBottomColor="coolGray.100"
-            borderBottomWidth="2"
-            py="4"
-            mb="2"
-            placeholder="請輸入標題 (必填)"
-            size="lg"
-            defaultValue={formData.email}
-            onChangeText={(email: string) => setFormData((prev) => ({ ...prev, email }))}
-            style={{
-              backgroundColor: 'white',
-              borderColor: 'white',
-              borderBottomColor: 'coolGray.900',
-            }}
-          />
           <TextArea
             mb="4"
             bg="white"
@@ -322,7 +290,7 @@ export default function PostReportScreen({ navigation }: NavigationProps): JSX.E
             _dark={{ color: 'coolGray.50' }}
             value={reason}
             onChangeText={(txt) => handleFormUpdate('reason', txt)}
-            placeholder="內文 (選填)"
+            placeholder="內文 (必填)"
             h="84"
             autoCompleteType={undefined}
           />
@@ -332,7 +300,7 @@ export default function PostReportScreen({ navigation }: NavigationProps): JSX.E
             mt="auto"
             style={{ backgroundColor: Colors.LOGO_COLOR_BROWN }}
             onPress={() => navigation.navigate(MAIN_STACK_POST)}>
-            發表
+            送出
           </Button>
         </VStack>
       </Box>

@@ -28,7 +28,7 @@ import {
   Avatar,
 } from 'native-base';
 import React from 'react';
-import { ImageSourcePropType, useWindowDimensions } from 'react-native';
+import { ImageSourcePropType, useWindowDimensions, TouchableOpacity } from 'react-native';
 
 import { MAIN_STACK_POST } from '../../../NavigationNames';
 import { NavigationProps } from '../../../Props';
@@ -286,18 +286,8 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
   function PostCard(props: { item: PostProps }) {
     const { width: windowWidth } = useWindowDimensions();
     return (
-      <Box
-        width={{
-          base: windowWidth / 2 - 22,
-          sm: windowWidth / 3 - 22,
-          md: windowWidth / 3 - 56,
-          lg: windowWidth / 5 - 56,
-          xl: '173',
-        }}
-        p="0"
-        borderRadius="sm"
-        m={{ base: '1.5', md: '2.5' }}>
-        <Pressable onPress={() => navigation.navigate(MAIN_STACK_POST)}>
+      <TouchableOpacity onPress={() => navigation.navigate(MAIN_STACK_POST)}>
+        <Box p="0" borderRadius="sm" m="2" mb="3">
           <Image
             w="100%"
             h="170"
@@ -345,8 +335,8 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
               }
             />
           </HStack>
-        </Pressable>
-      </Box>
+        </Box>
+      </TouchableOpacity>
     );
   }
 
@@ -373,8 +363,8 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
     const { height } = useWindowDimensions();
     return (
       <Box
-        px={{ base: 2.5, md: '22' }}
-        py={{ base: '14', md: '22' }}
+        px="2"
+        py="2"
         rounded={{ md: 'sm' }}
         _light={{ bg: 'white' }}
         _dark={{ bg: 'coolGray.800' }}
@@ -392,7 +382,14 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
 
   function CustomTitle() {
     return (
-      <VStack space="0" alignItems="center" justifyContent="center" height="10" py="0" pl="2">
+      <VStack
+        space="0"
+        alignItems="center"
+        justifyContent="center"
+        height="10"
+        py="0"
+        pl="6"
+        pb="2">
         <Image
           width="100"
           alt="logo"
@@ -404,13 +401,7 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
   }
 
   return (
-    <DashboardLayout
-      title="玩野覓境"
-      displayMenuButton
-      displayScreenTitle={false}
-      displayAlternateMobileHeader
-      customTitle={<CustomTitle />}
-      rightPanelMobileHeader>
+    <DashboardLayout title="玩野覓境" customTitle={<CustomTitle />} rightPanelMobileHeader>
       <Stack
         flex={1}
         _light={{ bg: Colors.LOGO_COLOR_WHITE_BACKGROUND }}
@@ -427,69 +418,79 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
           borderTopRightRadius="30">
           <ScrollView>
             <Box pt={0}>
-              <HStack space={6} justifyContent="center">
+              <HStack space={6} justifyContent="center" pt="1">
                 {icons.map((item, idx) => {
                   return (
-                    <VStack key={'icon_' + idx}>
-                      <IconButton
-                        w={16}
-                        h={16}
-                        borderRadius="full"
-                        icon={
-                          <FontAwesomeIcon
-                            icon={item.icon}
-                            color={Colors.LOGO_COLOR_GREEN}
-                            size={28}
-                          />
-                        }
-                        bg={Colors.LOGO_COLOR_WHITE_BACKGROUND}
-                      />
-                      <Text
-                        pt={2}
-                        fontWeight="bold"
-                        fontSize={{ base: 'sm', md: 'sm' }}
-                        _light={{ color: { base: 'coolGray.500', md: 'coolGray.500' } }}
-                        _dark={{ color: { base: 'coolGray.50', md: 'coolGray.400' } }}
-                        textAlign="center">
-                        {item.text}
-                      </Text>
-                    </VStack>
+                    <TouchableOpacity>
+                      <VStack key={'icon_' + idx}>
+                        <IconButton
+                          w={16}
+                          h={16}
+                          borderRadius="full"
+                          colorScheme="dark"
+                          icon={
+                            <FontAwesomeIcon
+                              icon={item.icon}
+                              color={Colors.LOGO_COLOR_GREEN}
+                              size={28}
+                            />
+                          }
+                          bg={Colors.LOGO_COLOR_WHITE_BACKGROUND}
+                        />
+                        <Text
+                          pt={2}
+                          fontWeight="bold"
+                          fontSize={{ base: 'sm', md: 'sm' }}
+                          _light={{ color: { base: 'coolGray.500', md: 'coolGray.500' } }}
+                          _dark={{ color: { base: 'coolGray.50', md: 'coolGray.400' } }}
+                          textAlign="center">
+                          {item.text}
+                        </Text>
+                      </VStack>
+                    </TouchableOpacity>
                   );
                 })}
               </HStack>
-              <HStack space={6} justifyContent="center" pt={3} pb={4}>
+              <HStack space={6} justifyContent="center" pt={4} pb={6}>
                 {icons2.map((item, idx) => {
                   return (
-                    <VStack key={'icon_' + idx}>
-                      <IconButton
-                        w={16}
-                        h={16}
-                        borderRadius="full"
-                        icon={
-                          <FontAwesomeIcon
-                            icon={item.icon}
-                            color={Colors.LOGO_COLOR_GREEN}
-                            size={28}
-                          />
-                        }
-                        bg={Colors.LOGO_COLOR_WHITE_BACKGROUND}
-                      />
-                      <Text
-                        pt={2}
-                        fontWeight="bold"
-                        fontSize={{ base: 'sm', md: 'sm' }}
-                        _light={{ color: { base: 'coolGray.500', md: 'coolGray.500' } }}
-                        _dark={{ color: { base: 'coolGray.50', md: 'coolGray.400' } }}
-                        textAlign="center">
-                        {item.text}
-                      </Text>
-                    </VStack>
+                    <TouchableOpacity>
+                      <VStack key={'icon_' + idx}>
+                        <IconButton
+                          w={16}
+                          h={16}
+                          borderRadius="full"
+                          colorScheme="dark"
+                          icon={
+                            <FontAwesomeIcon
+                              icon={item.icon}
+                              color={Colors.LOGO_COLOR_GREEN}
+                              size={28}
+                            />
+                          }
+                          bg={Colors.LOGO_COLOR_WHITE_BACKGROUND}
+                        />
+                        <Text
+                          pt={2}
+                          fontWeight="bold"
+                          fontSize={{ base: 'sm', md: 'sm' }}
+                          _light={{ color: { base: 'coolGray.500', md: 'coolGray.500' } }}
+                          _dark={{ color: { base: 'coolGray.50', md: 'coolGray.400' } }}
+                          textAlign="center">
+                          {item.text}
+                        </Text>
+                      </VStack>
+                    </TouchableOpacity>
                   );
                 })}
               </HStack>
             </Box>
-            <CarouselLayout />
-            <MainPostList />
+            <VStack px="6">
+              <CarouselLayout />
+            </VStack>
+            <VStack px="2">
+              <MainPostList />
+            </VStack>
           </ScrollView>
         </Box>
       </Stack>

@@ -24,6 +24,7 @@ import {
   IconButton,
   useBreakpointValue,
   Avatar,
+  Center,
 } from 'native-base';
 import React from 'react';
 import { ImageSourcePropType, useWindowDimensions, TouchableOpacity } from 'react-native';
@@ -379,21 +380,14 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
 
   function CustomTitle() {
     return (
-      <VStack
-        space="0"
-        alignItems="center"
-        justifyContent="center"
-        height="10"
-        py="0"
-        pl="6"
-        pb="2">
+      <Center height="100%">
         <Image
-          width="100"
-          alt="logo"
+          height="50%"
+          alt="玩野秘境"
           resizeMode="contain"
           source={require('../../../assets/logo.png')}
         />
-      </VStack>
+      </Center>
     );
   }
 

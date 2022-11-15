@@ -1006,26 +1006,13 @@ export default function LocationDetailsScreen({ navigation }: NavigationProps): 
     const navigation = useNavigation<Nav>();
     return (
       <IconButton
-        variant="unstyled"
-        colorScheme="light"
-        py={0}
-        mb="2"
-        icon={
-          <Icon
-            size="5"
-            name="navicon"
-            as={FontAwesome}
-            _dark={{
-              color: 'coolGray.200',
-            }}
-            _light={{
-              color: Colors.LOGO_COLOR_BROWN,
-            }}
-          />
-        }
+        variant="ghost"
+        px={4}
         onPress={() => {
           navigation.openDrawer();
         }}
+        icon={<Icon size="5" name="navicon" as={FontAwesome} />}
+        _icon={{ color: Colors.LOGO_COLOR_BROWN }}
       />
     );
   }

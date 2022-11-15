@@ -1,4 +1,5 @@
 import { MaterialIcons, Ionicons, AntDesign, FontAwesome5 } from '@expo/vector-icons';
+import MasonryList from '@react-native-seoul/masonry-list';
 import * as ExpoLocation from 'expo-location';
 import {
   Button,
@@ -462,40 +463,148 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
   type Icon = {
     name: string;
     text: string;
-    active: boolean;
+    state: number;
   };
   const icons: Icon[] = [
     {
       name: 'caravan',
       text: '收費營地',
-      active: true,
+      state: 0,
     },
     {
       name: 'caravan',
       text: '公共營地',
-      active: false,
+      state: 0,
     },
     {
       name: 'caravan',
       text: '露營車',
-      active: false,
+      state: 0,
     },
     {
       name: 'caravan',
       text: '露營車',
-      active: false,
+      state: 0,
     },
     {
       name: 'caravan',
-      text: '無提供',
-      active: false,
+      text: '任意',
+      state: 0,
     },
     {
       name: 'caravan',
-      text: '有提供',
-      active: true,
+      text: '任意',
+      state: 0,
+    },
+    {
+      name: 'caravan',
+      text: '任意',
+      state: 0,
+    },
+    {
+      name: 'caravan',
+      text: '任意',
+      state: 0,
+    },
+    {
+      name: 'caravan',
+      text: '任意',
+      state: 0,
+    },
+    {
+      name: 'caravan',
+      text: '任意',
+      state: 0,
+    },
+    {
+      name: 'caravan',
+      text: '任意',
+      state: 0,
+    },
+    {
+      name: 'caravan',
+      text: '任意',
+      state: 0,
+    },
+    {
+      name: 'caravan',
+      text: '任意',
+      state: 0,
+    },
+    {
+      name: 'caravan',
+      text: '任意',
+      state: 0,
+    },
+    {
+      name: 'caravan',
+      text: '任意',
+      state: 0,
+    },
+    {
+      name: 'caravan',
+      text: '任意',
+      state: 0,
+    },
+    {
+      name: 'caravan',
+      text: '任意',
+      state: 0,
+    },
+    {
+      name: 'caravan',
+      text: '任意',
+      state: 0,
+    },
+    {
+      name: 'caravan',
+      text: '任意',
+      state: 0,
+    },
+    {
+      name: 'caravan',
+      text: '任意',
+      state: 0,
     },
   ];
+
+  function PostCard(props: { item: Icon }) {
+    const [facilityState, setFacilityState] = useState(props.item.state);
+
+    return (
+      <TouchableOpacity onPress={() => setFacilityState(facilityState + 1)}>
+        <HStack
+          key={'icon_' + props.index}
+          overflow="visible"
+          mx={0}
+          mb={0}
+          alignItems="center"
+          justifyContent="flex-start">
+          <IconButton
+            variant="unstyled"
+            icon={
+              <Icon
+                as={FontAwesome5}
+                name={props.item.name}
+                _light={{
+                  color: facilityState === 1 ? 'coolGray.500' : 'coolGray.200',
+                }}
+                size={3}
+                textAlign="center"
+                alignSelf="center"
+              />
+            }
+          />
+          <Text
+            fontSize="sm"
+            _light={{ color: facilityState === 1 ? 'coolGray.800' : 'coolGray.300' }}
+            textAlign="center">
+            {props.item.text}
+          </Text>
+        </HStack>
+      </TouchableOpacity>
+    );
+  }
 
   return (
     <DashboardLayout title="活動" customTitle={<CustomTitle />}>
@@ -691,169 +800,16 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
             _light={{ bg: 'white' }}
             _dark={{ bg: 'coolGray.800' }}>
             <VStack w="100%" px="4" pt="4">
-              <Text fontWeight="bold" color="coolGray.400">
-                營地類型
-              </Text>
               <HStack space={6} justifyContent="space-between" alignItems="center">
                 <Stack flexWrap="wrap" direction="row" space="2">
-                  {icons.map((item, index) => (
-                    <HStack
-                      key={'icon_' + index}
-                      overflow="visible"
-                      mx={0}
-                      mb={0}
-                      alignItems="center"
-                      justifyContent="center">
-                      <IconButton
-                        variant="unstyled"
-                        icon={
-                          <Icon
-                            as={FontAwesome5}
-                            name={item.name}
-                            _light={{
-                              color: item.active ? 'coolGray.500' : 'coolGray.200',
-                            }}
-                            _dark={{ color: 'coolGray.50' }}
-                            size={4}
-                            textAlign="center"
-                            alignSelf="center"
-                          />
-                        }
-                      />
-                      <Text
-                        fontSize={{ base: 'sm', md: 'sm' }}
-                        _light={{ color: item.active ? 'coolGray.800' : 'coolGray.300' }}
-                        _dark={{ color: { base: 'coolGray.50', md: 'coolGray.400' } }}
-                        textAlign="center">
-                        {item.text}
-                      </Text>
-                    </HStack>
-                  ))}
+                  <MasonryList
+                    showsVerticalScrollIndicator={false}
+                    numColumns={4}
+                    data={icons}
+                    renderItem={({ item }) => <PostCard item={item} />}
+                    keyExtractor={(item: Offer, index: number) => 'key' + index}
+                  />
                 </Stack>
-                {/*
-                <FlatList
-                  nestedScrollEnabled
-                  numColumns={4}
-                  data={icons}
-                  showsVerticalScrollIndicator={false}
-                  renderItem={({ item, index }) => (
-                    <HStack
-                      key={'icon_' + index}
-                      overflow="visible"
-                      mx={2}
-                      mb={4}
-                      alignItems="center"
-                      justifyContent="center">
-                      <IconButton
-                        variant="unstyled"
-                        icon={
-                          <Icon
-                            as={FontAwesome5}
-                            name={item.name}
-                            _light={{
-                              color: item.active ? 'coolGray.500' : 'coolGray.200',
-                            }}
-                            _dark={{ color: 'coolGray.50' }}
-                            size={4}
-                            textAlign="center"
-                            alignSelf="center"
-                          />
-                        }
-                      />
-                      <Text
-                        fontSize={{ base: 'sm', md: 'sm' }}
-                        _light={{ color: item.active ? 'coolGray.800' : 'coolGray.300' }}
-                        _dark={{ color: { base: 'coolGray.50', md: 'coolGray.400' } }}
-                        textAlign="center">
-                        {item.text}
-                      </Text>
-                    </HStack>
-                  )}
-                  keyExtractor={(item, index) => 'home-post-key-' + index}
-                />
-                      */}
-              </HStack>
-              <Text fontWeight="bold" color="coolGray.400">
-                營地類型
-              </Text>
-              <HStack space={6} justifyContent="space-between" alignItems="center">
-                <Stack flexWrap="wrap" direction="row" space="2">
-                  {icons.map((item, index) => (
-                    <HStack
-                      key={'icon_' + index}
-                      overflow="visible"
-                      mx={0}
-                      mb={0}
-                      alignItems="center"
-                      justifyContent="center">
-                      <IconButton
-                        variant="unstyled"
-                        icon={
-                          <Icon
-                            as={FontAwesome5}
-                            name={item.name}
-                            _light={{
-                              color: item.active ? 'coolGray.500' : 'coolGray.200',
-                            }}
-                            _dark={{ color: 'coolGray.50' }}
-                            size={4}
-                            textAlign="center"
-                            alignSelf="center"
-                          />
-                        }
-                      />
-                      <Text
-                        fontSize={{ base: 'sm', md: 'sm' }}
-                        _light={{ color: item.active ? 'coolGray.800' : 'coolGray.300' }}
-                        _dark={{ color: { base: 'coolGray.50', md: 'coolGray.400' } }}
-                        textAlign="center">
-                        {item.text}
-                      </Text>
-                    </HStack>
-                  ))}
-                </Stack>
-                {/*
-                <FlatList
-                  nestedScrollEnabled
-                  numColumns={4}
-                  data={icons}
-                  showsVerticalScrollIndicator={false}
-                  renderItem={({ item, index }) => (
-                    <HStack
-                      key={'icon_' + index}
-                      overflow="visible"
-                      mx={2}
-                      mb={4}
-                      alignItems="center"
-                      justifyContent="center">
-                      <IconButton
-                        variant="unstyled"
-                        icon={
-                          <Icon
-                            as={FontAwesome5}
-                            name={item.name}
-                            _light={{
-                              color: item.active ? 'coolGray.500' : 'coolGray.200',
-                            }}
-                            _dark={{ color: 'coolGray.50' }}
-                            size={4}
-                            textAlign="center"
-                            alignSelf="center"
-                          />
-                        }
-                      />
-                      <Text
-                        fontSize={{ base: 'sm', md: 'sm' }}
-                        _light={{ color: item.active ? 'coolGray.800' : 'coolGray.300' }}
-                        _dark={{ color: { base: 'coolGray.50', md: 'coolGray.400' } }}
-                        textAlign="center">
-                        {item.text}
-                      </Text>
-                    </HStack>
-                  )}
-                  keyExtractor={(item, index) => 'home-post-key-' + index}
-                />
-                      */}
               </HStack>
             </VStack>
           </Box>

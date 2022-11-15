@@ -16,11 +16,14 @@ import {
   FormControl,
   Divider,
   TextArea,
+  Pressable,
+  Flex,
 } from 'native-base';
 import React, { useState } from 'react';
 import type { ImageSourcePropType } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
+import { MAIN_STACK_PROFILE } from '../../../NavigationNames';
 import { Nav, NavigationProps } from '../../../Props';
 import { Carousel } from '../../../components/Carousel';
 import Colors from '../../../constants/Colors';
@@ -415,46 +418,45 @@ function CustomIcon() {
   const navigation = useNavigation<Nav>();
   return (
     <IconButton
-      variant="unstyled"
-      colorScheme="light"
-      py={0}
-      icon={
-        <Icon
-          size="5"
-          name="navicon"
-          as={FontAwesome}
-          _dark={{
-            color: 'coolGray.200',
-          }}
-          _light={{
-            color: Colors.LOGO_COLOR_BROWN,
-          }}
-        />
-      }
+      variant="ghost"
+      px={4}
       onPress={() => {
         navigation.openDrawer();
       }}
+      icon={<Icon size="5" name="navicon" as={FontAwesome} />}
+      _icon={{ color: Colors.LOGO_COLOR_BROWN }}
     />
   );
 }
 
+/* NEW VERSION 2022/11/15 */
 function CustomTitle() {
+  const navigation = useNavigation<Nav>();
   return (
-    <VStack space="0">
-      <HStack space="2">
-        <Avatar height="6" width="6" source={require('../../../assets/images/views/view_9.jpg')} />
-        <VStack space="0" alignItems="center">
-          <Text
-            fontSize="sm"
-            fontWeight="medium"
-            py={1}
-            _dark={{ color: 'coolGray.50' }}
-            _light={{ color: 'coolGray.700' }}>
-            作者名稱
-          </Text>
-        </VStack>
-      </HStack>
-    </VStack>
+    <Pressable
+      height="100%"
+      onPress={() => {
+        navigation.navigate(MAIN_STACK_PROFILE);
+      }}
+      _pressed={{ bg: 'gray.300' }}>
+      <Flex height="100%" direction="row" alignItems="center">
+        <Avatar
+          mr={3}
+          ml={1}
+          size={8}
+          source={require('../../../assets/images/views/view_9.jpg')}
+        />
+        <Text
+          flex={1}
+          fontSize="sm"
+          fontWeight="medium"
+          py={1}
+          _dark={{ color: 'coolGray.50' }}
+          _light={{ color: 'coolGray.700' }}>
+          作者名稱
+        </Text>
+      </Flex>
+    </Pressable>
   );
 }
 

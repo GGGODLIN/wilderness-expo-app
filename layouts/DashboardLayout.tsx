@@ -53,7 +53,7 @@ function MainContent(props: MainContentProps) {
 export function MobileHeader(props: MobileHeaderProps) {
   const navigation = useNavigation<Nav>();
   return (
-    <Flex direction="row" zIndex={9} bg={Colors.THEME_MAIN_BACKGROUND} minH={16}>
+    <Flex direction="row" zIndex={9} bg={Colors.THEME_MAIN_BACKGROUND} minH={12}>
       {props.backButton && (
         <IconButton
           px={4}
@@ -70,7 +70,7 @@ export function MobileHeader(props: MobileHeaderProps) {
           </Box>
         ) : (
           <Center position="absolute" top={0} bottom={0} left={props.backButton ? 0 : 6}>
-            <Text fontSize="lg" color={Colors.THEME_MAIN_COLOR}>
+            <Text fontSize="lg" fontWeight="bold" color={Colors.THEME_MAIN_COLOR}>
               {props.title}
             </Text>
           </Center>

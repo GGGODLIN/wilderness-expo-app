@@ -1008,6 +1008,8 @@ export default function LocationDetailsScreen({ navigation }: NavigationProps): 
       <IconButton
         variant="ghost"
         px={4}
+        py={0}
+        my={0}
         onPress={() => {
           navigation.openDrawer();
         }}

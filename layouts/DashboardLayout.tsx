@@ -53,7 +53,7 @@ function MainContent(props: MainContentProps) {
 export function MobileHeader(props: MobileHeaderProps) {
   const navigation = useNavigation<Nav>();
   return (
-    <Flex direction="row" zIndex={9} bg={Colors.LOGO_COLOR_WHITE_BACKGROUND} minH={16}>
+    <Flex direction="row" zIndex={9} bg={Colors.THEME_MAIN_BACKGROUND} minH={16}>
       {props.backButton && (
         <IconButton
           px={4}

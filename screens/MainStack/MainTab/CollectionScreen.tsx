@@ -385,6 +385,7 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
                 _dark={{ color: 'coolGray.400' }}>
                 {props.item.description}
               </Text>
+              {props.item.Progress == 100 && <Text>選擇</Text>}
             </HStack>
           </VStack>
         </Box>

@@ -343,7 +343,7 @@ export default function CommunityScreen({ navigation }: NavigationProps): JSX.El
   function Tab_1() {
     return (
       <>
-        <ScrollView py={4}>
+        <ScrollView py={2}>
           <MainPostList />
         </ScrollView>
       </>
@@ -351,14 +351,14 @@ export default function CommunityScreen({ navigation }: NavigationProps): JSX.El
   }
   function Tab_2() {
     return (
-      <ScrollView py={4}>
+      <ScrollView py={2}>
         <MainPostList />
       </ScrollView>
     );
   }
   function Tab_3() {
     return (
-      <ScrollView py={4}>
+      <ScrollView py={2}>
         <MainPostList />
       </ScrollView>
     );
@@ -401,21 +401,19 @@ export default function CommunityScreen({ navigation }: NavigationProps): JSX.El
           letterSpacing="0.4"
           _light={{
             color: tabName === currentTab ? 'coolGray.700' : 'coolGray.400',
-          }}
-          _dark={{
-            color: tabName === currentTab ? 'primary.500' : 'coolGray.400',
           }}>
           {tabName}
         </Text>
         {tabName === currentTab ? (
           <Box
             _light={{
-              bg: Colors.LOGO_COLOR_GREEN,
+              bg: Colors.LOGO_COLOR_BROWN,
             }}
             _dark={{
               bg: 'amber.900',
             }}
             h="0.5"
+            mb="2"
           />
         ) : (
           <Box
@@ -426,6 +424,7 @@ export default function CommunityScreen({ navigation }: NavigationProps): JSX.El
               bg: 'white',
             }}
             h="0.5"
+            mb="2"
           />
         )}
       </Pressable>
@@ -467,11 +466,13 @@ export default function CommunityScreen({ navigation }: NavigationProps): JSX.El
   return (
     <DashboardLayout title="社群">
       <Stack flex={1} _light={{ bg: Colors.THEME_MAIN_BACKGROUND }} _dark={{ bg: 'coolGray.800' }}>
-        <Carousal itemList={trending} heading="推薦" />
+        <VStack mx="3" mb="2">
+          <Carousal itemList={trending} heading="推薦" />
+        </VStack>
         <Box
           pt={5}
-          px={{ md: 8, xl: 35 }}
-          py={{ md: 8 }}
+          px="2"
+          py="8"
           flex={1}
           _light={{ bg: 'white' }}
           _dark={{ bg: 'coolGray.800' }}

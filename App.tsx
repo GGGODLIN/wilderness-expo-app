@@ -1,7 +1,8 @@
+import { AntDesign } from '@expo/vector-icons';
 import { createNavigationContainerRef, NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Accelerometer } from 'expo-sensors';
-import { AlertDialog, Center, NativeBaseProvider, VStack, Text, Spinner } from 'native-base';
+import { Icon, AlertDialog, Center, NativeBaseProvider, VStack, Text, Spinner } from 'native-base';
 import * as React from 'react';
 import { enableLatestRenderer } from 'react-native-maps';
 
@@ -111,7 +112,10 @@ export default function App() {
         closeOnOverlayClick={false}>
         <AlertDialog.Content>
           <AlertDialog.Header>
-            <Center>搖晃隨機地點</Center>
+            <Center>
+              <Icon color="black" as={AntDesign} name="shake" size="2xl" mb="2" />
+              <Text fontSize="lg">搖晃隨機地點</Text>
+            </Center>
           </AlertDialog.Header>
           <AlertDialog.Body>
             <VStack>

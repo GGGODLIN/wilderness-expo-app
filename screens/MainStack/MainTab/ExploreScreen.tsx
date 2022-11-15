@@ -1,4 +1,4 @@
-import { MaterialIcons, Ionicons } from '@expo/vector-icons';
+import { MaterialIcons, Ionicons, AntDesign } from '@expo/vector-icons';
 import * as ExpoLocation from 'expo-location';
 import {
   Button,
@@ -17,7 +17,7 @@ import {
   CheckIcon,
 } from 'native-base';
 import React, { useEffect, useRef, useState } from 'react';
-import { Keyboard, Dimensions, ScrollView } from 'react-native';
+import { Keyboard, Dimensions, ScrollView, TouchableOpacity } from 'react-native';
 import MapView, { AnimatedRegion, Marker, PROVIDER_GOOGLE, Region } from 'react-native-maps';
 
 import {
@@ -339,7 +339,7 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
           py={2}
           my={1}
           mb={2}
-          mx={2}
+          mx={4}
           borderRadius="2xl"
           bg="white"
           variant="unstyled"
@@ -590,7 +590,7 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
                 panRef!.current!.scrollTo({ x: index * (screenWidth - 60), y: 0, animated: true });
               }}>
               <VStack alignItems="center">
-                <Icon as={MaterialIcons} color={Colors.LOGO_COLOR_BROWN} name="place" size={10} />
+                <Icon as={MaterialIcons} color={Colors.LOGO_COLOR_BROWN} name="place" size={6} />
                 <VStack bg="#FFFFFFA0" borderRadius="xl" px="1" py="1">
                   <Text fontSize="xs" color={Colors.LOGO_COLOR_BROWN} textAlign="center">
                     海拔 {location.altitude} 公尺
@@ -626,7 +626,7 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
               const region = getRegionFromMarkers(markers);
               mapRef!.current!.animateToRegion(region, 300);
             }}>
-            <HStack space={5} alignItems="flex-start" mx={10} mb={0}>
+            <HStack space={5} alignItems="flex-start" mx={5} mb={0}>
               {locationList.map((props, index) => (
                 <Pressable
                   key={'location' + index}
@@ -668,7 +668,7 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
                         ))}
                       </HStack>
                     </Box>
-                    <HStack flex={1}>
+                    <HStack flex={1} pt="1">
                       <VStack pt="2" px={4} flex={1} width="80%">
                         <Text
                           mt="0"
@@ -684,15 +684,15 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
                       <VStack>
                         <Pressable
                           mt="2"
-                          mr="2"
+                          mr="4"
                           onPress={() => navigation.navigate(MAIN_STACK_CREATE_POST)}
                           flex={1}>
                           <Center
                             _light={{ bg: Colors.THEME_MAIN_BACKGROUND }}
                             _dark={{ bg: 'coolGray.700' }}
                             rounded="full"
-                            w="12"
-                            h="12"
+                            w="9"
+                            h="9"
                             textAlign="center"
                             alignItems="center"
                             justifyContent="center">
@@ -706,7 +706,7 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
                               py="0"
                               icon={
                                 <Icon
-                                  size="6"
+                                  size="5"
                                   name="md-golf-outline"
                                   as={Ionicons}
                                   _dark={{
@@ -719,7 +719,9 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
                               }
                             />
                           </Center>
-                          <Text textAlign="center">打卡</Text>
+                          <Text textAlign="center" mt="1">
+                            打卡
+                          </Text>
                         </Pressable>
                       </VStack>
                     </HStack>
@@ -730,31 +732,19 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
           </ScrollView>
         </Box>
         {/* ========= Pan Part - End ========= */}
-        <VStack space="3" position="absolute" top="10" right="0" mt="2" mr="2">
-          <Pressable shadow="2" onPress={() => navigation.navigate(MAIN_STACK_CREATE_LOCATION)}>
+        <VStack space="3" position="absolute" top="4" right="0" mt="2" mr="4">
+          <TouchableOpacity onPress={() => navigation.navigate(MAIN_STACK_CREATE_LOCATION)}>
             <Center
-              _light={{ bg: Colors.LOGO_COLOR_GREEN }}
-              _dark={{ bg: 'coolGray.700' }}
-              rounded="full"
-              w="10"
-              h="10"
+              p="2"
               textAlign="center"
               alignItems="center"
-              justifyContent="center">
-              <IconButton
-                variant="unstyled"
-                colorScheme="light"
-                mx="0"
-                my="0"
-                pl="0"
-                px="0"
-                py="0"
-                icon={<Icon size="5" name="md-add" as={Ionicons} color="white" />}
-              />
+              justifyContent="center"
+              bg={Colors.LOGO_COLOR_GREEN}
+              rounded="full">
+              <Icon size="4" name="plus" as={AntDesign} color="white" />
             </Center>
-          </Pressable>
-          <Pressable
-            shadow="2"
+          </TouchableOpacity>
+          <TouchableOpacity
             onPress={async () => {
               toast.show({
                 description: '位置更新中',
@@ -768,25 +758,15 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
               });
             }}>
             <Center
-              _light={{ bg: Colors.LOGO_COLOR_GREEN }}
-              _dark={{ bg: 'coolGray.700' }}
-              rounded="full"
-              w="10"
-              h="10"
+              p="2"
               textAlign="center"
               alignItems="center"
-              justifyContent="center">
-              <IconButton
-                variant="unstyled"
-                colorScheme="light"
-                mx="0"
-                my="0"
-                px="0"
-                py="0"
-                icon={<Icon size="5" name="md-navigate-outline" as={Ionicons} color="white" />}
-              />
+              justifyContent="center"
+              bg={Colors.LOGO_COLOR_GREEN}
+              rounded="full">
+              <Icon size="4" name="enviroment" as={AntDesign} color="white" />
             </Center>
-          </Pressable>
+          </TouchableOpacity>
         </VStack>
         {/*
         <Fab

@@ -613,6 +613,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
             ref={panRef}
             horizontal
             snapToInterval={screenWidth - 60}
+            showsHorizontalScrollIndicator={false}
             onMomentumScrollEnd={(event) => {
               const positionX = event.nativeEvent.contentOffset.x;
               const snapWidth = screenWidth - 60;

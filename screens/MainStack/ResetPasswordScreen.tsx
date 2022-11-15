@@ -97,7 +97,7 @@ function MobileScreenImage() {
   );
 }
 
-export default function ForgotPassword() {
+export default function ResetPasswordScreen() {
   const navigation = useNavigation<Nav>();
   const [text, setText] = React.useState('');
   const { colorMode } = useColorMode();

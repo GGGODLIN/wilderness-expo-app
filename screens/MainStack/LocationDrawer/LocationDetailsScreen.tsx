@@ -1,23 +1,19 @@
 import { MaterialIcons, FontAwesome5, FontAwesome, Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import {
-  Button,
   HStack,
   Text,
   Icon,
-  Input,
   Pressable,
   Box,
   Center,
   ScrollView,
   VStack,
   Stack,
-  Select,
   Avatar,
   Image,
   useColorModeValue,
   useBreakpointValue,
-  FlatList,
   IconButton,
   Link,
 } from 'native-base';
@@ -25,14 +21,9 @@ import React, { useState } from 'react';
 import { Platform, ImageSourcePropType, useWindowDimensions, Linking, Share } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-import {
-  MAIN_STACK_EVENT_DETAILS,
-  MAIN_STACK_POST,
-  MAIN_STACK_CREATE_POST,
-} from '../../../NavigationNames';
+import { MAIN_STACK_POST, MAIN_STACK_CREATE_POST } from '../../../NavigationNames';
 import { Nav, NavigationProps } from '../../../Props';
 import { Carousel } from '../../../components/Carousel';
-import NativeMap from '../../../components/NativeMap';
 import Colors from '../../../constants/Colors';
 import DashboardLayout from '../../../layouts/DashboardLayout';
 

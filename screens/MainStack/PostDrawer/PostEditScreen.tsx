@@ -7,13 +7,9 @@ import {
   Text,
   VStack,
   Avatar,
-  Image,
-  ScrollView,
-  Pressable,
   Button,
   Stack,
   Link,
-  Hidden,
   IconButton,
   useColorModeValue,
   useTheme,
@@ -27,7 +23,6 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 
 import { Nav, NavigationProps } from '../../../Props';
 import { Carousel } from '../../../components/Carousel';
-import FloatingLabelInput from '../../../components/FloatingLabelInput';
 import Colors from '../../../constants/Colors';
 import DashboardLayout from '../../../layouts/DashboardLayout';
 

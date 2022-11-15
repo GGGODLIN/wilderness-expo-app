@@ -1,34 +1,22 @@
 import { MaterialIcons } from '@expo/vector-icons';
 import {
-  Button,
   HStack,
   Text,
   Icon,
-  Input,
   Pressable,
   Box,
   Center,
-  Container,
-  Heading,
   Stack,
   VStack,
-  Select,
-  Fab,
   ScrollView,
   Image,
   Divider,
   Progress,
 } from 'native-base';
 import React, { useState } from 'react';
-import { Platform } from 'react-native';
 
-import {
-  MAIN_STACK_CREATE_LOCATION,
-  MAIN_STACK_LOCATION_DETAILS,
-  MAIN_STACK_POST,
-} from '../../../NavigationNames';
+import { MAIN_STACK_LOCATION_DETAILS, MAIN_STACK_POST } from '../../../NavigationNames';
 import { NavigationProps } from '../../../Props';
-import LocationList from '../../../components/explore/LocationList';
 import Colors from '../../../constants/Colors';
 import DashboardLayout from '../../../layouts/DashboardLayout';
 
@@ -76,7 +64,7 @@ const trendingContentList: Content[] = [
   },
 ];
 
-export default function MainTabExploreScreen({ navigation }: NavigationProps): JSX.Element {
+export default function CollectionScreen({ navigation }: NavigationProps): JSX.Element {
   const [textInput, setTextInput] = useState('');
   const [selectedAddress, setSelectedAddress] = useState('Home');
 

@@ -19,7 +19,7 @@ import MainTabProfileStackScreen from './MainTab/ProfileStackScreen';
 
 const Tab = createBottomTabNavigator();
 
-export default function MainStackTabsScreen({ navigation }: NavigationProps): JSX.Element {
+export default function TabsScreen({ navigation }: NavigationProps): JSX.Element {
   return (
     <Tab.Navigator
       initialRouteName={MAIN_TAB_HOME}

@@ -16,7 +16,7 @@ import {
 } from 'native-base';
 import React from 'react';
 
-import { MAIN_STACK_POST, MAIN_STACK_LOGIN, MAIN_STACK_REGISTER } from '../../../NavigationNames';
+import { MAIN_STACK_LOGIN } from '../../../NavigationNames';
 import { NavigationProps } from '../../../Props';
 import FloatingLabelInput from '../../../components/FloatingLabelInput';
 import Colors from '../../../constants/Colors';
@@ -30,7 +30,7 @@ type IconProps = {
   onPress?: any;
 };
 
-export default function MainTabProfileStackScreen({ navigation }: NavigationProps): JSX.Element {
+export default function ProfileStackScreen({ navigation }: NavigationProps): JSX.Element {
   const IconList: IconProps[] = [
     {
       iconName: 'person',

@@ -1,38 +1,27 @@
-import { MaterialCommunityIcons, MaterialIcons, FontAwesome, AntDesign } from '@expo/vector-icons';
+import { MaterialIcons, AntDesign } from '@expo/vector-icons';
 import MasonryList from '@react-native-seoul/masonry-list';
 import {
-  Button,
   HStack,
   Text,
   Icon,
-  Input,
   Pressable,
   Box,
   Center,
-  Container,
-  Heading,
   Stack,
   VStack,
-  Select,
   Fab,
   useBreakpointValue,
   FlatList,
   ScrollView,
-  Divider,
   Image,
-  Card,
   Avatar,
   IconButton,
-  Link,
 } from 'native-base';
 import React, { useState } from 'react';
-import { ImageSourcePropType, Platform, useWindowDimensions } from 'react-native';
+import { ImageSourcePropType, useWindowDimensions } from 'react-native';
 
 import { MAIN_STACK_CREATE_POST, MAIN_STACK_POST } from '../../../NavigationNames';
 import { NavigationProps } from '../../../Props';
-import { Carousel } from '../../../components/Carousel';
-import LocationList from '../../../components/explore/LocationList';
-import PostsList from '../../../components/home/PostsList';
 import Colors from '../../../constants/Colors';
 import DashboardLayout from '../../../layouts/DashboardLayout';
 
@@ -158,7 +147,7 @@ const itemList: PostProps[] = [
     number: '259',
   },
 ];
-export default function MainTabCommunityScreen({ navigation }: NavigationProps): JSX.Element {
+export default function CommunityScreen({ navigation }: NavigationProps): JSX.Element {
   const [textInput, setTextInput] = useState('');
   const [selectedAddress, setSelectedAddress] = useState('Home');
 

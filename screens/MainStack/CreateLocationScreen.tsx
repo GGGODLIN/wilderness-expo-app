@@ -1,4 +1,4 @@
-import { MaterialIcons, Ionicons, FontAwesome5 } from '@expo/vector-icons';
+import { MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import {
   Button,
@@ -9,16 +9,13 @@ import {
   Pressable,
   Box,
   Center,
-  ScrollView,
   VStack,
-  Select,
   TextArea,
   Image,
   Stack,
   IconButton,
 } from 'native-base';
 import React, { useState } from 'react';
-import { Platform } from 'react-native';
 
 import { MAIN_STACK_POST } from '../../NavigationNames';
 import { NavigationProps } from '../../Props';

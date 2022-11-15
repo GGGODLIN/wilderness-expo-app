@@ -1,24 +1,9 @@
-import { MaterialIcons, Ionicons } from '@expo/vector-icons';
-import {
-  Button,
-  HStack,
-  Text,
-  Icon,
-  Input,
-  Pressable,
-  Box,
-  Center,
-  ScrollView,
-  VStack,
-  Select,
-  TextArea,
-} from 'native-base';
+import { MaterialIcons } from '@expo/vector-icons';
+import { Button, HStack, Text, Icon, Pressable, Box, VStack, TextArea } from 'native-base';
 import React, { useState } from 'react';
-import { Platform } from 'react-native';
 
 import { MAIN_STACK_POST } from '../../../NavigationNames';
 import { NavigationProps } from '../../../Props';
-import NativeMap from '../../../components/NativeMap';
 import Colors from '../../../constants/Colors';
 import DashboardLayout from '../../../layouts/DashboardLayout';
 

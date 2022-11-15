@@ -8,7 +8,6 @@ import {
   faInfo,
   faMountain,
   faSnowboarding,
-  faUserMd,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import MasonryList from '@react-native-seoul/masonry-list';
@@ -21,7 +20,6 @@ import {
   ScrollView,
   Image,
   Pressable,
-  Center,
   Box,
   IconButton,
   useBreakpointValue,

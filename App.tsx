@@ -1,27 +1,9 @@
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import {
-  createNavigationContainerRef,
-  NavigationContainer,
-  useNavigation,
-} from '@react-navigation/native';
+import { createNavigationContainerRef, NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Accelerometer } from 'expo-sensors';
-import {
-  AlertDialog,
-  Center,
-  NativeBaseProvider,
-  useToast,
-  VStack,
-  Text,
-  Spinner,
-} from 'native-base';
+import { AlertDialog, Center, NativeBaseProvider, VStack, Text, Spinner } from 'native-base';
 import * as React from 'react';
-import { useRef } from 'react';
-import { PermissionsAndroid } from 'react-native';
 import { enableLatestRenderer } from 'react-native-maps';
-import { ColorSpace } from 'react-native-reanimated';
 
 import {
   MAIN_STACK_CREATE_LOCATION,
@@ -30,7 +12,6 @@ import {
   MAIN_STACK_LOCATION_DRAWER,
   MAIN_STACK_LOGIN,
   MAIN_STACK_MESSAGES,
-  MAIN_STACK_POST,
   MAIN_STACK_POST_DRAWER,
   MAIN_STACK_PROFILE,
   MAIN_STACK_REGISTER,
@@ -38,21 +19,18 @@ import {
   MAIN_STACK_TABS,
   PROFILE_STACK_NOTIFICATIONS,
 } from './NavigationNames';
-import { Nav } from './Props';
 import Colors from './constants/Colors';
 import CreateLocationScreen from './screens/MainStack/CreateLocationScreen';
 import CreatePostScreen from './screens/MainStack/CreatePostScreen';
-import MainStackEventDetailsScreen from './screens/MainStack/EventDetailsScreen';
-import LocationDetailsScreen from './screens/MainStack/LocationDrawer/LocationDetailsScreen';
+import EventDetailsScreen from './screens/MainStack/EventDetailsScreen';
 import LocationDrawer from './screens/MainStack/LocationDrawer/LocationDrawer';
-import MainStackLoginScreen from './screens/MainStack/LoginScreen';
-import MainStackMessageScreen from './screens/MainStack/MessageScreen';
+import LoginScreen from './screens/MainStack/LoginScreen';
+import MessageScreen from './screens/MainStack/MessageScreen';
 import PostDrawer from './screens/MainStack/PostDrawer/PostDrawer';
-import MainStackPostScreen from './screens/MainStack/PostDrawer/PostScreen';
-import MainStackProfileScreen from './screens/MainStack/ProfileScreen';
-import MainStackRegisterScreen from './screens/MainStack/RegisterScreen';
-import MainStackResetPasswordScreen from './screens/MainStack/ResetPasswordScreen';
-import MainStackTabsScreen from './screens/MainStack/TabsScreen';
+import ProfileScreen from './screens/MainStack/ProfileScreen';
+import RegisterScreen from './screens/MainStack/RegisterScreen';
+import ResetPasswordScreen from './screens/MainStack/ResetPasswordScreen';
+import TabsScreen from './screens/MainStack/TabsScreen';
 import ProfileStackNotifications from './screens/ProfileStack/ProfileStackNotifications';
 
 enableLatestRenderer();
@@ -109,20 +87,14 @@ export default function App() {
           screenOptions={{
             headerShown: false,
           }}>
-          <MainStack.Screen component={MainStackTabsScreen} name={MAIN_STACK_TABS} />
-          <MainStack.Screen component={MainStackLoginScreen} name={MAIN_STACK_LOGIN} />
-          <MainStack.Screen component={MainStackRegisterScreen} name={MAIN_STACK_REGISTER} />
-          <MainStack.Screen
-            component={MainStackResetPasswordScreen}
-            name={MAIN_STACK_RESET_PASSWORD}
-          />
-          <MainStack.Screen
-            component={MainStackEventDetailsScreen}
-            name={MAIN_STACK_EVENT_DETAILS}
-          />
-          <MainStack.Screen component={MainStackMessageScreen} name={MAIN_STACK_MESSAGES} />
+          <MainStack.Screen component={TabsScreen} name={MAIN_STACK_TABS} />
+          <MainStack.Screen component={LoginScreen} name={MAIN_STACK_LOGIN} />
+          <MainStack.Screen component={RegisterScreen} name={MAIN_STACK_REGISTER} />
+          <MainStack.Screen component={ResetPasswordScreen} name={MAIN_STACK_RESET_PASSWORD} />
+          <MainStack.Screen component={EventDetailsScreen} name={MAIN_STACK_EVENT_DETAILS} />
+          <MainStack.Screen component={MessageScreen} name={MAIN_STACK_MESSAGES} />
           <MainStack.Screen component={PostDrawer} name={MAIN_STACK_POST_DRAWER} />
-          <MainStack.Screen component={MainStackProfileScreen} name={MAIN_STACK_PROFILE} />
+          <MainStack.Screen component={ProfileScreen} name={MAIN_STACK_PROFILE} />
           <MainStack.Screen
             component={ProfileStackNotifications}
             name={PROFILE_STACK_NOTIFICATIONS}

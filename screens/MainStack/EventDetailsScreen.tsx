@@ -1,10 +1,10 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { Box, Center, HStack, VStack, Text, Heading, View, ScrollView } from 'native-base';
+import { HStack, VStack, Text, Heading, View, ScrollView } from 'native-base';
 import React from 'react';
 
 import { NavigationProps } from '../../Props';
 
-export default function MainStackEventDetailsScreen({ navigation }: NavigationProps): JSX.Element {
+export default function EventDetailsScreen({ navigation }: NavigationProps): JSX.Element {
   return (
     <VStack>
       <ScrollView>

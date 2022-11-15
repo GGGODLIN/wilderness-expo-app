@@ -1009,6 +1009,7 @@ export default function LocationDetailsScreen({ navigation }: NavigationProps): 
         variant="unstyled"
         colorScheme="light"
         py={0}
+        mb="2"
         icon={
           <Icon
             size="5"

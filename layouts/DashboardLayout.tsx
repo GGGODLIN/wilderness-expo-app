@@ -114,9 +114,9 @@ export function MobileHeader(props: MobileHeaderProps) {
                     m="0"
                     p="0"
                     pb="2"
-                    pr="3"
+                    pr="6"
                     variant="unstyled"
-                    colorScheme="light"
+                    colorScheme="dark"
                     onPress={() => {
                       navigation.navigate(PROFILE_STACK_NOTIFICATIONS);
                       setBell(!bell);

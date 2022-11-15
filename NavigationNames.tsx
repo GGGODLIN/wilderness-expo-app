@@ -27,14 +27,14 @@ export const PROFILE_STACK_PRIVACY = 'ProfileStack_Privacy';
 export const PROFILE_STACK_ABOUT = 'ProfileStack_About';
 export const PROFILE_STACK_TERMS = 'ProfileStack_Terms';
 
-/** @deprecated */
+/** @deprecated 請改用 MAIN_STACK_LOCATION_DRAWER */
 export const MAIN_STACK_LOCATION_DETAILS = 'MainStack_LocationDrawer'; // 舊的相容 DRAWER :P
 export const MAIN_STACK_LOCATION_DRAWER = 'MainStack_LocationDrawer';
 export const MAIN_STACK_LOCATION_DRAWER_POST_DETAILS = 'MainStack_LocationDrawer_PostDetailsScreen';
 export const MAIN_STACK_LOCATION_DRAWER_POST_EDIT = 'MainStack_LocationDrawer_PostEditScreen';
 export const MAIN_STACK_LOCATION_DRAWER_POST_REPORT = 'MainStack_LocationDrawer_PostReportScreen';
 
-/** @deprecated */
+/** @deprecated 請改用 MAIN_STACK_POST_DRAWER */
 export const MAIN_STACK_POST = 'MainStack_PostDrawer'; // @deprecated 舊的相容 DRAWER :P
 export const MAIN_STACK_POST_DRAWER = 'MainStack_PostDrawer';
 export const MAIN_STACK_POST_DRAWER_POST_DETAILS = 'MainStack_PostDrawer_PostDetailsScreen';

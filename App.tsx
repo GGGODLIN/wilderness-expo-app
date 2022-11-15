@@ -1,3 +1,5 @@
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {
   createNavigationContainerRef,
@@ -6,17 +8,25 @@ import {
 } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Accelerometer } from 'expo-sensors';
-import { NativeBaseProvider } from 'native-base';
+import {
+  AlertDialog,
+  Center,
+  NativeBaseProvider,
+  useToast,
+  VStack,
+  Text,
+  Spinner,
+} from 'native-base';
 import * as React from 'react';
 import { useRef } from 'react';
 import { PermissionsAndroid } from 'react-native';
 import { enableLatestRenderer } from 'react-native-maps';
+import { ColorSpace } from 'react-native-reanimated';
 
 import {
   MAIN_STACK_CREATE_LOCATION,
   MAIN_STACK_CREATE_POST,
   MAIN_STACK_EVENT_DETAILS,
-  MAIN_STACK_LOCATION_DETAILS,
   MAIN_STACK_LOCATION_DRAWER,
   MAIN_STACK_LOGIN,
   MAIN_STACK_MESSAGES,
@@ -29,6 +39,7 @@ import {
   PROFILE_STACK_NOTIFICATIONS,
 } from './NavigationNames';
 import { Nav } from './Props';
+import Colors from './constants/Colors';
 import CreateLocationScreen from './screens/MainStack/CreateLocationScreen';
 import CreatePostScreen from './screens/MainStack/CreatePostScreen';
 import MainStackEventDetailsScreen from './screens/MainStack/EventDetailsScreen';
@@ -74,9 +85,22 @@ const MainStack = createNativeStackNavigator();
 const navigationRef = createNavigationContainerRef();
 
 export default function App() {
-  configureShake((acceleration) => {
-    navigationRef.navigate(MAIN_STACK_LOCATION_DETAILS);
-    console.log('Shake detected with acceleration ', acceleration);
+  const [isOpen, setIsOpen] = React.useState(false);
+  const cancelRef = React.useRef(null);
+
+  const onClose = () => setIsOpen(false);
+  const randomLocation = () => {
+    if (navigationRef.isReady()) {
+      navigationRef.navigate(MAIN_STACK_LOCATION_DRAWER);
+      setIsOpen(false);
+    } else {
+      setTimeout(randomLocation, 1500);
+    }
+  };
+
+  configureShake(() => {
+    setIsOpen(true);
+    setTimeout(randomLocation, 1500);
   });
   return (
     <NativeBaseProvider>
@@ -108,6 +132,27 @@ export default function App() {
           <MainStack.Screen component={CreateLocationScreen} name={MAIN_STACK_CREATE_LOCATION} />
         </MainStack.Navigator>
       </NavigationContainer>
+      <AlertDialog
+        leastDestructiveRef={cancelRef}
+        isOpen={isOpen}
+        onClose={onClose}
+        closeOnOverlayClick={false}>
+        <AlertDialog.Content>
+          <AlertDialog.Header>
+            <Center>搖晃隨機地點</Center>
+          </AlertDialog.Header>
+          <AlertDialog.Body>
+            <VStack>
+              <Center>
+                <Spinner color={Colors.LOGO_COLOR_GREEN} my={6} size="lg" />
+              </Center>
+              <Center>
+                <Text>正在搜尋附近的地點...</Text>
+              </Center>
+            </VStack>
+          </AlertDialog.Body>
+        </AlertDialog.Content>
+      </AlertDialog>
     </NativeBaseProvider>
   );
 }

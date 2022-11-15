@@ -1,4 +1,4 @@
-import { MaterialIcons, Ionicons, AntDesign } from '@expo/vector-icons';
+import { MaterialIcons, Ionicons, AntDesign, FontAwesome5 } from '@expo/vector-icons';
 import * as ExpoLocation from 'expo-location';
 import {
   Button,
@@ -15,6 +15,7 @@ import {
   useToast,
   Select,
   CheckIcon,
+  Stack,
 } from 'native-base';
 import React, { useEffect, useRef, useState } from 'react';
 import { Keyboard, Dimensions, ScrollView, TouchableOpacity } from 'react-native';
@@ -249,7 +250,12 @@ const mapStyle = [
 
 export default function ExploreScreen({ navigation }: NavigationProps): JSX.Element {
   const [showLocationCard, setShowLocationCard] = useState(true);
-  const [showFilter, setShowFilter] = useState(false);
+
+  // 篩選列
+  const [showFilterCondition, setShowFilterCondition] = useState(false);
+  const [showFilterTag, setShowFilterTag] = useState(false);
+  const [showFilterFacility, setShowFilterFacility] = useState(false);
+
   const [textInput, setTextInput] = useState('');
   const [selectedAddress, setSelectedAddress] = useState('Home');
   const [mapErrorMsg, setMapErrorMsg] = useState<string | null>(null);
@@ -346,11 +352,9 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
           value={textInput}
           onPress={() => {
             setShowLocationCard(false);
-            setShowFilter(true);
           }}
           onFocus={() => {
             setShowLocationCard(false);
-            setShowFilter(true);
           }}
           onChangeText={setTextInput}
           size="lg"
@@ -412,7 +416,6 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
               onPress={() => {
                 Keyboard.dismiss();
                 setTextInput('');
-                setShowFilter(false);
               }}>
               <Icon
                 as={<MaterialIcons name="close" />}
@@ -453,24 +456,128 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
     { id: 1, title: '營地' },
     { id: 2, title: '親子' },
     { id: 3, title: 'SUP' },
-    { id: 4, title: '山林' },
+    { id: 4, title: '以此類推其他' },
+  ];
+
+  type Icon = {
+    name: string;
+    text: string;
+    active: boolean;
+  };
+  const icons: Icon[] = [
+    {
+      name: 'caravan',
+      text: '收費營地',
+      active: true,
+    },
+    {
+      name: 'caravan',
+      text: '公共營地',
+      active: false,
+    },
+    {
+      name: 'caravan',
+      text: '露營車',
+      active: false,
+    },
+    {
+      name: 'caravan',
+      text: '露營車',
+      active: false,
+    },
+    {
+      name: 'caravan',
+      text: '無提供',
+      active: false,
+    },
+    {
+      name: 'caravan',
+      text: '有提供',
+      active: true,
+    },
   ];
 
   return (
     <DashboardLayout title="活動" customTitle={<CustomTitle />}>
       <Box px={{ md: 8, xl: 35 }} py={{ md: 5 }} flex={1}>
-        {showFilter ? (
+        <HStack
+          bg="coolGray.50"
+          justifyContent="space-between"
+          position="absolute"
+          alignItems="center"
+          left={0}
+          top={0}
+          w="100%"
+          px={6}
+          py={1}
+          zIndex={8}>
+          <TouchableOpacity
+            onPress={() => {
+              setShowFilterCondition(!showFilterCondition);
+              setShowFilterTag(false);
+              setShowFilterFacility(false);
+            }}>
+            <HStack alignItems="center" py="1">
+              <Text fontSize="sm" px="1">
+                條件
+              </Text>
+              <Icon
+                as={AntDesign}
+                color={Colors.LOGO_COLOR_BROWN}
+                name={showFilterCondition ? 'minuscircleo' : 'pluscircleo'}
+                size={3}
+              />
+            </HStack>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              setShowFilterTag(!showFilterTag);
+              setShowFilterCondition(false);
+              setShowFilterFacility(false);
+            }}>
+            <HStack alignItems="center" py="1">
+              <Text fontSize="sm" px="1">
+                標籤
+              </Text>
+              <Icon
+                as={AntDesign}
+                color={Colors.LOGO_COLOR_BROWN}
+                name={showFilterTag ? 'minuscircleo' : 'pluscircleo'}
+                size={3}
+              />
+            </HStack>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              setShowFilterFacility(!showFilterFacility);
+              setShowFilterTag(false);
+              setShowFilterCondition(false);
+            }}>
+            <HStack alignItems="center" py="1">
+              <Text fontSize="sm" px="1">
+                設施
+              </Text>
+              <Icon
+                as={AntDesign}
+                color={Colors.LOGO_COLOR_BROWN}
+                name={showFilterFacility ? 'minuscircleo' : 'pluscircleo'}
+                size={3}
+              />
+            </HStack>
+          </TouchableOpacity>
+        </HStack>
+        {showFilterCondition ? (
           <Box
             shadow={2}
             width="100%"
             py={4}
             px={{ base: 0, md: 0 }}
-            pt={2}
+            pt={0}
             zIndex={2}
             position="absolute"
             alignItems="center"
             right={0}
-            top={0}
+            top={8}
             _light={{ bg: 'white' }}
             _dark={{ bg: 'coolGray.800' }}>
             <HStack space="2">
@@ -496,19 +603,22 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
               <Select
                 selectedValue={area}
                 minWidth="45%"
-                accessibilityLabel="選擇區域"
-                placeholder="選擇區域"
+                accessibilityLabel="選擇海拔"
+                placeholder="選擇海拔"
                 _selectedItem={{
                   bg: 'coolGray.200',
                   endIcon: <CheckIcon size="5" />,
                 }}
                 mt={1}
                 onValueChange={(itemValue) => setArea(itemValue)}>
-                <Select.Item label="不限制區域" value="" />
-                <Select.Item label="北區" value="北區" />
-                <Select.Item label="中區" value="中區" />
-                <Select.Item label="南區" value="南區" />
-                <Select.Item label="待串接整合區域" value="2" />
+                <Select.Item label="不限制海拔" value="" />
+                <Select.Item label="海邊" value="海邊" />
+                <Select.Item label="平地" value="平地" />
+                <Select.Item label="300公尺以下" value="300" />
+                <Select.Item label="300公尺~500公尺" value="500" />
+                <Select.Item label="500公尺~800公尺" value="800" />
+                <Select.Item label="800公尺~1000公尺" value="1000" />
+                <Select.Item label="1000公尺以上" value="1100" />
               </Select>
             </HStack>
             <HStack space="2">
@@ -543,24 +653,209 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
                 <Select.Item label="總是" value="2" />
               </Select>
             </HStack>
+          </Box>
+        ) : null}
+        {showFilterTag ? (
+          <Box
+            shadow={2}
+            width="100%"
+            py={4}
+            px={{ base: 0, md: 0 }}
+            pt={0}
+            zIndex={2}
+            position="absolute"
+            alignItems="center"
+            right={0}
+            top={8}
+            _light={{ bg: 'white' }}
+            _dark={{ bg: 'coolGray.800' }}>
             <HStack space="3" mt={3} alignItems="flex-start">
               {tags.map((item, index) => (
                 <AddressBadge label={item.title} currentSelectedAddress={selectedAddress} />
               ))}
             </HStack>
-            <Button
-              width="80%"
-              mt={{ base: 5 }}
-              variant="solid"
-              size="lg"
-              _light={{
-                bg: Colors.LOGO_COLOR_BROWN,
-              }}
-              _dark={{
-                bg: 'coolGray.700',
-              }}>
-              查詢
-            </Button>
+          </Box>
+        ) : null}
+        {showFilterFacility ? (
+          <Box
+            shadow={2}
+            width="100%"
+            py={4}
+            px={{ base: 0, md: 0 }}
+            pt={0}
+            zIndex={2}
+            position="absolute"
+            alignItems="center"
+            right={0}
+            top={8}
+            _light={{ bg: 'white' }}
+            _dark={{ bg: 'coolGray.800' }}>
+            <VStack w="100%" px="4" pt="4">
+              <Text fontWeight="bold" color="coolGray.400">
+                營地類型
+              </Text>
+              <HStack space={6} justifyContent="space-between" alignItems="center">
+                <Stack flexWrap="wrap" direction="row" space="2">
+                  {icons.map((item, index) => (
+                    <HStack
+                      key={'icon_' + index}
+                      overflow="visible"
+                      mx={0}
+                      mb={0}
+                      alignItems="center"
+                      justifyContent="center">
+                      <IconButton
+                        variant="unstyled"
+                        icon={
+                          <Icon
+                            as={FontAwesome5}
+                            name={item.name}
+                            _light={{
+                              color: item.active ? 'coolGray.500' : 'coolGray.200',
+                            }}
+                            _dark={{ color: 'coolGray.50' }}
+                            size={4}
+                            textAlign="center"
+                            alignSelf="center"
+                          />
+                        }
+                      />
+                      <Text
+                        fontSize={{ base: 'sm', md: 'sm' }}
+                        _light={{ color: item.active ? 'coolGray.800' : 'coolGray.300' }}
+                        _dark={{ color: { base: 'coolGray.50', md: 'coolGray.400' } }}
+                        textAlign="center">
+                        {item.text}
+                      </Text>
+                    </HStack>
+                  ))}
+                </Stack>
+                {/*
+                <FlatList
+                  nestedScrollEnabled
+                  numColumns={4}
+                  data={icons}
+                  showsVerticalScrollIndicator={false}
+                  renderItem={({ item, index }) => (
+                    <HStack
+                      key={'icon_' + index}
+                      overflow="visible"
+                      mx={2}
+                      mb={4}
+                      alignItems="center"
+                      justifyContent="center">
+                      <IconButton
+                        variant="unstyled"
+                        icon={
+                          <Icon
+                            as={FontAwesome5}
+                            name={item.name}
+                            _light={{
+                              color: item.active ? 'coolGray.500' : 'coolGray.200',
+                            }}
+                            _dark={{ color: 'coolGray.50' }}
+                            size={4}
+                            textAlign="center"
+                            alignSelf="center"
+                          />
+                        }
+                      />
+                      <Text
+                        fontSize={{ base: 'sm', md: 'sm' }}
+                        _light={{ color: item.active ? 'coolGray.800' : 'coolGray.300' }}
+                        _dark={{ color: { base: 'coolGray.50', md: 'coolGray.400' } }}
+                        textAlign="center">
+                        {item.text}
+                      </Text>
+                    </HStack>
+                  )}
+                  keyExtractor={(item, index) => 'home-post-key-' + index}
+                />
+                      */}
+              </HStack>
+              <Text fontWeight="bold" color="coolGray.400">
+                營地類型
+              </Text>
+              <HStack space={6} justifyContent="space-between" alignItems="center">
+                <Stack flexWrap="wrap" direction="row" space="2">
+                  {icons.map((item, index) => (
+                    <HStack
+                      key={'icon_' + index}
+                      overflow="visible"
+                      mx={0}
+                      mb={0}
+                      alignItems="center"
+                      justifyContent="center">
+                      <IconButton
+                        variant="unstyled"
+                        icon={
+                          <Icon
+                            as={FontAwesome5}
+                            name={item.name}
+                            _light={{
+                              color: item.active ? 'coolGray.500' : 'coolGray.200',
+                            }}
+                            _dark={{ color: 'coolGray.50' }}
+                            size={4}
+                            textAlign="center"
+                            alignSelf="center"
+                          />
+                        }
+                      />
+                      <Text
+                        fontSize={{ base: 'sm', md: 'sm' }}
+                        _light={{ color: item.active ? 'coolGray.800' : 'coolGray.300' }}
+                        _dark={{ color: { base: 'coolGray.50', md: 'coolGray.400' } }}
+                        textAlign="center">
+                        {item.text}
+                      </Text>
+                    </HStack>
+                  ))}
+                </Stack>
+                {/*
+                <FlatList
+                  nestedScrollEnabled
+                  numColumns={4}
+                  data={icons}
+                  showsVerticalScrollIndicator={false}
+                  renderItem={({ item, index }) => (
+                    <HStack
+                      key={'icon_' + index}
+                      overflow="visible"
+                      mx={2}
+                      mb={4}
+                      alignItems="center"
+                      justifyContent="center">
+                      <IconButton
+                        variant="unstyled"
+                        icon={
+                          <Icon
+                            as={FontAwesome5}
+                            name={item.name}
+                            _light={{
+                              color: item.active ? 'coolGray.500' : 'coolGray.200',
+                            }}
+                            _dark={{ color: 'coolGray.50' }}
+                            size={4}
+                            textAlign="center"
+                            alignSelf="center"
+                          />
+                        }
+                      />
+                      <Text
+                        fontSize={{ base: 'sm', md: 'sm' }}
+                        _light={{ color: item.active ? 'coolGray.800' : 'coolGray.300' }}
+                        _dark={{ color: { base: 'coolGray.50', md: 'coolGray.400' } }}
+                        textAlign="center">
+                        {item.text}
+                      </Text>
+                    </HStack>
+                  )}
+                  keyExtractor={(item, index) => 'home-post-key-' + index}
+                />
+                      */}
+              </HStack>
+            </VStack>
           </Box>
         ) : null}
         {/* ========= Map Part - Start ========= */}
@@ -568,7 +863,9 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
           ref={mapRef}
           onPress={() => {
             Keyboard.dismiss();
-            setShowFilter(false);
+            setShowFilterCondition(false);
+            setShowFilterTag(false);
+            setShowFilterFacility(false);
           }}
           style={{ flex: 1, minHeight: 700, height: '100%' }}
           provider={PROVIDER_GOOGLE}
@@ -591,7 +888,7 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
               }}>
               <VStack alignItems="center">
                 <Icon as={MaterialIcons} color={Colors.LOGO_COLOR_BROWN} name="place" size={6} />
-                <VStack bg="#FFFFFFA0" borderRadius="xl" px="1" py="1">
+                <VStack bg="#FFFFFFC0" borderRadius="xl" px="1" py="1">
                   <Text fontSize="xs" color={Colors.LOGO_COLOR_BROWN} textAlign="center">
                     海拔 {location.altitude} 公尺
                   </Text>
@@ -732,7 +1029,7 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
           </ScrollView>
         </Box>
         {/* ========= Pan Part - End ========= */}
-        <VStack space="3" position="absolute" top="4" right="0" mt="2" mr="4">
+        <VStack space="3" position="absolute" top="10%" right="0" mt="0" mr="4">
           <TouchableOpacity onPress={() => navigation.navigate(MAIN_STACK_CREATE_LOCATION)}>
             <Center
               p="2"

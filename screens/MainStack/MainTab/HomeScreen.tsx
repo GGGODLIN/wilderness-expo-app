@@ -3,11 +3,13 @@ import {
   faCampground,
   faCaravan,
   faComment,
+  faFish,
   faDrumstickBite,
   faGrinTongueSquint,
   faInfo,
   faMountain,
   faSnowboarding,
+  faFutbol,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import MasonryList from '@react-native-seoul/masonry-list';
@@ -135,14 +137,14 @@ const icons = [
     text: '熱門營地',
   },
   {
-    icon: faGrinTongueSquint,
+    icon: faFutbol,
     text: '親子營區',
   },
 ];
 const icons2 = [
   {
-    icon: faComment,
-    text: '熱門討論',
+    icon: faFish,
+    text: '釣魚特區',
   },
   {
     icon: faDrumstickBite,

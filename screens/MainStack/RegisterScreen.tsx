@@ -382,7 +382,7 @@ function SignUpFormComponent() {
   );
 }
 
-export default function SignUp() {
+export default function RegisterScreen() {
   return (
     <GuestLayout>
       <Hidden till="md">

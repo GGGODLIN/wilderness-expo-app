@@ -1,4 +1,4 @@
-import { MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import {
   Button,
@@ -312,7 +312,8 @@ function MobileHeader() {
     </Hidden>
   );
 }
-export default function SignIn() {
+
+export default function LoginScreen() {
   return (
     <GuestLayout>
       <Hidden till="md">

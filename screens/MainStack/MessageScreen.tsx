@@ -2,6 +2,6 @@ import React from 'react';
 
 import { NavigationProps } from '../../Props';
 
-export default function MainStackMessageScreen({ navigation }: NavigationProps): JSX.Element {
+export default function MessageScreen({ navigation }: NavigationProps): JSX.Element {
   return <></>;
 }

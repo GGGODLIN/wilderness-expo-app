@@ -1,4 +1,4 @@
-import { MaterialIcons, FontAwesome, AntDesign, Ionicons } from '@expo/vector-icons';
+import { MaterialIcons, Ionicons } from '@expo/vector-icons';
 import * as ExpoLocation from 'expo-location';
 import {
   Button,
@@ -8,10 +8,8 @@ import {
   Input,
   Pressable,
   Box,
-  Divider,
   IconButton,
   Image,
-  Fab,
   VStack,
   Center,
   useToast,
@@ -19,7 +17,7 @@ import {
   CheckIcon,
 } from 'native-base';
 import React, { useEffect, useRef, useState } from 'react';
-import { Keyboard, Dimensions, ScrollView, PermissionsAndroid } from 'react-native';
+import { Keyboard, Dimensions, ScrollView } from 'react-native';
 import MapView, { AnimatedRegion, Marker, PROVIDER_GOOGLE, Region } from 'react-native-maps';
 
 import {
@@ -249,7 +247,7 @@ const mapStyle = [
   },
 ];
 
-export default function MainTabExploreScreen({ navigation }: NavigationProps): JSX.Element {
+export default function ExploreScreen({ navigation }: NavigationProps): JSX.Element {
   const [showLocationCard, setShowLocationCard] = useState(true);
   const [showFilter, setShowFilter] = useState(false);
   const [textInput, setTextInput] = useState('');

@@ -2,6 +2,6 @@ import React from 'react';
 
 import { NavigationProps } from '../../Props';
 
-export default function MainStackProfileScreen({ navigation }: NavigationProps): JSX.Element {
+export default function ProfileScreen({ navigation }: NavigationProps): JSX.Element {
   return <></>;
 }

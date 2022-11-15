@@ -8,7 +8,6 @@ import {
   faInfo,
   faMountain,
   faSnowboarding,
-  faUserMd,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import MasonryList from '@react-native-seoul/masonry-list';
@@ -21,7 +20,6 @@ import {
   ScrollView,
   Image,
   Pressable,
-  Center,
   Box,
   IconButton,
   useBreakpointValue,
@@ -417,8 +415,8 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
               <HStack space={6} justifyContent="center" pt="1">
                 {icons.map((item, idx) => {
                   return (
-                    <TouchableOpacity>
-                      <VStack key={'icon_' + idx}>
+                    <TouchableOpacity key={'icon_' + idx}>
+                      <VStack>
                         <IconButton
                           w={16}
                           h={16}
@@ -450,8 +448,8 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
               <HStack space={6} justifyContent="center" pt={4} pb={6}>
                 {icons2.map((item, idx) => {
                   return (
-                    <TouchableOpacity>
-                      <VStack key={'icon_' + idx}>
+                    <TouchableOpacity key={'icon_' + idx}>
+                      <VStack>
                         <IconButton
                           w={16}
                           h={16}

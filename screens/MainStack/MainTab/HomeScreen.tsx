@@ -392,7 +392,7 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
   }
 
   return (
-    <DashboardLayout title="玩野覓境" customTitle={<CustomTitle />} rightPanelMobileHeader>
+    <DashboardLayout title="玩野覓境" customTitle={<CustomTitle />}>
       <Stack flex={1} _light={{ bg: Colors.THEME_MAIN_BACKGROUND }} _dark={{ bg: 'coolGray.800' }}>
         <Box
           pt={5}

@@ -16,11 +16,14 @@ import {
   FormControl,
   Divider,
   TextArea,
+  Center,
+  Pressable,
 } from 'native-base';
 import React, { useState } from 'react';
 import type { ImageSourcePropType } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
+import { MAIN_STACK_PROFILE } from '../../../NavigationNames';
 import { Nav, NavigationProps } from '../../../Props';
 import { Carousel } from '../../../components/Carousel';
 import Colors from '../../../constants/Colors';
@@ -438,22 +441,30 @@ function CustomIcon() {
 }
 
 function CustomTitle() {
+  const navigation = useNavigation<Nav>();
   return (
-    <VStack space="0">
-      <HStack space="2" py={2}>
-        <Avatar height="6" width="6" source={require('../../../assets/images/views/view_9.jpg')} />
-        <VStack space="0" alignItems="center">
-          <Text
-            fontSize="sm"
-            fontWeight="medium"
-            py={1}
-            _dark={{ color: 'coolGray.50' }}
-            _light={{ color: 'coolGray.700' }}>
-            作者名稱
-          </Text>
-        </VStack>
-      </HStack>
-    </VStack>
+    <Pressable
+      onPress={() => {
+        navigation.navigate(MAIN_STACK_PROFILE);
+      }}>
+      {({ isPressed }) => (
+        <Box py={3} px={3} {...(isPressed ? { bg: 'gray.300' } : {})}>
+          <HStack space="3">
+            <Center>
+              <Avatar size={8} source={require('../../../assets/images/views/view_9.jpg')} />
+            </Center>
+            <Text
+              fontSize="sm"
+              fontWeight="medium"
+              py={1}
+              _dark={{ color: 'coolGray.50' }}
+              _light={{ color: 'coolGray.700' }}>
+              作者名稱
+            </Text>
+          </HStack>
+        </Box>
+      )}
+    </Pressable>
   );
 }
 

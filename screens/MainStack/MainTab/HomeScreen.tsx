@@ -439,7 +439,7 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
                           <FontAwesomeIcon
                             icon={item.icon}
                             color={Colors.LOGO_COLOR_GREEN}
-                            size={24}
+                            size={28}
                           />
                         }
                         bg={Colors.LOGO_COLOR_WHITE_BACKGROUND}
@@ -469,7 +469,7 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
                           <FontAwesomeIcon
                             icon={item.icon}
                             color={Colors.LOGO_COLOR_GREEN}
-                            size={24}
+                            size={28}
                           />
                         }
                         bg={Colors.LOGO_COLOR_WHITE_BACKGROUND}

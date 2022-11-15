@@ -1,4 +1,16 @@
-import { AntDesign, MaterialIcons, FontAwesome5, Ionicons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
+import {
+  faCampground,
+  faCaravan,
+  faComment,
+  faDrumstickBite,
+  faGrinTongueSquint,
+  faInfo,
+  faMountain,
+  faSnowboarding,
+  faUserMd,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import MasonryList from '@react-native-seoul/masonry-list';
 import {
   HStack,
@@ -6,35 +18,23 @@ import {
   Text,
   Stack,
   VStack,
-  Button,
   ScrollView,
-  Hidden,
-  Divider,
-  Input,
   Image,
   Pressable,
-  Flex,
-  Circle,
   Center,
   Box,
   IconButton,
   useBreakpointValue,
-  FlatList,
-  Link,
   Avatar,
 } from 'native-base';
 import React from 'react';
-import { ImageSourcePropType, Platform, useWindowDimensions } from 'react-native';
+import { ImageSourcePropType, useWindowDimensions } from 'react-native';
 
 import { MAIN_STACK_POST } from '../../../NavigationNames';
 import { NavigationProps } from '../../../Props';
 import { Carousel } from '../../../components/Carousel';
-import Tab from '../../../components/TopTab/Tab';
-import Categories from '../../../components/home/Categories';
-import PostsList from '../../../components/home/PostsList';
 import Colors from '../../../constants/Colors';
 import DashboardLayout from '../../../layouts/DashboardLayout';
-import GuestLayout from '../../../layouts/GuestLayout';
 
 type Icon = {
   name: string;
@@ -122,39 +122,39 @@ const CarouselLayout = () => {
   );
 };
 
-const icons: Icon[] = [
+const icons = [
   {
-    name: 'caravan',
+    icon: faCaravan,
     text: '車泊熱點',
   },
   {
-    name: 'snowboarding',
+    icon: faSnowboarding,
     text: 'SUP 秘境',
   },
   {
-    name: 'campground',
+    icon: faCampground,
     text: '熱門營地',
   },
   {
-    name: 'grin-tongue-squint',
+    icon: faGrinTongueSquint,
     text: '親子營區',
   },
 ];
-const icons2: Icon[] = [
+const icons2 = [
   {
-    name: 'comments',
+    icon: faComment,
     text: '熱門討論',
   },
   {
-    name: 'drumstick-bite',
+    icon: faDrumstickBite,
     text: '露營美食',
   },
   {
-    name: 'mountain',
+    icon: faMountain,
     text: '好野入門',
   },
   {
-    name: 'info',
+    icon: faInfo,
     text: '常見問題',
   },
 ];
@@ -430,28 +430,20 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
               <HStack space={6} justifyContent="center">
                 {icons.map((item, idx) => {
                   return (
-                    <VStack key={'icon_' + idx} overflow="visible">
-                      <Center
-                        _light={{ bg: Colors.LOGO_COLOR_WHITE_BACKGROUND }}
-                        _dark={{ bg: 'coolGray.700' }}
-                        rounded="full"
-                        w={{ base: 16, md: 14 }}
-                        h={{ base: 16, md: 14 }}>
-                        <IconButton
-                          variant="unstyled"
-                          icon={
-                            <Icon
-                              as={FontAwesome5}
-                              name={item.name}
-                              _light={{ color: Colors.LOGO_COLOR_GREEN }}
-                              _dark={{ color: 'coolGray.50' }}
-                              size={6}
-                              textAlign="center"
-                              alignSelf="center"
-                            />
-                          }
-                        />
-                      </Center>
+                    <VStack key={'icon_' + idx}>
+                      <IconButton
+                        w={16}
+                        h={16}
+                        borderRadius="full"
+                        icon={
+                          <FontAwesomeIcon
+                            icon={item.icon}
+                            color={Colors.LOGO_COLOR_GREEN}
+                            size={24}
+                          />
+                        }
+                        bg={Colors.LOGO_COLOR_WHITE_BACKGROUND}
+                      />
                       <Text
                         pt={2}
                         fontWeight="bold"
@@ -468,27 +460,20 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
               <HStack space={6} justifyContent="center" pt={3} pb={4}>
                 {icons2.map((item, idx) => {
                   return (
-                    <VStack key={'icon2_' + idx}>
-                      <Center
-                        _light={{ bg: Colors.LOGO_COLOR_WHITE_BACKGROUND }}
-                        _dark={{ bg: 'coolGray.700' }}
-                        rounded="full"
-                        w={{ base: 16, md: 14 }}
-                        h={{ base: 16, md: 14 }}>
-                        <IconButton
-                          variant="unstyled"
-                          icon={
-                            <Icon
-                              as={FontAwesome5}
-                              name={item.name}
-                              _light={{ color: Colors.LOGO_COLOR_GREEN }}
-                              _dark={{ color: 'coolGray.50' }}
-                              size={6}
-                              textAlign="center"
-                            />
-                          }
-                        />
-                      </Center>
+                    <VStack key={'icon_' + idx}>
+                      <IconButton
+                        w={16}
+                        h={16}
+                        borderRadius="full"
+                        icon={
+                          <FontAwesomeIcon
+                            icon={item.icon}
+                            color={Colors.LOGO_COLOR_GREEN}
+                            size={24}
+                          />
+                        }
+                        bg={Colors.LOGO_COLOR_WHITE_BACKGROUND}
+                      />
                       <Text
                         pt={2}
                         fontWeight="bold"

@@ -628,8 +628,8 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
           _light={{ bg: 'white' }}
           _dark={{ bg: 'coolGray.800' }}
           bg="white"
-          borderTopLeftRadius="30"
-          borderTopRightRadius="30">
+          borderTopLeftRadius="20"
+          borderTopRightRadius="20">
           <VStack space="5">
             <Tabs />
           </VStack>

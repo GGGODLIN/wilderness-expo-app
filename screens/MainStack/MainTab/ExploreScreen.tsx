@@ -642,8 +642,8 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
                     width={screenWidth - 80}>
                     <Box>
                       <Image
-                        borderTopLeftRadius="30"
-                        borderTopRightRadius="30"
+                        borderTopLeftRadius="20"
+                        borderTopRightRadius="20"
                         source={{ uri: props.image }}
                         alt="image"
                         width="100%"

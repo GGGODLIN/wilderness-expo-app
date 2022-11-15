@@ -284,7 +284,6 @@ const itemList: PostProps[] = [
 
 export default function HomeScreen({ route, navigation }: NavigationProps): JSX.Element {
   function PostCard(props: { item: PostProps }) {
-    const { width: windowWidth } = useWindowDimensions();
     return (
       <TouchableOpacity onPress={() => navigation.navigate(MAIN_STACK_POST)}>
         <Box p="0" borderRadius="sm" m="2" mb="3">

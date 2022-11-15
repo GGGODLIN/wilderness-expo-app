@@ -26,7 +26,7 @@ export default function LocationDrawer(): JSX.Element {
         drawerPosition: 'right',
         headerShown: false,
 
-        drawerActiveBackgroundColor: Colors.LOGO_COLOR_WHITE_BACKGROUND,
+        drawerActiveBackgroundColor: Colors.THEME_MAIN_BACKGROUND,
         drawerActiveTintColor: Colors.LOGO_COLOR_GREEN,
       }}
       drawerContent={(props) => <CustomDrawerContent {...props} />}>

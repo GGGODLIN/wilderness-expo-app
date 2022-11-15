@@ -135,7 +135,7 @@ const AddToCartButton = () => {
       alignItems="center"
       px={4}
       p={2}
-      style={{ backgroundColor: Colors.LOGO_COLOR_WHITE_BACKGROUND }}>
+      style={{ backgroundColor: Colors.THEME_MAIN_BACKGROUND }}>
       <Text
         fontSize="sm"
         fontWeight="medium"
@@ -150,7 +150,7 @@ const AddToCartButton = () => {
         onPress={() => setFavorite(!favorite)}
         variant="light"
         _light={{
-          bg: Colors.LOGO_COLOR_WHITE_BACKGROUND,
+          bg: Colors.THEME_MAIN_BACKGROUND,
         }}
         _dark={{
           bg: 'coolGray.700',
@@ -171,7 +171,7 @@ const AddToCartButton = () => {
         onPress={() => setStar(!star)}
         variant="light"
         _light={{
-          bg: Colors.LOGO_COLOR_WHITE_BACKGROUND,
+          bg: Colors.THEME_MAIN_BACKGROUND,
         }}
         _dark={{
           bg: 'coolGray.700',

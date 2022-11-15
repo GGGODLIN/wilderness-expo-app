@@ -338,7 +338,7 @@ export default function Notifications({ navigation }: NavigationProps): JSX.Elem
         ) : (
           <Box
             _light={{
-              bg: Colors.LOGO_COLOR_WHITE_BACKGROUND,
+              bg: Colors.THEME_MAIN_BACKGROUND,
             }}
             _dark={{
               bg: 'white',
@@ -384,10 +384,7 @@ export default function Notifications({ navigation }: NavigationProps): JSX.Elem
 
   return (
     <DashboardLayout title="通知" showBackButton>
-      <Stack
-        flex={1}
-        _light={{ bg: Colors.LOGO_COLOR_WHITE_BACKGROUND }}
-        _dark={{ bg: 'coolGray.800' }}>
+      <Stack flex={1} _light={{ bg: Colors.THEME_MAIN_BACKGROUND }} _dark={{ bg: 'coolGray.800' }}>
         <Box
           pt={5}
           px={{ md: 8, xl: 35 }}

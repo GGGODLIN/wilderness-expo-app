@@ -305,7 +305,7 @@ const ActionButton = () => {
         onPress={() => setFavorite(!favorite)}
         variant="light"
         _light={{
-          bg: Colors.LOGO_COLOR_WHITE_BACKGROUND,
+          bg: Colors.THEME_MAIN_BACKGROUND,
         }}
         _dark={{
           bg: 'coolGray.700',
@@ -328,7 +328,7 @@ const ActionButton = () => {
         onPress={() => navigation.navigate(MAIN_STACK_CREATE_POST)}
         variant="light"
         _light={{
-          bg: Colors.LOGO_COLOR_WHITE_BACKGROUND,
+          bg: Colors.THEME_MAIN_BACKGROUND,
         }}
         _dark={{
           bg: 'coolGray.700',
@@ -355,7 +355,7 @@ const ActionButton = () => {
         onPress={onShare}
         variant="light"
         _light={{
-          bg: Colors.LOGO_COLOR_WHITE_BACKGROUND,
+          bg: Colors.THEME_MAIN_BACKGROUND,
         }}
         _dark={{
           bg: 'coolGray.700',
@@ -395,7 +395,7 @@ const ActionButton = () => {
         }}
         variant="light"
         _light={{
-          bg: Colors.LOGO_COLOR_WHITE_BACKGROUND,
+          bg: Colors.THEME_MAIN_BACKGROUND,
         }}
         _dark={{
           bg: 'coolGray.700',
@@ -1081,7 +1081,7 @@ export default function LocationDetailsScreen({ navigation }: NavigationProps): 
       <KeyboardAwareScrollView style={{ flex: 1 }} bounces={false}>
         <Stack
           flex={1}
-          _light={{ bg: Colors.LOGO_COLOR_WHITE_BACKGROUND }}
+          _light={{ bg: Colors.THEME_MAIN_BACKGROUND }}
           _dark={{ bg: 'coolGray.800' }}>
           <Box
             pt={5}

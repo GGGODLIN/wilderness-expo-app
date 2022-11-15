@@ -26,7 +26,7 @@ import {
   Link,
 } from 'native-base';
 import React, { useState } from 'react';
-import { ImageSourcePropType, Platform, useWindowDimensions } from 'react-native';
+import { ImageSourcePropType, Platform, useWindowDimensions, TouchableOpacity } from 'react-native';
 
 import { MAIN_STACK_CREATE_POST, MAIN_STACK_POST } from '../../../NavigationNames';
 import { NavigationProps } from '../../../Props';
@@ -242,20 +242,9 @@ export default function MainTabCommunityScreen({ navigation }: NavigationProps):
   ];
 
   function PostCard(props: { item: PostProps }) {
-    const { width: windowWidth } = useWindowDimensions();
     return (
-      <Box
-        width={{
-          base: windowWidth / 2 - 22,
-          sm: windowWidth / 3 - 22,
-          md: windowWidth / 3 - 56,
-          lg: windowWidth / 5 - 56,
-          xl: '173',
-        }}
-        p="0"
-        borderRadius="sm"
-        m={{ base: '1.5', md: '2.5' }}>
-        <Pressable onPress={() => navigation.navigate(MAIN_STACK_POST)}>
+      <TouchableOpacity onPress={() => navigation.navigate(MAIN_STACK_POST)}>
+        <Box p="0" borderRadius="sm" m="2" mb="3">
           <Image
             w="100%"
             h="170"
@@ -303,8 +292,8 @@ export default function MainTabCommunityScreen({ navigation }: NavigationProps):
               }
             />
           </HStack>
-        </Pressable>
-      </Box>
+        </Box>
+      </TouchableOpacity>
     );
   }
 
@@ -319,8 +308,8 @@ export default function MainTabCommunityScreen({ navigation }: NavigationProps):
     const { height } = useWindowDimensions();
     return (
       <Box
-        px={{ base: 2.5, md: '22' }}
-        py={{ base: '14', md: '22' }}
+        px="2"
+        py="2"
         rounded={{ md: 'sm' }}
         _light={{ bg: 'white' }}
         _dark={{ bg: 'coolGray.800' }}
@@ -442,7 +431,7 @@ export default function MainTabCommunityScreen({ navigation }: NavigationProps):
         ) : (
           <Box
             _light={{
-              bg: Colors.LOGO_COLOR_WHITE_BACKGROUND,
+              bg: Colors.THEME_MAIN_BACKGROUND,
             }}
             _dark={{
               bg: 'white',
@@ -488,10 +477,7 @@ export default function MainTabCommunityScreen({ navigation }: NavigationProps):
 
   return (
     <DashboardLayout title="社群">
-      <Stack
-        flex={1}
-        _light={{ bg: Colors.LOGO_COLOR_WHITE_BACKGROUND }}
-        _dark={{ bg: 'coolGray.800' }}>
+      <Stack flex={1} _light={{ bg: Colors.THEME_MAIN_BACKGROUND }} _dark={{ bg: 'coolGray.800' }}>
         <Carousal itemList={trending} heading="推薦" />
         <Box
           pt={5}

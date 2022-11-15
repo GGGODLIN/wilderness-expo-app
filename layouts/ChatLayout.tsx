@@ -271,7 +271,7 @@ export default function ChatLayout({
     <>
       <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
       <Box safeAreaTop _light={{ bg: 'amber.600' }} _dark={{ bg: 'coolGray.900' }} />
-      <VStack flex={1} _light={{ bg: 'white' }} _dark={{ bg: Colors.LOGO_COLOR_WHITE_BACKGROUND }}>
+      <VStack flex={1} _light={{ bg: 'white' }} _dark={{ bg: Colors.THEME_MAIN_BACKGROUND }}>
         <Hidden from="md">
           <MobileHeader
             title={props.title}

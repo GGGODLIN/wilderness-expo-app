@@ -364,7 +364,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
       <Pressable
         borderRadius="lg"
         _light={{
-          bg: props.item.Progress == 100 ? Colors.LOGO_COLOR_WHITE_BACKGROUND : 'coolGray.50',
+          bg: props.item.Progress == 100 ? Colors.THEME_MAIN_BACKGROUND : 'coolGray.50',
         }}
         _dark={{ bg: 'coolGray.700' }}
         w="100%"
@@ -384,7 +384,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
 
             <Progress
               value={props.item.Progress}
-              _light={{ bg: Colors.LOGO_COLOR_WHITE_BACKGROUND }}
+              _light={{ bg: Colors.THEME_MAIN_BACKGROUND }}
               _dark={{ bg: 'coolGray.500' }}
               _filledTrack={{ bg: Colors.LOGO_COLOR_BROWN }}
             />
@@ -535,7 +535,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
         ) : (
           <Box
             _light={{
-              bg: Colors.LOGO_COLOR_WHITE_BACKGROUND,
+              bg: Colors.THEME_MAIN_BACKGROUND,
             }}
             _dark={{
               bg: 'white',
@@ -616,10 +616,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
 
   return (
     <DashboardLayout title="私藏">
-      <Stack
-        flex={1}
-        _light={{ bg: Colors.LOGO_COLOR_WHITE_BACKGROUND }}
-        _dark={{ bg: 'coolGray.800' }}>
+      <Stack flex={1} _light={{ bg: Colors.THEME_MAIN_BACKGROUND }} _dark={{ bg: 'coolGray.800' }}>
         <Box
           pt={5}
           px={{ md: 8, xl: 35 }}

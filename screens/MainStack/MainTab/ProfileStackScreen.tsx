@@ -233,7 +233,7 @@ export default function MainTabProfileStackScreen({ navigation }: NavigationProp
           pb={6}
           pt={1}
           alignItems="center"
-          _light={{ bg: Colors.LOGO_COLOR_WHITE_BACKGROUND }}
+          _light={{ bg: Colors.THEME_MAIN_BACKGROUND }}
           _dark={{ bg: 'coolGray.900' }}>
           <Avatar source={require('../images/janedoe.png')} width={20} height={20} />
           <HStack alignItems="center" justifyContent="center" space={2} mt={3.5}>

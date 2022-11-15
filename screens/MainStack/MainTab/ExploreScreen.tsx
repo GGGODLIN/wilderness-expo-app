@@ -690,7 +690,7 @@ export default function MainTabExploreScreen({ navigation }: NavigationProps): J
                           onPress={() => navigation.navigate(MAIN_STACK_CREATE_POST)}
                           flex={1}>
                           <Center
-                            _light={{ bg: Colors.LOGO_COLOR_WHITE_BACKGROUND }}
+                            _light={{ bg: Colors.THEME_MAIN_BACKGROUND }}
                             _dark={{ bg: 'coolGray.700' }}
                             rounded="full"
                             w="12"

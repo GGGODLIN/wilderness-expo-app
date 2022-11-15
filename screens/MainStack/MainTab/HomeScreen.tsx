@@ -401,10 +401,7 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
 
   return (
     <DashboardLayout title="玩野覓境" customTitle={<CustomTitle />} rightPanelMobileHeader>
-      <Stack
-        flex={1}
-        _light={{ bg: Colors.LOGO_COLOR_WHITE_BACKGROUND }}
-        _dark={{ bg: 'coolGray.800' }}>
+      <Stack flex={1} _light={{ bg: Colors.THEME_MAIN_BACKGROUND }} _dark={{ bg: 'coolGray.800' }}>
         <Box
           pt={5}
           px={{ md: 8, xl: 35 }}
@@ -434,7 +431,7 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
                               size={28}
                             />
                           }
-                          bg={Colors.LOGO_COLOR_WHITE_BACKGROUND}
+                          bg={Colors.THEME_MAIN_BACKGROUND}
                         />
                         <Text
                           pt={2}
@@ -467,7 +464,7 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
                               size={28}
                             />
                           }
-                          bg={Colors.LOGO_COLOR_WHITE_BACKGROUND}
+                          bg={Colors.THEME_MAIN_BACKGROUND}
                         />
                         <Text
                           pt={2}

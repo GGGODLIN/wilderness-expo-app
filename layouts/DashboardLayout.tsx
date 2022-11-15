@@ -56,7 +56,7 @@ export function MobileHeader(props: MobileHeaderProps) {
   const [bell, setBell] = useState(true);
 
   return (
-    <Box px="0" pt="2" pb="0" zIndex={9} bg={Colors.LOGO_COLOR_WHITE_BACKGROUND}>
+    <Box px="0" pt="2" pb="0" zIndex={9} bg={Colors.THEME_MAIN_BACKGROUND}>
       <HStack space="2" justifyContent="space-between">
         <HStack flex="1" space="2" justifyContent="space-between" alignItems="center">
           <HStack alignItems="center" space="1" mb={!props.customTitle ? 2 : 0}>
@@ -78,6 +78,7 @@ export function MobileHeader(props: MobileHeaderProps) {
               ) : (
                 <Text
                   fontSize="lg"
+                  fontWeight="bold"
                   marginLeft={props.backButton ? 0 : 5}
                   color={Colors.THEME_MAIN_COLOR}>
                   {props.title}
@@ -145,8 +146,8 @@ export default function DashboardLayout({ maxWidth = 1016, ...props }: Dashboard
   return (
     <>
       <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
-      <Box safeAreaTop bg={Colors.LOGO_COLOR_WHITE_BACKGROUND} />
-      <VStack flex={1} bg={Colors.LOGO_COLOR_WHITE_BACKGROUND}>
+      <Box safeAreaTop bg={Colors.THEME_MAIN_BACKGROUND} />
+      <VStack flex={1} bg={Colors.THEME_MAIN_BACKGROUND}>
         <MobileHeader
           title={props.title}
           subTitle={props.subTitle}

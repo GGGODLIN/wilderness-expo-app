@@ -14,7 +14,7 @@ export default function GuestLayout(props: GuestLayoutProps) {
       <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
       <Box
         safeAreaTop
-        _light={{ bg: Colors.LOGO_COLOR_WHITE_BACKGROUND }}
+        _light={{ bg: Colors.THEME_MAIN_BACKGROUND }}
         _dark={{ bg: 'coolGray.900' }}
       />
       <Center
@@ -22,7 +22,7 @@ export default function GuestLayout(props: GuestLayoutProps) {
         my="auto"
         p={{ md: 8 }}
         _dark={{ bg: 'coolGray.900' }}
-        _light={{ bg: { md: Colors.LOGO_COLOR_WHITE, base: Colors.LOGO_COLOR_WHITE_BACKGROUND } }}>
+        _light={{ bg: { md: Colors.LOGO_COLOR_WHITE, base: Colors.THEME_MAIN_BACKGROUND } }}>
         <Stack
           w="100%"
           maxW={{ md: '1016' }}

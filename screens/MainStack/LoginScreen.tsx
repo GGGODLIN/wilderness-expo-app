@@ -178,7 +178,7 @@ const SignInComponent = () => {
       contentContainerStyle={{
         flexGrow: 1,
       }}
-      style={{ flex: 1, backgroundColor: Colors.LOGO_COLOR_WHITE_BACKGROUND }}
+      style={{ flex: 1, backgroundColor: Colors.THEME_MAIN_BACKGROUND }}
       bounces={false}>
       <MobileHeader />
       <Box

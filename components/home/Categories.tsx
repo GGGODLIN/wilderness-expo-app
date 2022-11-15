@@ -30,7 +30,7 @@ const Categories = ({ icons }: IconType) => {
         renderItem={({ item }) => (
           <VStack space="2" alignItems="center">
             <Center
-              _light={{ bg: Colors.LOGO_COLOR_WHITE_BACKGROUND }}
+              _light={{ bg: Colors.THEME_MAIN_BACKGROUND }}
               _dark={{ bg: 'coolGray.700' }}
               rounded="full"
               w={{ base: 16, md: 14 }}

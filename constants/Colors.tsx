@@ -5,4 +5,5 @@ export default {
   LOGO_COLOR_GREEN_BACKGROUND: '#cbcfb4',
   LOGO_COLOR_BROWN: '#8f6349',
   THEME_MAIN_COLOR: '#8f6349',
+  THEME_MAIN_BACKGROUND: '#f5eddc',
 };

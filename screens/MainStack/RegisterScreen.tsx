@@ -284,7 +284,7 @@ function SignUpFormComponent() {
       style={{
         width: '100%',
         height: '100%',
-        backgroundColor: Colors.LOGO_COLOR_WHITE_BACKGROUND,
+        backgroundColor: Colors.THEME_MAIN_BACKGROUND,
       }}
       bounces={false}>
       <MobileHeader />

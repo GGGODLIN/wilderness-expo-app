@@ -319,19 +319,25 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
           setSelectedAddress(label);
         }}
         _light={{
-          bg: currentSelectedAddress === label ? 'amber.100' : 'transparent',
-          borderColor: currentSelectedAddress === label ? 'amber.100' : 'coolGray.300',
-          _pressed: { bg: 'amber.100' },
-        }}
-        _dark={{
-          bg: currentSelectedAddress === label ? 'coolGray.700' : 'transparent',
-          borderColor: currentSelectedAddress === label ? 'coolGray.700' : 'coolGray.700',
-          _pressed: { bg: 'coolGray.600' },
+          bg:
+            currentSelectedAddress === label
+              ? Colors.LOGO_COLOR_GREEN
+              : Colors.LOGO_COLOR_WHITE_BACKGROUND,
+          borderColor:
+            currentSelectedAddress === label
+              ? Colors.LOGO_COLOR_GREEN
+              : Colors.LOGO_COLOR_WHITE_BACKGROUND,
+          _pressed: {
+            bg: Colors.LOGO_COLOR_WHITE_BACKGROUND,
+            borderColor: Colors.LOGO_COLOR_WHITE_BACKGROUND,
+          },
         }}
         alignItems="center"
         justifyContent="center"
-        rounded="sm">
-        <Text _light={{ color: 'primary.900' }} _dark={{ color: 'coolGray.50' }} fontSize="md">
+        rounded="full">
+        <Text
+          _light={{ color: currentSelectedAddress === label ? 'white' : 'coolGray.500' }}
+          fontSize="md">
           {label}
         </Text>
       </Pressable>
@@ -454,10 +460,11 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
   }
 
   const tags = [
-    { id: 1, title: '營地' },
-    { id: 2, title: '親子' },
+    { id: 1, title: '車泊' },
+    { id: 2, title: '營地' },
     { id: 3, title: 'SUP' },
-    { id: 4, title: '以此類推其他' },
+    { id: 4, title: '釣魚' },
+    { id: 5, title: '親子' },
   ];
 
   type Icon = {
@@ -568,7 +575,7 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
     },
   ];
 
-  function PostCard(props: { item: Icon }) {
+  function FacilityCard(props: { item: Icon }) {
     const [facilityState, setFacilityState] = useState(props.item.state);
 
     return (
@@ -790,7 +797,7 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
             shadow={2}
             width="100%"
             py={4}
-            px={{ base: 0, md: 0 }}
+            px={0}
             pt={0}
             zIndex={2}
             position="absolute"
@@ -799,14 +806,14 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
             top={8}
             _light={{ bg: 'white' }}
             _dark={{ bg: 'coolGray.800' }}>
-            <VStack w="100%" px="4" pt="4">
+            <VStack w="100%" px="2" pt="4">
               <HStack space={6} justifyContent="space-between" alignItems="center">
                 <Stack flexWrap="wrap" direction="row" space="2">
                   <MasonryList
                     showsVerticalScrollIndicator={false}
                     numColumns={4}
                     data={icons}
-                    renderItem={({ item }) => <PostCard item={item} />}
+                    renderItem={({ item }) => <FacilityCard item={item} />}
                     keyExtractor={(item: Offer, index: number) => 'key' + index}
                   />
                 </Stack>

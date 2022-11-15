@@ -419,8 +419,8 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
               <HStack space={6} justifyContent="center" pt="1">
                 {icons.map((item, idx) => {
                   return (
-                    <TouchableOpacity>
-                      <VStack key={'icon_' + idx}>
+                    <TouchableOpacity key={'icon_' + idx}>
+                      <VStack>
                         <IconButton
                           w={16}
                           h={16}
@@ -452,8 +452,8 @@ export default function HomeScreen({ route, navigation }: NavigationProps): JSX.
               <HStack space={6} justifyContent="center" pt={4} pb={6}>
                 {icons2.map((item, idx) => {
                   return (
-                    <TouchableOpacity>
-                      <VStack key={'icon_' + idx}>
+                    <TouchableOpacity key={'icon_' + idx}>
+                      <VStack>
                         <IconButton
                           w={16}
                           h={16}

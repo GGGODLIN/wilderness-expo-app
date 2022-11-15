@@ -676,6 +676,7 @@ export default function LocationDetailsScreen({ navigation }: NavigationProps): 
               <HStack>
                 {tags.map((item, index) => (
                   <Box
+                    key={index}
                     borderWidth="1"
                     borderColor="coolGray.300"
                     borderRadius="xl"

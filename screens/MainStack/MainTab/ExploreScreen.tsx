@@ -579,7 +579,14 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
     const [facilityState, setFacilityState] = useState(props.item.state);
 
     return (
-      <TouchableOpacity onPress={() => setFacilityState(facilityState + 1)}>
+      <TouchableOpacity
+        onPress={() => {
+          if (facilityState > 2) {
+            setFacilityState(0);
+          } else {
+            setFacilityState(facilityState + 1);
+          }
+        }}>
         <HStack
           key={'icon_' + props.index}
           overflow="visible"

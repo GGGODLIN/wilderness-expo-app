@@ -35,8 +35,7 @@ import { getRegionFromMarkers } from '../../../utils/MapUtils';
 const locationList = [
   {
     id: 1,
-    image:
-      'https://storage.googleapis.com/smiletaiwan-cms-cwg-tw/article/202003/article-5e6b3844e5039.jpg',
+    image: 'https://picsum.photos/1000',
     name: '活動 1',
     description: '我是活動 1',
     latitude: 25.01,
@@ -69,8 +68,7 @@ const locationList = [
   },
   {
     id: 2,
-    image:
-      'https://storage.googleapis.com/smiletaiwan-cms-cwg-tw/article/202003/article-5e6b3844e5039.jpg',
+    image: 'https://picsum.photos/1000',
     name: '活動 2',
     description: '活動 2 簡介',
     latitude: 25.02,
@@ -103,8 +101,7 @@ const locationList = [
   },
   {
     id: 3,
-    image:
-      'https://storage.googleapis.com/smiletaiwan-cms-cwg-tw/article/202003/article-5e6b3844e5039.jpg',
+    image: 'https://picsum.photos/1000',
     name: '活動3',
     description: '我是活動 3',
     latitude: 25.03,
@@ -133,8 +130,7 @@ const locationList = [
   },
   {
     id: 4,
-    image:
-      'https://storage.googleapis.com/smiletaiwan-cms-cwg-tw/article/202003/article-5e6b3844e5039.jpg',
+    image: 'https://picsum.photos/1000',
     name: '活動4',
     description: '我是活動 4',
     latitude: 25.04,
@@ -163,8 +159,7 @@ const locationList = [
   },
   {
     id: 5,
-    image:
-      'https://storage.googleapis.com/smiletaiwan-cms-cwg-tw/article/202003/article-5e6b3844e5039.jpg',
+    image: 'https://picsum.photos/1000',
     name: '活動5',
     description: '我是活動 5',
     latitude: 25.05,
@@ -193,8 +188,7 @@ const locationList = [
   },
   {
     id: 6,
-    image:
-      'https://storage.googleapis.com/smiletaiwan-cms-cwg-tw/article/202003/article-5e6b3844e5039.jpg',
+    image: 'https://picsum.photos/1000',
     name: '活動6',
     description: '我是活動 6',
     latitude: 25.06,
@@ -928,7 +922,14 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
                         height="120"
                         resizeMode="cover"
                       />
-                      <HStack position="absolute" bottom="2" left="3">
+                      <HStack
+                        position="absolute"
+                        bottom="0"
+                        left="0"
+                        pl="4"
+                        pb="1"
+                        width="100%"
+                        bg="#00000060">
                         {props.tags.map((item, tags_index) => (
                           <Box
                             shadow="2"
@@ -961,12 +962,9 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
                         <Text color={Colors.LOGO_COLOR_BROWN}>海拔 {props.altitude} 公尺</Text>
                         <Text color={Colors.LOGO_COLOR_BROWN}>距離 123 公里</Text>
                       </VStack>
-                      <VStack>
-                        <Pressable
-                          mt="2"
-                          mr="4"
-                          onPress={() => navigation.navigate(MAIN_STACK_CREATE_POST)}
-                          flex={1}>
+                      <VStack pt="2" pr="4" flex={1} alignItems="flex-end">
+                        <TouchableOpacity
+                          onPress={() => navigation.navigate(MAIN_STACK_CREATE_POST)}>
                           <Center
                             _light={{ bg: Colors.THEME_MAIN_BACKGROUND }}
                             _dark={{ bg: 'coolGray.700' }}
@@ -1002,7 +1000,7 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
                           <Text textAlign="center" mt="1">
                             打卡
                           </Text>
-                        </Pressable>
+                        </TouchableOpacity>
                       </VStack>
                     </HStack>
                   </Box>

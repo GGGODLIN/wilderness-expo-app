@@ -9,6 +9,7 @@ import { enableLatestRenderer } from 'react-native-maps';
 import {
   MAIN_STACK_CREATE_LOCATION,
   MAIN_STACK_CREATE_POST,
+  MAIN_STACK_CREATE_POST_WITH_LOCATION,
   MAIN_STACK_EVENT_DETAILS,
   MAIN_STACK_LOCATION_DRAWER,
   MAIN_STACK_LOGIN,
@@ -23,6 +24,7 @@ import {
 import Colors from './constants/Colors';
 import CreateLocationScreen from './screens/MainStack/CreateLocationScreen';
 import CreatePostScreen from './screens/MainStack/CreatePostScreen';
+import CreatePostWithLocationScreen from './screens/MainStack/CreatePostWithLocationScreen';
 import EventDetailsScreen from './screens/MainStack/EventDetailsScreen';
 import LocationDrawer from './screens/MainStack/LocationDrawer/LocationDrawer';
 import LoginScreen from './screens/MainStack/LoginScreen';
@@ -70,7 +72,7 @@ export default function App() {
   const onClose = () => setIsOpen(false);
   const randomLocation = () => {
     if (navigationRef.isReady()) {
-      navigationRef.navigate(MAIN_STACK_LOCATION_DRAWER);
+      navigationRef.navigate(MAIN_STACK_LOCATION_DRAWER, {});
       setIsOpen(false);
     } else {
       setTimeout(randomLocation, 1500);
@@ -102,6 +104,10 @@ export default function App() {
           />
           <MainStack.Screen component={LocationDrawer} name={MAIN_STACK_LOCATION_DRAWER} />
           <MainStack.Screen component={CreatePostScreen} name={MAIN_STACK_CREATE_POST} />
+          <MainStack.Screen
+            component={CreatePostWithLocationScreen}
+            name={MAIN_STACK_CREATE_POST_WITH_LOCATION}
+          />
           <MainStack.Screen component={CreateLocationScreen} name={MAIN_STACK_CREATE_LOCATION} />
         </MainStack.Navigator>
       </NavigationContainer>

@@ -54,7 +54,7 @@ const planOptionsList2: OptionListType[] = [
   },
 ];
 
-export default function CreatePostScreen({ navigation }: NavigationProps): JSX.Element {
+export default function CreatePostWithLocationScreen({ navigation }: NavigationProps): JSX.Element {
   type FormData = {
     title: string;
     content: string;
@@ -276,7 +276,7 @@ export default function CreatePostScreen({ navigation }: NavigationProps): JSX.E
 
   const { reason, password } = deactivateForm;
   return (
-    <DashboardLayout title="發表" showBackButton>
+    <DashboardLayout title="打卡" showBackButton>
       <ScrollView
         onPress={() => {
           Keyboard.dismiss();
@@ -288,6 +288,27 @@ export default function CreatePostScreen({ navigation }: NavigationProps): JSX.E
           _light={{ bg: 'white' }}
           _dark={{ bg: 'coolGray.800' }}>
           <VStack space="0" px="4" py="4">
+            <Text
+              fontSize="xl"
+              fontWeight="bold"
+              _light={{ color: 'coolGray.700' }}
+              _dark={{ color: 'coolGray.50' }}
+              mb={0}>
+              位置
+            </Text>
+            <Input
+              readonly
+              editable={false}
+              backgroundColor="coolGray.50"
+              borderColor="coolGray.50"
+              borderRadius="10"
+              borderWidth="0"
+              py="4"
+              my="2"
+              placeholder=""
+              value="好風景營地"
+              size="lg"
+            />
             <Text
               fontSize="xl"
               fontWeight="bold"

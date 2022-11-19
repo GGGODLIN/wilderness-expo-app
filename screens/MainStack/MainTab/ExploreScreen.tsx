@@ -24,7 +24,7 @@ import MapView, { AnimatedRegion, Marker, PROVIDER_GOOGLE, Region } from 'react-
 
 import {
   MAIN_STACK_LOCATION_DETAILS,
-  MAIN_STACK_CREATE_POST,
+  MAIN_STACK_CREATE_POST_WITH_LOCATION,
   MAIN_STACK_CREATE_LOCATION,
 } from '../../../NavigationNames';
 import { NavigationProps } from '../../../Props';
@@ -964,7 +964,7 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
                       </VStack>
                       <VStack pt="2" pr="4" flex={1} alignItems="flex-end">
                         <TouchableOpacity
-                          onPress={() => navigation.navigate(MAIN_STACK_CREATE_POST)}>
+                          onPress={() => navigation.navigate(MAIN_STACK_CREATE_POST_WITH_LOCATION)}>
                           <Center
                             _light={{ bg: Colors.THEME_MAIN_BACKGROUND }}
                             _dark={{ bg: 'coolGray.700' }}

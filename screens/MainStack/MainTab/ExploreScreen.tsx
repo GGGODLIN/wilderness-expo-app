@@ -777,6 +777,7 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
               setShowFilterCondition(!showFilterCondition);
               setShowFilterTag(false);
               setShowFilterFacility(false);
+              setShowLocationCard(false);
             }}>
             <HStack alignItems="center" py="1">
               <Text fontSize="sm" px="1">
@@ -795,6 +796,7 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
               setShowFilterTag(!showFilterTag);
               setShowFilterCondition(false);
               setShowFilterFacility(false);
+              setShowLocationCard(false);
             }}>
             <HStack alignItems="center" py="1">
               <Text fontSize="sm" px="1">
@@ -813,6 +815,7 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
               setShowFilterFacility(!showFilterFacility);
               setShowFilterTag(false);
               setShowFilterCondition(false);
+              setShowLocationCard(false);
             }}>
             <HStack alignItems="center" py="1">
               <Text fontSize="sm" px="1">

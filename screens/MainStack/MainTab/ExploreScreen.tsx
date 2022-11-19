@@ -1,4 +1,5 @@
 import { MaterialIcons, Ionicons, AntDesign, FontAwesome5 } from '@expo/vector-icons';
+import { Picker } from '@react-native-picker/picker';
 import MasonryList from '@react-native-seoul/masonry-list';
 import * as ExpoLocation from 'expo-location';
 import {
@@ -258,7 +259,16 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
   const mapRef = useRef<MapView | null>(null);
   const panRef = useRef<ScrollView | null>(null);
 
-  const [country, setCountry] = React.useState('');
+  const [showCountry, setShowCountry] = useState(false);
+  const [showAltitude, setShowAltitude] = useState(false);
+  const [showRecommend, setShowRecommend] = useState(false);
+  const [showCrowded, setShowCrowded] = useState(false);
+  const [country, setCountry] = React.useState('不限制縣市');
+  const [altitude, setAltitude] = useState('不限制海拔');
+  const [recommend, setRecommend] = useState('不限制推薦');
+  const [crowded, setCrowded] = useState('不限制擁擠程度');
+
+  /*const [country, setCountry] = React.useState('');*/
   const [area, setArea] = React.useState('');
   const [level, setLevel] = React.useState('');
 
@@ -630,6 +640,127 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
   return (
     <DashboardLayout title="活動" customTitle={<CustomTitle />}>
       <Box px={{ md: 8, xl: 35 }} py={{ md: 5 }} flex={1}>
+        {showCountry && (
+          <VStack
+            position="absolute"
+            bg="white"
+            bottom={0}
+            left={0}
+            w="100%"
+            h="240"
+            pb="30"
+            shadow={2}
+            zIndex={9}
+            flex={1}
+            justifyContent="center">
+            <Picker
+              mode="dialog"
+              style={{ height: 100, flex: 1 }}
+              accessibilityLabel="選擇縣市"
+              placeholder="選擇縣市"
+              selectedValue={country}
+              onValueChange={(itemValue, itemIndex) => {
+                setCountry(itemValue);
+              }}>
+              <Picker.Item label="請選擇" value="不限制縣市" />
+              <Picker.Item label="台北市" value="台北市" />
+              <Picker.Item label="新北市" value="新北市" />
+              <Picker.Item label="桃園市" value="桃園市" />
+              <Picker.Item label="台中市" value="台中市" />
+            </Picker>
+            <Button
+              mx={4}
+              variant="solid"
+              size="lg"
+              style={{ backgroundColor: 'black' }}
+              onPress={() => {
+                setShowCountry(false);
+              }}>
+              選擇
+            </Button>
+          </VStack>
+        )}
+        {showAltitude && (
+          <VStack
+            position="absolute"
+            bg="white"
+            bottom={0}
+            left={0}
+            w="100%"
+            h="240"
+            pb="30"
+            shadow={2}
+            zIndex={9}
+            flex={1}
+            justifyContent="center">
+            <Picker
+              mode="dialog"
+              style={{ height: 100, flex: 1 }}
+              accessibilityLabel="選擇海拔"
+              placeholder="選擇海拔"
+              selectedValue={altitude}
+              onValueChange={(itemValue, itemIndex) => {
+                setAltitude(itemValue);
+              }}>
+              <Picker.Item label="不限制海拔" value="不限制海拔" />
+              <Picker.Item label="海邊" value="海邊" />
+              <Picker.Item label="平地" value="平地" />
+              <Picker.Item label="300公尺以下" value="300" />
+              <Picker.Item label="300公尺~500公尺" value="500" />
+              <Picker.Item label="500公尺~800公尺" value="800" />
+              <Picker.Item label="800公尺~1000公尺" value="1000" />
+              <Picker.Item label="1000公尺以上" value="1100" />
+            </Picker>
+            <Button
+              mx={4}
+              variant="solid"
+              size="lg"
+              style={{ backgroundColor: 'black' }}
+              onPress={() => {
+                setShowAltitude(false);
+              }}>
+              選擇
+            </Button>
+          </VStack>
+        )}
+        {showCrowded && (
+          <VStack
+            position="absolute"
+            bg="white"
+            bottom={0}
+            left={0}
+            w="100%"
+            h="240"
+            pb="30"
+            shadow={2}
+            zIndex={9}
+            flex={1}
+            justifyContent="center">
+            <Picker
+              mode="dialog"
+              style={{ height: 100, flex: 1 }}
+              accessibilityLabel="選擇擁擠程度"
+              placeholder="選擇擁擠程度"
+              selectedValue={crowded}
+              onValueChange={(itemValue, itemIndex) => {
+                setCrowded(itemValue);
+              }}>
+              <Picker.Item label="空曠" value="空曠" />
+              <Picker.Item label="偶爾" value="偶爾" />
+              <Picker.Item label="總是" value="總是" />
+            </Picker>
+            <Button
+              mx={4}
+              variant="solid"
+              size="lg"
+              style={{ backgroundColor: 'black' }}
+              onPress={() => {
+                setShowCrowded(false);
+              }}>
+              選擇
+            </Button>
+          </VStack>
+        )}
         <HStack
           bg="coolGray.50"
           justifyContent="space-between"
@@ -710,7 +841,36 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
             top={8}
             _light={{ bg: 'white' }}
             _dark={{ bg: 'coolGray.800' }}>
-            <HStack space="2">
+            <HStack space="2" justifyContent="space-between" alignItems="center">
+              <VStack
+                backgroundColor={Colors.LOGO_COLOR_WHITE_BACKGROUND}
+                borderColor="coolGray.50"
+                borderRadius="10"
+                borderWidth="0"
+                py="4"
+                px="2"
+                mx="1"
+                my="2"
+                w="44%">
+                <Text w="100%" onPress={() => setShowCountry(!showCountry)}>
+                  {country}
+                </Text>
+              </VStack>
+              <VStack
+                backgroundColor={Colors.LOGO_COLOR_WHITE_BACKGROUND}
+                borderColor="coolGray.50"
+                borderRadius="10"
+                borderWidth="0"
+                py="4"
+                px="2"
+                mx="1"
+                my="2"
+                w="44%">
+                <Text w="100%" onPress={() => setShowAltitude(!showAltitude)}>
+                  {altitude}
+                </Text>
+              </VStack>
+              {/*
               <Select
                 selectedValue={country}
                 minWidth="45%"
@@ -750,6 +910,7 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
                 <Select.Item label="800公尺~1000公尺" value="1000" />
                 <Select.Item label="1000公尺以上" value="1100" />
               </Select>
+              */}
             </HStack>
             <HStack space="2">
               <Select

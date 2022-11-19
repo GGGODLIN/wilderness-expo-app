@@ -262,6 +262,7 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
       altitude: 1243,
     },
   ];
+
   type TrackProps = {
     IconColorLight?: string;
     IconColorDark?: string;
@@ -483,16 +484,25 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
       date: '這裡是購入日期',
     },
   ];
+
   function Equipment() {
+    const [selectState, setSelectState] = useState(false);
     return (
       <Box>
         {equipmentData.map((item, index) => (
-          <HStack mb="2">
-            <VStack w="70%">
+          <HStack
+            mb="2"
+            key={'equip_' + index}
+            onPress={() => setSelectState(!selectState)}
+            bg={selectState ? Colors.LOGO_COLOR_WHITE_BACKGROUND : 'white'}>
+            <VStack w="80%" onPress={() => setSelectState(!selectState)}>
               <Text fontSize="sm" color={Colors.LOGO_COLOR_GREEN}>
                 {item.category}。{item.brand}
               </Text>
-              <Text fontSize="xl" color={Colors.LOGO_COLOR_BROWN}>
+              <Text
+                fontSize="xl"
+                color={Colors.LOGO_COLOR_BROWN}
+                onPress={() => setSelectState(!selectState)}>
                 {item.title}
               </Text>
               <Text fontSize="xs" color="coolGray.400">
@@ -502,13 +512,13 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
                 日期: {item.date}
               </Text>
             </VStack>
-            <VStack w="30%">
+            <VStack w="20%">
               <Image
                 rounded="10"
                 source={{ uri: item.imageUri }}
                 alt="image"
                 width="100%"
-                height="100"
+                height="70"
                 resizeMode="cover"
               />
             </VStack>

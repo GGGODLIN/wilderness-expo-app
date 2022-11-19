@@ -16,7 +16,6 @@ import {
   Image,
   Stack,
   IconButton,
-  //Select,
   CheckIcon,
 } from 'native-base';
 import React, { useState } from 'react';

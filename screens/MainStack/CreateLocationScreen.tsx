@@ -61,12 +61,13 @@ const planOptionsList2: OptionListType[] = [
 
 export default function CreateLocationScreen({ navigation }: NavigationProps): JSX.Element {
   type FormData = {
-    email: string;
-    password: string;
+    location: string;
+    title: string;
     birthday?: Date;
   };
   const [formData, setFormData] = useState<FormData>({
-    email: '',
+    location: '',
+    title: '',
     password: '',
   });
 
@@ -609,8 +610,8 @@ export default function CreateLocationScreen({ navigation }: NavigationProps): J
             my="2"
             placeholder="經緯度 (現階段僅供貼上經緯度的方式)"
             size="lg"
-            defaultValue={formData.email}
-            onChangeText={(email: string) => setFormData((prev) => ({ ...prev, email }))}
+            defaultValue={formData.location}
+            onChangeText={(location: string) => setFormData((prev) => ({ ...prev, location }))}
           />
           <Text
             w="100%"
@@ -654,8 +655,8 @@ export default function CreateLocationScreen({ navigation }: NavigationProps): J
             my="2"
             placeholder="怎麼稱呼這個地方 (必填)"
             size="lg"
-            defaultValue={formData.email}
-            onChangeText={(email: string) => setFormData((prev) => ({ ...prev, email }))}
+            defaultValue={formData.title}
+            onChangeText={(title: string) => setFormData((prev) => ({ ...prev, title }))}
           />
           <Text
             fontSize="xl"

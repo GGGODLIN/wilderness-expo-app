@@ -575,13 +575,25 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
     },
   ];
 
+  function getFacilityStyle(state: number) {
+    if (state === 0) {
+      return 'coolGray.200';
+    }
+    if (state === 1) {
+      return 'coolGray.700';
+    }
+    if (state === 2) {
+      return 'red.700';
+    }
+    return 'coolGray.500';
+  }
   function FacilityCard(props: { item: Icon }) {
     const [facilityState, setFacilityState] = useState(props.item.state);
 
     return (
       <TouchableOpacity
         onPress={() => {
-          if (facilityState > 2) {
+          if (facilityState >= 2) {
             setFacilityState(0);
           } else {
             setFacilityState(facilityState + 1);
@@ -601,7 +613,7 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
                 as={FontAwesome5}
                 name={props.item.name}
                 _light={{
-                  color: facilityState === 1 ? 'coolGray.500' : 'coolGray.200',
+                  color: getFacilityStyle(facilityState),
                 }}
                 size={3}
                 textAlign="center"
@@ -611,8 +623,9 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
           />
           <Text
             fontSize="sm"
-            _light={{ color: facilityState === 1 ? 'coolGray.800' : 'coolGray.300' }}
-            textAlign="center">
+            color={getFacilityStyle(facilityState)}
+            textAlign="center"
+            strikeThrough={facilityState === 2}>
             {props.item.text}
           </Text>
         </HStack>

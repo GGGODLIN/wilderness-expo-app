@@ -235,6 +235,7 @@ export default function CommunityScreen({ navigation }: NavigationProps): JSX.El
       <TouchableOpacity onPress={() => navigation.navigate(MAIN_STACK_POST)}>
         <Box p="0" borderRadius="sm" m="2" mb="3">
           <Image
+            rounded="10"
             w="100%"
             h="170"
             source={{ uri: props.item.imageRes }}

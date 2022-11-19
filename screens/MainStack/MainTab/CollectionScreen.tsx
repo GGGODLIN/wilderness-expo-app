@@ -489,16 +489,16 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
         {equipmentData.map((item, index) => (
           <HStack mb="2">
             <VStack w="70%">
-              <Text fontSize="lg" color={Colors.LOGO_COLOR_GREEN}>
+              <Text fontSize="sm" color={Colors.LOGO_COLOR_GREEN}>
                 {item.category}。{item.brand}
               </Text>
-              <Text fontSize="2xl" color={Colors.LOGO_COLOR_BROWN}>
+              <Text fontSize="xl" color={Colors.LOGO_COLOR_BROWN}>
                 {item.title}
               </Text>
-              <Text fontSize="sm" color="coolGray.400">
+              <Text fontSize="xs" color="coolGray.400">
                 金額: {item.price}
               </Text>
-              <Text fontSize="sm" color="coolGray.400">
+              <Text fontSize="xs" color="coolGray.400">
                 日期: {item.date}
               </Text>
             </VStack>

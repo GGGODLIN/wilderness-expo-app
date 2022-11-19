@@ -647,7 +647,7 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
             bottom={0}
             left={0}
             w="100%"
-            h="240"
+            h="300"
             pb="30"
             shadow={2}
             zIndex={9}
@@ -687,7 +687,7 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
             bottom={0}
             left={0}
             w="100%"
-            h="240"
+            h="300"
             pb="30"
             shadow={2}
             zIndex={9}
@@ -730,7 +730,7 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
             bottom={0}
             left={0}
             w="100%"
-            h="240"
+            h="300"
             pb="30"
             shadow={2}
             zIndex={9}
@@ -855,7 +855,13 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
                 mx="1"
                 my="2"
                 w="44%">
-                <Text w="100%" onPress={() => setShowCountry(!showCountry)}>
+                <Text
+                  w="100%"
+                  onPress={() => {
+                    setShowCountry(!showCountry);
+                    setShowAltitude(false);
+                    setShowCrowded(false);
+                  }}>
                   {country}
                 </Text>
               </VStack>
@@ -869,7 +875,13 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
                 mx="1"
                 my="2"
                 w="44%">
-                <Text w="100%" onPress={() => setShowAltitude(!showAltitude)}>
+                <Text
+                  w="100%"
+                  onPress={() => {
+                    setShowAltitude(!showAltitude);
+                    setShowCountry(false);
+                    setShowCrowded(false);
+                  }}>
                   {altitude}
                 </Text>
               </VStack>

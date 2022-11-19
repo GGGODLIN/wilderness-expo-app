@@ -490,7 +490,7 @@ export default function CommunityScreen({ navigation }: NavigationProps): JSX.El
           colorScheme="light"
           shadow={2}
           size="sm"
-          icon={<Icon color="white" as={AntDesign} name="plus" size="sm" />}
+          icon={<Icon color="white" as={AntDesign} name="form" size="4" />}
           onPress={() => {
             navigation.navigate(MAIN_STACK_CREATE_POST);
           }}

@@ -263,7 +263,7 @@ export default function LocationReportScreen({ navigation }: NavigationProps): J
 
   const { reason, password } = deactivateForm;
   return (
-    <DashboardLayout title="檢舉" showBackButton>
+    <DashboardLayout title="反饋" showBackButton>
       <Box
         px={{ md: 0, xl: 35 }}
         py={{ md: 8 }}

@@ -43,7 +43,7 @@ export default function LocationDrawer(): JSX.Element {
       <Drawer.Screen
         name={MAIN_STACK_LOCATION_DRAWER_POST_REPORT}
         component={LocationReportScreen}
-        options={{ title: '檢舉' }}
+        options={{ title: '反饋' }}
       />
     </Drawer.Navigator>
   );

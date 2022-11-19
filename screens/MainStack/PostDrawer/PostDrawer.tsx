@@ -42,7 +42,7 @@ export default function PostDrawer(): JSX.Element {
       <Drawer.Screen
         name={MAIN_STACK_POST_DRAWER_POST_REPORT}
         component={PostReportScreen}
-        options={{ title: '檢舉' }}
+        options={{ title: '反饋' }}
       />
     </Drawer.Navigator>
   );

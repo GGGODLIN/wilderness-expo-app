@@ -1,4 +1,4 @@
-import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons, Ionicons, AntDesign, FontAwesome5 } from '@expo/vector-icons';
 import {
   HStack,
   Text,
@@ -12,8 +12,10 @@ import {
   Image,
   Divider,
   Progress,
+  IconButton,
 } from 'native-base';
 import React, { useState } from 'react';
+import { Keyboard, Dimensions, TouchableOpacity } from 'react-native';
 
 import { MAIN_STACK_LOCATION_DETAILS, MAIN_STACK_POST } from '../../../NavigationNames';
 import { NavigationProps } from '../../../Props';
@@ -71,8 +73,7 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
   const locationList = [
     {
       id: 1,
-      image:
-        'https://storage.googleapis.com/smiletaiwan-cms-cwg-tw/article/202003/article-5e6b3844e5039.jpg',
+      image: 'https://picsum.photos/1000',
       name: '活動 1',
       description: '我是活動 1',
       latitude: 25.01,
@@ -91,12 +92,21 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
       week: '週日',
       like: 639,
       liked: true,
-      tags: '關鍵字、關鍵字、待加樣式',
+      tags: [
+        {
+          id: 1,
+          title: '私人營地',
+        },
+        {
+          id: 2,
+          title: '需要預約',
+        },
+      ],
+      altitude: 123,
     },
     {
       id: 2,
-      image:
-        'https://storage.googleapis.com/smiletaiwan-cms-cwg-tw/article/202003/article-5e6b3844e5039.jpg',
+      image: 'https://picsum.photos/1000',
       name: '活動 2',
       description: '活動 2 簡介',
       latitude: 25.02,
@@ -115,12 +125,21 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
       week: '週日',
       like: 639,
       liked: true,
-      tags: '關鍵字、關鍵字、待加樣式',
+      tags: [
+        {
+          id: 1,
+          title: 'SUP',
+        },
+        {
+          id: 2,
+          title: '水上地點',
+        },
+      ],
+      altitude: 567,
     },
     {
       id: 3,
-      image:
-        'https://storage.googleapis.com/smiletaiwan-cms-cwg-tw/article/202003/article-5e6b3844e5039.jpg',
+      image: 'https://picsum.photos/1000',
       name: '活動3',
       description: '我是活動 3',
       latitude: 25.03,
@@ -139,12 +158,17 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
       week: '週日',
       like: 639,
       liked: true,
-      tags: '關鍵字、關鍵字、待加樣式',
+      tags: [
+        {
+          id: 1,
+          title: '親子營地',
+        },
+      ],
+      altitude: 999,
     },
     {
       id: 4,
-      image:
-        'https://storage.googleapis.com/smiletaiwan-cms-cwg-tw/article/202003/article-5e6b3844e5039.jpg',
+      image: 'https://picsum.photos/1000',
       name: '活動4',
       description: '我是活動 4',
       latitude: 25.04,
@@ -155,7 +179,7 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
       clubsName: '點我連到社團頁',
       eventName: null,
       imageUri: require('../../../assets/images/views/view_3.jpg'),
-      title: '這是一個很長的標題這是一個很長的標題這是一個很長的標題',
+      title: '這是一個很長的標題這是一個很長的標題',
       dateStart: '2022-12-25',
       dateEnd: '2022-12-30',
       timeStart: '18:00',
@@ -163,12 +187,17 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
       week: '週日',
       like: 639,
       liked: true,
-      tags: '關鍵字、關鍵字、待加樣式',
+      tags: [
+        {
+          id: 1,
+          title: '車泊熱點',
+        },
+      ],
+      altitude: 1234,
     },
     {
       id: 5,
-      image:
-        'https://storage.googleapis.com/smiletaiwan-cms-cwg-tw/article/202003/article-5e6b3844e5039.jpg',
+      image: 'https://picsum.photos/1000',
       name: '活動5',
       description: '我是活動 5',
       latitude: 25.05,
@@ -187,12 +216,17 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
       week: '週日',
       like: 639,
       liked: true,
-      tags: '關鍵字、關鍵字、待加樣式',
+      tags: [
+        {
+          id: 1,
+          title: '深山',
+        },
+      ],
+      altitude: 5432,
     },
     {
       id: 6,
-      image:
-        'https://storage.googleapis.com/smiletaiwan-cms-cwg-tw/article/202003/article-5e6b3844e5039.jpg',
+      image: 'https://picsum.photos/1000',
       name: '活動6',
       description: '我是活動 6',
       latitude: 25.06,
@@ -211,7 +245,21 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
       week: '週日',
       like: 639,
       liked: true,
-      tags: '關鍵字、關鍵字、待加樣式',
+      tags: [
+        {
+          id: 1,
+          title: '關鍵字',
+        },
+        {
+          id: 2,
+          title: '關鍵字',
+        },
+        {
+          id: 3,
+          title: '關鍵字',
+        },
+      ],
+      altitude: 1243,
     },
   ];
   type TrackProps = {
@@ -393,44 +441,190 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
     );
   }
 
+  const equipmentData = [
+    {
+      imageUri: 'https://picsum.photos/200',
+      brand: 'SnowPeak',
+      category: '帳篷',
+      title: '精靈帳',
+      price: '$300',
+      date: '2000-01-01',
+    },
+    {
+      imageUri: 'https://picsum.photos/200',
+      brand: 'SnowPeak',
+      category: '帳篷',
+      title: '天幕',
+      price: '$300',
+      date: '2000-01-01',
+    },
+    {
+      imageUri: 'https://picsum.photos/200',
+      brand: 'SnowPeak',
+      category: '家具',
+      title: '桌子',
+      price: '$300',
+      date: '2000-01-01',
+    },
+    {
+      imageUri: 'https://picsum.photos/200',
+      brand: 'SnowPeak',
+      category: '用品',
+      title: '冰桶',
+      price: '$300',
+      date: '2000-01-01',
+    },
+    {
+      imageUri: 'https://picsum.photos/200',
+      brand: '品牌',
+      category: '分類',
+      title: '圖片待用多組輪播',
+      price: '這裡是購入金額',
+      date: '這裡是購入日期',
+    },
+  ];
+  function Equipment() {
+    return (
+      <Box>
+        {equipmentData.map((item, index) => (
+          <HStack mb="2">
+            <VStack w="70%">
+              <Text fontSize="lg" color={Colors.LOGO_COLOR_GREEN}>
+                {item.category}。{item.brand}
+              </Text>
+              <Text fontSize="2xl" color={Colors.LOGO_COLOR_BROWN}>
+                {item.title}
+              </Text>
+              <Text fontSize="sm" color="coolGray.400">
+                金額: {item.price}
+              </Text>
+              <Text fontSize="sm" color="coolGray.400">
+                日期: {item.date}
+              </Text>
+            </VStack>
+            <VStack w="30%">
+              <Image
+                rounded="10"
+                source={{ uri: item.imageUri }}
+                alt="image"
+                width="100%"
+                height="100"
+                resizeMode="cover"
+              />
+            </VStack>
+          </HStack>
+        ))}
+      </Box>
+    );
+  }
+
   function Tab_1() {
     return (
-      <ScrollView py={4}>
-        <VStack space={5} alignItems="center" mx={1} mb={0} px={2}>
+      <ScrollView py={4} px={6}>
+        <VStack space={5} alignItems="center">
           {locationList.map((props, index) => (
             <Pressable
-              key={index}
+              key={'location' + index}
               onPress={() => navigation.navigate(MAIN_STACK_LOCATION_DETAILS)}
-              w="100%">
-              <VStack bgColor="white" key={'pan_' + props.id} height={200} w="100%">
-                <Image
-                  borderTopLeftRadius="10"
-                  borderTopRightRadius="10"
-                  source={{ uri: props.image }}
-                  alt="image"
-                  width="100%"
-                  height="120"
-                  resizeMode="cover"
-                />
-                <VStack px={4}>
-                  <Text
-                    mt="2"
-                    fontSize="xs"
-                    fontWeight="medium"
-                    _light={{ color: 'coolGray.500' }}
-                    _dark={{ color: 'coolGray.400' }}>
-                    {props.tags}
-                  </Text>
-                  <Text
-                    mt="0"
-                    fontSize="sm"
-                    fontWeight="medium"
-                    _light={{ color: 'coolGray.900' }}
-                    _dark={{ color: 'coolGray.400' }}>
-                    {props.title}
-                  </Text>
-                </VStack>
-              </VStack>
+              width="100%">
+              <Box
+                borderRadius="2xl"
+                bgColor="white"
+                key={'pan_' + props.id}
+                height={220}
+                width="100%">
+                <Box>
+                  <Image
+                    borderTopLeftRadius="20"
+                    borderTopRightRadius="20"
+                    source={{ uri: props.image }}
+                    alt="image"
+                    width="100%"
+                    height="120"
+                    resizeMode="cover"
+                  />
+                  <HStack
+                    position="absolute"
+                    bottom="0"
+                    left="0"
+                    pl="4"
+                    pb="1"
+                    width="100%"
+                    bg="#00000060">
+                    {props.tags.map((item, tags_index) => (
+                      <Box
+                        shadow="2"
+                        borderWidth="1"
+                        borderColor="coolGray.300"
+                        borderRadius="xl"
+                        mr="1"
+                        mt="2"
+                        my="1"
+                        px="2"
+                        py="1"
+                        key={'location' + index + '.tag' + tags_index}>
+                        <Text fontSize="xs" fontWeight="normal" color="white">
+                          {item.title}
+                        </Text>
+                      </Box>
+                    ))}
+                  </HStack>
+                </Box>
+                <HStack flex={1} pt="1">
+                  <VStack pt="2" px={4} flex={1} width="80%">
+                    <Text
+                      mt="0"
+                      fontSize="lg"
+                      fontWeight="medium"
+                      _light={{ color: 'coolGray.900' }}
+                      _dark={{ color: 'coolGray.400' }}>
+                      {props.title}
+                    </Text>
+                    <Text color={Colors.LOGO_COLOR_BROWN}>海拔 {props.altitude} 公尺</Text>
+                    <Text color={Colors.LOGO_COLOR_BROWN}>距離 123 公里</Text>
+                  </VStack>
+                  <VStack pt="2" pr="4" flex={1} alignItems="flex-end">
+                    <TouchableOpacity
+                      onPress={() => navigation.navigate(MAIN_STACK_CREATE_POST_WITH_LOCATION)}>
+                      <Center
+                        _light={{ bg: Colors.THEME_MAIN_BACKGROUND }}
+                        _dark={{ bg: 'coolGray.700' }}
+                        rounded="full"
+                        w="9"
+                        h="9"
+                        textAlign="center"
+                        alignItems="center"
+                        justifyContent="center">
+                        <IconButton
+                          variant="unstyled"
+                          colorScheme="light"
+                          mx="0"
+                          my="0"
+                          ml="0"
+                          px="0"
+                          py="0"
+                          icon={
+                            <Icon
+                              size="5"
+                              name="md-golf-outline"
+                              as={Ionicons}
+                              _dark={{
+                                color: 'coolGray.200',
+                              }}
+                              _light={{
+                                color: Colors.LOGO_COLOR_BROWN,
+                              }}
+                            />
+                          }
+                        />
+                      </Center>
+                      <Text textAlign="center" mt="1">
+                        打卡
+                      </Text>
+                    </TouchableOpacity>
+                  </VStack>
+                </HStack>
+              </Box>
             </Pressable>
           ))}
         </VStack>
@@ -439,15 +633,15 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
   }
   function Tab_2() {
     return (
-      <ScrollView py={4}>
+      <ScrollView py={4} px={4}>
         <Tracking />
       </ScrollView>
     );
   }
   function Tab_3() {
     return (
-      <ScrollView py={4}>
-        <Text>製作中</Text>
+      <ScrollView py={4} px={6}>
+        <Equipment />
       </ScrollView>
     );
   }
@@ -536,8 +730,8 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
     );
   }
   function Tabs() {
-    const [tabName, setTabName] = React.useState(tabs[0].title);
-    const [tabChildren, setTabChildren] = useState<React.ReactNode>(tabs[0].component);
+    const [tabName, setTabName] = React.useState(tabs[2].title);
+    const [tabChildren, setTabChildren] = useState<React.ReactNode>(tabs[2].component);
     return (
       <>
         <Center backgroundColor="white">

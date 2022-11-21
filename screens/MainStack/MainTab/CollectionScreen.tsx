@@ -1,4 +1,5 @@
 import { MaterialIcons, Ionicons, AntDesign, FontAwesome5 } from '@expo/vector-icons';
+import MasonryList from '@react-native-seoul/masonry-list';
 import {
   HStack,
   Text,
@@ -442,8 +443,18 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
     );
   }
 
+  type EquipmentProps = {
+    id: number;
+    imageUri: string;
+    brand: string;
+    category: string;
+    title: string;
+    price: string;
+    date: string;
+  };
   const equipmentData = [
     {
+      id: 1,
       imageUri: 'https://picsum.photos/200',
       brand: 'SnowPeak',
       category: '帳篷',
@@ -452,6 +463,7 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
       date: '2000-01-01',
     },
     {
+      id: 2,
       imageUri: 'https://picsum.photos/200',
       brand: 'SnowPeak',
       category: '帳篷',
@@ -460,6 +472,7 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
       date: '2000-01-01',
     },
     {
+      id: 3,
       imageUri: 'https://picsum.photos/200',
       brand: 'SnowPeak',
       category: '家具',
@@ -468,6 +481,7 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
       date: '2000-01-01',
     },
     {
+      id: 4,
       imageUri: 'https://picsum.photos/200',
       brand: 'SnowPeak',
       category: '用品',
@@ -476,6 +490,7 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
       date: '2000-01-01',
     },
     {
+      id: 5,
       imageUri: 'https://picsum.photos/200',
       brand: '品牌',
       category: '分類',
@@ -525,6 +540,48 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
           </HStack>
         ))}
       </Box>
+    );
+  }
+  function EquipmentCard(props: { item: EquipmentProps }) {
+    const [selectState, setSelectState] = useState(props.item.active);
+
+    return (
+      <HStack
+        rounded="10"
+        px="2"
+        py="2"
+        mb="2"
+        key={'equip_' + props.item.id}
+        bg={selectState ? Colors.LOGO_COLOR_WHITE_BACKGROUND : 'white'}>
+        <VStack w="80%">
+          <Pressable onPress={() => setSelectState(!selectState)}>
+            <Text fontSize="sm" color={Colors.LOGO_COLOR_GREEN}>
+              {props.item.category}。{props.item.brand}
+            </Text>
+            <Text fontSize="xl" color={Colors.LOGO_COLOR_BROWN}>
+              {props.item.title}
+            </Text>
+            <Text fontSize="xs" color="coolGray.400">
+              金額: {props.item.price}
+            </Text>
+            <Text fontSize="xs" color="coolGray.400">
+              日期: {props.item.date}
+            </Text>
+          </Pressable>
+        </VStack>
+        <VStack w="20%">
+          <Pressable onPress={() => setSelectState(!selectState)}>
+            <Image
+              rounded="10"
+              source={{ uri: props.item.imageUri }}
+              alt="image"
+              width="100%"
+              height="70"
+              resizeMode="cover"
+            />
+          </Pressable>
+        </VStack>
+      </HStack>
     );
   }
 
@@ -651,7 +708,15 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
   function Tab_3() {
     return (
       <ScrollView py={4} px={6}>
-        <Equipment />
+        <Stack flexWrap="wrap" direction="row" space="2">
+          <MasonryList
+            showsVerticalScrollIndicator={false}
+            numColumns={1}
+            data={equipmentData}
+            renderItem={({ item }) => <EquipmentCard item={item} />}
+            keyExtractor={(item: Offer, index: number) => 'key' + index}
+          />
+        </Stack>
       </ScrollView>
     );
   }

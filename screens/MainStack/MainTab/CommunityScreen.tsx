@@ -233,9 +233,10 @@ export default function CommunityScreen({ navigation }: NavigationProps): JSX.El
   function PostCard(props: { item: PostProps }) {
     return (
       <TouchableOpacity onPress={() => navigation.navigate(MAIN_STACK_POST)}>
-        <Box p="0" borderRadius="sm" m="2" mb="3">
+        <Box p="0" borderRadius="10" m="2" mb="3" bg="coolGray.100">
           <Image
-            rounded="10"
+            borderTopLeftRadius="10"
+            borderTopRightRadius="10"
             w="100%"
             h="170"
             source={{ uri: props.item.imageRes }}
@@ -244,12 +245,13 @@ export default function CommunityScreen({ navigation }: NavigationProps): JSX.El
           />
           <Text
             mt="2"
+            mx="2"
             fontSize="xs"
             _light={{ color: 'coolGray.500' }}
             _dark={{ color: 'coolGray.400' }}>
             {props.item.description}
           </Text>
-          <HStack mt="1" w="100%" justifyContent="flex-start" alignItems="center">
+          <HStack mt="1" px="2" pb="2" w="100%" justifyContent="flex-start" alignItems="center">
             <Avatar
               height="5"
               width="5"
@@ -259,7 +261,7 @@ export default function CommunityScreen({ navigation }: NavigationProps): JSX.El
             />
             <HStack space="0" alignItems="flex-start" justifyContent="flex-start">
               <Text
-                fontSize="sm"
+                fontSize="xs"
                 fontWeight="medium"
                 py={1}
                 mx={2}
@@ -298,7 +300,7 @@ export default function CommunityScreen({ navigation }: NavigationProps): JSX.El
     const { height } = useWindowDimensions();
     return (
       <Box
-        px="2"
+        px="0"
         py="2"
         rounded={{ md: 'sm' }}
         _light={{ bg: 'white' }}

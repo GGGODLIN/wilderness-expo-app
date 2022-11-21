@@ -662,11 +662,15 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
               onValueChange={(itemValue, itemIndex) => {
                 setCountry(itemValue);
               }}>
-              <Picker.Item label="請選擇" value="不限制縣市" />
-              <Picker.Item label="台北市" value="台北市" />
-              <Picker.Item label="新北市" value="新北市" />
-              <Picker.Item label="桃園市" value="桃園市" />
-              <Picker.Item label="台中市" value="台中市" />
+              <Picker.Item
+                label="請選擇"
+                value="不限制縣市"
+                onPress={() => setCountry('不限制縣市')}
+              />
+              <Picker.Item label="台北市" value="台北市" onPress={() => setCountry('台北市')} />
+              <Picker.Item label="新北市" value="新北市" onPress={() => setCountry('新北市')} />
+              <Picker.Item label="桃園市" value="桃園市" onPress={() => setCountry('桃園市')} />
+              <Picker.Item label="台中市" value="台中市" onPress={() => setCountry('台中市')} />
             </Picker>
             <Button
               mx={4}

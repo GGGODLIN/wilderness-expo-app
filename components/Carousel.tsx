@@ -67,7 +67,6 @@ export function Carousel({
         {images.map((image, idx) => {
           return (
             <Image
-              rounded="10"
               key={idx}
               alt="advertisement"
               height={height}

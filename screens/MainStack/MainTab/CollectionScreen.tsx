@@ -729,8 +729,8 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
               </VStack>
             </HStack>
           )}
-          leftOpenValue={75}
-          rightOpenValue={-75}
+          leftOpenValue={30}
+          rightOpenValue={-30}
           onSwipeValueChange={onSwipeValueChange}
         />
         {/*

@@ -10,6 +10,7 @@ import {
   MAIN_STACK_CREATE_LOCATION,
   MAIN_STACK_CREATE_POST,
   MAIN_STACK_CREATE_POST_WITH_LOCATION,
+  MAIN_STACK_CREATE_EQUIPMENT,
   MAIN_STACK_EVENT_DETAILS,
   MAIN_STACK_LOCATION_DRAWER,
   MAIN_STACK_LOGIN,
@@ -22,6 +23,7 @@ import {
   PROFILE_STACK_NOTIFICATIONS,
 } from './NavigationNames';
 import Colors from './constants/Colors';
+import CreateEquipmentScreen from './screens/MainStack/CreateEquipmentScreen';
 import CreateLocationScreen from './screens/MainStack/CreateLocationScreen';
 import CreatePostScreen from './screens/MainStack/CreatePostScreen';
 import CreatePostWithLocationScreen from './screens/MainStack/CreatePostWithLocationScreen';
@@ -109,6 +111,7 @@ export default function App() {
             name={MAIN_STACK_CREATE_POST_WITH_LOCATION}
           />
           <MainStack.Screen component={CreateLocationScreen} name={MAIN_STACK_CREATE_LOCATION} />
+          <MainStack.Screen component={CreateEquipmentScreen} name={MAIN_STACK_CREATE_EQUIPMENT} />
         </MainStack.Navigator>
       </NavigationContainer>
       <AlertDialog

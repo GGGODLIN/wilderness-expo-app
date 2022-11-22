@@ -21,7 +21,11 @@ import React, { useState } from 'react';
 import { Keyboard, Dimensions, TouchableOpacity, View, PanResponder } from 'react-native';
 import { SwipeListView } from 'react-native-swipe-list-view';
 
-import { MAIN_STACK_LOCATION_DETAILS, MAIN_STACK_POST } from '../../../NavigationNames';
+import {
+  MAIN_STACK_LOCATION_DETAILS,
+  MAIN_STACK_POST,
+  MAIN_STACK_CREATE_EQUIPMENT,
+} from '../../../NavigationNames';
 import { NavigationProps } from '../../../Props';
 import Colors from '../../../constants/Colors';
 import DashboardLayout from '../../../layouts/DashboardLayout';
@@ -549,9 +553,7 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
   const onSwipeValueChange = (swipeData: { key: any; value: any }) => {
     const { key, value } = swipeData;
     if (value >= 75) {
-      toast.show({
-        description: '左邊',
-      });
+      navigation.navigate(MAIN_STACK_CREATE_EQUIPMENT);
     }
     if (value <= -75) {
       toast.show({
@@ -698,7 +700,7 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
             />
           </VStack>
           <VStack width="10%" alignItems="center" justifyContent="center">
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate(MAIN_STACK_CREATE_EQUIPMENT)}>
               <Icon size="6" as={MaterialIcons} name="add" color={Colors.LOGO_COLOR_GREEN} />
             </TouchableOpacity>
           </VStack>

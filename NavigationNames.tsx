@@ -8,6 +8,7 @@ export const MAIN_STACK_PROFILE = 'MainStack_ProfileScreen';
 export const MAIN_STACK_CREATE_POST = 'MainStack_CreatePostScreen';
 export const MAIN_STACK_CREATE_POST_WITH_LOCATION = 'MainStack_CreatePostWithLocationScreen';
 export const MAIN_STACK_CREATE_LOCATION = 'MainStack_CreateLocationScreen';
+export const MAIN_STACK_CREATE_EQUIPMENT = 'MainStack_CreateEquipmentScreen';
 
 export const MAIN_STACK_TABS = 'MainStack_TabsScreen';
 

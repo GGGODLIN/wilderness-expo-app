@@ -456,7 +456,7 @@ export default function CreateLocationScreen({ navigation }: NavigationProps): J
   }
 
   return (
-    <DashboardLayout title="新增地點" showBackButton>
+    <DashboardLayout title="新增/管理裝備" showBackButton>
       {showCountry && (
         <VStack
           position="absolute"
@@ -591,27 +591,6 @@ export default function CreateLocationScreen({ navigation }: NavigationProps): J
           justifyContent="stretch"
           backgroundColor="white">
           <Text
-            fontSize="xl"
-            fontWeight="bold"
-            _light={{ color: 'coolGray.700' }}
-            _dark={{ color: 'coolGray.50' }}
-            mb={0}>
-            位置
-          </Text>
-          <Input
-            isRequired
-            backgroundColor="coolGray.50"
-            borderColor="coolGray.50"
-            borderRadius="10"
-            borderWidth="0"
-            py="4"
-            my="2"
-            placeholder="經緯度 (現階段僅供貼上經緯度的方式)"
-            size="lg"
-            defaultValue={formData.location}
-            onChangeText={(location: string) => setFormData((prev) => ({ ...prev, location }))}
-          />
-          <Text
             w="100%"
             fontSize="xl"
             fontWeight="bold"
@@ -620,7 +599,7 @@ export default function CreateLocationScreen({ navigation }: NavigationProps): J
             mt={2}
             mb={1}
             onPress={() => setShowCountry(!showCountry)}>
-            縣市
+            分類
           </Text>
           <VStack
             backgroundColor="coolGray.50"
@@ -641,7 +620,7 @@ export default function CreateLocationScreen({ navigation }: NavigationProps): J
             _light={{ color: 'coolGray.700' }}
             _dark={{ color: 'coolGray.50' }}
             mb={0}>
-            地點名稱
+            標題
           </Text>
           <Input
             isRequired
@@ -651,7 +630,49 @@ export default function CreateLocationScreen({ navigation }: NavigationProps): J
             borderWidth="0"
             py="4"
             my="2"
-            placeholder="怎麼稱呼這個地方 (必填)"
+            placeholder="請輸入標題 (必填)"
+            size="lg"
+            defaultValue={formData.location}
+            onChangeText={(location: string) => setFormData((prev) => ({ ...prev, location }))}
+          />
+          <Text
+            fontSize="xl"
+            fontWeight="bold"
+            _light={{ color: 'coolGray.700' }}
+            _dark={{ color: 'coolGray.50' }}
+            mb={0}>
+            品牌
+          </Text>
+          <Input
+            isRequired
+            backgroundColor="coolGray.50"
+            borderColor="coolGray.50"
+            borderRadius="10"
+            borderWidth="0"
+            py="4"
+            my="2"
+            placeholder="請輸入品牌 (選填)"
+            size="lg"
+            defaultValue={formData.location}
+            onChangeText={(location: string) => setFormData((prev) => ({ ...prev, location }))}
+          />
+          <Text
+            fontSize="xl"
+            fontWeight="bold"
+            _light={{ color: 'coolGray.700' }}
+            _dark={{ color: 'coolGray.50' }}
+            mb={0}>
+            日期
+          </Text>
+          <Input
+            isRequired
+            backgroundColor="coolGray.50"
+            borderColor="coolGray.50"
+            borderRadius="10"
+            borderWidth="0"
+            py="4"
+            my="2"
+            placeholder="可輸入購入日期或取得日期"
             size="lg"
             defaultValue={formData.title}
             onChangeText={(title: string) => setFormData((prev) => ({ ...prev, title }))}
@@ -662,7 +683,7 @@ export default function CreateLocationScreen({ navigation }: NavigationProps): J
             _light={{ color: 'coolGray.700' }}
             _dark={{ color: 'coolGray.50' }}
             mb={2}>
-            地點介紹
+            其他
           </Text>
           <VStack w="100%" px="3" py="2" mb="2" borderRadius="10" bg="coolGray.50">
             <TextInput
@@ -670,7 +691,7 @@ export default function CreateLocationScreen({ navigation }: NavigationProps): J
               value={reason}
               onChangeText={(txt) => handleFormUpdate('reason', txt)}
               placeholderTextColor="coolGray.700"
-              placeholder="如何描述這個地方 (必填)"
+              placeholder="其他需要紀錄的內容"
               multiline
               numberOfLines={4}
               style={{
@@ -688,7 +709,7 @@ export default function CreateLocationScreen({ navigation }: NavigationProps): J
             _light={{ color: 'coolGray.700' }}
             _dark={{ color: 'coolGray.50' }}
             mb={0}>
-            選擇幾張好看的照片 (場景照優先)
+            選擇幾張好看的照片
           </Text>
 
           <Center
@@ -716,79 +737,10 @@ export default function CreateLocationScreen({ navigation }: NavigationProps): J
               )}
             </Pressable>
           </Center>
-          <Text
-            mt="4"
-            fontSize="xl"
-            fontWeight="bold"
-            _light={{ color: 'coolGray.700' }}
-            _dark={{ color: 'coolGray.50' }}
-            mb={0}>
-            選擇此地點提供與未提供的設施
-          </Text>
-          <HStack justifyContent="space-between">
-            <VStack w="100%">
-              <HStack space={6} justifyContent="space-between" alignItems="center" pt={4}>
-                <Stack flexWrap="wrap" direction="row" space="2">
-                  <MasonryList
-                    showsVerticalScrollIndicator={false}
-                    numColumns={4}
-                    data={icons}
-                    renderItem={({ item }) => <FacilityCard item={item} />}
-                    keyExtractor={(item: Offer, index: number) => 'key' + index}
-                  />
-                </Stack>
-              </HStack>
-            </VStack>
-          </HStack>
-          <Text
-            w="100%"
-            fontSize="xl"
-            fontWeight="bold"
-            _light={{ color: 'coolGray.700' }}
-            _dark={{ color: 'coolGray.50' }}
-            mt={2}
-            mb={1}
-            onPress={() => setShowAltitude(!showAltitude)}>
-            可選擇海拔 (不知道的話也沒關係)
-          </Text>
-          <VStack
-            backgroundColor="coolGray.50"
-            borderColor="coolGray.50"
-            borderRadius="10"
-            borderWidth="0"
-            py="4"
-            px="2"
-            my="2"
-            w="100%">
-            <Text w="100%" onPress={() => setShowAltitude(!showAltitude)}>
-              {altitude}
-            </Text>
-          </VStack>
-          <Text
-            w="100%"
-            fontSize="xl"
-            fontWeight="bold"
-            _light={{ color: 'coolGray.700' }}
-            _dark={{ color: 'coolGray.50' }}
-            mt={2}
-            mb={1}
-            onPress={() => setShowCrowded(!showCrowded)}>
-            可選擇擁擠程度 (不知道的話也沒關係)
-          </Text>
-          <VStack
-            backgroundColor="coolGray.50"
-            borderColor="coolGray.50"
-            borderRadius="10"
-            borderWidth="0"
-            py="4"
-            px="2"
-            my="2"
-            w="100%">
-            <Text w="100%" onPress={() => setShowCrowded(!showCrowded)}>
-              {crowded}
-            </Text>
-          </VStack>
+
           <Button
+            mb="20"
+            w="100%"
             variant="solid"
             size="lg"
             mt="5"
@@ -796,15 +748,6 @@ export default function CreateLocationScreen({ navigation }: NavigationProps): J
             onPress={() => navigation.navigate(MAIN_STACK_LOCATION_DRAWER)}>
             送出
           </Button>
-          <Text
-            mt="2"
-            fontSize="sm"
-            fontWeight="normal"
-            _light={{ color: 'coolGray.500' }}
-            _dark={{ color: 'coolGray.50' }}
-            mb={0}>
-            若審核成功將會通知您，並標記為貢獻者
-          </Text>
         </VStack>
       </ScrollView>
     </DashboardLayout>

@@ -14,9 +14,12 @@ import {
   Divider,
   Progress,
   IconButton,
+  useToast,
+  Input,
 } from 'native-base';
 import React, { useState } from 'react';
-import { Keyboard, Dimensions, TouchableOpacity } from 'react-native';
+import { Keyboard, Dimensions, TouchableOpacity, View, PanResponder } from 'react-native';
+import { SwipeListView } from 'react-native-swipe-list-view';
 
 import { MAIN_STACK_LOCATION_DETAILS, MAIN_STACK_POST } from '../../../NavigationNames';
 import { NavigationProps } from '../../../Props';
@@ -500,50 +503,8 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
     },
   ];
 
-  function Equipment() {
-    const [selectState, setSelectState] = useState(false);
-    return (
-      <Box>
-        {equipmentData.map((item, index) => (
-          <HStack
-            mb="2"
-            key={'equip_' + index}
-            onPress={() => setSelectState(!selectState)}
-            bg={selectState ? Colors.LOGO_COLOR_WHITE_BACKGROUND : 'white'}>
-            <VStack w="80%" onPress={() => setSelectState(!selectState)}>
-              <Text fontSize="sm" color={Colors.LOGO_COLOR_GREEN}>
-                {item.category}。{item.brand}
-              </Text>
-              <Text
-                fontSize="xl"
-                color={Colors.LOGO_COLOR_BROWN}
-                onPress={() => setSelectState(!selectState)}>
-                {item.title}
-              </Text>
-              <Text fontSize="xs" color="coolGray.400">
-                金額: {item.price}
-              </Text>
-              <Text fontSize="xs" color="coolGray.400">
-                日期: {item.date}
-              </Text>
-            </VStack>
-            <VStack w="20%">
-              <Image
-                rounded="10"
-                source={{ uri: item.imageUri }}
-                alt="image"
-                width="100%"
-                height="70"
-                resizeMode="cover"
-              />
-            </VStack>
-          </HStack>
-        ))}
-      </Box>
-    );
-  }
   function EquipmentCard(props: { item: EquipmentProps }) {
-    const [selectState, setSelectState] = useState(props.item.active);
+    const [selectState, setSelectState] = useState(false);
 
     return (
       <HStack
@@ -584,6 +545,20 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
       </HStack>
     );
   }
+  const toast = useToast();
+  const onSwipeValueChange = (swipeData: { key: any; value: any }) => {
+    const { key, value } = swipeData;
+    if (value >= 75) {
+      toast.show({
+        description: '左邊',
+      });
+    }
+    if (value <= -75) {
+      toast.show({
+        description: '詢問是否刪除',
+      });
+    }
+  };
 
   function Tab_1() {
     return (
@@ -707,8 +682,56 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
   }
   function Tab_3() {
     return (
-      <ScrollView py={4} px={6}>
-        <Stack flexWrap="wrap" direction="row" space="2">
+      <VStack py={2} px={6}>
+        <HStack justifyContent="space-between">
+          <VStack width="90%">
+            <Input
+              isRequired
+              backgroundColor="coolGray.50"
+              borderColor="coolGray.50"
+              borderRadius="10"
+              borderWidth="0"
+              py="2"
+              my="2"
+              placeholder="搜尋..."
+              size="lg"
+            />
+          </VStack>
+          <VStack width="10%" alignItems="center" justifyContent="center">
+            <TouchableOpacity>
+              <Icon size="6" as={MaterialIcons} name="add" color={Colors.LOGO_COLOR_GREEN} />
+            </TouchableOpacity>
+          </VStack>
+        </HStack>
+        <SwipeListView
+          data={equipmentData}
+          renderItem={({ item }) => <EquipmentCard item={item} />}
+          renderHiddenItem={(data, rowMap) => (
+            <HStack justifyContent="space-between" h="100%">
+              <VStack alignItems="center" justifyContent="center">
+                <Stack alignItems="center" justifyContent="center">
+                  <Icon size="6" as={MaterialIcons} name="create" color={Colors.LOGO_COLOR_WHITE} />
+                  <Text color={Colors.LOGO_COLOR_WHITE}>編輯</Text>
+                </Stack>
+              </VStack>
+              <VStack alignItems="center" justifyContent="center">
+                <Stack alignItems="center" justifyContent="center">
+                  <Icon
+                    size="6"
+                    as={MaterialIcons}
+                    name="delete-outline"
+                    color={Colors.LOGO_COLOR_WHITE}
+                  />
+                  <Text color={Colors.LOGO_COLOR_WHITE}>刪除</Text>
+                </Stack>
+              </VStack>
+            </HStack>
+          )}
+          leftOpenValue={75}
+          rightOpenValue={-75}
+          onSwipeValueChange={onSwipeValueChange}
+        />
+        {/*
           <MasonryList
             showsVerticalScrollIndicator={false}
             numColumns={1}
@@ -716,8 +739,8 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
             renderItem={({ item }) => <EquipmentCard item={item} />}
             keyExtractor={(item: Offer, index: number) => 'key' + index}
           />
-        </Stack>
-      </ScrollView>
+            */}
+      </VStack>
     );
   }
   function Tab_4() {

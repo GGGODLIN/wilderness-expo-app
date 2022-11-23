@@ -464,7 +464,7 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
       id: 1,
       imageUri: 'https://picsum.photos/200',
       brand: 'SnowPeak',
-      category: '帳篷',
+      category: '露營',
       title: '精靈帳',
       price: '$300',
       date: '2000-01-01',
@@ -473,7 +473,7 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
       id: 2,
       imageUri: 'https://picsum.photos/200',
       brand: 'SnowPeak',
-      category: '帳篷',
+      category: '露營',
       title: '天幕',
       price: '$300',
       date: '2000-01-01',
@@ -482,7 +482,7 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
       id: 3,
       imageUri: 'https://picsum.photos/200',
       brand: 'SnowPeak',
-      category: '家具',
+      category: '露營',
       title: '桌子',
       price: '$300',
       date: '2000-01-01',
@@ -491,7 +491,7 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
       id: 4,
       imageUri: 'https://picsum.photos/200',
       brand: 'SnowPeak',
-      category: '用品',
+      category: '釣魚',
       title: '冰桶',
       price: '$300',
       date: '2000-01-01',
@@ -614,7 +614,7 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
                     ))}
                   </HStack>
                 </Box>
-                <HStack flex={1} pt="1">
+                <HStack flex={1} pt="1" bg="coolGray.50" borderBottomRadius={20}>
                   <VStack pt="2" px={4} flex={1} width="80%">
                     <Text
                       mt="0"

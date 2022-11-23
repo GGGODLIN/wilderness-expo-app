@@ -480,12 +480,12 @@ export default function CreateLocationScreen({ navigation }: NavigationProps): J
             onValueChange={(itemValue, itemIndex) => {
               setCountry(itemValue);
             }}>
-            <Picker.Item label="分類" value="分類" />
-            <Picker.Item label="分類" value="分類" />
-            <Picker.Item label="分類" value="分類" />
-            <Picker.Item label="分類" value="分類" />
-            <Picker.Item label="分類" value="分類" />
-            <Picker.Item label="分類" value="分類" />
+            <Picker.Item label="露營" value="露營" />
+            <Picker.Item label="車泊" value="車泊" />
+            <Picker.Item label="水上活動" value="水上活動" />
+            <Picker.Item label="釣魚" value="釣魚" />
+            <Picker.Item label="親子" value="親子" />
+            <Picker.Item label="其他" value="其他" />
           </Picker>
           <Button
             py={3}

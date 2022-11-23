@@ -142,7 +142,7 @@ const locationList = [
     clubsName: '點我連到社團頁',
     eventName: null,
     imageUri: require('../../../assets/images/views/view_3.jpg'),
-    title: '這是一個很長的標題這是一個很長的標題',
+    title: '這是一個很長的標題',
     dateStart: '2022-12-25',
     dateEnd: '2022-12-30',
     timeStart: '18:00',

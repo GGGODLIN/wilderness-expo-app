@@ -7,6 +7,7 @@ import * as React from 'react';
 import { enableLatestRenderer } from 'react-native-maps';
 
 import {
+  MAIN_STACK_COVER,
   MAIN_STACK_CREATE_LOCATION,
   MAIN_STACK_CREATE_POST,
   MAIN_STACK_CREATE_POST_WITH_LOCATION,
@@ -23,6 +24,7 @@ import {
   PROFILE_STACK_NOTIFICATIONS,
 } from './NavigationNames';
 import Colors from './constants/Colors';
+import CoverScreen from './screens/MainStack/CoverScreen';
 import CreateEquipmentScreen from './screens/MainStack/CreateEquipmentScreen';
 import CreateLocationScreen from './screens/MainStack/CreateLocationScreen';
 import CreatePostScreen from './screens/MainStack/CreatePostScreen';
@@ -92,6 +94,7 @@ export default function App() {
           screenOptions={{
             headerShown: false,
           }}>
+          <MainStack.Screen component={CoverScreen} name={MAIN_STACK_COVER} />
           <MainStack.Screen component={TabsScreen} name={MAIN_STACK_TABS} />
           <MainStack.Screen component={LoginScreen} name={MAIN_STACK_LOGIN} />
           <MainStack.Screen component={RegisterScreen} name={MAIN_STACK_REGISTER} />

@@ -1,3 +1,4 @@
+export const MAIN_STACK_COVER = 'MainStack_CoverScreen';
 export const MAIN_STACK_LOGIN = 'MainStack_LoginScreen';
 export const MAIN_STACK_REGISTER = 'MainStack_RegisterScreen';
 export const MAIN_STACK_RESET_PASSWORD = 'MainStack_ResetPasswordScreen';

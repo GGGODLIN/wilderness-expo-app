@@ -770,7 +770,7 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
     },
     {
       id: 3,
-      title: '露營裝備',
+      title: '裝備管理',
       component: <Tab_3 />,
     },
     {

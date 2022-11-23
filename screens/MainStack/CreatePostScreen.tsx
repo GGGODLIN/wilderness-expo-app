@@ -16,7 +16,7 @@ import {
 import React, { useState } from 'react';
 import { Keyboard, Dimensions, ScrollView, TouchableOpacity, TextInput } from 'react-native';
 
-import { MAIN_STACK_POST } from '../../NavigationNames';
+import { MAIN_STACK_POST_DRAWER } from '../../NavigationNames';
 import { NavigationProps } from '../../Props';
 import Colors from '../../constants/Colors';
 import DashboardLayout from '../../layouts/DashboardLayout';
@@ -369,14 +369,22 @@ export default function CreatePostScreen({ navigation }: NavigationProps): JSX.E
                 )}
               </Pressable>
             </Center>
-            <Button
-              mt="4"
-              variant="solid"
-              size="lg"
-              style={{ backgroundColor: Colors.LOGO_COLOR_BROWN }}
-              onPress={() => navigation.navigate(MAIN_STACK_POST)}>
-              發表
-            </Button>
+            <Center width="100%">
+              <Button
+                width="100%"
+                my="4"
+                mb="20"
+                mx="2"
+                py={3}
+                color="white"
+                size="lg"
+                rounded="full"
+                bg={Colors.THEME_MAIN_COLOR}
+                _pressed={{ bg: Colors.LOGO_COLOR_GREEN }}
+                onPress={() => navigation.navigate(MAIN_STACK_POST_DRAWER)}>
+                發表
+              </Button>
+            </Center>
           </VStack>
         </Box>
       </ScrollView>

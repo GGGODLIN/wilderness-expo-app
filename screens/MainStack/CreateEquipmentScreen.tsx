@@ -21,7 +21,7 @@ import {
 import React, { useState } from 'react';
 import { Keyboard, Dimensions, ScrollView, TouchableOpacity, TextInput } from 'react-native';
 
-import { MAIN_STACK_LOCATION_DRAWER } from '../../NavigationNames';
+import { MAIN_STACK_LOCATION_DRAWER, MAIN_STACK_COLLECTION } from '../../NavigationNames';
 import { NavigationProps } from '../../Props';
 import Colors from '../../constants/Colors';
 import DashboardLayout from '../../layouts/DashboardLayout';
@@ -466,6 +466,7 @@ export default function CreateLocationScreen({ navigation }: NavigationProps): J
           w="100%"
           h="240"
           pb="30"
+          px="6"
           shadow={2}
           zIndex={9}
           flex={1}
@@ -473,23 +474,26 @@ export default function CreateLocationScreen({ navigation }: NavigationProps): J
           <Picker
             mode="dialog"
             style={{ height: 100, flex: 1 }}
-            accessibilityLabel="選擇縣市"
-            placeholder="選擇縣市"
+            accessibilityLabel="選擇分類"
+            placeholder="選擇分類"
             selectedValue={country}
             onValueChange={(itemValue, itemIndex) => {
               setCountry(itemValue);
             }}>
-            <Picker.Item label="台北市" value="台北" />
-            <Picker.Item label="新北市" value="新北" />
-            <Picker.Item label="桃園市" value="桃園" />
-            <Picker.Item label="台中市" value="台中" />
-            <Picker.Item label="待串接整合縣市" value="" />
+            <Picker.Item label="分類" value="分類" />
+            <Picker.Item label="分類" value="分類" />
+            <Picker.Item label="分類" value="分類" />
+            <Picker.Item label="分類" value="分類" />
+            <Picker.Item label="分類" value="分類" />
+            <Picker.Item label="分類" value="分類" />
           </Picker>
           <Button
-            mx={4}
-            variant="solid"
+            py={3}
+            color="white"
             size="lg"
-            style={{ backgroundColor: 'black' }}
+            rounded="full"
+            bg={Colors.THEME_MAIN_COLOR}
+            _pressed={{ bg: Colors.LOGO_COLOR_GREEN }}
             onPress={() => {
               setShowCountry(false);
             }}>
@@ -506,6 +510,7 @@ export default function CreateLocationScreen({ navigation }: NavigationProps): J
           w="100%"
           h="240"
           pb="30"
+          px="6"
           shadow={2}
           zIndex={9}
           flex={1}
@@ -529,10 +534,12 @@ export default function CreateLocationScreen({ navigation }: NavigationProps): J
             <Picker.Item label="1000公尺以上" value="1100" />
           </Picker>
           <Button
-            mx={4}
-            variant="solid"
+            py={3}
+            color="white"
             size="lg"
-            style={{ backgroundColor: 'black' }}
+            rounded="full"
+            bg={Colors.THEME_MAIN_COLOR}
+            _pressed={{ bg: Colors.LOGO_COLOR_GREEN }}
             onPress={() => {
               setShowAltitude(false);
             }}>
@@ -549,6 +556,7 @@ export default function CreateLocationScreen({ navigation }: NavigationProps): J
           w="100%"
           h="240"
           pb="30"
+          px="6"
           shadow={2}
           zIndex={9}
           flex={1}
@@ -567,10 +575,12 @@ export default function CreateLocationScreen({ navigation }: NavigationProps): J
             <Picker.Item label="總是" value="總是" />
           </Picker>
           <Button
-            mx={4}
-            variant="solid"
+            py={3}
+            color="white"
             size="lg"
-            style={{ backgroundColor: 'black' }}
+            rounded="full"
+            bg={Colors.THEME_MAIN_COLOR}
+            _pressed={{ bg: Colors.LOGO_COLOR_GREEN }}
             onPress={() => {
               setShowCrowded(false);
             }}>
@@ -738,16 +748,22 @@ export default function CreateLocationScreen({ navigation }: NavigationProps): J
             </Pressable>
           </Center>
 
-          <Button
-            mb="20"
-            w="100%"
-            variant="solid"
-            size="lg"
-            mt="5"
-            style={{ backgroundColor: Colors.LOGO_COLOR_BROWN }}
-            onPress={() => navigation.navigate(MAIN_STACK_LOCATION_DRAWER)}>
-            送出
-          </Button>
+          <Center width="100%">
+            <Button
+              width="100%"
+              my="4"
+              mb="20"
+              mx="2"
+              py={3}
+              color="white"
+              size="lg"
+              rounded="full"
+              bg={Colors.THEME_MAIN_COLOR}
+              _pressed={{ bg: Colors.LOGO_COLOR_GREEN }}
+              onPress={() => navigation.navigate(MAIN_STACK_COLLECTION)}>
+              送出
+            </Button>
+          </Center>
         </VStack>
       </ScrollView>
     </DashboardLayout>

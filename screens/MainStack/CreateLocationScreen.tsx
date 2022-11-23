@@ -788,21 +788,29 @@ export default function CreateLocationScreen({ navigation }: NavigationProps): J
               {crowded}
             </Text>
           </VStack>
-          <Button
-            variant="solid"
-            size="lg"
-            mt="5"
-            style={{ backgroundColor: Colors.LOGO_COLOR_BROWN }}
-            onPress={() => navigation.navigate(MAIN_STACK_LOCATION_DRAWER)}>
-            送出
-          </Button>
+          <Center width="100%">
+            <Button
+              width="100%"
+              my="4"
+              mb="0"
+              mx="2"
+              py={3}
+              color="white"
+              size="lg"
+              rounded="full"
+              bg={Colors.THEME_MAIN_COLOR}
+              _pressed={{ bg: Colors.LOGO_COLOR_GREEN }}
+              onPress={() => navigation.navigate(MAIN_STACK_LOCATION_DRAWER)}>
+              送出
+            </Button>
+          </Center>
           <Text
             mt="2"
+            mb="20"
             fontSize="sm"
             fontWeight="normal"
             _light={{ color: 'coolGray.500' }}
-            _dark={{ color: 'coolGray.50' }}
-            mb={0}>
+            _dark={{ color: 'coolGray.50' }}>
             若審核成功將會通知您，並標記為貢獻者
           </Text>
         </VStack>

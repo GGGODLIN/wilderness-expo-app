@@ -1,4 +1,4 @@
-import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons, Ionicons } from '@expo/vector-icons';
 import {
   HStack,
   Icon,
@@ -13,8 +13,11 @@ import {
   Circle,
   useTheme,
   useColorMode,
+  StatusBar,
+  Image,
 } from 'native-base';
 import React from 'react';
+import { ImageBackground } from 'react-native';
 
 import { MAIN_STACK_LOGIN } from '../../../NavigationNames';
 import { NavigationProps } from '../../../Props';
@@ -106,126 +109,6 @@ export default function ProfileStackScreen({ navigation }: NavigationProps): JSX
     );
   }
 
-  function WebDisplay() {
-    const { colors } = useTheme();
-    const { colorMode } = useColorMode();
-
-    return (
-      <VStack space={4}>
-        <HStack alignItems="center" justifyContent="space-between">
-          <Avatar source={require('../images/janedoe.png')} w="24" h="24">
-            <Avatar.Badge
-              _light={{ bg: 'coolGray.50' }}
-              _dark={{ bg: 'coolGray.700', borderColor: 'coolGray.700' }}
-              p={2}
-              alignItems="center"
-              justifyContent="center">
-              <Circle>
-                <IconButton
-                  p={0}
-                  icon={
-                    <Icon size={3} as={MaterialIcons} name="photo-camera" color="coolGray.400" />
-                  }
-                />
-              </Circle>
-            </Avatar.Badge>
-          </Avatar>
-          <Button
-            variant="outline"
-            startIcon={
-              <Icon
-                as={MaterialIcons}
-                name="mode-edit"
-                _light={{
-                  color: 'primary.900',
-                }}
-                _dark={{
-                  color: 'coolGray.400',
-                }}
-                color="#45268F"
-                size={5}
-              />
-            }>
-            Edit Profile
-          </Button>
-        </HStack>
-        <Box mt={16}>
-          <FloatingLabelInput
-            w="100%"
-            isRequired
-            label="Full Name"
-            labelColor={colors.coolGray['400']}
-            defaultValue="Jon"
-            labelBGColor={colorMode === 'light' ? 'white' : bgColor}
-          />
-        </Box>
-        <VStack mt={6} space={7}>
-          <FloatingLabelInput
-            isRequired
-            label="Email"
-            labelColor={colors.coolGray['400']}
-            defaultValue="jondoe@example.com"
-            labelBGColor={colorMode === 'light' ? 'white' : bgColor}
-          />
-          <FloatingLabelInput
-            isRequired
-            label="Contact Number"
-            labelColor={colors.coolGray['400']}
-            defaultValue="+91-8239635900"
-            labelBGColor={colorMode === 'light' ? 'white' : bgColor}
-          />
-          <FloatingLabelInput
-            isRequired
-            label="Address"
-            labelColor={colors.coolGray['400']}
-            defaultValue="301, Bakers Street"
-            labelBGColor={colorMode === 'light' ? 'white' : bgColor}
-          />
-          <HStack alignItems="center" justifyContent="space-between">
-            <FloatingLabelInput
-              w="100%"
-              label="City"
-              defaultValue="Rochester"
-              containerWidth="48%"
-              isRequired
-              labelColor={colors.coolGray['400']}
-              labelBGColor={colorMode === 'light' ? 'white' : bgColor}
-            />
-            <FloatingLabelInput
-              w="100%"
-              isRequired
-              label="State"
-              defaultValue="New York"
-              labelColor={colors.coolGray['400']}
-              labelBGColor={colorMode === 'light' ? 'white' : bgColor}
-              containerWidth="48%"
-            />
-          </HStack>
-          <HStack alignItems="center" justifyContent="space-between">
-            <FloatingLabelInput
-              w="100%"
-              isRequired
-              label="Zip Code"
-              defaultValue="11357"
-              labelColor={colors.coolGray['400']}
-              labelBGColor={colorMode === 'light' ? 'white' : bgColor}
-              containerWidth="48%"
-            />
-            <FloatingLabelInput
-              w="100%"
-              isRequired
-              label="Country"
-              defaultValue="USA"
-              labelColor={colors.coolGray['400']}
-              labelBGColor={colorMode === 'light' ? 'white' : bgColor}
-              containerWidth="48%"
-            />
-          </HStack>
-        </VStack>
-      </VStack>
-    );
-  }
-
   function MobileScreen() {
     return (
       <>
@@ -235,7 +118,7 @@ export default function ProfileStackScreen({ navigation }: NavigationProps): JSX
           alignItems="center"
           _light={{ bg: Colors.THEME_MAIN_BACKGROUND }}
           _dark={{ bg: 'coolGray.900' }}>
-          <Avatar source={require('../images/janedoe.png')} width={20} height={20} />
+          <Avatar source={{ uri: 'https://picsum.photos/200' }} width={20} height={20} />
           <HStack alignItems="center" justifyContent="center" space={2} mt={3.5}>
             <Text
               fontSize="xl"
@@ -315,31 +198,81 @@ export default function ProfileStackScreen({ navigation }: NavigationProps): JSX
   }
 
   return (
-    <DashboardLayout
-      title="個人檔案"
-      rightPanelMobileHeader
-      showBackButton={false}
-      showIcons={false}
-      displayBackButton={false}
-      displayBackIcon={false}
-      displaySearchButton={false}>
-      <Box
-        px={{ md: '140' }}
-        pt={{ md: 8 }}
-        pb={{ md: '140' }}
-        rounded={{ md: 'sm' }}
-        _light={{ bg: 'white' }}
-        _dark={{ bg: 'coolGray.800' }}
-        flex="1">
-        {/*
-        <Hidden till="md">
-          <WebDisplay />
-        </Hidden>
-        */}
-        <Hidden from="md">
-          <MobileScreen />
-        </Hidden>
-      </Box>
-    </DashboardLayout>
+    <>
+      <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
+      <ImageBackground source={{ uri: 'https://picsum.photos/500' }}>
+        <Box safeAreaTop bg="#00000060">
+          <HStack px="10%" pt="10" pb="10" alignItems="center" justifyContent="space-between">
+            <VStack width="30%" alignItems="flex-start">
+              <Image source={require('../../../assets/avatars/cate.png')} width={16} height={16} />
+            </VStack>
+            <VStack width="70%" alignItems="flex-start">
+              <Box>
+                <Box borderWidth="1" borderColor="coolGray.300" borderRadius="xl" px="2" py="1">
+                  <Text fontSize="xs" fontWeight="normal" color="white">
+                    好野人
+                  </Text>
+                </Box>
+              </Box>
+              <Text fontSize="xl" fontWeight="normal" color="white">
+                Wolf
+              </Text>
+              <Text fontSize="sm" fontWeight="normal" color="coolGray.100">
+                wildernesscomtw@gmail.com
+              </Text>
+            </VStack>
+          </HStack>
+          <Box
+            pt="5"
+            px="8"
+            py="4"
+            bg={Colors.THEME_MAIN_BACKGROUND}
+            borderTopLeftRadius="20"
+            borderTopRightRadius="20">
+            <HStack space="0" alignItems="center" justifyContent="space-between">
+              <VStack width="20%" alignItems="center" justifyContent="space-between">
+                <Text mt="2" fontSize="lg" fontWeight="bold" color="coolGray.500">
+                  打卡次數
+                </Text>
+                <Text mt="2" fontSize="lg" color="coolGray.500">
+                  125
+                </Text>
+              </VStack>
+              <VStack width="20%" alignItems="center" justifyContent="space-between">
+                <Text mt="2" fontSize="lg" fontWeight="bold" color="coolGray.500">
+                  關注作者
+                </Text>
+                <Text mt="2" fontSize="lg" color="coolGray.500">
+                  7
+                </Text>
+              </VStack>
+              <VStack width="20%" alignItems="center" justifyContent="space-between">
+                <Text mt="2" fontSize="lg" fontWeight="bold" color="coolGray.500">
+                  收藏文章
+                </Text>
+                <Text mt="2" fontSize="lg" color="coolGray.500">
+                  26
+                </Text>
+              </VStack>
+              <VStack width="20%" alignItems="center" justifyContent="space-between">
+                <Text mt="2" fontSize="lg" fontWeight="bold" color="coolGray.500">
+                  貢獻地點
+                </Text>
+                <Text mt="2" fontSize="lg" color="coolGray.500">
+                  5
+                </Text>
+              </VStack>
+            </HStack>
+          </Box>
+          <Box pt="0" pb="60" minHeight="700" px="0" py="4" bg={Colors.THEME_MAIN_BACKGROUND}>
+            <Box px="0" py="4" bg="white" borderRadius="20">
+              <ScrollView>
+                <OptionList />
+              </ScrollView>
+            </Box>
+          </Box>
+        </Box>
+      </ImageBackground>
+    </>
   );
 }

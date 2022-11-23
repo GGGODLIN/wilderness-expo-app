@@ -468,7 +468,7 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
     { id: 2, title: '營地' },
     { id: 3, title: 'SUP' },
     { id: 4, title: '釣魚' },
-    { id: 5, title: '親子' },
+    { id: 5, title: '登山' },
   ];
 
   type Icon = {

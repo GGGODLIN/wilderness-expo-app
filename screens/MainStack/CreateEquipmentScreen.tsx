@@ -484,7 +484,7 @@ export default function CreateLocationScreen({ navigation }: NavigationProps): J
             <Picker.Item label="車泊" value="車泊" />
             <Picker.Item label="水上活動" value="水上活動" />
             <Picker.Item label="釣魚" value="釣魚" />
-            <Picker.Item label="親子" value="親子" />
+            <Picker.Item label="登山" value="登山" />
             <Picker.Item label="其他" value="其他" />
           </Picker>
           <Button
@@ -630,7 +630,7 @@ export default function CreateLocationScreen({ navigation }: NavigationProps): J
             _light={{ color: 'coolGray.700' }}
             _dark={{ color: 'coolGray.50' }}
             mb={0}>
-            標題
+            物品名稱
           </Text>
           <Input
             isRequired

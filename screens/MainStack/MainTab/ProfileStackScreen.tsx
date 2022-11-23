@@ -232,7 +232,7 @@ export default function ProfileStackScreen({ navigation }: NavigationProps): JSX
             <HStack space="0" alignItems="center" justifyContent="space-between">
               <VStack width="20%" alignItems="center" justifyContent="space-between">
                 <Text mt="2" fontSize="lg" fontWeight="bold" color="coolGray.500">
-                  打卡次數
+                  打卡
                 </Text>
                 <Text mt="2" fontSize="lg" color="coolGray.500">
                   125
@@ -240,7 +240,7 @@ export default function ProfileStackScreen({ navigation }: NavigationProps): JSX
               </VStack>
               <VStack width="20%" alignItems="center" justifyContent="space-between">
                 <Text mt="2" fontSize="lg" fontWeight="bold" color="coolGray.500">
-                  關注作者
+                  關注
                 </Text>
                 <Text mt="2" fontSize="lg" color="coolGray.500">
                   7
@@ -248,7 +248,7 @@ export default function ProfileStackScreen({ navigation }: NavigationProps): JSX
               </VStack>
               <VStack width="20%" alignItems="center" justifyContent="space-between">
                 <Text mt="2" fontSize="lg" fontWeight="bold" color="coolGray.500">
-                  收藏文章
+                  收藏
                 </Text>
                 <Text mt="2" fontSize="lg" color="coolGray.500">
                   26
@@ -256,7 +256,7 @@ export default function ProfileStackScreen({ navigation }: NavigationProps): JSX
               </VStack>
               <VStack width="20%" alignItems="center" justifyContent="space-between">
                 <Text mt="2" fontSize="lg" fontWeight="bold" color="coolGray.500">
-                  貢獻地點
+                  貢獻
                 </Text>
                 <Text mt="2" fontSize="lg" color="coolGray.500">
                   5

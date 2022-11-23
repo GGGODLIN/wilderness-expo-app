@@ -1,4 +1,4 @@
-import { MaterialIcons, FontAwesome } from '@expo/vector-icons';
+import { MaterialIcons, FontAwesome, AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import {
   Box,
@@ -24,7 +24,7 @@ import React, { useState } from 'react';
 import type { ImageSourcePropType } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-import { MAIN_STACK_PROFILE } from '../../../NavigationNames';
+import { MAIN_STACK_PROFILE, MAIN_STACK_LOCATION_DRAWER } from '../../../NavigationNames';
 import { Nav, NavigationProps } from '../../../Props';
 import { Carousel } from '../../../components/Carousel';
 import Colors from '../../../constants/Colors';
@@ -437,8 +437,7 @@ function CustomTitle() {
       height="100%"
       onPress={() => {
         navigation.navigate(MAIN_STACK_PROFILE);
-      }}
-      _pressed={{ bg: 'gray.300' }}>
+      }}>
       <Flex height="100%" direction="row" alignItems="center">
         <Avatar
           mr={3}
@@ -455,6 +454,14 @@ function CustomTitle() {
           _light={{ color: 'coolGray.700' }}>
           作者名稱
         </Text>
+        {/*
+        <Button
+          size="lg"
+          style={{ backgroundColor: Colors.LOGO_COLOR_GREEN }}
+          _pressed={{ bg: Colors.LOGO_COLOR_BROWN }}>
+          關注
+        </Button>
+    */}
       </Flex>
     </Pressable>
   );
@@ -469,7 +476,48 @@ export default function PostScreen({ navigation }: NavigationProps): JSX.Element
       customTitle={<CustomTitle />}
       showBackButton>
       <KeyboardAwareScrollView style={{ flex: 1 }} bounces={false}>
-        <Stack px={{ base: '0', md: '8' }} py={{ base: '0', md: '8' }}>
+        <Stack bg="white">
+          <HStack px="4" pt="2" pb="1" justifyContent="space-between">
+            <Pressable
+              onPress={() => {
+                navigation.navigate(MAIN_STACK_LOCATION_DRAWER);
+              }}>
+              <HStack>
+                <Icon
+                  mr="2"
+                  size="6"
+                  name="enviroment"
+                  as={AntDesign}
+                  color={Colors.LOGO_COLOR_GREEN}
+                />
+                <Text fontSize="sm" fontWeight="medium" py={1} color={Colors.LOGO_COLOR_GREEN}>
+                  地點名稱
+                </Text>
+              </HStack>
+            </Pressable>
+            <HStack>
+              <Button
+                mx="1"
+                variant="outline"
+                size="sm"
+                color="black"
+                fontColor="black"
+                style={{ backgroundColor: 'white' }}
+                _pressed={{ bg: 'coolGray.100' }}>
+                收藏地點
+              </Button>
+              <Button
+                mx="1"
+                variant="outline"
+                size="sm"
+                color="black"
+                fontColor="black"
+                style={{ backgroundColor: 'white' }}
+                _pressed={{ bg: 'coolGray.100' }}>
+                關注作者
+              </Button>
+            </HStack>
+          </HStack>
           <CarouselLayout />
         </Stack>
         <Stack

@@ -35,7 +35,6 @@ export default function CoverScreen() {
 
     return (
       <VStack space={4} mt={10} px="20%">
-        <Image src={require('../../assets/loading/loading-cat-brown.gif')} alt="loading" resizeMode="contain" />
         <Button
           py={3}
           color="white"
@@ -55,6 +54,11 @@ export default function CoverScreen() {
     return (
       <Box alignItems="center" justifyContent="center" mx="20%">
         <Image alt="玩野秘境" resizeMode="contain" source={require('../../assets/logo.png')} />
+        <Image
+          source={require('../../assets/loading/loading-cat-brown.gif')}
+          alt="loading"
+          resizeMode="contain"
+        />
       </Box>
     );
   }

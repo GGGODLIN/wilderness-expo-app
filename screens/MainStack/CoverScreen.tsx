@@ -35,6 +35,7 @@ export default function CoverScreen() {
 
     return (
       <VStack space={4} mt={10} px="20%">
+        <Image src={require('../../assets/loading/loading-cat-brown.gif')} alt="loading" resizeMode="contain" />
         <Button
           py={3}
           color="white"

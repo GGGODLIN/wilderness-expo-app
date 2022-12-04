@@ -1,4 +1,4 @@
-import { MaterialIcons, Ionicons } from '@expo/vector-icons';
+import { MaterialIcons, Ionicons, Octicons } from '@expo/vector-icons';
 import {
   HStack,
   Icon,
@@ -20,7 +20,11 @@ import {
 import React from 'react';
 import { ImageBackground } from 'react-native';
 
-import { MAIN_STACK_LOGIN, PROFILE_STACK_EDIT_PROFILE } from '../../../NavigationNames';
+import {
+  MAIN_STACK_LOGIN,
+  PROFILE_STACK_EDIT_PROFILE,
+  PROFILE_STACK_CHANGE_PASSWORD,
+} from '../../../NavigationNames';
 import { NavigationProps } from '../../../Props';
 import FloatingLabelInput from '../../../components/FloatingLabelInput';
 import Colors from '../../../constants/Colors';
@@ -42,16 +46,22 @@ export default function ProfileStackScreen({ navigation }: NavigationProps): JSX
       onPress: () => navigation.navigate(PROFILE_STACK_EDIT_PROFILE),
     },
     {
-      iconName: 'lock',
+      iconName: 'key',
       iconText: '修改密碼',
+      onPress: () => navigation.navigate(PROFILE_STACK_CHANGE_PASSWORD),
     },
     {
-      iconName: 'settings',
-      iconText: '設定',
+      iconName: 'repo',
+      iconText: '我的文章',
     },
     {
-      iconName: 'exit-to-app',
+      iconName: 'sign-in',
       iconText: '登入',
+      onPress: () => navigation.navigate(MAIN_STACK_LOGIN),
+    },
+    {
+      iconName: 'sign-out',
+      iconText: '登出',
       onPress: () => navigation.navigate(MAIN_STACK_LOGIN),
     },
   ];
@@ -122,16 +132,16 @@ export default function ProfileStackScreen({ navigation }: NavigationProps): JSX
         _pressed={{ bg: Colors.LOGO_COLOR_GREEN }}
         children={({ isPressed }) => (
           <Box>
-            <VStack alignItems="center" justifyContent="flex-start">
+            <VStack alignItems="center" justifyContent="space-between">
               <Icon
                 size={6}
                 m={1}
-                as={MaterialIcons}
+                ml={2}
+                as={Octicons}
                 name={props.iconName}
                 color={isPressed ? 'white' : 'coolGray.500'}
               />
               <Text
-                ml="1"
                 mx="0"
                 my="0"
                 fontSize="xs"

@@ -19,6 +19,7 @@ import {
   MAIN_STACK_POST_DRAWER,
   MAIN_STACK_PROFILE,
   PROFILE_STACK_EDIT_PROFILE,
+  PROFILE_STACK_CHANGE_PASSWORD,
   MAIN_STACK_REGISTER,
   MAIN_STACK_RESET_PASSWORD,
   MAIN_STACK_TABS,
@@ -39,6 +40,7 @@ import ProfileScreen from './screens/MainStack/ProfileScreen';
 import RegisterScreen from './screens/MainStack/RegisterScreen';
 import ResetPasswordScreen from './screens/MainStack/ResetPasswordScreen';
 import TabsScreen from './screens/MainStack/TabsScreen';
+import ChangePasswordScreen from './screens/ProfileStack/ChangePasswordScreen';
 import EditProfileScreen from './screens/ProfileStack/EditProfileScreen';
 import ProfileStackNotifications from './screens/ProfileStack/ProfileStackNotifications';
 
@@ -78,7 +80,7 @@ export default function App() {
   const onClose = () => setIsOpen(false);
   const randomLocation = () => {
     if (navigationRef.isReady()) {
-      navigationRef.navigate(MAIN_STACK_LOCATION_DRAWER, {});
+      navigationRef.navigate(MAIN_STACK_LOCATION_DRAWER, '');
       setIsOpen(false);
     } else {
       setTimeout(randomLocation, 1500);
@@ -110,6 +112,7 @@ export default function App() {
             name={PROFILE_STACK_NOTIFICATIONS}
           />
           <MainStack.Screen component={EditProfileScreen} name={PROFILE_STACK_EDIT_PROFILE} />
+          <MainStack.Screen component={ChangePasswordScreen} name={PROFILE_STACK_CHANGE_PASSWORD} />
           <MainStack.Screen component={LocationDrawer} name={MAIN_STACK_LOCATION_DRAWER} />
           <MainStack.Screen component={CreatePostScreen} name={MAIN_STACK_CREATE_POST} />
           <MainStack.Screen

@@ -54,11 +54,6 @@ export default function CoverScreen() {
     return (
       <Box alignItems="center" justifyContent="center" mx="20%">
         <Image alt="玩野秘境" resizeMode="contain" source={require('../../assets/logo.png')} />
-        <Image
-          source={require('../../assets/loading/loading-cat-brown.gif')}
-          alt="loading"
-          resizeMode="contain"
-        />
       </Box>
     );
   }
@@ -73,6 +68,18 @@ export default function CoverScreen() {
         bg={{ md: 'primary.900' }}
         justifyContent="center">
         <HeaderLogo />
+        <Image
+          source={require('../../assets/loading/loading-cat-brown.gif')}
+          alt="loading"
+          resizeMode="contain"
+          h="100"
+        />
+        <Image
+          source={require('../../assets/loading/loading-cat-gray.gif')}
+          alt="loading"
+          resizeMode="contain"
+          h="100"
+        />
         <ActionButtons />
       </Box>
     </Center>

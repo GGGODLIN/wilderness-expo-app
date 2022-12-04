@@ -18,6 +18,7 @@ import {
   MAIN_STACK_MESSAGES,
   MAIN_STACK_POST_DRAWER,
   MAIN_STACK_PROFILE,
+  PROFILE_STACK_EDIT_PROFILE,
   MAIN_STACK_REGISTER,
   MAIN_STACK_RESET_PASSWORD,
   MAIN_STACK_TABS,
@@ -38,6 +39,7 @@ import ProfileScreen from './screens/MainStack/ProfileScreen';
 import RegisterScreen from './screens/MainStack/RegisterScreen';
 import ResetPasswordScreen from './screens/MainStack/ResetPasswordScreen';
 import TabsScreen from './screens/MainStack/TabsScreen';
+import EditProfileScreen from './screens/ProfileStack/EditProfileScreen';
 import ProfileStackNotifications from './screens/ProfileStack/ProfileStackNotifications';
 
 enableLatestRenderer();
@@ -107,6 +109,7 @@ export default function App() {
             component={ProfileStackNotifications}
             name={PROFILE_STACK_NOTIFICATIONS}
           />
+          <MainStack.Screen component={EditProfileScreen} name={PROFILE_STACK_EDIT_PROFILE} />
           <MainStack.Screen component={LocationDrawer} name={MAIN_STACK_LOCATION_DRAWER} />
           <MainStack.Screen component={CreatePostScreen} name={MAIN_STACK_CREATE_POST} />
           <MainStack.Screen

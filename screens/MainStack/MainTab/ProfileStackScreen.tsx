@@ -6,7 +6,7 @@ import {
   Avatar,
   Button,
   Text,
-  Hidden,
+  Stack,
   IconButton,
   ScrollView,
   Box,
@@ -15,11 +15,12 @@ import {
   Center,
   StatusBar,
   Image,
+  Pressable,
 } from 'native-base';
 import React from 'react';
 import { ImageBackground } from 'react-native';
 
-import { MAIN_STACK_LOGIN } from '../../../NavigationNames';
+import { MAIN_STACK_LOGIN, PROFILE_STACK_EDIT_PROFILE } from '../../../NavigationNames';
 import { NavigationProps } from '../../../Props';
 import FloatingLabelInput from '../../../components/FloatingLabelInput';
 import Colors from '../../../constants/Colors';
@@ -38,14 +39,11 @@ export default function ProfileStackScreen({ navigation }: NavigationProps): JSX
     {
       iconName: 'person',
       iconText: '修改資料',
+      onPress: () => navigation.navigate(PROFILE_STACK_EDIT_PROFILE),
     },
     {
       iconName: 'lock',
       iconText: '修改密碼',
-    },
-    {
-      iconName: 'support-agent',
-      iconText: '聯絡協助',
     },
     {
       iconName: 'settings',
@@ -106,6 +104,44 @@ export default function ProfileStackScreen({ navigation }: NavigationProps): JSX
           );
         })}
       </Box>
+    );
+  }
+
+  function Keyword(props: IconProps) {
+    return (
+      <Pressable
+        onPress={props.onPress}
+        width="22%"
+        px="1"
+        py="1"
+        mx={1}
+        my="1"
+        borderRadius="10"
+        borderColor="coolGray.100"
+        //bg="coolGray.50"
+        _pressed={{ bg: Colors.LOGO_COLOR_GREEN }}
+        children={({ isPressed }) => (
+          <Box>
+            <VStack alignItems="center" justifyContent="flex-start">
+              <Icon
+                size={6}
+                m={1}
+                as={MaterialIcons}
+                name={props.iconName}
+                color={isPressed ? 'white' : 'coolGray.500'}
+              />
+              <Text
+                ml="1"
+                mx="0"
+                my="0"
+                fontSize="xs"
+                color={isPressed ? 'white' : Colors.LOGO_COLOR_GREEN}>
+                {props.iconText}
+              </Text>
+            </VStack>
+          </Box>
+        )}
+      />
     );
   }
 
@@ -241,7 +277,7 @@ export default function ProfileStackScreen({ navigation }: NavigationProps): JSX
                 <Text mt="2" fontSize="lg" fontWeight="bold" color="coolGray.500">
                   打卡
                 </Text>
-                <Text mt="2" fontSize="lg" color="coolGray.500">
+                <Text mt="0" mb="2" fontSize="lg" color="coolGray.500">
                   125
                 </Text>
               </VStack>
@@ -249,7 +285,7 @@ export default function ProfileStackScreen({ navigation }: NavigationProps): JSX
                 <Text mt="2" fontSize="lg" fontWeight="bold" color="coolGray.500">
                   關注
                 </Text>
-                <Text mt="2" fontSize="lg" color="coolGray.500">
+                <Text mt="0" mb="2" fontSize="lg" color="coolGray.500">
                   7
                 </Text>
               </VStack>
@@ -257,7 +293,7 @@ export default function ProfileStackScreen({ navigation }: NavigationProps): JSX
                 <Text mt="2" fontSize="lg" fontWeight="bold" color="coolGray.500">
                   收藏
                 </Text>
-                <Text mt="2" fontSize="lg" color="coolGray.500">
+                <Text mt="0" mb="2" fontSize="lg" color="coolGray.500">
                   26
                 </Text>
               </VStack>
@@ -265,16 +301,25 @@ export default function ProfileStackScreen({ navigation }: NavigationProps): JSX
                 <Text mt="2" fontSize="lg" fontWeight="bold" color="coolGray.500">
                   貢獻
                 </Text>
-                <Text mt="2" fontSize="lg" color="coolGray.500">
+                <Text mt="0" mb="2" fontSize="lg" color="coolGray.500">
                   5
                 </Text>
               </VStack>
             </HStack>
           </Box>
-          <Box pt="0" pb="60" minHeight="700" px="0" py="4" bg={Colors.THEME_MAIN_BACKGROUND}>
-            <Box px="0" py="4" bg="white" borderRadius="20">
+          <Box pt="0" pb="60" minHeight="700" px="0" py="4" bg="white">
+            <Box px="4" py="4" bg="white" borderRadius="20">
               <ScrollView>
-                <OptionList />
+                <Stack
+                  width="100%"
+                  flexWrap="wrap"
+                  direction="row"
+                  justifyContent="space-between"
+                  alignItems="center">
+                  {IconList.map((item, index) => (
+                    <Keyword key={index} {...item} />
+                  ))}
+                </Stack>
               </ScrollView>
             </Box>
             <HStack mt={{ base: 6, md: 4 }} justifyContent="center" alignItems="center" space="4">

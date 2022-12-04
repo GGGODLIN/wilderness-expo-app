@@ -19,7 +19,6 @@ export const MAIN_TAB_HOME = 'MainStack_MainTab_HomeScreen';
 export const MAIN_TAB_COLLECTION = 'MainStack_MainTab_CollectionScreen';
 export const MAIN_TAB_PROFILE = 'MainStack_MainTab_ProfileScreen';
 
-export const PROFILE_STACK_SCORE = 'ProfileStack_Score';
 export const PROFILE_STACK_USER = 'ProfileStack_User';
 export const PROFILE_STACK_NOTIFICATIONS = 'ProfileStack_Notifications';
 export const PROFILE_STACK_SETTINGS = 'ProfileStack_Settings';

@@ -17,6 +17,7 @@ import {
   Box,
   FormControl,
   IInputProps,
+  Input,
 } from 'native-base';
 import React, { useState } from 'react';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -61,22 +62,32 @@ const SignInForm = () => {
 
   return (
     <FormControl>
-      <FormInput
-        py={4}
+      <Input
+        type="email"
+        maxLength={70}
         isRequired
-        label="行動電話 或 Email"
-        labelColor="#9CA3AF"
-        labelBGColor={useColorModeValue('#fff', '#1F2937')}
+        backgroundColor="coolGray.50"
+        borderColor="coolGray.50"
+        borderRadius="10"
+        borderWidth="0"
+        py="4"
+        mb="2"
+        placeholder="請輸入電子郵件"
+        size="lg"
         defaultValue={formData.email}
-        onChangeText={(email: string) => setFormData((prev) => ({ ...prev, email }))}>
-        <FormControl.ErrorMessage>Please enter a valid email</FormControl.ErrorMessage>
-      </FormInput>
-      <FormInput
+        onChangeText={(email: string) => setFormData((prev) => ({ ...prev, email }))}
+      />
+      <Input
+        backgroundColor="coolGray.50"
+        borderColor="coolGray.50"
+        borderRadius="10"
+        borderWidth="0"
+        py="4"
+        mb="2"
+        size="lg"
         isRequired
         secureTextEntry={!showPass}
-        label="密碼"
-        labelColor="#9CA3AF"
-        labelBGColor={useColorModeValue('#fff', '#1F2937')}
+        placeholder="請輸入密碼"
         defaultValue={formData.password}
         onChangeText={(newPassword: string) =>
           setFormData((prev) => ({ ...prev, password: newPassword }))
@@ -97,76 +108,62 @@ const SignInForm = () => {
               setShowPass(!showPass);
             }}
           />
-        }>
-        <FormControl.ErrorMessage>Invalid password</FormControl.ErrorMessage>
-      </FormInput>
-      <Link
-        ml="auto"
-        _text={{
-          fontSize: { base: 'sm', md: 'xs' },
-          fontWeight: 'bold',
-          textDecoration: 'none',
-        }}
-        _light={{
-          _text: {
-            color: 'primary.900',
-          },
-        }}
-        _dark={{
-          _text: {
-            color: 'primary.500',
-          },
-        }}
-        onPress={() => {
-          navigation.navigate(MAIN_STACK_RESET_PASSWORD);
-        }}>
-        忘記密碼?
-      </Link>
-      <Checkbox
-        value="demo"
-        defaultIsChecked
-        accessibilityLabel="Remember me"
-        my="5"
-        _text={{
-          fontSize: 'sm',
-          fontWeight: 'normal',
-          pl: '3',
-        }}
-        _dark={{
-          value: 'checkbox',
-          _checked: {
-            value: 'checkbox',
-            bg: 'primary.700',
-            borderColor: 'primary.700',
-            _icon: { color: 'white' },
-          },
-          _text: {
-            color: 'coolGray.400',
-          },
-        }}
-        _light={{
-          value: 'checkbox',
-          _checked: {
-            value: 'checkbox',
-            bg: 'primary.900',
-            borderColor: 'primary.900',
-          },
-          _text: {
-            color: 'coolGray.800',
-          },
-        }}>
-        保持登入狀態
-      </Checkbox>
-      <Button
-        variant="solid"
-        size="lg"
-        mt={{ base: 5, md: 3 }}
-        style={{ backgroundColor: Colors.LOGO_COLOR_BROWN }}
-        onPress={() => {
-          navigation.navigate(MAIN_STACK_TABS);
-        }}>
-        登入
-      </Button>
+        }
+      />
+      <HStack justifyContent="space-between" mb="10">
+        <Link
+          _text={{
+            fontSize: 'sm',
+            fontWeight: 'bold',
+            textDecoration: 'none',
+          }}
+          color={Colors.LOGO_COLOR_GREEN}
+          onPress={() => {
+            navigation.navigate(MAIN_STACK_REGISTER);
+          }}>
+          註冊新帳號
+        </Link>
+        <Link
+          ml="auto"
+          _text={{
+            fontSize: { base: 'sm', md: 'xs' },
+            fontWeight: 'bold',
+            textDecoration: 'none',
+          }}
+          _light={{
+            _text: {
+              color: 'primary.900',
+            },
+          }}
+          _dark={{
+            _text: {
+              color: 'primary.500',
+            },
+          }}
+          onPress={() => {
+            navigation.navigate(MAIN_STACK_RESET_PASSWORD);
+          }}>
+          忘記密碼?
+        </Link>
+      </HStack>
+      <Center width="100%">
+        <Button
+          width="100%"
+          my="4"
+          mb="20"
+          mx="2"
+          py={3}
+          color="white"
+          size="lg"
+          rounded="full"
+          bg={Colors.THEME_MAIN_COLOR}
+          _pressed={{ bg: Colors.LOGO_COLOR_GREEN }}
+          onPress={() => {
+            navigation.navigate(MAIN_STACK_TABS);
+          }}>
+          登入
+        </Button>
+      </Center>
     </FormControl>
   );
 };
@@ -182,8 +179,8 @@ const SignInComponent = () => {
       bounces={false}>
       <MobileHeader />
       <Box
-        px={{ base: 4, md: 8 }}
-        py="8"
+        px="4"
+        py="6"
         flex={1}
         _light={{ bg: 'white' }}
         _dark={{ bg: 'coolGray.800' }}
@@ -195,103 +192,14 @@ const SignInComponent = () => {
           fontWeight="bold"
           _light={{ color: 'coolGray.800' }}
           _dark={{ color: 'coolGray.50' }}
-          mb={8}>
+          mb={4}>
           登入會員
         </Text>
         <SignInForm />
-        <HStack my={4} space="2" alignItems="center" justifyContent="center">
-          <Divider w="30%" _light={{ bg: 'coolGray.200' }} _dark={{ bg: 'coolGray.700' }} />
-          <Text
-            fontWeight="medium"
-            _light={{
-              color: 'coolGray.400',
-            }}
-            _dark={{
-              color: 'coolGray.300',
-            }}>
-            or
-          </Text>
-          <Divider w="30%" _light={{ bg: 'coolGray.200' }} _dark={{ bg: 'coolGray.700' }} />
-        </HStack>
-        {/*
-        <HStack mt={{ base: 6, md: 4 }} justifyContent="center" alignItems="center" space="4">
-          <Link href="https://nativebase.io">
-            <Image
-              width="6"
-              height="6"
-              source={require('./images/facebook.png')}
-              alt="Alternate Text"
-            />
-          </Link>
-          <Link href="https://nativebase.io">
-            <Image
-              width="6"
-              height="6"
-              source={require('./images/GoogleLogo.png')}
-              alt="Alternate Text"
-            />
-          </Link>
-        </HStack>
-        */}
-        <HStack
-          space="1"
-          safeAreaBottom
-          alignItems="center"
-          justifyContent="center"
-          /*mt={{ base: 'auto', md: '8' }} */
-        >
-          <Text
-            fontSize="sm"
-            fontWeight="normal"
-            _light={{ color: 'coolGray.500' }}
-            _dark={{ color: 'coolGray.400' }}>
-            第一次使用嗎?
-          </Text>
-          <Link
-            _text={{
-              fontSize: { base: 'sm', md: 'xs' },
-              fontWeight: 'bold',
-              textDecoration: 'none',
-            }}
-            _light={{
-              _text: {
-                color: 'primary.900',
-              },
-            }}
-            _dark={{
-              _text: {
-                color: 'primary.500',
-              },
-            }}
-            onPress={() => {
-              navigation.navigate(MAIN_STACK_REGISTER);
-            }}>
-            註冊新帳號
-          </Link>
-        </HStack>
       </Box>
     </KeyboardAwareScrollView>
   );
 };
-
-function SideContainerWeb() {
-  return (
-    <Center
-      flex="1"
-      _light={{ bg: 'white' }}
-      _dark={{ bg: 'primary.700' }}
-      borderTopLeftRadius={{ md: 'md' }}
-      borderBottomLeftRadius={{ md: 'md' }}>
-      <Image
-        h="24"
-        size="80"
-        alt="NativeBase Startup+ "
-        resizeMode="contain"
-        source={require('../../assets/logo.png')}
-      />
-    </Center>
-  );
-}
 
 function MobileHeader() {
   return (
@@ -316,10 +224,6 @@ function MobileHeader() {
 export default function LoginScreen() {
   return (
     <GuestLayout>
-      <Hidden till="md">
-        <SideContainerWeb />
-      </Hidden>
-
       <SignInComponent />
     </GuestLayout>
   );

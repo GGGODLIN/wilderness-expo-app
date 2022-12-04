@@ -278,7 +278,7 @@ export default function ProfileStackScreen({ navigation }: NavigationProps): JSX
               </ScrollView>
             </Box>
             <HStack mt={{ base: 6, md: 4 }} justifyContent="center" alignItems="center" space="4">
-              <Link href="https://facebook.com">
+              <Link href="https://www.facebook.com/WildernessComTW">
                 <Image
                   width="6"
                   height="6"
@@ -286,7 +286,7 @@ export default function ProfileStackScreen({ navigation }: NavigationProps): JSX
                   alt="Alternate Text"
                 />
               </Link>
-              <Link href="https://google.com.tw">
+              <Link href="https://line.me/R/ti/p/@004uiixw">
                 <Image
                   width="6"
                   height="6"

@@ -11,8 +11,8 @@ import {
   ScrollView,
   Box,
   Circle,
-  useTheme,
-  useColorMode,
+  Link,
+  Center,
   StatusBar,
   Image,
 } from 'native-base';
@@ -204,23 +204,30 @@ export default function ProfileStackScreen({ navigation }: NavigationProps): JSX
         <Box safeAreaTop bg="#00000060">
           <HStack px="10%" pt="10" pb="10" alignItems="center" justifyContent="space-between">
             <VStack width="30%" alignItems="flex-start">
-              <Image source={require('../../../assets/avatars/cate.png')} width={16} height={16} />
+              <Center rounded="full">
+                <Image
+                  source={require('../../../assets/avatars/cate.png')}
+                  width={16}
+                  height={16}
+                  alt="avatar"
+                />
+              </Center>
             </VStack>
-            <VStack width="70%" alignItems="flex-start">
-              <Box>
-                <Box borderWidth="1" borderColor="coolGray.300" borderRadius="xl" px="2" py="1">
-                  <Text fontSize="xs" fontWeight="normal" color="white">
-                    好野人
-                  </Text>
-                </Box>
-              </Box>
+            <VStack width="50%" alignItems="flex-start">
+              <Text fontSize="xs" fontWeight="normal" color="coolGray.100">
+                好野人
+              </Text>
               <Text fontSize="xl" fontWeight="normal" color="white">
                 Wolf
               </Text>
-              <Text fontSize="sm" fontWeight="normal" color="coolGray.100">
-                wildernesscomtw@gmail.com
-              </Text>
             </VStack>
+            <Box>
+              <Box borderWidth="1" borderColor="coolGray.300" borderRadius="xl" px="2" py="1">
+                <Text fontSize="xs" fontWeight="normal" color="white">
+                  打卡 125 次
+                </Text>
+              </Box>
+            </Box>
           </HStack>
           <Box
             pt="5"
@@ -270,6 +277,24 @@ export default function ProfileStackScreen({ navigation }: NavigationProps): JSX
                 <OptionList />
               </ScrollView>
             </Box>
+            <HStack mt={{ base: 6, md: 4 }} justifyContent="center" alignItems="center" space="4">
+              <Link href="https://facebook.com">
+                <Image
+                  width="6"
+                  height="6"
+                  source={require('../../../assets/icon/facebook.png')}
+                  alt="Alternate Text"
+                />
+              </Link>
+              <Link href="https://google.com.tw">
+                <Image
+                  width="6"
+                  height="6"
+                  source={require('../../../assets/icon/line.png')}
+                  alt="Alternate Text"
+                />
+              </Link>
+            </HStack>
           </Box>
         </Box>
       </ImageBackground>

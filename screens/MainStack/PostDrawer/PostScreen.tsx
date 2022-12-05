@@ -429,6 +429,18 @@ function CustomTitle() {
           _light={{ color: 'coolGray.700' }}>
           作者名稱
         </Text>
+        <Box>
+          <Box
+            borderWidth="1"
+            borderColor={Colors.LOGO_COLOR_BROWN}
+            borderRadius="xl"
+            px="2"
+            py="1">
+            <Text fontSize="xs" fontWeight="normal" color={Colors.LOGO_COLOR_BROWN}>
+              打卡 125 次
+            </Text>
+          </Box>
+        </Box>
       </Flex>
     </Pressable>
   );

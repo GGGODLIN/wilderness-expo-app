@@ -286,6 +286,7 @@ const ActionButton = () => {
       justifyContent="space-between"
       px={4}
       p={2}
+      mb={6}
       style={{ backgroundColor: 'white' }}
       shadow={2}>
       <IconButton

@@ -66,7 +66,7 @@ function MobileHeader() {
             _light={{
               color: Colors.LOGO_COLOR_BROWN,
             }}>
-            填寫必要資訊後重設密碼
+            請填寫您註冊時使用的 Email，我們將會寄送一封信件給您，請點擊信件中的連結來重設密碼。
           </Text>
         </VStack>
       </VStack>

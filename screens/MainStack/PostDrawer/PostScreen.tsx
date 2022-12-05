@@ -1,4 +1,4 @@
-import { MaterialIcons, FontAwesome, AntDesign } from '@expo/vector-icons';
+import { MaterialIcons, FontAwesome, AntDesign, Octicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import {
   Box,
@@ -75,11 +75,11 @@ const reviews: ReviewsType[] = [
 
 function Reviews() {
   return (
-    <VStack mt={{ base: 4, md: 6 }} space={{ base: 6, md: 8 }}>
+    <VStack bg={Colors.LOGO_COLOR_WHITE_BACKGROUND}>
       {reviews.map((item, idx) => {
         return (
-          <VStack key={idx} space="3">
-            <HStack space="2">
+          <VStack key={idx} mt="4" bg="white" rounded={10} px={4} py={4}>
+            <HStack space="2" alignItems="center">
               <Avatar height="6" width="6" source={item.imageUrl} />
               <VStack space="1">
                 <Text
@@ -99,6 +99,7 @@ function Reviews() {
               </Text>
             </HStack>
             <Text
+              mt="2"
               alignItems="center"
               _light={{ color: 'coolGray.800' }}
               _dark={{ color: 'coolGray.50' }}
@@ -112,92 +113,75 @@ function Reviews() {
   );
 }
 
-const sizeOptions: SizesType[] = [
-  {
-    size: 'New Born',
-  },
-  {
-    size: 'Tiny Baby',
-  },
-  {
-    size: '0-3 M',
-  },
-];
-
-const Action = () => {
+const ActionButton = () => {
+  const navigation = useNavigation<Nav>();
   const [favorite, setFavorite] = useState(false);
   const [star, setStar] = useState(false);
+  const [like, setLike] = useState(false);
+  const [location, setLocation] = useState(false);
 
   return (
-    <HStack
-      space="4"
-      alignItems="center"
-      px={4}
-      p={2}
-      style={{ backgroundColor: Colors.THEME_MAIN_BACKGROUND }}>
-      <Text
-        fontSize="sm"
-        fontWeight="medium"
-        color={useColorModeValue('coolGray.500', 'coolGray.400')}
-        lineHeight="30"
-        my={2}>
-        500 likes
-      </Text>
-      <IconButton
-        mx={0}
-        py={2}
-        onPress={() => setFavorite(!favorite)}
-        variant="light"
-        _light={{
-          bg: Colors.THEME_MAIN_BACKGROUND,
-        }}
-        _dark={{
-          bg: 'coolGray.700',
-        }}
-        icon={
-          <Icon
-            size="6"
-            name={favorite ? 'favorite' : 'favorite-border'}
-            as={MaterialIcons}
-            _dark={{ color: 'primary.500' }}
-            _light={{ color: Colors.LOGO_COLOR_BROWN }}
-          />
-        }
-      />
-      <IconButton
-        mx={0}
-        py={2}
-        onPress={() => setStar(!star)}
-        variant="light"
-        _light={{
-          bg: Colors.THEME_MAIN_BACKGROUND,
-        }}
-        _dark={{
-          bg: 'coolGray.700',
-        }}
-        icon={
-          <Icon
-            size="7"
-            name={star ? 'star' : 'star-border'}
-            as={MaterialIcons}
-            _dark={{ color: 'primary.500' }}
-            _light={{ color: Colors.LOGO_COLOR_BROWN }}
-          />
-        }
-      />
-      <Button
-        flex={1}
-        size="lg"
-        variant="solid"
-        _light={{
-          bg: Colors.LOGO_COLOR_GREEN,
-        }}
-        _dark={{
-          bg: 'coolGray.700',
-        }}>
-        說點什麼
-      </Button>
-    </HStack>
+    <VStack>
+      <HStack px="4" pt="2" pb="1" justifyContent="space-between">
+        <Pressable
+          onPress={() => {
+            navigation.navigate(MAIN_STACK_LOCATION_DRAWER);
+          }}>
+          <HStack>
+            <Icon
+              mr="2"
+              size="6"
+              name="enviroment"
+              as={AntDesign}
+              color={Colors.LOGO_COLOR_GREEN}
+            />
+            <Text fontSize="sm" fontWeight="medium" py={1} color={Colors.LOGO_COLOR_GREEN}>
+              枕頭山營地
+            </Text>
+          </HStack>
+        </Pressable>
+      </HStack>
+      <HStack
+        space="4"
+        alignItems="center"
+        mb={6}
+        px={4}
+        p={2}
+        style={{ backgroundColor: Colors.THEME_MAIN_BACKGROUND }}>
+        <Button
+          flex={1}
+          variant="solid"
+          bg={like ? Colors.LOGO_COLOR_BROWN : Colors.LOGO_COLOR_GREEN}
+          _pressed={{ bg: Colors.LOGO_COLOR_GREEN }}
+          onPress={() => setLike(!like)}>
+          {like ? '喜歡' : '收回'}
+        </Button>
+        <Button
+          flex={1}
+          variant="solid"
+          bg={favorite ? Colors.LOGO_COLOR_BROWN : Colors.LOGO_COLOR_GREEN}
+          _pressed={{ bg: Colors.LOGO_COLOR_GREEN }}
+          onPress={() => setFavorite(!favorite)}>
+          {favorite ? '收藏此篇' : '取消收藏'}
+        </Button>
+        <Button
+          flex={1}
+          variant="solid"
+          bg={star ? Colors.LOGO_COLOR_BROWN : Colors.LOGO_COLOR_GREEN}
+          _pressed={{ bg: Colors.LOGO_COLOR_GREEN }}
+          onPress={() => setStar(!star)}>
+          {star ? '關注作者' : '取消關注'}
+        </Button>
+        <Button
+          flex={1}
+          variant="solid"
+          bg={location ? Colors.LOGO_COLOR_BROWN : Colors.LOGO_COLOR_GREEN}
+          _pressed={{ bg: Colors.LOGO_COLOR_GREEN }}
+          onPress={() => setLocation(!location)}>
+          {location ? '收藏地點' : '移除地點'}
+        </Button>
+      </HStack>
+    </VStack>
   );
 };
 
@@ -348,20 +332,11 @@ function LeaveMessage() {
 
   const { reason, password } = deactivateForm;
 
-  const confirmPassLabelBGColor = useColorModeValue('white', colors.coolGray[800]);
-
   const handleFormUpdate = (name: string, value: string) =>
     setDeactivateForm((prev) => ({ ...prev, [name]: value }));
 
   return (
-    <Box
-      px={{ base: 4, md: 60, lg: 140 }}
-      py={{ base: 4, md: 8 }}
-      rounded={{ md: 'sm' }}
-      _light={{ bg: 'white' }}
-      _dark={{ bg: 'coolGray.800' }}
-      flex={1}>
-      <Divider my={4} />
+    <Box rounded="10" bg="white" flex={1} px="4" py="4" mt="4" mb="10">
       <Box>
         <FormControl>
           <VStack space="0">
@@ -454,14 +429,6 @@ function CustomTitle() {
           _light={{ color: 'coolGray.700' }}>
           作者名稱
         </Text>
-        {/*
-        <Button
-          size="lg"
-          style={{ backgroundColor: Colors.LOGO_COLOR_GREEN }}
-          _pressed={{ bg: Colors.LOGO_COLOR_BROWN }}>
-          關注
-        </Button>
-    */}
       </Flex>
     </Pressable>
   );
@@ -477,73 +444,25 @@ export default function PostScreen({ navigation }: NavigationProps): JSX.Element
       showBackButton>
       <KeyboardAwareScrollView style={{ flex: 1 }} bounces={false}>
         <Stack bg="white">
-          <HStack px="4" pt="2" pb="1" justifyContent="space-between">
-            <Pressable
-              onPress={() => {
-                navigation.navigate(MAIN_STACK_LOCATION_DRAWER);
-              }}>
-              <HStack>
-                <Icon
-                  mr="2"
-                  size="6"
-                  name="enviroment"
-                  as={AntDesign}
-                  color={Colors.LOGO_COLOR_GREEN}
-                />
-                <Text fontSize="sm" fontWeight="medium" py={1} color={Colors.LOGO_COLOR_GREEN}>
-                  地點名稱
-                </Text>
-              </HStack>
-            </Pressable>
-            <HStack>
-              <Button
-                mx="1"
-                variant="outline"
-                size="sm"
-                color="black"
-                fontColor="black"
-                style={{ backgroundColor: 'white' }}
-                _pressed={{ bg: 'coolGray.100' }}>
-                收藏地點
-              </Button>
-              <Button
-                mx="1"
-                variant="outline"
-                size="sm"
-                color="black"
-                fontColor="black"
-                style={{ backgroundColor: 'white' }}
-                _pressed={{ bg: 'coolGray.100' }}>
-                關注作者
-              </Button>
-            </HStack>
-          </HStack>
           <CarouselLayout />
         </Stack>
-        <Stack
-          px={{ base: '4', md: '8' }}
-          py={{ base: '0', md: '8' }}
-          flex={1}
-          rounded={{ md: 'sm' }}
-          _light={{ bg: 'white' }}
-          _dark={{ bg: 'coolGray.800' }}
-          direction={{ base: 'column', md: 'row' }}>
+        <Stack bg="white" px="4">
           <ProductInfo productInfo={postDetail} />
-
-          <Divider
-            mt="5"
-            _light={{
-              color: 'coolGray.200',
-            }}
-            _dark={{
-              color: 'coolGray.700',
-            }}
-          />
-          <Reviews />
+          <Text
+            fontSize="sm"
+            fontWeight="medium"
+            color={useColorModeValue('coolGray.500', 'coolGray.400')}
+            lineHeight="30"
+            my={2}>
+            500 likes
+          </Text>
         </Stack>
-        <LeaveMessage />
+        <Stack bg={Colors.LOGO_COLOR_WHITE_BACKGROUND} px="2">
+          <Reviews />
+          <LeaveMessage />
+        </Stack>
       </KeyboardAwareScrollView>
-      <Action />
+      <ActionButton />
     </DashboardLayout>
   );
 }

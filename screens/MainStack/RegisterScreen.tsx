@@ -8,7 +8,7 @@ import {
   VStack,
   Text,
   Link,
-  Divider,
+  Input,
   Icon,
   Hidden,
   Center,
@@ -18,11 +18,12 @@ import {
   useTheme,
   useColorMode,
   Pressable,
+  IconButton,
 } from 'native-base';
 import React, { useState } from 'react';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-import { MAIN_STACK_LOGIN } from '../../NavigationNames';
+import { MAIN_STACK_LOGIN, MAIN_TAB_HOME } from '../../NavigationNames';
 import { Nav } from '../../Props';
 import FloatingLabelInput from '../../components/FloatingLabelInput';
 import Colors from '../../constants/Colors';
@@ -107,6 +108,7 @@ const FormInput = ({
   </VStack>
 );
 const SignUpForm = () => {
+  const navigation = useNavigation<Nav>();
   const { colors } = useTheme();
   const { colorMode } = useColorMode();
 
@@ -125,70 +127,97 @@ const SignUpForm = () => {
 
   return (
     <FormControl>
-      <FormInput
-        py={4}
+      <HStack alignItems="flex-end" mb="2">
+        <Text fontSize="lg" fontWeight="bold" color="coolGray.700" mb={0} mr={2}>
+          Email
+        </Text>
+      </HStack>
+      <Input
+        type="email"
+        maxLength={70}
         isRequired
-        label="行動電話 或 Email"
-        labelColor={colors.coolGray[400]}
-        labelBGColor={colorMode === 'light' ? 'white' : colors.coolGray[800]}
+        backgroundColor="coolGray.50"
+        borderColor="coolGray.50"
+        borderRadius="10"
+        borderWidth="0"
+        py="4"
+        mb="2"
+        placeholder="請輸入電子郵件"
+        size="lg"
         defaultValue={formData.email}
-        onChangeText={(email: string) => setFormData((prev) => ({ ...prev, email }))}>
-        <FormControl.ErrorMessage>Please enter a valid email</FormControl.ErrorMessage>
-      </FormInput>
-      <FormInput
-        py={4}
+        onChangeText={(email: string) => setFormData((prev) => ({ ...prev, email }))}
+      />
+      <HStack alignItems="flex-end" mb="2">
+        <Text fontSize="lg" fontWeight="bold" color="coolGray.700" mb={0} mr={2}>
+          設定密碼
+        </Text>
+      </HStack>
+      <Input
+        backgroundColor="coolGray.50"
+        borderColor="coolGray.50"
+        borderRadius="10"
+        borderWidth="0"
+        py="4"
+        mb="2"
+        size="lg"
         isRequired
         secureTextEntry={!showPass}
-        label="設定密碼"
-        labelColor={colors.coolGray[400]}
-        labelBGColor={colorMode === 'light' ? 'white' : colors.coolGray[800]}
+        placeholder="請輸入密碼"
         defaultValue={formData.password}
         onChangeText={(newPassword: string) =>
           setFormData((prev) => ({ ...prev, password: newPassword }))
         }
         InputRightElement={
-          <Pressable
-            mr="2"
+          <IconButton
+            mr="1"
+            variant="unstyled"
+            icon={
+              <Icon
+                size="5"
+                color="coolGray.400"
+                as={MaterialIcons}
+                name={showPass ? 'visibility' : 'visibility-off'}
+              />
+            }
             onPress={() => {
               setShowPass(!showPass);
-            }}>
-            <Icon
-              size="5"
-              color="coolGray.400"
-              as={MaterialIcons}
-              name={showPass ? 'visibility' : 'visibility-off'}
-            />
-          </Pressable>
-        }>
-        <FormControl.ErrorMessage>Please enter a valid password</FormControl.ErrorMessage>
-      </FormInput>
-      <FormInput
-        py={4}
+            }}
+          />
+        }
+      />
+      <Input
+        backgroundColor="coolGray.50"
+        borderColor="coolGray.50"
+        borderRadius="10"
+        borderWidth="0"
+        py="4"
+        mb="2"
+        size="lg"
         isRequired
-        secureTextEntry={!showConfirmPass}
-        label="再輸入一次密碼"
-        labelColor={colors.coolGray[400]}
-        labelBGColor={colorMode === 'light' ? 'white' : colors.coolGray[800]}
-        defaultValue={formData.confirmPassword}
+        secureTextEntry={!showPass}
+        placeholder="請再輸入一次密碼"
+        defaultValue={formData.password}
         onChangeText={(newPassword: string) =>
-          setFormData((prev) => ({ ...prev, confirmPassword: newPassword }))
+          setFormData((prev) => ({ ...prev, password: newPassword }))
         }
         InputRightElement={
-          <Pressable
-            mr="2"
+          <IconButton
+            mr="1"
+            variant="unstyled"
+            icon={
+              <Icon
+                size="5"
+                color="coolGray.400"
+                as={MaterialIcons}
+                name={showPass ? 'visibility' : 'visibility-off'}
+              />
+            }
             onPress={() => {
-              setShowConfirmPass(!showConfirmPass);
-            }}>
-            <Icon
-              size="5"
-              color="coolGray.400"
-              as={MaterialIcons}
-              name={showConfirmPass ? 'visibility' : 'visibility-off'}
-            />
-          </Pressable>
-        }>
-        <FormControl.ErrorMessage>密碼不相同</FormControl.ErrorMessage>
-      </FormInput>
+              setShowPass(!showPass);
+            }}
+          />
+        }
+      />
       <Checkbox
         _dark={{
           value: 'demo',
@@ -264,13 +293,25 @@ const SignUpForm = () => {
           </Link>
         </HStack>
       </Checkbox>
-      <Button
-        mt={{ base: 8, md: 6 }}
-        variant="solid"
-        size="lg"
-        style={{ backgroundColor: Colors.LOGO_COLOR_BROWN }}>
-        註冊
-      </Button>
+      <Center width="100%">
+        <Button
+          width="100%"
+          mt="10"
+          my="4"
+          mb="20"
+          mx="2"
+          py={3}
+          color="white"
+          size="lg"
+          rounded="full"
+          bg={Colors.THEME_MAIN_COLOR}
+          _pressed={{ bg: Colors.LOGO_COLOR_GREEN }}
+          onPress={() => {
+            navigation.navigate(MAIN_TAB_HOME);
+          }}>
+          註冊
+        </Button>
+      </Center>
     </FormControl>
   );
 };

@@ -110,12 +110,13 @@ const SignInForm = () => {
           />
         }
       />
-      <HStack justifyContent="space-between" mb="10">
+      <HStack justifyContent="space-between" mt="2" mb="10">
         <Link
           _text={{
             fontSize: 'sm',
             fontWeight: 'bold',
             textDecoration: 'none',
+            color: 'coolGray.500',
           }}
           color={Colors.LOGO_COLOR_GREEN}
           onPress={() => {
@@ -126,20 +127,12 @@ const SignInForm = () => {
         <Link
           ml="auto"
           _text={{
-            fontSize: { base: 'sm', md: 'xs' },
+            fontSize: 'sm',
             fontWeight: 'bold',
             textDecoration: 'none',
+            color: 'coolGray.400',
           }}
-          _light={{
-            _text: {
-              color: 'primary.900',
-            },
-          }}
-          _dark={{
-            _text: {
-              color: 'primary.500',
-            },
-          }}
+          color="coolGray.600"
           onPress={() => {
             navigation.navigate(MAIN_STACK_RESET_PASSWORD);
           }}>

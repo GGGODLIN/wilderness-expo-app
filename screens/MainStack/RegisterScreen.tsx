@@ -339,85 +339,7 @@ function SignUpFormComponent() {
         borderTopRightRadius={{ base: '2xl', md: 'md' }}
         borderBottomRightRadius={{ base: '0', md: 'md' }}
         borderTopLeftRadius={{ base: '2xl', md: '0' }}>
-        <Hidden till="md">
-          <Text
-            fontSize="2xl"
-            fontWeight="bold"
-            _light={{ color: 'coolGray.800' }}
-            _dark={{ color: 'coolGray.50' }}
-            mb="8">
-            Sign up to continue
-          </Text>
-        </Hidden>
-
         <SignUpForm />
-
-        {/*
-        <HStack space="2" mt={{ base: 6, md: 4 }} alignItems="center" justifyContent="center">
-          <Divider w="30%" _light={{ bg: 'coolGray.200' }} _dark={{ bg: 'coolGray.700' }} />
-          <Text
-            fontWeight="medium"
-            _light={{
-              color: 'coolGray.400',
-            }}
-            _dark={{
-              color: 'coolGray.300',
-            }}>
-            or
-          </Text>
-          <Divider w="30%" _light={{ bg: 'coolGray.200' }} _dark={{ bg: 'coolGray.700' }} />
-        </HStack>
-        <HStack space="4" mt={{ base: 6, md: 4 }} alignItems="center" justifyContent="center">
-          <Link href="https://nativebase.io">
-            <Image
-              width="6"
-              height="6"
-              source={require('./images/facebook.png')}
-              alt="Alternate Text"
-            />
-          </Link>
-          <Link href="https://nativebase.io">
-            <Image
-              width="6"
-              height="6"
-              source={require('./images/GoogleLogo.png')}
-              alt="Alternate Text"
-            />
-          </Link>
-        </HStack>
-        */}
-        {/*
-        <HStack space="1" alignItems="center" justifyContent="center" mt="auto">
-          <Text
-            fontSize="sm"
-            color="coolGray.500"
-            fontWeight="normal"
-            _dark={{ color: 'coolGray.400' }}>
-            已經有帳號了嗎?
-          </Text>
-          <Link
-            href="https://google.com.tw"
-            _text={{
-              fontSize: 'sm',
-              fontWeight: 'bold',
-              textDecoration: 'none',
-            }}
-            _light={{
-              _text: {
-                color: 'primary.900',
-              },
-            }}
-            _dark={{
-              _text: {
-                color: 'primary.500',
-                fontSize: 'sm',
-                fontWeight: 'bold',
-              },
-            }}>
-            直接登入
-          </Link>
-        </HStack>
-        */}
       </Box>
     </KeyboardAwareScrollView>
   );
@@ -426,9 +348,6 @@ function SignUpFormComponent() {
 export default function RegisterScreen() {
   return (
     <GuestLayout>
-      <Hidden till="md">
-        <SideContainerWeb />
-      </Hidden>
       <Box flex="1">
         <SignUpFormComponent />
       </Box>

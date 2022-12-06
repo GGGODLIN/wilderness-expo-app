@@ -18,6 +18,7 @@ import {
   Select,
   CheckIcon,
   Stack,
+  Fab,
 } from 'native-base';
 import React, { useEffect, useRef, useState } from 'react';
 import { Keyboard, Dimensions, ScrollView, TouchableOpacity } from 'react-native';
@@ -245,9 +246,11 @@ const mapStyle = [
 ];
 
 export default function ExploreScreen({ navigation }: NavigationProps): JSX.Element {
+  // Location Card 地點清單
   const [showLocationCard, setShowLocationCard] = useState(true);
+  const [showLocationList, setShowLocationList] = useState(false);
 
-  // 篩選列
+  // Filter Bar 篩選列
   const [showFilterCondition, setShowFilterCondition] = useState(false);
   const [showFilterTag, setShowFilterTag] = useState(false);
   const [showFilterFacility, setShowFilterFacility] = useState(false);
@@ -640,6 +643,7 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
   return (
     <DashboardLayout title="活動" customTitle={<CustomTitle />}>
       <Box px={{ md: 8, xl: 35 }} py={{ md: 5 }} flex={1}>
+        {/* Select List */}
         {showCountry && (
           <VStack
             position="absolute"
@@ -727,6 +731,44 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
             </Button>
           </VStack>
         )}
+        {showRecommend && (
+          <VStack
+            position="absolute"
+            bg="white"
+            bottom={0}
+            left={0}
+            w="100%"
+            h="300"
+            pb="30"
+            shadow={2}
+            zIndex={9}
+            flex={1}
+            justifyContent="center">
+            <Picker
+              mode="dialog"
+              style={{ height: 100, flex: 1 }}
+              accessibilityLabel="選擇推薦"
+              placeholder="選擇推薦"
+              selectedValue={recommend}
+              onValueChange={(itemValue, itemIndex) => {
+                setRecommend(itemValue);
+              }}>
+              <Picker.Item label="不限制推薦" value="不限制推薦" />
+              <Picker.Item label="人氣推薦" value="人氣推薦" />
+              <Picker.Item label="官方推薦" value="官方推薦" />
+            </Picker>
+            <Button
+              mx={4}
+              variant="solid"
+              size="lg"
+              style={{ backgroundColor: 'black' }}
+              onPress={() => {
+                setShowRecommend(false);
+              }}>
+              選擇
+            </Button>
+          </VStack>
+        )}
         {showCrowded && (
           <VStack
             position="absolute"
@@ -765,6 +807,7 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
             </Button>
           </VStack>
         )}
+        {/* Filter Bar */}
         <HStack
           bg="coolGray.50"
           justifyContent="space-between"
@@ -775,7 +818,7 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
           w="100%"
           px={6}
           py={1}
-          zIndex={8}>
+          zIndex={20}>
           <TouchableOpacity
             onPress={() => {
               setShowFilterCondition(!showFilterCondition);
@@ -841,7 +884,7 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
             py={4}
             px={{ base: 0, md: 0 }}
             pt={0}
-            zIndex={2}
+            zIndex={19}
             position="absolute"
             alignItems="center"
             right={0}
@@ -932,6 +975,49 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
               */}
             </HStack>
             <HStack space="2">
+              <VStack
+                backgroundColor={Colors.LOGO_COLOR_WHITE_BACKGROUND}
+                borderColor="coolGray.50"
+                borderRadius="10"
+                borderWidth="0"
+                py="4"
+                px="2"
+                mx="1"
+                my="2"
+                w="44%">
+                <Text
+                  w="100%"
+                  onPress={() => {
+                    setShowAltitude(false);
+                    setShowCountry(false);
+                    setShowRecommend(!showRecommend);
+                    setShowCrowded(false);
+                  }}>
+                  {recommend}
+                </Text>
+              </VStack>
+              <VStack
+                backgroundColor={Colors.LOGO_COLOR_WHITE_BACKGROUND}
+                borderColor="coolGray.50"
+                borderRadius="10"
+                borderWidth="0"
+                py="4"
+                px="2"
+                mx="1"
+                my="2"
+                w="44%">
+                <Text
+                  w="100%"
+                  onPress={() => {
+                    setShowCountry(false);
+                    setShowRecommend(false);
+                    setShowAltitude(false);
+                    setShowCrowded(!showCrowded);
+                  }}>
+                  {crowded}
+                </Text>
+              </VStack>
+              {/*
               <Select
                 selectedValue={level}
                 minWidth="45%"
@@ -962,6 +1048,7 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
                 <Select.Item label="偶爾" value="1" />
                 <Select.Item label="總是" value="2" />
               </Select>
+              */}
             </HStack>
           </Box>
         ) : null}
@@ -972,7 +1059,7 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
             py={4}
             px={{ base: 0, md: 0 }}
             pt={0}
-            zIndex={2}
+            zIndex={19}
             position="absolute"
             alignItems="center"
             right={0}
@@ -993,7 +1080,7 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
             py={4}
             px={0}
             pt={0}
-            zIndex={2}
+            zIndex={19}
             position="absolute"
             alignItems="center"
             right={0}
@@ -1020,6 +1107,8 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
           ref={mapRef}
           onPress={() => {
             Keyboard.dismiss();
+            setShowLocationCard(false);
+            setShowLocationList(false);
             setShowFilterCondition(false);
             setShowFilterTag(false);
             setShowFilterFacility(false);
@@ -1060,7 +1149,14 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
         {/* ========= Map Part - End ========= */}
 
         {/* ========= Pan Part - Start ========= */}
-        <Box zIndex={showLocationCard ? 3 : -1} position="absolute" bottom={10} left={0} right={0}>
+        <Box
+          zIndex={showLocationCard ? 3 : -1}
+          position="absolute"
+          bottom={0}
+          left={0}
+          right={0}
+          pb="7%"
+          bg="transparent">
           <ScrollView
             ref={panRef}
             horizontal
@@ -1189,7 +1285,139 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
             </HStack>
           </ScrollView>
         </Box>
+        <Box
+          zIndex={showLocationList ? 3 : -1}
+          position="absolute"
+          top={0}
+          bottom={0}
+          left={0}
+          right={0}>
+          <ScrollView
+            ref={panRef}
+            snapToInterval={screenWidth - 60}
+            showsHorizontalScrollIndicator={false}
+            onMomentumScrollEnd={(event) => {
+              const positionX = event.nativeEvent.contentOffset.x;
+              const snapWidth = screenWidth - 60;
+              const which = Math.round(positionX / snapWidth);
+              // console.log('width: ' + snapWidth + ', which: ' + which + ', x: ' + positionX);
+              const markers = [
+                {
+                  latitude: locationList[which].latitude,
+                  longitude: locationList[which].longitude,
+                },
+              ];
+              const region = getRegionFromMarkers(markers);
+              mapRef!.current!.animateToRegion(region, 300);
+            }}>
+            <VStack alignItems="flex-start" mb={0} pt="8" pb="15%">
+              {locationList.map((props, index) => (
+                <Pressable
+                  key={'location' + index}
+                  onPress={() => navigation.navigate(MAIN_STACK_LOCATION_DETAILS)}>
+                  <Box
+                    shadow={2}
+                    bgColor="white"
+                    key={'pan_' + props.id}
+                    height={220}
+                    width={screenWidth}>
+                    <Box>
+                      <Image
+                        source={{ uri: props.image }}
+                        alt="image"
+                        width="100%"
+                        height="120"
+                        resizeMode="cover"
+                      />
+                      <HStack
+                        position="absolute"
+                        bottom="0"
+                        left="0"
+                        pl="4"
+                        pb="1"
+                        width="100%"
+                        bg="#00000060">
+                        {props.tags.map((item, tags_index) => (
+                          <Box
+                            shadow="2"
+                            borderWidth="1"
+                            borderColor="coolGray.300"
+                            borderRadius="xl"
+                            mr="1"
+                            mt="2"
+                            my="1"
+                            px="2"
+                            py="1"
+                            key={'location' + index + '.tag' + tags_index}>
+                            <Text fontSize="xs" fontWeight="normal" color="white">
+                              {item.title}
+                            </Text>
+                          </Box>
+                        ))}
+                      </HStack>
+                    </Box>
+                    <HStack flex={1} pt="1">
+                      <VStack pt="2" px={4} flex={1} width="80%">
+                        <Text
+                          mt="0"
+                          fontSize="lg"
+                          fontWeight="medium"
+                          _light={{ color: 'coolGray.900' }}
+                          _dark={{ color: 'coolGray.400' }}>
+                          {props.title}
+                        </Text>
+                        <Text color={Colors.LOGO_COLOR_BROWN}>海拔 {props.altitude} 公尺</Text>
+                        <Text color={Colors.LOGO_COLOR_BROWN}>距離 123 公里</Text>
+                      </VStack>
+                      <VStack pt="2" pr="4" flex={1} alignItems="flex-end">
+                        <TouchableOpacity
+                          onPress={() => navigation.navigate(MAIN_STACK_CREATE_POST_WITH_LOCATION)}>
+                          <Center
+                            _light={{ bg: Colors.THEME_MAIN_BACKGROUND }}
+                            _dark={{ bg: 'coolGray.700' }}
+                            rounded="full"
+                            w="9"
+                            h="9"
+                            textAlign="center"
+                            alignItems="center"
+                            justifyContent="center">
+                            <IconButton
+                              variant="unstyled"
+                              colorScheme="light"
+                              mx="0"
+                              my="0"
+                              ml="0"
+                              px="0"
+                              py="0"
+                              icon={
+                                <Icon
+                                  size="5"
+                                  name="md-golf-outline"
+                                  as={Ionicons}
+                                  _dark={{
+                                    color: 'coolGray.200',
+                                  }}
+                                  _light={{
+                                    color: Colors.LOGO_COLOR_BROWN,
+                                  }}
+                                />
+                              }
+                            />
+                          </Center>
+                          <Text textAlign="center" mt="1">
+                            打卡
+                          </Text>
+                        </TouchableOpacity>
+                      </VStack>
+                    </HStack>
+                  </Box>
+                </Pressable>
+              ))}
+            </VStack>
+          </ScrollView>
+        </Box>
         {/* ========= Pan Part - End ========= */}
+        {/* ========= Buttons - Start ========= */}
         <VStack space="3" position="absolute" top="10%" right="0" mt="0" mr="4">
           <TouchableOpacity onPress={() => navigation.navigate(MAIN_STACK_CREATE_LOCATION)}>
             <Center
@@ -1226,20 +1454,35 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
             </Center>
           </TouchableOpacity>
         </VStack>
-        {/*
         <Fab
           position="absolute"
-          bottom={0}
-          height={12}
+          bottom="5%"
+          height={10}
+          width={10}
           renderInPortal={false}
           bg={Colors.LOGO_COLOR_BROWN}
           colorScheme="light"
           shadow={2}
           size="sm"
-          onPress={() => navigation.navigate(MAIN_STACK_CREATE_POST)}
-          icon={<Icon color="white" as={AntDesign} name="plus" size="sm" />}
+          onPress={() => {
+            if (showLocationList) {
+              setShowLocationCard(true);
+              setShowLocationList(false);
+            } else {
+              setShowLocationCard(false);
+              setShowLocationList(true);
+            }
+          }}
+          icon={
+            <Icon
+              color="white"
+              as={AntDesign}
+              name={showLocationList ? 'enviromento' : 'bars'}
+              size="sm"
+            />
+          }
         />
-        */}
+        {/* ========= Buttons - End ========= */}
       </Box>
     </DashboardLayout>
   );

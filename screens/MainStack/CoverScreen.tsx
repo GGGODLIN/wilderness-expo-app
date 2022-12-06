@@ -69,12 +69,6 @@ export default function CoverScreen() {
         justifyContent="center">
         <HeaderLogo />
         <Image
-          source={require('../../assets/loading/loading-cat-brown.gif')}
-          alt="loading"
-          resizeMode="contain"
-          h="100"
-        />
-        <Image
           source={require('../../assets/loading/loading-cat-gray.gif')}
           alt="loading"
           resizeMode="contain"

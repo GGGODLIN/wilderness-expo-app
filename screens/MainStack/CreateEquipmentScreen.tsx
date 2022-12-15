@@ -107,7 +107,6 @@ export default function CreateLocationScreen({ navigation }: NavigationProps): J
             my="2"
             w="100%">
             <View ml="1">
-              {/*Better phone input component https://github.com/rili-live/react-native-phone-input*/}
               <RNPickerSelect
                 placeholder={{}}
                 textInputProps={{ fontSize: 14, color: 'coolGray.400' }}

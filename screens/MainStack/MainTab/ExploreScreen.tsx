@@ -736,7 +736,6 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
                 mx="0.5"
                 w="44%">
                 <View ml="1">
-                  {/*Better phone input component https://github.com/rili-live/react-native-phone-input*/}
                   <RNPickerSelect
                     placeholder={{}}
                     textInputProps={{ fontSize: 14, color: 'coolGray.400' }}
@@ -762,7 +761,6 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
                 mx="0.5"
                 w="44%">
                 <View ml="1">
-                  {/*Better phone input component https://github.com/rili-live/react-native-phone-input*/}
                   <RNPickerSelect
                     placeholder={{}}
                     textInputProps={{ fontSize: 14, color: 'coolGray.400' }}
@@ -793,7 +791,6 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
                 mx="0.5"
                 w="44%">
                 <View ml="1">
-                  {/*Better phone input component https://github.com/rili-live/react-native-phone-input*/}
                   <RNPickerSelect
                     placeholder={{}}
                     textInputProps={{ fontSize: 14, color: 'coolGray.400' }}
@@ -817,7 +814,6 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
                 mx="0.5"
                 w="44%">
                 <View ml="1">
-                  {/*Better phone input component https://github.com/rili-live/react-native-phone-input*/}
                   <RNPickerSelect
                     placeholder={{}}
                     textInputProps={{ fontSize: 14, color: 'coolGray.400' }}

@@ -1,5 +1,4 @@
 import { MaterialIcons, Ionicons, AntDesign, FontAwesome5 } from '@expo/vector-icons';
-import MasonryList from '@react-native-seoul/masonry-list';
 import {
   HStack,
   Text,
@@ -19,6 +18,7 @@ import {
 } from 'native-base';
 import React, { useState } from 'react';
 import { Keyboard, Dimensions, TouchableOpacity, View, PanResponder } from 'react-native';
+import RNPickerSelect from 'react-native-picker-select';
 import { SwipeListView } from 'react-native-swipe-list-view';
 
 import {
@@ -683,13 +683,42 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
     );
   }
   function Tab_3() {
+    const [country, setCountry] = React.useState('請選擇分類');
     return (
       <VStack py={2} px={6}>
         <HStack justifyContent="space-between">
-          <VStack width="90%">
+          <VStack
+            alignItems="flex-start"
+            justifyContent="center"
+            width="28%"
+            backgroundColor={Colors.LOGO_COLOR_WHITE_BACKGROUND}
+            borderColor="coolGray.50"
+            borderRadius="10"
+            borderWidth="0"
+            pl="2">
+            <View>
+              <RNPickerSelect
+                placeholder={{}}
+                textInputProps={{ fontSize: 14, color: 'coolGray.400' }}
+                value={country}
+                onValueChange={(itemValue) => setCountry(itemValue)}
+                items={[
+                  { label: '分類', value: '' },
+                  { label: '露營', value: '露營' },
+                  { label: '車泊', value: '車泊' },
+                  { label: '水上活動', value: '水上活動' },
+                  { label: '釣魚', value: '釣魚' },
+                  { label: '登山', value: '登山' },
+                  { label: '生存', value: '生存' },
+                  { label: '其他', value: '其他' },
+                ]}
+              />
+            </View>
+          </VStack>
+          <VStack width="60%">
             <Input
               isRequired
-              backgroundColor="coolGray.50"
+              backgroundColor={Colors.LOGO_COLOR_WHITE_BACKGROUND}
               borderColor="coolGray.50"
               borderRadius="10"
               borderWidth="0"

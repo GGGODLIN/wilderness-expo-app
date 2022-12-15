@@ -822,8 +822,8 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
                   <RNPickerSelect
                     placeholder={{}}
                     textInputProps={{ fontSize: 14, color: 'coolGray.400' }}
-                    value={altitude}
-                    onValueChange={(itemValue) => setAltitude(itemValue)}
+                    value={crowded}
+                    onValueChange={(itemValue) => setCrowded(itemValue)}
                     items={[
                       { label: '不限制擁擠程度', value: '' },
                       { label: '空曠', value: '空曠' },

@@ -687,7 +687,7 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
     return (
       <VStack py={2} px={6}>
         <HStack justifyContent="space-between">
-          <VStack
+          <Stack
             alignItems="flex-start"
             justifyContent="center"
             width="28%"
@@ -695,26 +695,26 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
             borderColor="coolGray.50"
             borderRadius="10"
             borderWidth="0"
-            pl="2">
-            <View>
-              <RNPickerSelect
-                placeholder={{}}
-                textInputProps={{ fontSize: 14, color: 'coolGray.400' }}
-                value={country}
-                onValueChange={(itemValue) => setCountry(itemValue)}
-                items={[
-                  { label: '分類', value: '' },
-                  { label: '露營', value: '露營' },
-                  { label: '車泊', value: '車泊' },
-                  { label: '水上活動', value: '水上活動' },
-                  { label: '釣魚', value: '釣魚' },
-                  { label: '登山', value: '登山' },
-                  { label: '生存', value: '生存' },
-                  { label: '其他', value: '其他' },
-                ]}
-              />
-            </View>
-          </VStack>
+            pl="3"
+            my="2"
+            height="8">
+            <RNPickerSelect
+              placeholder={{}}
+              textInputProps={{ fontSize: 14, color: 'coolGray.400' }}
+              value={country}
+              onValueChange={(itemValue) => setCountry(itemValue)}
+              items={[
+                { label: '分類', value: '' },
+                { label: '露營', value: '露營' },
+                { label: '車泊', value: '車泊' },
+                { label: '水上活動', value: '水上活動' },
+                { label: '釣魚', value: '釣魚' },
+                { label: '登山', value: '登山' },
+                { label: '生存', value: '生存' },
+                { label: '其他', value: '其他' },
+              ]}
+            />
+          </Stack>
           <VStack width="60%">
             <Input
               isRequired

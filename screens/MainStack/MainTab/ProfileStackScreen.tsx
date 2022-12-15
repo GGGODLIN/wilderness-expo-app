@@ -50,10 +50,12 @@ export default function ProfileStackScreen({ navigation }: NavigationProps): JSX
       iconText: '修改密碼',
       onPress: () => navigation.navigate(PROFILE_STACK_CHANGE_PASSWORD),
     },
+    /*
     {
       iconName: 'repo',
       iconText: '我的文章',
     },
+    */
     {
       iconName: 'sign-in',
       iconText: '登入',

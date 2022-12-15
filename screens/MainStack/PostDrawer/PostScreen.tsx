@@ -115,149 +115,39 @@ function Reviews() {
 
 const ActionButton = () => {
   const navigation = useNavigation<Nav>();
-  const [favorite, setFavorite] = useState(false);
-  const [star, setStar] = useState(false);
-  const [like, setLike] = useState(false);
-  const [location, setLocation] = useState(false);
 
   return (
-    <VStack>
+    <VStack mb="10">
       <HStack px="4" pt="2" pb="1" justifyContent="space-between">
         <Pressable
           onPress={() => {
             navigation.navigate(MAIN_STACK_LOCATION_DRAWER);
           }}>
-          <HStack>
-            <Icon
-              mr="2"
-              size="6"
-              name="enviroment"
-              as={AntDesign}
-              color={Colors.LOGO_COLOR_GREEN}
-            />
-            <Text fontSize="sm" fontWeight="medium" py={1} color={Colors.LOGO_COLOR_GREEN}>
-              枕頭山營地
-            </Text>
+          <HStack justifyContent="space-between">
+            <HStack width="70%">
+              <Icon
+                mr="2"
+                size="6"
+                name="enviroment"
+                as={AntDesign}
+                color={Colors.LOGO_COLOR_GREEN}
+              />
+              <Text fontSize="sm" fontWeight="medium" py={1} color={Colors.LOGO_COLOR_GREEN}>
+                枕頭山營地
+              </Text>
+            </HStack>
+            <HStack width="30%" alignItems="flex-end" justifyContent="flex-end">
+              <Text fontSize="sm" fontWeight="medium" py={1} color={Colors.LOGO_COLOR_GREEN}>
+                123 公里
+              </Text>
+            </HStack>
           </HStack>
         </Pressable>
-      </HStack>
-      <HStack
-        space="4"
-        alignItems="center"
-        mb={6}
-        px={4}
-        p={2}
-        style={{ backgroundColor: Colors.THEME_MAIN_BACKGROUND }}>
-        <Button
-          flex={1}
-          variant="solid"
-          bg={like ? Colors.LOGO_COLOR_BROWN : Colors.LOGO_COLOR_GREEN}
-          _pressed={{ bg: Colors.LOGO_COLOR_GREEN }}
-          onPress={() => setLike(!like)}>
-          {like ? '喜歡' : '收回'}
-        </Button>
-        <Button
-          flex={1}
-          variant="solid"
-          bg={favorite ? Colors.LOGO_COLOR_BROWN : Colors.LOGO_COLOR_GREEN}
-          _pressed={{ bg: Colors.LOGO_COLOR_GREEN }}
-          onPress={() => setFavorite(!favorite)}>
-          {favorite ? '收藏此篇' : '取消收藏'}
-        </Button>
-        <Button
-          flex={1}
-          variant="solid"
-          bg={star ? Colors.LOGO_COLOR_BROWN : Colors.LOGO_COLOR_GREEN}
-          _pressed={{ bg: Colors.LOGO_COLOR_GREEN }}
-          onPress={() => setStar(!star)}>
-          {star ? '關注作者' : '取消關注'}
-        </Button>
-        <Button
-          flex={1}
-          variant="solid"
-          bg={location ? Colors.LOGO_COLOR_BROWN : Colors.LOGO_COLOR_GREEN}
-          _pressed={{ bg: Colors.LOGO_COLOR_GREEN }}
-          onPress={() => setLocation(!location)}>
-          {location ? '收藏地點' : '移除地點'}
-        </Button>
       </HStack>
     </VStack>
   );
 };
 
-function SizeOptions({ options }: { options: SizesType[] }) {
-  return (
-    <HStack space="2" alignItems="center">
-      {options.map((item, index) => {
-        return (
-          <Button
-            p={3}
-            key={index + ''}
-            variant="unstyled"
-            _text={{
-              _light: { color: 'coolGray.800' },
-              _dark: { color: 'coolGray.50' },
-              fontSize: 'sm',
-              fontWeight: 'normal',
-            }}
-            _light={{
-              bg: 'primary.50',
-              _hover: { bg: 'primary.200' },
-              _pressed: { bg: 'primary.300' },
-            }}
-            _dark={{
-              bg: 'coolGray.700',
-              _hover: { bg: 'coolGray.600' },
-              _pressed: { bg: 'coolGray.500' },
-            }}>
-            {item.size}
-          </Button>
-        );
-      })}
-    </HStack>
-  );
-}
-function SizeChart({ options }: { options: SizesType[] }) {
-  return (
-    <VStack space="3">
-      <HStack alignItems="center">
-        <Text
-          fontSize="sm"
-          fontWeight="normal"
-          _dark={{ color: 'coolGray.50' }}
-          _light={{ color: 'coolGray.800' }}
-          lineHeight="21">
-          Select Size
-        </Text>
-        <Text
-          fontSize="sm"
-          fontWeight="normal"
-          _light={{ color: 'coolGray.500' }}
-          _dark={{ color: 'coolGray.400' }}
-          lineHeight="21">
-          (Age Group)
-        </Text>
-        <Link
-          ml="auto"
-          _text={{ textDecoration: 'none' }}
-          _light={{
-            _text: {
-              color: 'primary.900',
-            },
-          }}
-          _dark={{
-            _text: {
-              color: 'primary.500',
-            },
-          }}
-          lineHeight="21">
-          Size Chart
-        </Link>
-      </HStack>
-      <SizeOptions options={options} />
-    </VStack>
-  );
-}
 function ProductInfo({ productInfo }: { productInfo: ProductType }) {
   const textColorA = useColorModeValue('coolGray.800', 'coolGray.50');
   const textColorB = useColorModeValue('coolGray.500', 'coolGray.400');
@@ -276,19 +166,6 @@ function ProductInfo({ productInfo }: { productInfo: ProductType }) {
         {productInfo.description}
       </Text>
     </Box>
-  );
-}
-function Description({ productDescription }: { productDescription: string }) {
-  return (
-    <Text
-      mt="4"
-      fontSize="sm"
-      fontWeight="normal"
-      lineHeight="21"
-      _light={{ color: 'coolGray.800' }}
-      _dark={{ color: 'coolGray.50' }}>
-      {productDescription}
-    </Text>
   );
 }
 
@@ -447,6 +324,11 @@ function CustomTitle() {
 }
 
 export default function PostScreen({ navigation }: NavigationProps): JSX.Element {
+  const [favorite, setFavorite] = useState(false);
+  const [star, setStar] = useState(false);
+  const [like, setLike] = useState(false);
+  const [location, setLocation] = useState(false);
+
   return (
     <DashboardLayout
       title="動態內頁"
@@ -466,9 +348,48 @@ export default function PostScreen({ navigation }: NavigationProps): JSX.Element
             color={useColorModeValue('coolGray.500', 'coolGray.400')}
             lineHeight="30"
             my={2}>
-            500 likes
+            500 個人喜歡這篇
           </Text>
         </Stack>
+        <HStack
+          space="4"
+          alignItems="center"
+          px={4}
+          p={2}
+          style={{ backgroundColor: Colors.THEME_MAIN_BACKGROUND }}>
+          <Button
+            flex={1}
+            variant="solid"
+            bg={like ? Colors.LOGO_COLOR_BROWN : Colors.LOGO_COLOR_GREEN}
+            _pressed={{ bg: Colors.LOGO_COLOR_GREEN }}
+            onPress={() => setLike(!like)}>
+            {like ? '喜歡' : '收回'}
+          </Button>
+          <Button
+            flex={1}
+            variant="solid"
+            bg={favorite ? Colors.LOGO_COLOR_BROWN : Colors.LOGO_COLOR_GREEN}
+            _pressed={{ bg: Colors.LOGO_COLOR_GREEN }}
+            onPress={() => setFavorite(!favorite)}>
+            {favorite ? '收藏此篇' : '取消收藏'}
+          </Button>
+          <Button
+            flex={1}
+            variant="solid"
+            bg={star ? Colors.LOGO_COLOR_BROWN : Colors.LOGO_COLOR_GREEN}
+            _pressed={{ bg: Colors.LOGO_COLOR_GREEN }}
+            onPress={() => setStar(!star)}>
+            {star ? '關注作者' : '取消關注'}
+          </Button>
+          <Button
+            flex={1}
+            variant="solid"
+            bg={location ? Colors.LOGO_COLOR_BROWN : Colors.LOGO_COLOR_GREEN}
+            _pressed={{ bg: Colors.LOGO_COLOR_GREEN }}
+            onPress={() => setLocation(!location)}>
+            {location ? '收藏地點' : '移除地點'}
+          </Button>
+        </HStack>
         <Stack bg={Colors.LOGO_COLOR_WHITE_BACKGROUND} px="2">
           <Reviews />
           <LeaveMessage />

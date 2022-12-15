@@ -594,30 +594,6 @@ export default function LocationDetailsScreen({ navigation }: NavigationProps): 
     );
   }
 
-  function MainPostsList() {
-    const noColumn = useBreakpointValue({
-      base: 2,
-      sm: 3,
-      md: 3,
-      lg: 5,
-      xl: 5,
-    });
-    const { height } = useWindowDimensions();
-    return (
-      <ScrollView>
-        <Box
-          px={{ base: 2.5, md: '22' }}
-          py={{ base: '14', md: '22' }}
-          rounded={{ md: 'sm' }}
-          alignItems="center">
-          {itemList.map((item, index) => (
-            <PostCard key={index} {...item} />
-          ))}
-        </Box>
-      </ScrollView>
-    );
-  }
-
   type Icon = {
     name: string;
     text: string;
@@ -829,48 +805,6 @@ export default function LocationDetailsScreen({ navigation }: NavigationProps): 
                     </HStack>
                   ))}
                 </Stack>
-                {/*
-                <FlatList
-                  nestedScrollEnabled
-                  numColumns={4}
-                  data={icons}
-                  showsVerticalScrollIndicator={false}
-                  renderItem={({ item, index }) => (
-                    <HStack
-                      key={'icon_' + index}
-                      overflow="visible"
-                      mx={2}
-                      mb={4}
-                      alignItems="center"
-                      justifyContent="center">
-                      <IconButton
-                        variant="unstyled"
-                        icon={
-                          <Icon
-                            as={FontAwesome5}
-                            name={item.name}
-                            _light={{
-                              color: item.active ? 'coolGray.500' : 'coolGray.200',
-                            }}
-                            _dark={{ color: 'coolGray.50' }}
-                            size={4}
-                            textAlign="center"
-                            alignSelf="center"
-                          />
-                        }
-                      />
-                      <Text
-                        fontSize={{ base: 'sm', md: 'sm' }}
-                        _light={{ color: item.active ? 'coolGray.800' : 'coolGray.300' }}
-                        _dark={{ color: { base: 'coolGray.50', md: 'coolGray.400' } }}
-                        textAlign="center">
-                        {item.text}
-                      </Text>
-                    </HStack>
-                  )}
-                  keyExtractor={(item, index) => 'home-post-key-' + index}
-                />
-                      */}
               </HStack>
             </VStack>
           </HStack>
@@ -886,15 +820,9 @@ export default function LocationDetailsScreen({ navigation }: NavigationProps): 
     );
   }
   function Tab_3() {
-    const textColor = useColorModeValue('coolGray.800', 'coolGray.50');
     return (
       <ScrollView py={2} minHeight="800">
-        <Box
-          flex={1}
-          px={{ base: 2.5, md: '22' }}
-          py={{ base: '14', md: '22' }}
-          rounded={{ md: 'sm' }}
-          alignItems="center">
+        <Box flex={1} px="2.5" py="14" rounded={{ md: 'sm' }} alignItems="center">
           {itemList.map((item, index) => (
             <PostCard key={index} {...item} />
           ))}
@@ -1068,11 +996,9 @@ export default function LocationDetailsScreen({ navigation }: NavigationProps): 
           _dark={{ bg: 'coolGray.800' }}>
           <Box
             pt={5}
-            px={{ md: 8, xl: 35 }}
-            py={{ md: 8 }}
+            px="0"
+            py="0"
             flex={1}
-            _light={{ bg: 'white' }}
-            _dark={{ bg: 'coolGray.800' }}
             bg="white"
             borderTopLeftRadius="20"
             borderTopRightRadius="20">

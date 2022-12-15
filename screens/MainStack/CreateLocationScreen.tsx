@@ -29,35 +29,6 @@ type OptionListType = {
   planTitle: string;
 };
 
-const planOptionsList1: OptionListType[] = [
-  {
-    planTitle: '優先曝光給社團內成員',
-  },
-  {
-    planTitle: '其他說明',
-  },
-  {
-    planTitle: '其他說明',
-  },
-  {
-    planTitle: '其他說明',
-  },
-];
-const planOptionsList2: OptionListType[] = [
-  {
-    planTitle: '優先曝光給所有好友',
-  },
-  {
-    planTitle: '其他說明',
-  },
-  {
-    planTitle: '其他說明',
-  },
-  {
-    planTitle: '其他說明',
-  },
-];
-
 export default function CreateLocationScreen({ navigation }: NavigationProps): JSX.Element {
   type FormData = {
     location: string;

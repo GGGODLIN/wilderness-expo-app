@@ -1,5 +1,4 @@
 import { MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
-import MasonryList from '@react-native-seoul/masonry-list';
 import * as ImagePicker from 'expo-image-picker';
 import {
   Button,

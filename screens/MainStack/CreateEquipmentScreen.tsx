@@ -1,6 +1,4 @@
 import { MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
-import { Picker } from '@react-native-picker/picker';
-import MasonryList from '@react-native-seoul/masonry-list';
 import * as ImagePicker from 'expo-image-picker';
 import {
   Button,
@@ -14,12 +12,11 @@ import {
   VStack,
   TextArea,
   Image,
-  Stack,
-  IconButton,
-  CheckIcon,
+  View,
 } from 'native-base';
 import React, { useState } from 'react';
 import { Keyboard, Dimensions, ScrollView, TouchableOpacity, TextInput } from 'react-native';
+import RNPickerSelect from 'react-native-picker-select';
 
 import { MAIN_STACK_LOCATION_DRAWER, MAIN_STACK_COLLECTION } from '../../NavigationNames';
 import { NavigationProps } from '../../Props';
@@ -29,35 +26,6 @@ import DashboardLayout from '../../layouts/DashboardLayout';
 type OptionListType = {
   planTitle: string;
 };
-
-const planOptionsList1: OptionListType[] = [
-  {
-    planTitle: '優先曝光給社團內成員',
-  },
-  {
-    planTitle: '其他說明',
-  },
-  {
-    planTitle: '其他說明',
-  },
-  {
-    planTitle: '其他說明',
-  },
-];
-const planOptionsList2: OptionListType[] = [
-  {
-    planTitle: '優先曝光給所有好友',
-  },
-  {
-    planTitle: '其他說明',
-  },
-  {
-    planTitle: '其他說明',
-  },
-  {
-    planTitle: '其他說明',
-  },
-];
 
 export default function CreateLocationScreen({ navigation }: NavigationProps): JSX.Element {
   type FormData = {
@@ -108,141 +76,9 @@ export default function CreateLocationScreen({ navigation }: NavigationProps): J
 
   return (
     <DashboardLayout title="新增/管理裝備" showBackButton>
-      {showCountry && (
-        <VStack
-          position="absolute"
-          bg="white"
-          bottom={0}
-          left={0}
-          w="100%"
-          h="240"
-          pb="30"
-          px="6"
-          shadow={2}
-          zIndex={9}
-          flex={1}
-          justifyContent="center">
-          <Picker
-            mode="dialog"
-            style={{ height: 100, flex: 1 }}
-            accessibilityLabel="選擇分類"
-            placeholder="選擇分類"
-            selectedValue={country}
-            onValueChange={(itemValue, itemIndex) => {
-              setCountry(itemValue);
-            }}>
-            <Picker.Item label="露營" value="露營" />
-            <Picker.Item label="車泊" value="車泊" />
-            <Picker.Item label="水上活動" value="水上活動" />
-            <Picker.Item label="釣魚" value="釣魚" />
-            <Picker.Item label="登山" value="登山" />
-            <Picker.Item label="其他" value="其他" />
-          </Picker>
-          <Button
-            py={3}
-            color="white"
-            size="lg"
-            rounded="full"
-            bg={Colors.THEME_MAIN_COLOR}
-            _pressed={{ bg: Colors.LOGO_COLOR_GREEN }}
-            onPress={() => {
-              setShowCountry(false);
-            }}>
-            選擇
-          </Button>
-        </VStack>
-      )}
-      {showAltitude && (
-        <VStack
-          position="absolute"
-          bg="white"
-          bottom={0}
-          left={0}
-          w="100%"
-          h="240"
-          pb="30"
-          px="6"
-          shadow={2}
-          zIndex={9}
-          flex={1}
-          justifyContent="center">
-          <Picker
-            mode="dialog"
-            style={{ height: 100, flex: 1 }}
-            accessibilityLabel="選擇海拔"
-            placeholder="選擇海拔"
-            selectedValue={altitude}
-            onValueChange={(itemValue, itemIndex) => {
-              setAltitude(itemValue);
-            }}>
-            <Picker.Item label="不確定" value="" />
-            <Picker.Item label="海邊" value="海邊" />
-            <Picker.Item label="平地" value="平地" />
-            <Picker.Item label="300公尺以下" value="300" />
-            <Picker.Item label="300公尺~500公尺" value="500" />
-            <Picker.Item label="500公尺~800公尺" value="800" />
-            <Picker.Item label="800公尺~1000公尺" value="1000" />
-            <Picker.Item label="1000公尺以上" value="1100" />
-          </Picker>
-          <Button
-            py={3}
-            color="white"
-            size="lg"
-            rounded="full"
-            bg={Colors.THEME_MAIN_COLOR}
-            _pressed={{ bg: Colors.LOGO_COLOR_GREEN }}
-            onPress={() => {
-              setShowAltitude(false);
-            }}>
-            選擇
-          </Button>
-        </VStack>
-      )}
-      {showCrowded && (
-        <VStack
-          position="absolute"
-          bg="white"
-          bottom={0}
-          left={0}
-          w="100%"
-          h="240"
-          pb="30"
-          px="6"
-          shadow={2}
-          zIndex={9}
-          flex={1}
-          justifyContent="center">
-          <Picker
-            mode="dialog"
-            style={{ height: 100, flex: 1 }}
-            accessibilityLabel="選擇擁擠程度"
-            placeholder="選擇擁擠程度"
-            selectedValue={crowded}
-            onValueChange={(itemValue, itemIndex) => {
-              setCrowded(itemValue);
-            }}>
-            <Picker.Item label="空曠" value="空曠" />
-            <Picker.Item label="偶爾" value="偶爾" />
-            <Picker.Item label="總是" value="總是" />
-          </Picker>
-          <Button
-            py={3}
-            color="white"
-            size="lg"
-            rounded="full"
-            bg={Colors.THEME_MAIN_COLOR}
-            _pressed={{ bg: Colors.LOGO_COLOR_GREEN }}
-            onPress={() => {
-              setShowCrowded(false);
-            }}>
-            選擇
-          </Button>
-        </VStack>
-      )}
       <ScrollView
         onPress={() => {
           Keyboard.dismiss();
-          setShowCountry(false);
         }}>
         <VStack
           space="0"
@@ -258,8 +94,7 @@ export default function CreateLocationScreen({ navigation }: NavigationProps): J
             _light={{ color: 'coolGray.700' }}
             _dark={{ color: 'coolGray.50' }}
             mt={2}
-            mb={1}
-            onPress={() => setShowCountry(!showCountry)}>
+            mb={1}>
             分類
           </Text>
           <VStack
@@ -271,9 +106,25 @@ export default function CreateLocationScreen({ navigation }: NavigationProps): J
             px="2"
             my="2"
             w="100%">
-            <Text w="100%" onPress={() => setShowCountry(!showCountry)}>
-              {country !== null || country !== '' ? country : '請選擇分類'}
-            </Text>
+            <View ml="1">
+              {/*Better phone input component https://github.com/rili-live/react-native-phone-input*/}
+              <RNPickerSelect
+                placeholder={{}}
+                textInputProps={{ fontSize: 14, color: 'coolGray.400' }}
+                value={country}
+                onValueChange={(itemValue) => setCountry(itemValue)}
+                items={[
+                  { label: '請選擇分類', value: '' },
+                  { label: '露營', value: '露營' },
+                  { label: '車泊', value: '車泊' },
+                  { label: '水上活動', value: '水上活動' },
+                  { label: '釣魚', value: '釣魚' },
+                  { label: '登山', value: '登山' },
+                  { label: '生存', value: '生存' },
+                  { label: '其他', value: '其他' },
+                ]}
+              />
+            </View>
           </VStack>
           <Text
             fontSize="xl"

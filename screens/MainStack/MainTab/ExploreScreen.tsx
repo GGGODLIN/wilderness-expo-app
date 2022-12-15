@@ -1,5 +1,4 @@
 import { MaterialIcons, Ionicons, AntDesign, FontAwesome5 } from '@expo/vector-icons';
-import { Picker } from '@react-native-picker/picker';
 import MasonryList from '@react-native-seoul/masonry-list';
 import * as ExpoLocation from 'expo-location';
 import {
@@ -15,14 +14,14 @@ import {
   VStack,
   Center,
   useToast,
-  Select,
-  CheckIcon,
+  View,
   Stack,
   Fab,
 } from 'native-base';
 import React, { useEffect, useRef, useState } from 'react';
 import { Keyboard, Dimensions, ScrollView, TouchableOpacity } from 'react-native';
 import MapView, { AnimatedRegion, Marker, PROVIDER_GOOGLE, Region } from 'react-native-maps';
+import RNPickerSelect from 'react-native-picker-select';
 
 import {
   MAIN_STACK_LOCATION_DETAILS,
@@ -643,170 +642,6 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
   return (
     <DashboardLayout title="活動" customTitle={<CustomTitle />}>
       <Box px={{ md: 8, xl: 35 }} py={{ md: 5 }} flex={1}>
-        {/* Select List */}
-        {showCountry && (
-          <VStack
-            position="absolute"
-            bg="white"
-            bottom={0}
-            left={0}
-            w="100%"
-            h="300"
-            pb="30"
-            shadow={2}
-            zIndex={9}
-            flex={1}
-            justifyContent="center">
-            <Picker
-              mode="dialog"
-              style={{ height: 100, flex: 1 }}
-              accessibilityLabel="選擇縣市"
-              placeholder="選擇縣市"
-              selectedValue={country}
-              onValueChange={(itemValue, itemIndex) => {
-                setCountry(itemValue);
-              }}>
-              <Picker.Item
-                label="請選擇"
-                value="不限制縣市"
-                onPress={() => setCountry('不限制縣市')}
-              />
-              <Picker.Item label="台北市" value="台北市" onPress={() => setCountry('台北市')} />
-              <Picker.Item label="新北市" value="新北市" onPress={() => setCountry('新北市')} />
-              <Picker.Item label="桃園市" value="桃園市" onPress={() => setCountry('桃園市')} />
-              <Picker.Item label="台中市" value="台中市" onPress={() => setCountry('台中市')} />
-            </Picker>
-            <Button
-              mx={4}
-              variant="solid"
-              size="lg"
-              style={{ backgroundColor: 'black' }}
-              onPress={() => {
-                setShowCountry(false);
-              }}>
-              選擇
-            </Button>
-          </VStack>
-        )}
-        {showAltitude && (
-          <VStack
-            position="absolute"
-            bg="white"
-            bottom={0}
-            left={0}
-            w="100%"
-            h="300"
-            pb="30"
-            shadow={2}
-            zIndex={9}
-            flex={1}
-            justifyContent="center">
-            <Picker
-              mode="dialog"
-              style={{ height: 100, flex: 1 }}
-              accessibilityLabel="選擇海拔"
-              placeholder="選擇海拔"
-              selectedValue={altitude}
-              onValueChange={(itemValue, itemIndex) => {
-                setAltitude(itemValue);
-              }}>
-              <Picker.Item label="不限制海拔" value="不限制海拔" />
-              <Picker.Item label="海邊" value="海邊" />
-              <Picker.Item label="平地" value="平地" />
-              <Picker.Item label="300公尺以下" value="300" />
-              <Picker.Item label="300公尺~500公尺" value="500" />
-              <Picker.Item label="500公尺~800公尺" value="800" />
-              <Picker.Item label="800公尺~1000公尺" value="1000" />
-              <Picker.Item label="1000公尺以上" value="1100" />
-            </Picker>
-            <Button
-              mx={4}
-              variant="solid"
-              size="lg"
-              style={{ backgroundColor: 'black' }}
-              onPress={() => {
-                setShowAltitude(false);
-              }}>
-              選擇
-            </Button>
-          </VStack>
-        )}
-        {showRecommend && (
-          <VStack
-            position="absolute"
-            bg="white"
-            bottom={0}
-            left={0}
-            w="100%"
-            h="300"
-            pb="30"
-            shadow={2}
-            zIndex={9}
-            flex={1}
-            justifyContent="center">
-            <Picker
-              mode="dialog"
-              style={{ height: 100, flex: 1 }}
-              accessibilityLabel="選擇推薦"
-              placeholder="選擇推薦"
-              selectedValue={recommend}
-              onValueChange={(itemValue, itemIndex) => {
-                setRecommend(itemValue);
-              }}>
-              <Picker.Item label="不限制推薦" value="不限制推薦" />
-              <Picker.Item label="人氣推薦" value="人氣推薦" />
-              <Picker.Item label="官方推薦" value="官方推薦" />
-            </Picker>
-            <Button
-              mx={4}
-              variant="solid"
-              size="lg"
-              style={{ backgroundColor: 'black' }}
-              onPress={() => {
-                setShowRecommend(false);
-              }}>
-              選擇
-            </Button>
-          </VStack>
-        )}
-        {showCrowded && (
-          <VStack
-            position="absolute"
-            bg="white"
-            bottom={0}
-            left={0}
-            w="100%"
-            h="300"
-            pb="30"
-            shadow={2}
-            zIndex={9}
-            flex={1}
-            justifyContent="center">
-            <Picker
-              mode="dialog"
-              style={{ height: 100, flex: 1 }}
-              accessibilityLabel="選擇擁擠程度"
-              placeholder="選擇擁擠程度"
-              selectedValue={crowded}
-              onValueChange={(itemValue, itemIndex) => {
-                setCrowded(itemValue);
-              }}>
-              <Picker.Item label="空曠" value="空曠" />
-              <Picker.Item label="偶爾" value="偶爾" />
-              <Picker.Item label="總是" value="總是" />
-            </Picker>
-            <Button
-              mx={4}
-              variant="solid"
-              size="lg"
-              style={{ backgroundColor: 'black' }}
-              onPress={() => {
-                setShowCrowded(false);
-              }}>
-              選擇
-            </Button>
-          </VStack>
-        )}
         {/* Filter Bar */}
         <HStack
           bg="coolGray.50"
@@ -891,164 +726,113 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
             top={8}
             _light={{ bg: 'white' }}
             _dark={{ bg: 'coolGray.800' }}>
-            <HStack space="2" justifyContent="space-between" alignItems="center">
+            <HStack space="1" mb="2" justifyContent="space-between" alignItems="center">
               <VStack
                 backgroundColor={Colors.LOGO_COLOR_WHITE_BACKGROUND}
                 borderColor="coolGray.50"
                 borderRadius="10"
                 borderWidth="0"
-                py="4"
+                py="2"
                 px="2"
-                mx="1"
-                my="2"
+                mx="0.5"
                 w="44%">
-                <Text
-                  w="100%"
-                  onPress={() => {
-                    setShowCountry(!showCountry);
-                    setShowAltitude(false);
-                    setShowCrowded(false);
-                  }}>
-                  {country}
-                </Text>
+                <View ml="1">
+                  {/*Better phone input component https://github.com/rili-live/react-native-phone-input*/}
+                  <RNPickerSelect
+                    placeholder={{}}
+                    textInputProps={{ fontSize: 14, color: 'coolGray.400' }}
+                    value={country}
+                    onValueChange={(itemValue) => setCountry(itemValue)}
+                    items={[
+                      { label: '不限制縣市', value: '' },
+                      { label: '台北市', value: '台北市' },
+                      { label: '新北市', value: '新北市' },
+                      { label: '桃園市', value: '桃園市' },
+                      { label: '台中市', value: '台中市' },
+                    ]}
+                  />
+                </View>
               </VStack>
               <VStack
                 backgroundColor={Colors.LOGO_COLOR_WHITE_BACKGROUND}
                 borderColor="coolGray.50"
                 borderRadius="10"
                 borderWidth="0"
-                py="4"
+                py="2"
                 px="2"
-                mx="1"
-                my="2"
+                mx="0.5"
                 w="44%">
-                <Text
-                  w="100%"
-                  onPress={() => {
-                    setShowAltitude(!showAltitude);
-                    setShowCountry(false);
-                    setShowCrowded(false);
-                  }}>
-                  {altitude}
-                </Text>
+                <View ml="1">
+                  {/*Better phone input component https://github.com/rili-live/react-native-phone-input*/}
+                  <RNPickerSelect
+                    placeholder={{}}
+                    textInputProps={{ fontSize: 14, color: 'coolGray.400' }}
+                    value={altitude}
+                    onValueChange={(itemValue) => setAltitude(itemValue)}
+                    items={[
+                      { label: '不限制海拔', value: '' },
+                      { label: '海邊', value: '海邊' },
+                      { label: '平地', value: '平地' },
+                      { label: '300公尺以下', value: '300' },
+                      { label: '300公尺~500公尺', value: '500' },
+                      { label: '500公尺~800公尺', value: '800' },
+                      { label: '800公尺~1000公尺', value: '1000' },
+                      { label: '1000公尺以上', value: '1100' },
+                    ]}
+                  />
+                </View>
               </VStack>
-              {/*
-              <Select
-                selectedValue={country}
-                minWidth="45%"
-                accessibilityLabel="選擇縣市"
-                placeholder="選擇縣市"
-                _selectedItem={{
-                  bg: 'coolGray.200',
-                  endIcon: <CheckIcon size="5" />,
-                }}
-                mt={1}
-                onValueChange={(itemValue) => setCountry(itemValue)}>
-                <Select.Item label="不限制縣市" value="" />
-                <Select.Item label="台北市" value="台北" />
-                <Select.Item label="新北市" value="新北" />
-                <Select.Item label="桃園市" value="桃園" />
-                <Select.Item label="台中市" value="台中" />
-                <Select.Item label="台中市" value="台中" />
-                <Select.Item label="待串接整合縣市" value="2" />
-              </Select>
-              <Select
-                selectedValue={area}
-                minWidth="45%"
-                accessibilityLabel="選擇海拔"
-                placeholder="選擇海拔"
-                _selectedItem={{
-                  bg: 'coolGray.200',
-                  endIcon: <CheckIcon size="5" />,
-                }}
-                mt={1}
-                onValueChange={(itemValue) => setArea(itemValue)}>
-                <Select.Item label="不限制海拔" value="" />
-                <Select.Item label="海邊" value="海邊" />
-                <Select.Item label="平地" value="平地" />
-                <Select.Item label="300公尺以下" value="300" />
-                <Select.Item label="300公尺~500公尺" value="500" />
-                <Select.Item label="500公尺~800公尺" value="800" />
-                <Select.Item label="800公尺~1000公尺" value="1000" />
-                <Select.Item label="1000公尺以上" value="1100" />
-              </Select>
-              */}
             </HStack>
-            <HStack space="2">
+            <HStack space="1">
               <VStack
                 backgroundColor={Colors.LOGO_COLOR_WHITE_BACKGROUND}
                 borderColor="coolGray.50"
                 borderRadius="10"
                 borderWidth="0"
-                py="4"
+                py="2"
                 px="2"
-                mx="1"
-                my="2"
+                mx="0.5"
                 w="44%">
-                <Text
-                  w="100%"
-                  onPress={() => {
-                    setShowAltitude(false);
-                    setShowCountry(false);
-                    setShowRecommend(!showRecommend);
-                    setShowCrowded(false);
-                  }}>
-                  {recommend}
-                </Text>
+                <View ml="1">
+                  {/*Better phone input component https://github.com/rili-live/react-native-phone-input*/}
+                  <RNPickerSelect
+                    placeholder={{}}
+                    textInputProps={{ fontSize: 14, color: 'coolGray.400' }}
+                    value={altitude}
+                    onValueChange={(itemValue) => setAltitude(itemValue)}
+                    items={[
+                      { label: '不限制推薦', value: '' },
+                      { label: '人氣推薦', value: '人氣推薦' },
+                      { label: '官方推薦', value: '官方推薦' },
+                    ]}
+                  />
+                </View>
               </VStack>
               <VStack
                 backgroundColor={Colors.LOGO_COLOR_WHITE_BACKGROUND}
                 borderColor="coolGray.50"
                 borderRadius="10"
                 borderWidth="0"
-                py="4"
+                py="2"
                 px="2"
-                mx="1"
-                my="2"
+                mx="0.5"
                 w="44%">
-                <Text
-                  w="100%"
-                  onPress={() => {
-                    setShowCountry(false);
-                    setShowRecommend(false);
-                    setShowAltitude(false);
-                    setShowCrowded(!showCrowded);
-                  }}>
-                  {crowded}
-                </Text>
+                <View ml="1">
+                  {/*Better phone input component https://github.com/rili-live/react-native-phone-input*/}
+                  <RNPickerSelect
+                    placeholder={{}}
+                    textInputProps={{ fontSize: 14, color: 'coolGray.400' }}
+                    value={altitude}
+                    onValueChange={(itemValue) => setAltitude(itemValue)}
+                    items={[
+                      { label: '不限制擁擠程度', value: '' },
+                      { label: '空曠', value: '空曠' },
+                      { label: '偶爾', value: '偶爾' },
+                      { label: '總是', value: '總是' },
+                    ]}
+                  />
+                </View>
               </VStack>
-              {/*
-              <Select
-                selectedValue={level}
-                minWidth="45%"
-                accessibilityLabel="選擇推薦程度"
-                placeholder="選擇推薦程度"
-                _selectedItem={{
-                  bg: 'coolGray.200',
-                  endIcon: <CheckIcon size="5" />,
-                }}
-                mt={1}
-                onValueChange={(itemValue) => setLevel(itemValue)}>
-                <Select.Item label="不限制" value="0" />
-                <Select.Item label="人氣推薦" value="1" />
-                <Select.Item label="官方推薦" value="2" />
-              </Select>
-              <Select
-                selectedValue={level}
-                minWidth="45%"
-                accessibilityLabel="選擇擁擠程度"
-                placeholder="選擇擁擠程度"
-                _selectedItem={{
-                  bg: 'coolGray.200',
-                  endIcon: <CheckIcon size="5" />,
-                }}
-                mt={1}
-                onValueChange={(itemValue) => setLevel(itemValue)}>
-                <Select.Item label="空曠" value="0" />
-                <Select.Item label="偶爾" value="1" />
-                <Select.Item label="總是" value="2" />
-              </Select>
-              */}
             </HStack>
           </Box>
         ) : null}

@@ -14,6 +14,7 @@ import {
   Image,
   useColorModeValue,
   useBreakpointValue,
+  Button,
   IconButton,
   Link,
 } from 'native-base';
@@ -263,6 +264,9 @@ const member: List[] = [
 const ActionButton = () => {
   const navigation = useNavigation<Nav>();
   const [favorite, setFavorite] = useState(false);
+  const [star, setStar] = useState(false);
+  const [like, setLike] = useState(false);
+  const [location, setLocation] = useState(false);
 
   const onShare = async () => {
     const result = await Share.share({
@@ -280,133 +284,60 @@ const ActionButton = () => {
   };
 
   return (
-    <HStack
-      space="4"
-      alignItems="center"
-      justifyContent="space-between"
-      px={4}
-      p={2}
-      mb={6}
-      style={{ backgroundColor: 'white' }}
-      shadow={2}>
-      <IconButton
-        w="20%"
-        mx={0}
-        py={2}
+    <VStack mb="6">
+      <HStack
+        space="4"
+        alignItems="center"
         px={4}
-        onPress={() => setFavorite(!favorite)}
-        variant="light"
-        _light={{
-          bg: Colors.THEME_MAIN_BACKGROUND,
-        }}
-        _dark={{
-          bg: 'coolGray.700',
-        }}
-        icon={
-          <Icon
-            size="6"
-            name={favorite ? 'heart' : 'heart-outline'}
-            as={Ionicons}
-            _dark={{ color: 'primary.500' }}
-            _light={{ color: Colors.LOGO_COLOR_BROWN }}
-          />
-        }
-      />
-      <IconButton
-        w="20%"
-        mx={0}
-        py={2}
-        px={4}
-        onPress={() => navigation.navigate(MAIN_STACK_CREATE_POST)}
-        variant="light"
-        _light={{
-          bg: Colors.THEME_MAIN_BACKGROUND,
-        }}
-        _dark={{
-          bg: 'coolGray.700',
-        }}
-        icon={
-          <Icon
-            size="6"
-            name="md-golf-outline"
-            as={Ionicons}
-            _dark={{
-              color: 'coolGray.200',
-            }}
-            _light={{
-              color: Colors.LOGO_COLOR_BROWN,
-            }}
-          />
-        }
-      />
-      <IconButton
-        w="20%"
-        mx={0}
-        py={2}
-        px={4}
-        onPress={onShare}
-        variant="light"
-        _light={{
-          bg: Colors.THEME_MAIN_BACKGROUND,
-        }}
-        _dark={{
-          bg: 'coolGray.700',
-        }}
-        icon={
-          <Icon
-            size="6"
-            name="md-share-social"
-            as={Ionicons}
-            _dark={{
-              color: 'coolGray.200',
-            }}
-            _light={{
-              color: Colors.LOGO_COLOR_BROWN,
-            }}
-          />
-        }
-      />
-      <IconButton
-        w="20%"
-        mx={0}
-        py={2}
-        px={4}
-        onPress={() => {
-          const lat = 25.01;
-          const lng = 121.54;
-          const label = 'Custom Label';
-
-          const scheme = Platform.select({ ios: 'maps:0,0?q=', android: 'geo:0,0?q=' });
-          const latLng = `${lat},${lng}`;
-          const url = Platform.select({
-            ios: `${scheme}${label}@${latLng}`,
-            android: `${scheme}${latLng}(${label})`,
-          });
-
-          Linking.openURL(url!);
-        }}
-        variant="light"
-        _light={{
-          bg: Colors.THEME_MAIN_BACKGROUND,
-        }}
-        _dark={{
-          bg: 'coolGray.700',
-        }}
-        icon={
-          <Icon
-            size="6"
-            name="md-navigate-outline"
-            as={Ionicons}
-            _dark={{
-              color: 'coolGray.200',
-            }}
-            _light={{
-              color: Colors.LOGO_COLOR_BROWN,
-            }}
-          />
-        }
-      />
-    </HStack>
+        p={2}
+        style={{ backgroundColor: Colors.THEME_MAIN_BACKGROUND }}>
+        <Button
+          flex={1}
+          variant="solid"
+          bg={like ? Colors.LOGO_COLOR_BROWN : Colors.LOGO_COLOR_GREEN}
+          _pressed={{ bg: Colors.LOGO_COLOR_GREEN }}
+          onPress={() => setFavorite(!favorite)}>
+          {favorite ? '收藏' : '取消收藏'}
+        </Button>
+        <Button
+          flex={1}
+          variant="solid"
+          bg={favorite ? Colors.LOGO_COLOR_BROWN : Colors.LOGO_COLOR_GREEN}
+          _pressed={{ bg: Colors.LOGO_COLOR_GREEN }}
+          onPress={() => navigation.navigate(MAIN_STACK_CREATE_POST)}>
+          打卡
+        </Button>
+        <Button
+          flex={1}
+          variant="solid"
+          bg={star ? Colors.LOGO_COLOR_BROWN : Colors.LOGO_COLOR_GREEN}
+          _pressed={{ bg: Colors.LOGO_COLOR_GREEN }}
+          onPress={onShare}>
+          分享
+        </Button>
+        <Button
+          flex={1}
+          variant="solid"
+          bg={location ? Colors.LOGO_COLOR_BROWN : Colors.LOGO_COLOR_GREEN}
+          _pressed={{ bg: Colors.LOGO_COLOR_GREEN }}
+          onPress={() => {
+            const lat = 25.01;
+            const lng = 121.54;
+            const label = 'Custom Label';
+        
+            const scheme = Platform.select({ ios: 'maps:0,0?q=', android: 'geo:0,0?q=' });
+            const latLng = `${lat},${lng}`;
+            const url = Platform.select({
+              ios: `${scheme}${label}@${latLng}`,
+              android: `${scheme}${latLng}(${label})`,
+            });
+        
+            Linking.openURL(url!);
+          }}>
+          導航
+        </Button>
+      </HStack>
+    </VStack>
   );
 };
 

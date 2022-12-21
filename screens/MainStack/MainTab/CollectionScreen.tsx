@@ -560,7 +560,7 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
               </HStack>
             </Box>
             <HStack flex={1} pt="1" bg="coolGray.50" borderBottomRadius={20}>
-              <VStack pt="2" px={4} flex={1} width="80%">
+              <VStack pt="2" px={4} flex={1} width="70%">
                 <Text
                   mt="0"
                   fontSize="lg"
@@ -572,7 +572,7 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
                 <Text color={Colors.LOGO_COLOR_BROWN}>海拔 {props.item.altitude} 公尺</Text>
                 <Text color={Colors.LOGO_COLOR_BROWN}>距離 123 公里</Text>
               </VStack>
-              <VStack pt="2" pr="4" flex={1} alignItems="flex-end">
+              <VStack pt="2" pr="4" alignItems="flex-end" width="20%">
                 <TouchableOpacity
                   onPress={() => navigation.navigate(MAIN_STACK_CREATE_POST_WITH_LOCATION)}>
                   <Center

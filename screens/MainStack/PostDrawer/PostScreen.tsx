@@ -43,10 +43,11 @@ type ProductType = {
   description: string;
 };
 type ReviewsType = {
-  imageUrl: ImageSourcePropType;
+  imageUrl: string;
   name: string;
   time: string;
   review: string;
+  comment?: ReviewsType[];
 };
 
 const postDetail: ProductType = {
@@ -60,13 +61,27 @@ const postDetail: ProductType = {
 
 const reviews: ReviewsType[] = [
   {
-    imageUrl: require('../../../assets/theme/trending1.png'),
+    imageUrl: 'https://picsum.photos/500',
     name: '水亮亮',
     time: '剛剛',
     review: '下次也要去!',
+    comment: [
+      {
+        imageUrl: 'https://picsum.photos/500',
+        name: '大壯',
+        time: '剛剛',
+        review: '我也要',
+      },
+      {
+        imageUrl: 'https://picsum.photos/500',
+        name: '大美',
+        time: '剛剛',
+        review: '不糾',
+      },
+    ],
   },
   {
-    imageUrl: require('../../../assets/theme/trending1.png'),
+    imageUrl: 'https://picsum.photos/500',
     name: '車老大',
     time: '2022-10-30',
     review: '我的天啊',
@@ -74,13 +89,15 @@ const reviews: ReviewsType[] = [
 ];
 
 function Reviews() {
+  const [showLeaveMsg, setShowLeaveMsg] = useState(true);
+
   return (
     <VStack bg={Colors.LOGO_COLOR_WHITE_BACKGROUND}>
       {reviews.map((item, idx) => {
         return (
           <VStack key={idx} mt="4" bg="white" rounded={10} px={4} py={4}>
             <HStack space="2" alignItems="center">
-              <Avatar height="6" width="6" source={item.imageUrl} />
+              <Avatar height="6" width="6" source={{ uri: item.imageUrl }} />
               <VStack space="1">
                 <Text
                   fontSize="sm"
@@ -98,14 +115,54 @@ function Reviews() {
                 {item.time}
               </Text>
             </HStack>
-            <Text
-              mt="2"
-              alignItems="center"
-              _light={{ color: 'coolGray.800' }}
-              _dark={{ color: 'coolGray.50' }}
-              fontSize="sm">
-              {item.review}
-            </Text>
+            <HStack space="2" alignItems="center" justifyContent="space-between">
+              <Text
+                mt="2"
+                alignItems="center"
+                _light={{ color: 'coolGray.800' }}
+                _dark={{ color: 'coolGray.50' }}
+                fontSize="sm">
+                {item.review}
+              </Text>
+              <Link onPress={() => setShowLeaveMsg(!showLeaveMsg)}>回覆</Link>
+            </HStack>
+
+            {item.comment?.map((itemComment, index) => (
+              <>
+                <HStack space="2" alignItems="center" pt="4">
+                  <Avatar height="6" width="6" source={{ uri: itemComment.imageUrl }} />
+                  <VStack space="1">
+                    <Text
+                      fontSize="sm"
+                      fontWeight="medium"
+                      _dark={{ color: 'coolGray.50' }}
+                      _light={{ color: 'coolGray.800' }}>
+                      {itemComment.name}
+                    </Text>
+                  </VStack>
+                  <Text
+                    fontSize="sm"
+                    ml="auto"
+                    _light={{ color: 'coolGray.500' }}
+                    _dark={{ color: 'coolGray.400' }}>
+                    {itemComment.time}
+                  </Text>
+                </HStack>
+                <Text
+                  mt="2"
+                  alignItems="center"
+                  _light={{ color: 'coolGray.800' }}
+                  _dark={{ color: 'coolGray.50' }}
+                  fontSize="sm">
+                  {itemComment.review}
+                </Text>
+              </>
+            ))}
+            {showLeaveMsg && (
+              <Box>
+                <LeaveMessage />
+              </Box>
+            )}
           </VStack>
         );
       })}
@@ -115,9 +172,13 @@ function Reviews() {
 
 const ActionButton = () => {
   const navigation = useNavigation<Nav>();
+  const [favorite, setFavorite] = useState(false);
+  const [star, setStar] = useState(false);
+  const [like, setLike] = useState(false);
+  const [location, setLocation] = useState(false);
 
   return (
-    <VStack mb="10">
+    <VStack mb="6">
       <HStack px="4" pt="2" pb="1" justifyContent="space-between">
         <Pressable
           onPress={() => {
@@ -143,6 +204,45 @@ const ActionButton = () => {
             </HStack>
           </HStack>
         </Pressable>
+      </HStack>
+      <HStack
+        space="4"
+        alignItems="center"
+        px={4}
+        p={2}
+        style={{ backgroundColor: Colors.THEME_MAIN_BACKGROUND }}>
+        <Button
+          flex={1}
+          variant="solid"
+          bg={like ? Colors.LOGO_COLOR_BROWN : Colors.LOGO_COLOR_GREEN}
+          _pressed={{ bg: Colors.LOGO_COLOR_GREEN }}
+          onPress={() => setLike(!like)}>
+          {like ? '喜歡' : '收回喜歡'}
+        </Button>
+        <Button
+          flex={1}
+          variant="solid"
+          bg={favorite ? Colors.LOGO_COLOR_BROWN : Colors.LOGO_COLOR_GREEN}
+          _pressed={{ bg: Colors.LOGO_COLOR_GREEN }}
+          onPress={() => setFavorite(!favorite)}>
+          {favorite ? '收藏此篇' : '取消收藏'}
+        </Button>
+        <Button
+          flex={1}
+          variant="solid"
+          bg={star ? Colors.LOGO_COLOR_BROWN : Colors.LOGO_COLOR_GREEN}
+          _pressed={{ bg: Colors.LOGO_COLOR_GREEN }}
+          onPress={() => setStar(!star)}>
+          {star ? '關注作者' : '取消關注'}
+        </Button>
+        <Button
+          flex={1}
+          variant="solid"
+          bg={location ? Colors.LOGO_COLOR_BROWN : Colors.LOGO_COLOR_GREEN}
+          _pressed={{ bg: Colors.LOGO_COLOR_GREEN }}
+          onPress={() => setLocation(!location)}>
+          {location ? '收藏地點' : '移除地點'}
+        </Button>
       </HStack>
     </VStack>
   );
@@ -324,11 +424,6 @@ function CustomTitle() {
 }
 
 export default function PostScreen({ navigation }: NavigationProps): JSX.Element {
-  const [favorite, setFavorite] = useState(false);
-  const [star, setStar] = useState(false);
-  const [like, setLike] = useState(false);
-  const [location, setLocation] = useState(false);
-
   return (
     <DashboardLayout
       title="動態內頁"
@@ -351,45 +446,7 @@ export default function PostScreen({ navigation }: NavigationProps): JSX.Element
             500 個人喜歡這篇
           </Text>
         </Stack>
-        <HStack
-          space="4"
-          alignItems="center"
-          px={4}
-          p={2}
-          style={{ backgroundColor: Colors.THEME_MAIN_BACKGROUND }}>
-          <Button
-            flex={1}
-            variant="solid"
-            bg={like ? Colors.LOGO_COLOR_BROWN : Colors.LOGO_COLOR_GREEN}
-            _pressed={{ bg: Colors.LOGO_COLOR_GREEN }}
-            onPress={() => setLike(!like)}>
-            {like ? '喜歡' : '收回'}
-          </Button>
-          <Button
-            flex={1}
-            variant="solid"
-            bg={favorite ? Colors.LOGO_COLOR_BROWN : Colors.LOGO_COLOR_GREEN}
-            _pressed={{ bg: Colors.LOGO_COLOR_GREEN }}
-            onPress={() => setFavorite(!favorite)}>
-            {favorite ? '收藏此篇' : '取消收藏'}
-          </Button>
-          <Button
-            flex={1}
-            variant="solid"
-            bg={star ? Colors.LOGO_COLOR_BROWN : Colors.LOGO_COLOR_GREEN}
-            _pressed={{ bg: Colors.LOGO_COLOR_GREEN }}
-            onPress={() => setStar(!star)}>
-            {star ? '關注作者' : '取消關注'}
-          </Button>
-          <Button
-            flex={1}
-            variant="solid"
-            bg={location ? Colors.LOGO_COLOR_BROWN : Colors.LOGO_COLOR_GREEN}
-            _pressed={{ bg: Colors.LOGO_COLOR_GREEN }}
-            onPress={() => setLocation(!location)}>
-            {location ? '收藏地點' : '移除地點'}
-          </Button>
-        </HStack>
+
         <Stack bg={Colors.LOGO_COLOR_WHITE_BACKGROUND} px="2">
           <Reviews />
           <LeaveMessage />

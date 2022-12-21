@@ -306,7 +306,7 @@ export default function CreatePostWithLocationScreen({ navigation }: NavigationP
               py="4"
               my="2"
               placeholder=""
-              value="好風景營地"
+              value="搜尋地點"
               size="lg"
             />
             <Text

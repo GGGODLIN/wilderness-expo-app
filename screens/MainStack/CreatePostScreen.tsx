@@ -294,6 +294,27 @@ export default function CreatePostScreen({ navigation }: NavigationProps): JSX.E
               _light={{ color: 'coolGray.700' }}
               _dark={{ color: 'coolGray.50' }}
               mb={0}>
+              位置
+            </Text>
+            <Input
+              readonly
+              editable={false}
+              backgroundColor="coolGray.50"
+              borderColor="coolGray.50"
+              borderRadius="10"
+              borderWidth="0"
+              py="4"
+              my="2"
+              placeholder=""
+              value="搜尋地點"
+              size="lg"
+            />
+            <Text
+              fontSize="xl"
+              fontWeight="bold"
+              _light={{ color: 'coolGray.700' }}
+              _dark={{ color: 'coolGray.50' }}
+              mb={0}>
               標題
             </Text>
             <Input

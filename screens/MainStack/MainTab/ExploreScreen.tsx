@@ -1,4 +1,5 @@
 import { MaterialIcons, Ionicons, AntDesign, FontAwesome5 } from '@expo/vector-icons';
+import MasonryList from '@react-native-seoul/masonry-list';
 import * as ExpoLocation from 'expo-location';
 import {
   Button,

@@ -1018,7 +1018,7 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
                         <Text color={Colors.LOGO_COLOR_BROWN}>海拔 {props.altitude} 公尺</Text>
                         <Text color={Colors.LOGO_COLOR_BROWN}>距離 123 公里</Text>
                       </VStack>
-                      <VStack pt="2" pr="4" flex={1} alignItems="flex-end">
+                      <VStack pt="2" pr="4" alignItems="flex-end">
                         <TouchableOpacity
                           onPress={() => navigation.navigate(MAIN_STACK_CREATE_POST_WITH_LOCATION)}>
                           <Center
@@ -1149,7 +1149,7 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
                         <Text color={Colors.LOGO_COLOR_BROWN}>海拔 {props.altitude} 公尺</Text>
                         <Text color={Colors.LOGO_COLOR_BROWN}>距離 123 公里</Text>
                       </VStack>
-                      <VStack pt="2" pr="4" flex={1} alignItems="flex-end">
+                      <VStack pt="2" pr="4" alignItems="flex-end">
                         <TouchableOpacity
                           onPress={() => navigation.navigate(MAIN_STACK_CREATE_POST_WITH_LOCATION)}>
                           <Center

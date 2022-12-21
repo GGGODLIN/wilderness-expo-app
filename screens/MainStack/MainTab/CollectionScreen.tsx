@@ -507,6 +507,117 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
     },
   ];
 
+  function LocationCard(props: { item: any }) {
+    const [selectState, setSelectState] = useState(false);
+
+    return (
+      <HStack rounded="10" px="2" py="2" mb="2" key={'location_' + props.item.id} bg="white">
+        <Pressable
+          key={'location' + props.item.index}
+          onPress={() => navigation.navigate(MAIN_STACK_LOCATION_DETAILS)}
+          width="100%">
+          <Box
+            borderRadius="2xl"
+            bgColor="white"
+            key={'pan_' + props.item.id}
+            height={220}
+            width="100%">
+            <Box>
+              <Image
+                borderTopLeftRadius="20"
+                borderTopRightRadius="20"
+                source={{ uri: props.item.image }}
+                alt="image"
+                width="100%"
+                height="120"
+                resizeMode="cover"
+              />
+              <HStack
+                position="absolute"
+                bottom="0"
+                left="0"
+                pl="4"
+                pb="1"
+                width="100%"
+                bg="#00000060">
+                {props.item.tags.map((item, tags_index) => (
+                  <Box
+                    shadow="2"
+                    borderWidth="1"
+                    borderColor="coolGray.300"
+                    borderRadius="xl"
+                    mr="1"
+                    mt="2"
+                    my="1"
+                    px="2"
+                    py="1"
+                    key={'location' + props.item.index + '.tag' + tags_index}>
+                    <Text fontSize="xs" fontWeight="normal" color="white">
+                      {item.title}
+                    </Text>
+                  </Box>
+                ))}
+              </HStack>
+            </Box>
+            <HStack flex={1} pt="1" bg="coolGray.50" borderBottomRadius={20}>
+              <VStack pt="2" px={4} flex={1} width="80%">
+                <Text
+                  mt="0"
+                  fontSize="lg"
+                  fontWeight="medium"
+                  _light={{ color: 'coolGray.900' }}
+                  _dark={{ color: 'coolGray.400' }}>
+                  {props.item.title}
+                </Text>
+                <Text color={Colors.LOGO_COLOR_BROWN}>海拔 {props.item.altitude} 公尺</Text>
+                <Text color={Colors.LOGO_COLOR_BROWN}>距離 123 公里</Text>
+              </VStack>
+              <VStack pt="2" pr="4" flex={1} alignItems="flex-end">
+                <TouchableOpacity
+                  onPress={() => navigation.navigate(MAIN_STACK_CREATE_POST_WITH_LOCATION)}>
+                  <Center
+                    _light={{ bg: Colors.THEME_MAIN_BACKGROUND }}
+                    _dark={{ bg: 'coolGray.700' }}
+                    rounded="full"
+                    w="9"
+                    h="9"
+                    textAlign="center"
+                    alignItems="center"
+                    justifyContent="center">
+                    <IconButton
+                      variant="unstyled"
+                      colorScheme="light"
+                      mx="0"
+                      my="0"
+                      ml="0"
+                      px="0"
+                      py="0"
+                      icon={
+                        <Icon
+                          size="5"
+                          name="md-golf-outline"
+                          as={Ionicons}
+                          _dark={{
+                            color: 'coolGray.200',
+                          }}
+                          _light={{
+                            color: Colors.LOGO_COLOR_BROWN,
+                          }}
+                        />
+                      }
+                    />
+                  </Center>
+                  <Text textAlign="center" mt="1">
+                    打卡
+                  </Text>
+                </TouchableOpacity>
+              </VStack>
+            </HStack>
+          </Box>
+        </Pressable>
+      </HStack>
+    );
+  }
   function EquipmentCard(props: { item: EquipmentProps }) {
     const [selectState, setSelectState] = useState(false);
 
@@ -550,6 +661,16 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
     );
   }
   const toast = useToast();
+
+  const locationOnSwipeValueChange = (swipeData: { key: any; value: any }) => {
+    const { key, value } = swipeData;
+    if (value <= -75) {
+      toast.show({
+        description: '詢問是否刪除',
+      });
+    }
+  };
+
   const onSwipeValueChange = (swipeData: { key: any; value: any }) => {
     const { key, value } = swipeData;
     if (value >= 75) {
@@ -563,6 +684,76 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
   };
 
   function Tab_1() {
+    const [country, setCountry] = React.useState('請選擇縣市');
+    return (
+      <VStack py={2} px={6}>
+        <HStack justifyContent="space-between">
+          <Stack
+            alignItems="flex-start"
+            justifyContent="center"
+            width="28%"
+            backgroundColor={Colors.LOGO_COLOR_WHITE_BACKGROUND}
+            borderColor="coolGray.50"
+            borderRadius="10"
+            borderWidth="0"
+            pl="3"
+            my="2"
+            height="8">
+            <RNPickerSelect
+              placeholder={{}}
+              textInputProps={{ fontSize: 14, color: 'coolGray.400' }}
+              value={country}
+              onValueChange={(itemValue) => setCountry(itemValue)}
+              items={[
+                { label: '不限制縣市', value: '' },
+                { label: '台北市', value: '台北市' },
+                { label: '新北市', value: '新北市' },
+                { label: '桃園市', value: '桃園市' },
+                { label: '台中市', value: '台中市' },
+              ]}
+            />
+          </Stack>
+          <VStack width="70%">
+            <Input
+              isRequired
+              backgroundColor={Colors.LOGO_COLOR_WHITE_BACKGROUND}
+              borderColor="coolGray.50"
+              borderRadius="10"
+              borderWidth="0"
+              py="2"
+              my="2"
+              placeholder="搜尋..."
+              size="lg"
+            />
+          </VStack>
+        </HStack>
+        <SwipeListView
+          data={locationList}
+          renderItem={({ item }) => <LocationCard item={item} />}
+          renderHiddenItem={(data, rowMap) => (
+            <HStack justifyContent="space-between" h="100%">
+              <VStack alignItems="center" justifyContent="center" />
+              <VStack alignItems="center" justifyContent="center">
+                <Stack alignItems="center" justifyContent="center">
+                  <Icon
+                    size="6"
+                    as={MaterialIcons}
+                    name="delete-outline"
+                    color={Colors.LOGO_COLOR_WHITE}
+                  />
+                  <Text color={Colors.LOGO_COLOR_WHITE}>刪除</Text>
+                </Stack>
+              </VStack>
+            </HStack>
+          )}
+          leftOpenValue={0}
+          rightOpenValue={-30}
+          onSwipeValueChange={locationOnSwipeValueChange}
+        />
+      </VStack>
+    );
+    {
+      /*
     return (
       <ScrollView py={4} px={6}>
         <VStack space={5} alignItems="center">
@@ -674,6 +865,8 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
         </VStack>
       </ScrollView>
     );
+    */
+    }
   }
   function Tab_2() {
     return (
@@ -859,8 +1052,8 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
     );
   }
   function Tabs() {
-    const [tabName, setTabName] = React.useState(tabs[2].title);
-    const [tabChildren, setTabChildren] = useState<React.ReactNode>(tabs[2].component);
+    const [tabName, setTabName] = React.useState(tabs[0].title);
+    const [tabChildren, setTabChildren] = useState<React.ReactNode>(tabs[0].component);
     return (
       <>
         <Center backgroundColor="white">

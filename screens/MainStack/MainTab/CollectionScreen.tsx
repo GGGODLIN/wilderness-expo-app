@@ -31,6 +31,7 @@ import Colors from '../../../constants/Colors';
 import DashboardLayout from '../../../layouts/DashboardLayout';
 
 type Content = {
+  id: number;
   imageUri: string;
   itemName: string;
   itemCompany: string;
@@ -46,6 +47,17 @@ type MobileIcon = {
 };
 const trendingContentList: Content[] = [
   {
+    id: 1,
+    imageUri: 'https://picsum.photos/200',
+    itemName: '小野人',
+    itemCompany: 'BABY GROW',
+    description: '註冊成功',
+    discountedPrice: '$5,53,000',
+    actualPrice: '5,000',
+    Progress: 100,
+  },
+  {
+    id: 2,
     imageUri: 'https://picsum.photos/200',
     itemName: '好野人',
     itemCompany: 'BABY GROW',
@@ -54,7 +66,9 @@ const trendingContentList: Content[] = [
     actualPrice: '5,000',
     Progress: 100,
   },
+
   {
+    id: 3,
     imageUri: 'https://picsum.photos/200',
     itemName: '企鵝王',
     itemCompany: 'YK',
@@ -64,6 +78,7 @@ const trendingContentList: Content[] = [
     Progress: 50,
   },
   {
+    id: 4,
     imageUri: 'https://picsum.photos/200',
     itemName: '街頭霸王',
     itemCompany: 'YK',
@@ -77,6 +92,7 @@ const trendingContentList: Content[] = [
 export default function CollectionScreen({ navigation }: NavigationProps): JSX.Element {
   const [textInput, setTextInput] = useState('');
   const [selectedAddress, setSelectedAddress] = useState('Home');
+  const [achievementIndex, setAchievementIndex] = useState(0);
 
   const locationList = [
     {
@@ -409,22 +425,27 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
       <Pressable
         borderRadius="lg"
         _light={{
-          bg: props.item.Progress == 100 ? Colors.THEME_MAIN_BACKGROUND : 'coolGray.50',
+          bg: achievementIndex === props.item.id ? Colors.THEME_MAIN_BACKGROUND : 'coolGray.50',
         }}
         _dark={{ bg: 'coolGray.700' }}
         w="100%"
-        mb={2}>
+        mb={2}
+        onPress={() => {
+          if (props.item.Progress === 100) {
+            setAchievementIndex(props.item.id);
+          }
+        }}>
         <Box borderRadius="lg">
           <VStack p={3} space={2}>
             <Text
               fontSize="sm"
               fontWeight="medium"
               _light={{
-                color: props.item.Progress == 100 ? Colors.LOGO_COLOR_BROWN : 'coolGray.800',
+                color: props.item.Progress === 100 ? Colors.LOGO_COLOR_BROWN : 'coolGray.800',
               }}
               _dark={{ color: 'coolGray.50' }}>
               {props.item.itemName}
-              {props.item.Progress == 100 && ' (已獲得)'}
+              {props.item.Progress === 100 && ' (已獲得)'}
             </Text>
 
             <Progress
@@ -442,7 +463,7 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
                 _dark={{ color: 'coolGray.400' }}>
                 {props.item.description}
               </Text>
-              {props.item.Progress == 100 && <Text>選擇</Text>}
+              {achievementIndex === props.item.id && <Text>選擇</Text>}
             </HStack>
           </VStack>
         </Box>
@@ -1052,8 +1073,8 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
     );
   }
   function Tabs() {
-    const [tabName, setTabName] = React.useState(tabs[0].title);
-    const [tabChildren, setTabChildren] = useState<React.ReactNode>(tabs[0].component);
+    const [tabName, setTabName] = React.useState(tabs[3].title);
+    const [tabChildren, setTabChildren] = useState<React.ReactNode>(tabs[3].component);
     return (
       <>
         <Center backgroundColor="white">

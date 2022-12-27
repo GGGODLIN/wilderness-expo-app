@@ -41,7 +41,7 @@ export default function TabsScreen({ navigation }: NavigationProps): JSX.Element
               break;
             case route.name === MAIN_TAB_HOME:
               iconName = focused ? 'home' : 'home-outline';
-              size = iconSizeHome;
+              size = iconSizeNormal + 0;
               break;
             case route.name === MAIN_TAB_COLLECTION:
               iconName = focused ? 'heart' : 'heart-outline';
@@ -62,30 +62,30 @@ export default function TabsScreen({ navigation }: NavigationProps): JSX.Element
       <Tab.Screen
         name={MAIN_TAB_COMMUNITY}
         component={MainTabCommunityScreen}
-        options={{ tabBarLabel: '社群' }}
+        options={{ tabBarLabel: '' }}
       />
       <Tab.Screen
         name={MAIN_TAB_EXPLORE}
         component={MainTabExploreScreen}
-        options={{ tabBarLabel: '探索' }}
+        options={{ tabBarLabel: '' }}
       />
       <Tab.Screen
         name={MAIN_TAB_HOME}
         component={MainTabHomeScreen}
         options={{
           headerShown: false,
-          tabBarLabel: '首頁',
+          tabBarLabel: '',
         }}
       />
       <Tab.Screen
         name={MAIN_TAB_COLLECTION}
         component={MainTabCollectionScreen}
-        options={{ tabBarLabel: '私藏' }}
+        options={{ tabBarLabel: '' }}
       />
       <Tab.Screen
         name={MAIN_TAB_PROFILE}
         component={MainTabProfileStackScreen}
-        options={{ tabBarBadge: '99+', tabBarLabel: '個人' }}
+        options={{ tabBarLabel: '' }} //tabBarBadge
       />
     </Tab.Navigator>
   );

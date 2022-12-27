@@ -19,7 +19,7 @@ import {
   Fab,
 } from 'native-base';
 import React, { useEffect, useRef, useState } from 'react';
-import { Keyboard, Dimensions, ScrollView, TouchableOpacity } from 'react-native';
+import { Keyboard, Dimensions, ScrollView, TouchableOpacity, RefreshControl } from 'react-native';
 import MapView, { AnimatedRegion, Marker, PROVIDER_GOOGLE, Region } from 'react-native-maps';
 import RNPickerSelect from 'react-native-picker-select';
 
@@ -354,10 +354,12 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
     return (
       <HStack alignItems="flex-start" justifyContent="space-between">
         <Input
+          width="80%"
           borderWidth={1}
           py={2}
-          my={1}
-          mb={2}
+          my={0}
+          mt={2}
+          mb={0}
           mx={4}
           borderRadius="2xl"
           bg="white"
@@ -370,7 +372,7 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
             setShowLocationCard(false);
           }}
           onChangeText={setTextInput}
-          size="lg"
+          size="sm"
           _light={{
             bg: 'coolGray.50',
             borderColor: 'coolGray.300',
@@ -414,7 +416,7 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
           InputLeftElement={
             <Icon
               as={<MaterialIcons name="search" />}
-              size="6"
+              size="4"
               ml="3"
               _light={{
                 color: 'coolGray.400',
@@ -432,7 +434,7 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
               }}>
               <Icon
                 as={<MaterialIcons name="close" />}
-                size="6"
+                size="4"
                 mr="3"
                 _light={{
                   color: 'coolGray.400',
@@ -444,8 +446,31 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
             </Pressable>
           }
           placeholder="搜尋"
-          fontSize="md"
+          fontSize="xs"
           fontWeight="medium"
+        />
+        <IconButton
+          ml="auto"
+          mt={3}
+          mr={4}
+          p={0}
+          onPress={() => {
+            if (showLocationList) {
+              setShowLocationCard(true);
+              setShowLocationList(false);
+            } else {
+              setShowLocationCard(false);
+              setShowLocationList(true);
+            }
+          }}
+          icon={
+            <Icon
+              color={Colors.LOGO_COLOR_BROWN}
+              as={AntDesign}
+              name={showLocationList ? 'enviromento' : 'bars'}
+              size="6"
+            />
+          }
         />
       </HStack>
     );
@@ -876,6 +901,11 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
                     data={icons}
                     renderItem={({ item }) => <FacilityCard item={item} />}
                     keyExtractor={(item: Offer, index: number) => 'key' + index}
+                    onRefresh={() => {
+                      toast.show({
+                        description: 'todo 地圖關聯',
+                      });
+                    }}
                   />
                 </Stack>
               </HStack>
@@ -1096,6 +1126,9 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
                   key={'location' + index}
                   onPress={() => navigation.navigate(MAIN_STACK_LOCATION_DETAILS)}>
                   <Box
+                    rounded={10}
+                    mt={4}
+                    mb={0}
                     shadow={2}
                     bgColor="white"
                     key={'pan_' + props.id}
@@ -1103,6 +1136,8 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
                     width={screenWidth}>
                     <Box>
                       <Image
+                        borderTopLeftRadius={10}
+                        borderTopRightRadius={10}
                         source={{ uri: props.image }}
                         alt="image"
                         width="100%"
@@ -1234,6 +1269,7 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
             </Center>
           </TouchableOpacity>
         </VStack>
+        {/*
         <Fab
           position="absolute"
           bottom="5%"
@@ -1262,6 +1298,7 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
             />
           }
         />
+        */}
         {/* ========= Buttons - End ========= */}
       </Box>
     </DashboardLayout>

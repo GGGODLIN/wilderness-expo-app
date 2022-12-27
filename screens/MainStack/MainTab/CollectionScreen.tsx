@@ -511,7 +511,7 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
     const [selectState, setSelectState] = useState(false);
 
     return (
-      <HStack rounded="10" px="2" py="2" mb="2" key={'location_' + props.item.id} bg="white">
+      <HStack rounded="10" px="0" py="2" mb="2" key={'location_' + props.item.id} bg="white">
         <Pressable
           key={'location' + props.item.index}
           onPress={() => navigation.navigate(MAIN_STACK_LOCATION_DETAILS)}
@@ -686,22 +686,22 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
   function Tab_1() {
     const [country, setCountry] = React.useState('請選擇縣市');
     return (
-      <VStack py={2} px={6}>
-        <HStack justifyContent="space-between">
+      <VStack py={2} px={4}>
+        <HStack justifyContent="space-between" alignItems="center">
           <Stack
             alignItems="flex-start"
             justifyContent="center"
             width="28%"
+            height="8"
             backgroundColor={Colors.LOGO_COLOR_WHITE_BACKGROUND}
             borderColor="coolGray.50"
             borderRadius="10"
             borderWidth="0"
             pl="3"
-            my="2"
-            height="8">
+            my="2">
             <RNPickerSelect
               placeholder={{}}
-              textInputProps={{ fontSize: 14, color: 'coolGray.400' }}
+              textInputProps={{ fontSize: 14, color: 'coolGray.300' }}
               value={country}
               onValueChange={(itemValue) => setCountry(itemValue)}
               items={[
@@ -723,7 +723,7 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
               py="2"
               my="2"
               placeholder="搜尋..."
-              size="lg"
+              size="sm"
             />
           </VStack>
         </HStack>
@@ -878,8 +878,8 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
   function Tab_3() {
     const [country, setCountry] = React.useState('請選擇分類');
     return (
-      <VStack py={2} px={6}>
-        <HStack justifyContent="space-between">
+      <VStack py={2} px={4}>
+        <HStack justifyContent="space-between" alignItems="center">
           <Stack
             alignItems="flex-start"
             justifyContent="center"
@@ -908,7 +908,7 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
               ]}
             />
           </Stack>
-          <VStack width="60%">
+          <VStack width="58%">
             <Input
               isRequired
               backgroundColor={Colors.LOGO_COLOR_WHITE_BACKGROUND}
@@ -918,7 +918,7 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
               py="2"
               my="2"
               placeholder="搜尋..."
-              size="lg"
+              size="sm"
             />
           </VStack>
           <VStack width="10%" alignItems="center" justifyContent="center">
@@ -1016,7 +1016,7 @@ export default function CollectionScreen({ navigation }: NavigationProps): JSX.E
         <Text
           paddingX={2}
           paddingY={1}
-          fontSize="lg"
+          fontSize="sm"
           fontWeight="medium"
           letterSpacing="0.4"
           _light={{

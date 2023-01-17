@@ -28,6 +28,8 @@
     "@react-navigation/drawer": "^6.5.0",
     "@react-navigation/native": "^6.0.13",
     "@react-navigation/native-stack": "^6.9.0",
+    "axios": "^1.2.2",
+    "axios-logger": "^2.6.2",
     "expo": "^46.0.0",
     "expo-calendar": "~10.3.0",
     "expo-image-picker": "~13.3.1",
@@ -61,6 +63,7 @@
     "eslint": "^8.24.0",
     "eslint-config-universe": "^11.1.0",
     "prettier": "^2.7.1",
+    "react-native-dotenv": "^3.4.7",
     "typescript": "^4.6.3"
   },
   "bugs": {

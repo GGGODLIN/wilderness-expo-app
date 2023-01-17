@@ -12,3 +12,10 @@ export interface User {
   created_at: string;
   updated_at: string;
 }
+
+export interface UserRegister {
+  id: number;
+  email: string;
+  created_at: string;
+  updated_at: string;
+}

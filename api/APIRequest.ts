@@ -3,6 +3,7 @@ import axios from 'axios';
 import * as AxiosLogger from 'axios-logger';
 
 export const APIRequest = (token?: string) => {
+  console.log('API_BASE_URL', API_BASE_URL);
   let headers: { [key: string]: string } = {
     Accept: 'application/json',
   };

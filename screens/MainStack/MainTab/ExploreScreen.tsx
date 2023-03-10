@@ -29,11 +29,15 @@ import {
   MAIN_STACK_CREATE_LOCATION,
 } from '../../../NavigationNames';
 import { NavigationProps } from '../../../Props';
+import useCoordinateList from '../../../api/useCoordinateList';
+import useFacilitiesList from '../../../api/useFacilitiesList';
+import useLocationTagList from '../../../api/useLocationTagList';
+import useLocations from '../../../api/useLocations';
 import Colors from '../../../constants/Colors';
 import DashboardLayout from '../../../layouts/DashboardLayout';
 import { getRegionFromMarkers } from '../../../utils/MapUtils';
 
-const locationList = [
+const _locationList = [
   {
     id: 1,
     image: 'https://picsum.photos/1000',
@@ -226,11 +230,18 @@ const locationList = [
   },
 ];
 
+// const DEFAULT_MAPVIEW_REGION = {
+//   latitudeDelta: 0.1,
+//   longitudeDelta: 0.1,
+//   latitude: 25.032163,
+//   longitude: 121.535002,
+// };
+
 const DEFAULT_MAPVIEW_REGION = {
-  latitudeDelta: 0.1,
-  longitudeDelta: 0.1,
-  latitude: 25.032163,
-  longitude: 121.535002,
+  latitudeDelta: 22.276065524990436,
+  longitudeDelta: 13.198397532105446,
+  latitude: 23.42423225837084,
+  longitude: 120.79691771417856,
 };
 
 const mapStyle = [
@@ -245,6 +256,15 @@ const mapStyle = [
 ];
 
 export default function ExploreScreen({ navigation }: NavigationProps): JSX.Element {
+  const [mapRegion, setMapRegion] = useState(DEFAULT_MAPVIEW_REGION);
+
+  const { data: coordinateListData } = useCoordinateList({ region: mapRegion });
+  const { data: facilitiesListData } = useFacilitiesList();
+  const { data: locationTagListData } = useLocationTagList();
+  const locationList = coordinateListData?.data?.locations ?? [];
+  const facilitiesList = facilitiesListData?.data?.facilities ?? [];
+  const locationTagList = [];
+  console.log('coordinateListData', facilitiesList, locationList, locationTagListData);
   // Location Card 地點清單
   const [showLocationCard, setShowLocationCard] = useState(true);
   const [showLocationList, setShowLocationList] = useState(false);
@@ -289,8 +309,8 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
       const location = await ExpoLocation.getCurrentPositionAsync({});
       mapRef!.current!.animateToRegion(
         {
-          latitude: location.coords.latitude,
-          longitude: location.coords.longitude,
+          latitude: Number(location.coords.latitude),
+          longitude: Number(location.coords.longitude),
           latitudeDelta: 0.02,
           longitudeDelta: 0.02,
         },
@@ -299,9 +319,9 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
     })();
 
     //FIXME 改成定位完成後移動到當前位置
-    const markers = locationList.map((location) => ({
-      latitude: location.latitude,
-      longitude: location.longitude,
+    const markers = locationList?.map?.((location) => ({
+      latitude: Number(location.latitude),
+      longitude: Number(location.longitude),
     }));
     const region = getRegionFromMarkers(markers);
 
@@ -478,6 +498,7 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
 
   const onRegionChangeComplete = (region: Region): void => {
     currentRegion.setValue(region);
+    setMapRegion({ ...region });
   };
 
   if (mapErrorMsg) {
@@ -618,8 +639,8 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
     }
     return 'coolGray.500';
   }
-  function FacilityCard(props: { item: Icon }) {
-    const [facilityState, setFacilityState] = useState(props.item.state);
+  function FacilityCard(props) {
+    const [facilityState, setFacilityState] = useState(props.item.state ?? 0);
 
     return (
       <TouchableOpacity
@@ -642,7 +663,7 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
             icon={
               <Icon
                 as={FontAwesome5}
-                name={props.item.name}
+                name={props.item?.name}
                 _light={{
                   color: getFacilityStyle(facilityState),
                 }}
@@ -657,7 +678,7 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
             color={getFacilityStyle(facilityState)}
             textAlign="center"
             strikeThrough={facilityState === 2}>
-            {props.item.text}
+            {props.item?.title}
           </Text>
         </HStack>
       </TouchableOpacity>
@@ -896,11 +917,13 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
               <HStack space={6} justifyContent="space-between" alignItems="center">
                 <Stack flexWrap="wrap" direction="row" space="2">
                   <MasonryList
+                    scrollEnabled
+                    nestedScrollEnabled
                     showsVerticalScrollIndicator={false}
                     numColumns={4}
-                    data={icons}
-                    renderItem={({ item }) => <FacilityCard item={item} />}
-                    keyExtractor={(item: Offer, index: number) => 'key' + index}
+                    data={facilitiesList}
+                    renderItem={({ item, i }) => <FacilityCard item={item} index={i} />}
+                    keyExtractor={(item, index: number) => 'key' + (item?.id ?? index)}
                     onRefresh={() => {
                       toast.show({
                         description: 'todo 地圖關聯',
@@ -925,18 +948,18 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
           }}
           style={{ flex: 1, minHeight: 700, height: '100%' }}
           provider={PROVIDER_GOOGLE}
-          region={DEFAULT_MAPVIEW_REGION}
+          initialRegion={DEFAULT_MAPVIEW_REGION}
           onRegionChangeComplete={onRegionChangeComplete}
           showsUserLocation
           showsMyLocationButton={false}
           customMapStyle={mapStyle}>
-          {locationList.map((location, index) => (
+          {locationList?.map?.((location, index) => (
             <Marker
               key={location.id}
               identifier={'marker_' + location.id.toString()}
               coordinate={{
-                latitude: location.latitude,
-                longitude: location.longitude,
+                latitude: Number(location.latitude),
+                longitude: Number(location.longitude),
               }}
               onPress={() => {
                 setShowLocationCard(true);
@@ -979,15 +1002,15 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
               // console.log('width: ' + snapWidth + ', which: ' + which + ', x: ' + positionX);
               const markers = [
                 {
-                  latitude: locationList[which].latitude,
-                  longitude: locationList[which].longitude,
+                  latitude: Number(locationList[which].latitude),
+                  longitude: Number(locationList[which].longitude),
                 },
               ];
               const region = getRegionFromMarkers(markers);
               mapRef!.current!.animateToRegion(region, 300);
             }}>
             <HStack space={5} alignItems="flex-start" mx={5} mb={0}>
-              {locationList.map((props, index) => (
+              {locationList?.map?.((props, index) => (
                 <Pressable
                   key={'location' + index}
                   onPress={() => navigation.navigate(MAIN_STACK_LOCATION_DETAILS)}>
@@ -1002,38 +1025,40 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
                       <Image
                         borderTopLeftRadius="20"
                         borderTopRightRadius="20"
-                        source={{ uri: props.image }}
+                        source={{ uri: props?.image ?? 'https://picsum.photos/1000' }}
                         alt="image"
                         width="100%"
                         height="120"
                         resizeMode="cover"
                       />
-                      <HStack
-                        position="absolute"
-                        bottom="0"
-                        left="0"
-                        pl="4"
-                        pb="1"
-                        width="100%"
-                        bg="#00000060">
-                        {props.tags.map((item, tags_index) => (
-                          <Box
-                            shadow="2"
-                            borderWidth="1"
-                            borderColor="coolGray.300"
-                            borderRadius="xl"
-                            mr="1"
-                            mt="2"
-                            my="1"
-                            px="2"
-                            py="1"
-                            key={'location' + index + '.tag' + tags_index}>
-                            <Text fontSize="xs" fontWeight="normal" color="white">
-                              {item.title}
-                            </Text>
-                          </Box>
-                        ))}
-                      </HStack>
+                      {props?.tags && (
+                        <HStack
+                          position="absolute"
+                          bottom="0"
+                          left="0"
+                          pl="4"
+                          pb="1"
+                          width="100%"
+                          bg="#00000060">
+                          {props?.tags?.map?.((item, tags_index) => (
+                            <Box
+                              shadow="2"
+                              borderWidth="1"
+                              borderColor="coolGray.300"
+                              borderRadius="xl"
+                              mr="1"
+                              mt="2"
+                              my="1"
+                              px="2"
+                              py="1"
+                              key={'location' + index + '.tag' + tags_index}>
+                              <Text fontSize="xs" fontWeight="normal" color="white">
+                                {item.title}
+                              </Text>
+                            </Box>
+                          ))}
+                        </HStack>
+                      )}
                     </Box>
                     <HStack flex={1} pt="1">
                       <VStack pt="2" px={4} flex={1} width="80%">
@@ -1113,15 +1138,15 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
               // console.log('width: ' + snapWidth + ', which: ' + which + ', x: ' + positionX);
               const markers = [
                 {
-                  latitude: locationList[which].latitude,
-                  longitude: locationList[which].longitude,
+                  latitude: Number(locationList[which].latitude),
+                  longitude: Number(locationList[which].longitude),
                 },
               ];
               const region = getRegionFromMarkers(markers);
               mapRef!.current!.animateToRegion(region, 300);
             }}>
             <VStack alignItems="flex-start" mb={0} pt="8" pb="15%">
-              {locationList.map((props, index) => (
+              {locationList?.map?.((props, index) => (
                 <Pressable
                   key={'location' + index}
                   onPress={() => navigation.navigate(MAIN_STACK_LOCATION_DETAILS)}>
@@ -1138,38 +1163,40 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
                       <Image
                         borderTopLeftRadius={10}
                         borderTopRightRadius={10}
-                        source={{ uri: props.image }}
+                        source={{ uri: props?.image ?? 'https://picsum.photos/1000' }}
                         alt="image"
                         width="100%"
                         height="120"
                         resizeMode="cover"
                       />
-                      <HStack
-                        position="absolute"
-                        bottom="0"
-                        left="0"
-                        pl="4"
-                        pb="1"
-                        width="100%"
-                        bg="#00000060">
-                        {props.tags.map((item, tags_index) => (
-                          <Box
-                            shadow="2"
-                            borderWidth="1"
-                            borderColor="coolGray.300"
-                            borderRadius="xl"
-                            mr="1"
-                            mt="2"
-                            my="1"
-                            px="2"
-                            py="1"
-                            key={'location' + index + '.tag' + tags_index}>
-                            <Text fontSize="xs" fontWeight="normal" color="white">
-                              {item.title}
-                            </Text>
-                          </Box>
-                        ))}
-                      </HStack>
+                      {props?.tags && (
+                        <HStack
+                          position="absolute"
+                          bottom="0"
+                          left="0"
+                          pl="4"
+                          pb="1"
+                          width="100%"
+                          bg="#00000060">
+                          {props?.tags?.map?.((item, tags_index) => (
+                            <Box
+                              shadow="2"
+                              borderWidth="1"
+                              borderColor="coolGray.300"
+                              borderRadius="xl"
+                              mr="1"
+                              mt="2"
+                              my="1"
+                              px="2"
+                              py="1"
+                              key={'location' + index + '.tag' + tags_index}>
+                              <Text fontSize="xs" fontWeight="normal" color="white">
+                                {item.title}
+                              </Text>
+                            </Box>
+                          ))}
+                        </HStack>
+                      )}
                     </Box>
                     <HStack flex={1} pt="1">
                       <VStack pt="2" px={4} flex={1} width="80%">
@@ -1252,8 +1279,8 @@ export default function ExploreScreen({ navigation }: NavigationProps): JSX.Elem
               });
               const location = await ExpoLocation.getCurrentPositionAsync({});
               mapRef!.current!.animateToRegion({
-                latitude: location.coords.latitude,
-                longitude: location.coords.longitude,
+                latitude: Number(location.coords.latitude),
+                longitude: Number(location.coords.longitude),
                 latitudeDelta: 0.0922,
                 longitudeDelta: 0.0421,
               });

@@ -4,7 +4,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Accelerometer } from 'expo-sensors';
 import { Icon, AlertDialog, Center, NativeBaseProvider, VStack, Text, Spinner } from 'native-base';
 import * as React from 'react';
+import { Platform } from 'react-native';
 import { enableLatestRenderer } from 'react-native-maps';
+import { QueryClient, QueryClientProvider, focusManager } from 'react-query';
 
 import {
   MAIN_STACK_COVER,
@@ -26,6 +28,8 @@ import {
   PROFILE_STACK_NOTIFICATIONS,
 } from './NavigationNames';
 import Colors from './constants/Colors';
+import { useAppState } from './hooks/useAppState';
+import { useOnlineManager } from './hooks/useOnlineManager';
 import CoverScreen from './screens/MainStack/CoverScreen';
 import CreateEquipmentScreen from './screens/MainStack/CreateEquipmentScreen';
 import CreateLocationScreen from './screens/MainStack/CreateLocationScreen';
@@ -72,8 +76,17 @@ const configureShake = (onShake: (acceleration: number) => void) => {
 
 const MainStack = createNativeStackNavigator();
 const navigationRef = createNavigationContainerRef();
+const queryClient = new QueryClient();
+
+function onAppStateChange(status) {
+  if (Platform.OS !== 'web') {
+    focusManager.setFocused(status === 'active');
+  }
+}
 
 export default function App() {
+  useOnlineManager();
+  useAppState(onAppStateChange);
   const [isOpen, setIsOpen] = React.useState(false);
   const cancelRef = React.useRef(null);
 
@@ -92,61 +105,69 @@ export default function App() {
     setTimeout(randomLocation, 1500);
   });
   return (
-    <NativeBaseProvider>
-      <NavigationContainer ref={navigationRef}>
-        <MainStack.Navigator
-          screenOptions={{
-            headerShown: false,
-          }}>
-          <MainStack.Screen component={CoverScreen} name={MAIN_STACK_COVER} />
-          <MainStack.Screen component={TabsScreen} name={MAIN_STACK_TABS} />
-          <MainStack.Screen component={LoginScreen} name={MAIN_STACK_LOGIN} />
-          <MainStack.Screen component={RegisterScreen} name={MAIN_STACK_REGISTER} />
-          <MainStack.Screen component={ResetPasswordScreen} name={MAIN_STACK_RESET_PASSWORD} />
-          <MainStack.Screen component={EventDetailsScreen} name={MAIN_STACK_EVENT_DETAILS} />
-          <MainStack.Screen component={MessageScreen} name={MAIN_STACK_MESSAGES} />
-          <MainStack.Screen component={PostDrawer} name={MAIN_STACK_POST_DRAWER} />
-          <MainStack.Screen component={ProfileScreen} name={MAIN_STACK_PROFILE} />
-          <MainStack.Screen
-            component={ProfileStackNotifications}
-            name={PROFILE_STACK_NOTIFICATIONS}
-          />
-          <MainStack.Screen component={EditProfileScreen} name={PROFILE_STACK_EDIT_PROFILE} />
-          <MainStack.Screen component={ChangePasswordScreen} name={PROFILE_STACK_CHANGE_PASSWORD} />
-          <MainStack.Screen component={LocationDrawer} name={MAIN_STACK_LOCATION_DRAWER} />
-          <MainStack.Screen component={CreatePostScreen} name={MAIN_STACK_CREATE_POST} />
-          <MainStack.Screen
-            component={CreatePostWithLocationScreen}
-            name={MAIN_STACK_CREATE_POST_WITH_LOCATION}
-          />
-          <MainStack.Screen component={CreateLocationScreen} name={MAIN_STACK_CREATE_LOCATION} />
-          <MainStack.Screen component={CreateEquipmentScreen} name={MAIN_STACK_CREATE_EQUIPMENT} />
-        </MainStack.Navigator>
-      </NavigationContainer>
-      <AlertDialog
-        leastDestructiveRef={cancelRef}
-        isOpen={isOpen}
-        onClose={onClose}
-        closeOnOverlayClick={false}>
-        <AlertDialog.Content>
-          <AlertDialog.Header>
-            <Center>
-              <Icon color="black" as={AntDesign} name="shake" size="2xl" mb="2" />
-              <Text fontSize="lg">搖晃隨機地點</Text>
-            </Center>
-          </AlertDialog.Header>
-          <AlertDialog.Body>
-            <VStack>
+    <QueryClientProvider client={queryClient}>
+      <NativeBaseProvider>
+        <NavigationContainer ref={navigationRef}>
+          <MainStack.Navigator
+            screenOptions={{
+              headerShown: false,
+            }}>
+            <MainStack.Screen component={CoverScreen} name={MAIN_STACK_COVER} />
+            <MainStack.Screen component={TabsScreen} name={MAIN_STACK_TABS} />
+            <MainStack.Screen component={LoginScreen} name={MAIN_STACK_LOGIN} />
+            <MainStack.Screen component={RegisterScreen} name={MAIN_STACK_REGISTER} />
+            <MainStack.Screen component={ResetPasswordScreen} name={MAIN_STACK_RESET_PASSWORD} />
+            <MainStack.Screen component={EventDetailsScreen} name={MAIN_STACK_EVENT_DETAILS} />
+            <MainStack.Screen component={MessageScreen} name={MAIN_STACK_MESSAGES} />
+            <MainStack.Screen component={PostDrawer} name={MAIN_STACK_POST_DRAWER} />
+            <MainStack.Screen component={ProfileScreen} name={MAIN_STACK_PROFILE} />
+            <MainStack.Screen
+              component={ProfileStackNotifications}
+              name={PROFILE_STACK_NOTIFICATIONS}
+            />
+            <MainStack.Screen component={EditProfileScreen} name={PROFILE_STACK_EDIT_PROFILE} />
+            <MainStack.Screen
+              component={ChangePasswordScreen}
+              name={PROFILE_STACK_CHANGE_PASSWORD}
+            />
+            <MainStack.Screen component={LocationDrawer} name={MAIN_STACK_LOCATION_DRAWER} />
+            <MainStack.Screen component={CreatePostScreen} name={MAIN_STACK_CREATE_POST} />
+            <MainStack.Screen
+              component={CreatePostWithLocationScreen}
+              name={MAIN_STACK_CREATE_POST_WITH_LOCATION}
+            />
+            <MainStack.Screen component={CreateLocationScreen} name={MAIN_STACK_CREATE_LOCATION} />
+            <MainStack.Screen
+              component={CreateEquipmentScreen}
+              name={MAIN_STACK_CREATE_EQUIPMENT}
+            />
+          </MainStack.Navigator>
+        </NavigationContainer>
+        <AlertDialog
+          leastDestructiveRef={cancelRef}
+          isOpen={isOpen}
+          onClose={onClose}
+          closeOnOverlayClick={false}>
+          <AlertDialog.Content>
+            <AlertDialog.Header>
               <Center>
-                <Spinner color={Colors.LOGO_COLOR_GREEN} my={6} size="lg" />
+                <Icon color="black" as={AntDesign} name="shake" size="2xl" mb="2" />
+                <Text fontSize="lg">搖晃隨機地點</Text>
               </Center>
-              <Center>
-                <Text>正在搜尋附近的地點...</Text>
-              </Center>
-            </VStack>
-          </AlertDialog.Body>
-        </AlertDialog.Content>
-      </AlertDialog>
-    </NativeBaseProvider>
+            </AlertDialog.Header>
+            <AlertDialog.Body>
+              <VStack>
+                <Center>
+                  <Spinner color={Colors.LOGO_COLOR_GREEN} my={6} size="lg" />
+                </Center>
+                <Center>
+                  <Text>正在搜尋附近的地點...</Text>
+                </Center>
+              </VStack>
+            </AlertDialog.Body>
+          </AlertDialog.Content>
+        </AlertDialog>
+      </NativeBaseProvider>
+    </QueryClientProvider>
   );
 }
